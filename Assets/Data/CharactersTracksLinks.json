@@ -1,0 +1,598 @@
+{
+    "Mario": [
+        "02_CircuitMario_DS",
+        "02_CircuitMario_GBA",
+        "01_CircuitMario",
+        "02_CircuitMario3_SNES",
+        "01_Champidrome",
+        "01_StadeBousculade",
+        "07_AreneBataille1_SNES",
+        "02_PlaineDonut3_SNES"
+    ],
+    "Luigi": [
+        "03_PisteMusicale_3DS",
+        "03_ClubMario",
+        "03_MontFestif",
+        "03_ManoirTrempe",
+        "06_ManoirDeLuigi_GCN"
+    ],
+    "Peach": [
+        "02_IleAuxDelices",
+        "03_AutodromeRoyal_N64",
+        "03_PisteAuxDelices",
+        "04_CiteSorbet",
+        "02_JardinPeach_DS"
+    ],
+    "Daisy": [
+        "02_IleAuxDelices",
+        "01_PrairieMeuhMeuh_WII",
+        "03_PisteAuxDelices",
+        "03_PisteMusicale_3DS",
+        "03_CircuitDaisy",
+        "04_CiteSorbet",
+        "02_PaquebotDaisy_GCN"
+    ],
+    "Harmonie": [
+        "02_IleAuxDelices",
+        "03_PisteAuxDelices",
+        "04_RouteArcEnCiel_N64",
+        "04_RouteArcEnCiel_WII",
+        "04_RouteArcEnCiel_3DS",
+        "04_RouteArcEnCiel",
+        "02_RouteArcEnCiel_SNES",
+        "02_MondeGlaceHarmonie_3DS",
+        "04_CiteSorbet",
+        "04_ColonieLunaire"
+    ],
+    "Mario Tanuki": [
+        "02_CircuitMario_DS",
+        "02_CircuitMario_GBA",
+        "01_CircuitMario",
+        "02_CircuitMario3_SNES",
+        "01_Champidrome",
+        "01_StadeBousculade",
+        "07_AreneBataille1_SNES",
+        "02_PlaineDonut3_SNES"
+    ],
+    "Peach Chat": [
+        "02_IleAuxDelices",
+        "03_AutodromeRoyal_N64",
+        "03_PisteAuxDelices",
+        "04_CiteSorbet",
+        "02_JardinPeach_DS"
+    ],
+    "Yoshi": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Yoshi Rouge": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Yoshi Bleu Marine": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Yoshi Bleu Ciel": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Yoshi Jaune": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Yoshi Rose": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Yoshi Noir": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Yoshi Blanc": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Yoshi Orange": [
+        "04_ValleeYoshi_N64",
+        "04_IleDeYoshi",
+        "01_CircuitYoshi_GCN"
+    ],
+    "Toad": [
+        "04_AutorouteToad_N64",
+        "02_PromenadeToad",
+        "03_GorgeChampignon_WII",
+        "02_CornicheChampignon_DS",
+        "02_CircuitToad_3DS"
+    ],
+    "Koopa": [
+        "03_CapKoopa_WII",
+        "01_Koopapolis_3DS",
+        "04_TempleThwomp"
+    ],
+    "Maskass": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Maskass Vert": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Maskass Bleu Marine": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Maskass Bleu Ciel": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Maskass Jaune": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Maskass Rose": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Maskass Noir": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Maskass Blanc": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Maskass Orange": [
+        "02_PaysCrepuscule_GBA",
+        "04_CascadesMaskass",
+        "04_DojoNinja"
+    ],
+    "Lakitu": [
+        "03_JardinVolant_GBA",
+        "03_PlageCheepCheep_DS",
+        "03_RouteDuDragon",
+        "03_PalaisDuDragon"
+    ],
+    "Toadette": [
+        "04_AutorouteToad_N64",
+        "02_PromenadeToad",
+        "03_GorgeChampignon_WII",
+        "02_CornicheChampignon_DS",
+        "02_CircuitToad_3DS"
+    ],
+    "Roi Boo": [
+        "03_ManoirTrempe",
+        "02_LacBoo_GBA",
+        "06_ManoirDeLuigi_GCN"
+    ],
+    "Baby Mario": [
+        "02_ParcGlougloop",
+        "02_RouteRuban_GBA",
+        "01_ParcBaby_GCN",
+        "04_SupermarcheCoco_WII"
+    ],
+    "Baby Luigi": [
+        "02_ParcGlougloop",
+        "02_RouteRuban_GBA",
+        "01_ParcBaby_GCN",
+        "04_SupermarcheCoco_WII"
+    ],
+    "Baby Peach": [
+        "03_AutodromeRoyal_N64",
+        "02_RouteRuban_GBA02_ParcGlougloop",
+        "01_ParcBaby_GCN03_PisteAuxDelices",
+        "04_SupermarcheCoco_WII"
+    ],
+    "Baby Daisy": [
+        "02_ParcGlougloop",
+        "02_RouteRuban_GBA03_PisteAuxDelices",
+        "01_ParcBaby_GCN",
+        "04_SupermarcheCoco_WII"
+    ],
+    "Baby Harmonie": [
+        "02_ParcGlougloop",
+        "02_RouteRuban_GBA03_PisteAuxDelices",
+        "01_ParcBaby_GCN",
+        "04_SupermarcheCoco_WII",
+        "02_MondeGlaceHarmonie_3DS"
+    ],
+    "Metal Mario": [
+        "04_BigBlue",
+        "04_MuteCity"
+    ],
+    "Mario Gold": [
+        "04_BigBlue",
+        "04_MuteCity"
+    ],
+    "Peach d'Or Rose": [
+        "02_IleAuxDelices",
+        "03_AutodromeRoyal_N64",
+        "03_PisteAuxDelices",
+        "04_CiteSorbet",
+        "02_JardinPeach_DS"
+    ],
+    "Wario": [
+        "01_StadeWario_DS",
+        "01_MineWario_WII"
+    ],
+    "Waluigi": [
+        "03_StadeWaluigi_GCN",
+        "04_FlipperWaluigi_DS"
+    ],
+    "Donkey Kong": [
+        "04_ForetTropicaleDK_3DS",
+        "03_PicDK_WII",
+        "02_MontagneDK"
+    ],
+    "Bowser": [
+        "03_ChateauDeBowser3_SNES",
+        "03_ChateauDeBowser",
+        "03_VolcanGrondant_WII"
+    ],
+    "Skelerex": [
+        "03_DesertKalimari_N64",
+        "02_DesertToussec"
+    ],
+    "Bowser Jr.": [
+        "03_ChateauDeBowser3_SNES",
+        "03_ChateauDeBowser",
+        "03_VolcanGrondant_WII"
+    ],
+    "Bowser Squelette": [
+        "03_ChateauDeBowser3_SNES",
+        "03_ChateauDeBowser",
+        "03_VolcanGrondant_WII"
+    ],
+    "Lemmy": [
+        "03_MetroTurbo",
+        "01_DesertSecSec_GCN",
+        "02_PaysFromage_GBA",
+        "02_RoyaumeSorbet_GCN",
+        "01_HorlogeTicTac_DS",
+        "01_AeroportAzur",
+        "02_LagonTourbillon",
+        "04_DescenteGivree",
+        "02_RiversideParc_GBA",
+        "02_PaysNeigeux_GBA",
+        "02_AreneExcitebike",
+        "03_MontEboulis_3DS",
+        "03_StationGlagla",
+        "03_MontagneChoco_N64"
+    ],
+    "Larry": [
+        "03_MetroTurbo",
+        "01_DesertSecSec_GCN",
+        "02_PaysFromage_GBA",
+        "02_RoyaumeSorbet_GCN",
+        "01_HorlogeTicTac_DS",
+        "01_AeroportAzur",
+        "02_LagonTourbillon",
+        "04_DescenteGivree",
+        "02_RiversideParc_GBA",
+        "02_PaysNeigeux_GBA",
+        "02_AreneExcitebike",
+        "03_MontEboulis_3DS",
+        "03_StationGlagla",
+        "03_MontagneChoco_N64"
+    ],
+    "Wendy": [
+        "03_MetroTurbo",
+        "01_DesertSecSec_GCN",
+        "02_PaysFromage_GBA",
+        "02_RoyaumeSorbet_GCN",
+        "01_HorlogeTicTac_DS",
+        "01_AeroportAzur",
+        "02_LagonTourbillon",
+        "04_DescenteGivree",
+        "02_RiversideParc_GBA",
+        "02_PaysNeigeux_GBA",
+        "02_AreneExcitebike",
+        "03_MontEboulis_3DS",
+        "03_StationGlagla",
+        "03_MontagneChoco_N64"
+    ],
+    "Ludwig": [
+        "03_MetroTurbo",
+        "01_DesertSecSec_GCN",
+        "02_PaysFromage_GBA",
+        "02_RoyaumeSorbet_GCN",
+        "01_HorlogeTicTac_DS",
+        "01_AeroportAzur",
+        "02_LagonTourbillon",
+        "04_DescenteGivree",
+        "02_RiversideParc_GBA",
+        "02_PaysNeigeux_GBA",
+        "02_AreneExcitebike",
+        "03_MontEboulis_3DS",
+        "03_StationGlagla",
+        "03_MontagneChoco_N64"
+    ],
+    "Iggy": [
+        "03_MetroTurbo",
+        "01_DesertSecSec_GCN",
+        "02_PaysFromage_GBA",
+        "02_RoyaumeSorbet_GCN",
+        "01_HorlogeTicTac_DS",
+        "01_AeroportAzur",
+        "02_LagonTourbillon",
+        "04_DescenteGivree",
+        "02_RiversideParc_GBA",
+        "02_PaysNeigeux_GBA",
+        "02_AreneExcitebike",
+        "03_MontEboulis_3DS",
+        "03_StationGlagla",
+        "03_MontagneChoco_N64"
+    ],
+    "Roy": [
+        "03_MetroTurbo",
+        "01_DesertSecSec_GCN",
+        "02_PaysFromage_GBA",
+        "02_RoyaumeSorbet_GCN",
+        "01_HorlogeTicTac_DS",
+        "01_AeroportAzur",
+        "02_LagonTourbillon",
+        "04_DescenteGivree",
+        "02_RiversideParc_GBA",
+        "02_PaysNeigeux_GBA",
+        "02_AreneExcitebike",
+        "03_MontEboulis_3DS",
+        "03_StationGlagla",
+        "03_MontagneChoco_N64"
+    ],
+    "Morton": [
+        "03_MetroTurbo",
+        "01_DesertSecSec_GCN",
+        "02_PaysFromage_GBA",
+        "02_RoyaumeSorbet_GCN",
+        "01_HorlogeTicTac_DS",
+        "01_AeroportAzur",
+        "02_LagonTourbillon",
+        "04_DescenteGivree",
+        "02_RiversideParc_GBA",
+        "02_PaysNeigeux_GBA",
+        "02_AreneExcitebike",
+        "03_MontEboulis_3DS",
+        "03_StationGlagla",
+        "03_MontagneChoco_N64"
+    ],
+    "Inkling Girl": [
+        "08_PassageTurbot"
+    ],
+    "Inkling Girl Vert": [
+        "08_PassageTurbot"
+    ],
+    "Inkling Girl Rose": [
+        "08_PassageTurbot"
+    ],
+    "Inkling Boy": [
+        "08_PassageTurbot"
+    ],
+    "Inkling Boy Violet": [
+        "08_PassageTurbot"
+    ],
+    "Inkling Boy Cyan": [
+        "08_PassageTurbot"
+    ],
+    "Link": [
+        "04_CircuitHyrule"
+    ],
+    "Link BOTW": [
+        "04_CircuitHyrule"
+    ],
+    "Villageois": [
+        "03_PassageFeuillage",
+        "04_AnimalCrossing_Automne",
+        "04_AnimalCrossing_Ete",
+        "04_AnimalCrossing_Hiver",
+        "04_AnimalCrossing_Printemps"
+    ],
+    "Villageoise": [
+        "03_PassageFeuillage",
+        "04_AnimalCrossing_Automne",
+        "04_AnimalCrossing_Ete",
+        "04_AnimalCrossing_Hiver",
+        "04_AnimalCrossing_Printemps"
+    ],
+    "Marie": [
+        "03_PassageFeuillage",
+        "04_AnimalCrossing_Automne",
+        "04_AnimalCrossing_Ete",
+        "04_AnimalCrossing_Hiver",
+        "04_AnimalCrossing_Printemps"
+    ],
+    "Birdo": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Birdo Rouge": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Birdo Bleu Marine": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Birdo Bleu Ciel": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Birdo Jaune": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Birdo Vert": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Birdo Noir": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Birdo Blanc": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Birdo Orange": [
+        "01_BousculadeABangkok",
+        "04_PoursuiteASingapour",
+        "01_RoadTropALosAngeles",
+        "04_VirageAVancouver",
+        "01_MeandresMadrilenes",
+        "01_VireeAAmsterdam",
+        "01_RomaRomantica",
+        "01_SprintASydney",
+        "01_BaladeBerlinoise",
+        "01_TraverseeDeTokyo",
+        "01_EscapadeNewYorkaise",
+        "01_DetourALondre",
+        "01_AthenesAntique",
+        "01_PromenadeAParis"
+    ],
+    "Flora Piranha": [
+        "02_EgoutPiranha_3DS",
+        "04_RuinesPlantePiranha"
+    ],
+    "Wiggler": [
+        "04_BoisVermeil_WII"
+    ],
+    "Kamek": [
+        "04_CourseALaProprete",
+        "01_VoieCeleste"
+    ],
+    "Peachette": [
+        "02_IleAuxDelices",
+        "03_AutodromeRoyal_N64",
+        "03_PisteAuxDelices",
+        "04_CiteSorbet",
+        "02_JardinPeach_DS"
+    ],
+    "Diddy Kong": [
+        "04_ForetTropicaleDK_3DS",
+        "03_PicDK_WII",
+        "02_MontagneDK"
+    ],
+    "Funky Kong": [
+        "04_ForetTropicaleDK_3DS",
+        "03_PicDK_WII",
+        "02_MontagneDK"
+    ],
+    "Pauline": [
+        "03_RouteClairDeLune_WII",
+        "01_EscapadeNewYorkaise"
+    ],
+    "MII": [
+        "05_Wuhuville_3DS"
+    ]
+}

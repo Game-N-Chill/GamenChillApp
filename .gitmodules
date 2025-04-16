@@ -1,0 +1,7 @@
+[submodule "lib/OuiGine"]
+	path = lib/OuiGine
+	url = git@github.com:Mr-GoGu/OuiGine.git
+	branch = main
+[submodule "lib/OpenXLSX"]
+	path = lib/OpenXLSX
+	url = https://github.com/troldal/OpenXLSX.git
