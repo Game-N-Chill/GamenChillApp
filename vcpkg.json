@@ -1,16 +1,7 @@
 {
     "dependencies": [
         {
-            "name": "boost"
-        },
-        {
-            "name": "glm"
-        },
-        {
             "name": "nlohmann-json"
-        },
-        {
-            "name": "freetype"
         },
         {
             "name": "argparse"

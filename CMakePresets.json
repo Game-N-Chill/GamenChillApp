@@ -12,7 +12,7 @@
       "description": "Windows with MSVC in Debug mode",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/lib/OuiGine/external/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/package/scripts/buildsystems/vcpkg.cmake",
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
@@ -22,7 +22,7 @@
       "description": "Windows with MSVC in Release mode",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/lib/OuiGine/external/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/package/scripts/buildsystems/vcpkg.cmake",
         "CMAKE_BUILD_TYPE": "Release"
       }
     }
