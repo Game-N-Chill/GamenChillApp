@@ -24,6 +24,21 @@ find_package(nlohmann_json REQUIRED)
 
 set(SRC_FILES
     src/Main.cpp
+    src/Generator/Generator.cpp
+    src/Generator/Player.cpp
+    src/Commands/Count.cpp
+    src/Commands/Create.cpp
+    src/Commands/Date.cpp
+    src/Commands/Dir.cpp
+    src/Commands/Help.cpp
+    src/Commands/Load.cpp
+    src/Commands/Player.cpp
+    src/Commands/Print.cpp
+    src/Commands/Quit.cpp
+    src/Commands/Random.cpp
+    src/Commands/SubTitle.cpp
+    src/Commands/Title.cpp
+    src/Commands/Url.cpp
 )
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 

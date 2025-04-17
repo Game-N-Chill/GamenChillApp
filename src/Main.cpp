@@ -1,28 +1,78 @@
 
-#include <SDL3/SDL.h>
-#include <SDL3_image/SDL_image.h>
+#include "MKTG.hpp"
+#include <csignal>
+
+static void signalCatcher(int exitcode)
+{
+    exit(EXIT_SUCCESS);
+}
+
+static void printHeader(std::string &line)
+{
+    line.clear();
+    std::cout << "$> ";
+}
+
+static std::array<std::string, 2> parseLine(std::string line)
+{
+    std::array<std::string, 2> array;
+
+    size_t pos = line.find_first_of(' ');
+    array[0] = line.substr(0, pos);
+    if (pos != std::string::npos) {
+        while (pos < line.size() && line[pos] == ' ') {
+            pos++;
+        }
+        array[1] = line.substr(pos);
+    }
+
+    return array;
+}
 
 int main(int ac, char **av)
 {
-    SDL_Surface* img1 = IMG_Load("Assets\\Images\\Characters\\Daisy\\default.png");
-    SDL_Surface* img2 = IMG_Load("Assets\\Images\\Characters\\Luigi\\default.png");
+    MKTG::Generator gen("Assets\\Rififi #40 bracket.xlsx");
+    MKTG::Command::Handler cmdHandler;
+    std::string line;
+    int exitCode = EXIT_SUCCESS;
+    bool loop = true;
 
-    float scale = 0.5f;
-    int totalWidth = img1->w + img2->w * scale;
-    int maxHeight = (img1->h > img2->h * scale) ? img1->h : img2->h * scale;
+    std::signal(SIGINT, signalCatcher);
+    std::signal(SIGTERM, signalCatcher);
 
-    SDL_Surface* surface = SDL_CreateSurface(totalWidth, maxHeight, SDL_PIXELFORMAT_RGBA32);
+    printHeader(line);
+    while (loop) {
+        std::getline(std::cin, line);
+        if (line.empty()) {
+            printHeader(line);
+            continue;
+        }
 
-    SDL_Rect dst1 = {0, 0, img1->w, img1->h};
-    SDL_Rect dst2 = {img1->w, 0, static_cast<int>(img2->w * scale), static_cast<int>(img2->h * scale)};
-    SDL_BlitSurface(img1, nullptr, surface, &dst1);
-    SDL_BlitSurfaceScaled(img2, nullptr, surface, &dst2, SDL_SCALEMODE_LINEAR);
+        MKTG::Command::Result result = MKTG::Command::Result::CONTINUE;
+        try {
+            auto args = parseLine(line);
+            result = cmdHandler[args[0]]->run(gen, args[1]);
+        } catch(const std::out_of_range &e) {
+            std::cerr << "ERROR: " << e.what() << std::endl;
+        }
 
-    IMG_SavePNG(surface, "test3.png");
+        switch (result) {
+            case MKTG::Command::Result::CONTINUE:
+                printHeader(line);
+                break;
+            case MKTG::Command::Result::SUCCESS:
+            case MKTG::Command::Result::FAILURE:
+                loop = false;
+                break;
+        }
+    }
 
-    SDL_DestroySurface(img1);
-    SDL_DestroySurface(img2);
-    SDL_DestroySurface(surface);
+    // cmdHandler[COMMAND_HELP]->run(MKTG::Generator &gen, std::string args);
 
-    return 0;
+    // gen.setDataLink("Daisy");
+    // std::cout << gen.getDataCharacter() << std::endl;
+    // std::cout << gen.getDataTrack() << std::endl;
+    // gen.createImage();
+
+    return EXIT_SUCCESS;
 }
