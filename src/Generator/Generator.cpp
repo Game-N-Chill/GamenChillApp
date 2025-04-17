@@ -22,10 +22,71 @@ Generator::Generator(std::string excelPath)
     setDataLink(DEFAULT_DATA_LINK);
 
     for (int i = 0; i < this->_players.size(); i++) {
-        this->_players[i] = std::make_shared<Player>();
+        this->_players[i] = std::make_shared<Player>("Mario", "Player", i);
     }
 
     this->_imageDir = DEFAULT_IMAGE_DIR;
+}
+
+
+static std::string getTimeFormat(std::string format)
+{
+    std::time_t now = std::time(nullptr);
+    std::ostringstream oss;
+    oss << std::put_time(std::localtime(&now), format.c_str());
+    return oss.str();
+}
+
+
+std::string Generator::getTitle() const
+{
+    return this->_title;
+}
+
+std::string Generator::getSubtitle() const
+{
+    return this->_subtitle;
+}
+
+std::string Generator::getDate() const
+{
+    return this->_date;
+}
+
+size_t Generator::getPlayerCount() const
+{
+    return this->_playerCount;
+}
+
+std::string Generator::getDiscordUrl() const
+{
+    return this->_discordUrl;
+}
+
+
+void Generator::setTitle(std::string str)
+{
+    this->_title = str;
+}
+
+void Generator::setSubtitle(std::string str)
+{
+    this->_subtitle = str;
+}
+
+void Generator::setDate(std::string str)
+{
+    this->_date = str;
+}
+
+void Generator::setPlayerCount(size_t value)
+{
+    this->_playerCount = value;
+}
+
+void Generator::setDiscordUrl(std::string str)
+{
+    this->_discordUrl = str;
 }
 
 
@@ -46,14 +107,29 @@ void Generator::Load(std::string excelPath)
     auto sheetNames = file.workbook().worksheetNames();
     auto sheet = file.workbook().worksheet(sheetNames[0]);
 
-    for (int i = 0; i < this->_players.size(); i++) {
-        OpenXLSX::XLCell cellCharacter = sheet.cell(OpenXLSX::XLCellReference(COL_CHARACTER + std::to_string(LINE_FIRST + i)));
-        OpenXLSX::XLCell cellName = sheet.cell(OpenXLSX::XLCellReference(COL_PLAYER + std::to_string(LINE_FIRST + i)));
+    OpenXLSX::XLCell cellTitle = sheet.cell(OpenXLSX::XLCellReference(CELL_TITLE));
+    this->setTitle(cellTitle.value().get<std::string>());
 
-        this->_players[i]->SetCharacter(cellCharacter.value().get<std::string>());
-        this->_players[i]->SetName(cellName.value().get<std::string>());
-        this->_players[i]->SetRank(i + 1);
+    this->setDate(getTimeFormat("%d/%m/%Y"));
+
+    size_t count = 0;
+    for (int i = 0; i < 48; i++) {
+        OpenXLSX::XLCell cellName = sheet.cell(OpenXLSX::XLCellReference(COL_PLAYER + std::to_string(LINE_FIRST + i)));
+        std::string name = cellName.value().get<std::string>();
+
+        if (name.empty()) {
+            break;
+        }
+
+        if (i < 8) {
+            this->setPlayerInfo(i + 1, sheet.cell(OpenXLSX::XLCellReference(COL_CHARACTER + std::to_string(LINE_FIRST + i))).value().get<std::string>(), name);
+        }
+
+        if (name != "-") {
+            count++;
+        }
     }
+    this->setPlayerCount(count);
 
     file.close();
 }
@@ -108,66 +184,33 @@ std::string Generator::getDataTrack() const
 
 
 
-std::string Generator::getTitle() const
+void Generator::setPlayerInfo(size_t rank, std::string character, std::string name)
 {
-    return this->_title;
+    if (rank < 1 || rank > 8) {
+        std::cerr << "ERROR: rank out of range: " << rank << ", must be: [1,8]" << std::endl;
+        return;
+    }
+
+    SharedPlayer player = this->_players[rank - 1];
+    if (player == nullptr) {
+        std::cerr << "ERROR: can't find player of rank " << rank << std::endl;
+        return;
+    }
+
+    player->SetRank(rank);
+    player->SetCharacter(character);
+    player->SetName(name);
 }
 
-std::string Generator::getSubtitle() const
+SharedPlayer Generator::getPlayerInfo(size_t rank) const
 {
-    return this->_subtitle;
+    if (rank < 1 || rank > 8) {
+        std::cerr << "ERROR: rank out of range: " << rank << ", must be: [1,8]" << std::endl;
+        return nullptr;
+    }
+    return this->_players[rank - 1];
 }
 
-std::string Generator::getDate() const
-{
-    return this->_date;
-}
-
-size_t Generator::getPlayerCount() const
-{
-    return this->_playerCount;
-}
-
-std::string Generator::getDiscordUrl() const
-{
-    return this->_discordUrl;
-}
-
-
-void Generator::getTitle(std::string str)
-{
-    this->_title = str;
-}
-
-void Generator::getSubtitle(std::string str)
-{
-    this->_subtitle = str;
-}
-
-void Generator::getDate(std::string str)
-{
-    this->_date = str;
-}
-
-void Generator::getPlayerCount(size_t value)
-{
-    this->_playerCount = value;
-}
-
-void Generator::getDiscordUrl(std::string str)
-{
-    this->_discordUrl = str;
-}
-
-
-
-std::string getLocalTime()
-{
-    std::time_t now = std::time(nullptr);
-    std::ostringstream oss;
-    oss << std::put_time(std::localtime(&now), "%Y_%m_%d__%H_%M_%S");
-    return oss.str();
-}
 
 void Generator::createImage()
 {
@@ -191,7 +234,7 @@ void Generator::createImage()
     if (!fs::is_directory(this->_imageDir)) {
         fs::create_directory(this->_imageDir);
     }
-    std::string imagePath = this->_imageDir + '\\' + getLocalTime() + ".png";
+    std::string imagePath = this->_imageDir + '\\' + getTimeFormat("%Y_%m_%d__%H_%M_%S") + ".png";
     std::cout << imagePath << std::endl;
     IMG_SavePNG(surface, imagePath.c_str());
 

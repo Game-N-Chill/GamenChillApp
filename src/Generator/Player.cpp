@@ -52,6 +52,6 @@ std::size_t Player::GetRank() const
 
 std::ostream &operator<<(std::ostream &flux, MKTG::Player &player)
 {
-    flux << std::left << std::setw(3) << player.GetRank() << std::setw(20) << player.GetName() << player.GetCharacter();
+    flux << std::left << '#' << std::setw(3) << player.GetRank() << std::setw(22) << player.GetCharacter() << player.GetName();
     return flux;
 }

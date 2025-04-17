@@ -2,6 +2,23 @@
 #include "MKTG.hpp"
 #include <csignal>
 
+#if defined(_WIN32)
+#include <Windows.h>
+#endif
+
+static void preLoad()
+{
+    // Shows color on windows terminal
+    #if defined(_WIN32)
+        SetConsoleOutputCP(CP_UTF8);
+        HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+        DWORD dwMode = 0;
+        GetConsoleMode(hOut, &dwMode);
+        dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+        SetConsoleMode(hOut, dwMode);
+    #endif
+}
+
 static void signalCatcher(int exitcode)
 {
     exit(EXIT_SUCCESS);
@@ -31,7 +48,9 @@ static std::array<std::string, 2> parseLine(std::string line)
 
 int main(int ac, char **av)
 {
-    MKTG::Generator gen("Assets\\Rififi #40 bracket.xlsx");
+    preLoad();
+
+    MKTG::Generator gen;
     MKTG::Command::Handler cmdHandler;
     std::string line;
     int exitCode = EXIT_SUCCESS;
@@ -66,13 +85,6 @@ int main(int ac, char **av)
                 break;
         }
     }
-
-    // cmdHandler[COMMAND_HELP]->run(MKTG::Generator &gen, std::string args);
-
-    // gen.setDataLink("Daisy");
-    // std::cout << gen.getDataCharacter() << std::endl;
-    // std::cout << gen.getDataTrack() << std::endl;
-    // gen.createImage();
 
     return EXIT_SUCCESS;
 }

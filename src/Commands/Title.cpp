@@ -6,6 +6,7 @@ namespace MKTG::Command
 
 Result Title::run(MKTG::Generator &gen, std::string args)
 {
+    gen.setTitle(args);
     return Result::CONTINUE;
 }
 

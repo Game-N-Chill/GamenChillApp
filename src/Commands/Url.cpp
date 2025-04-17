@@ -6,6 +6,7 @@ namespace MKTG::Command
 
 Result Url::run(MKTG::Generator &gen, std::string args)
 {
+    gen.setDiscordUrl(args);
     return Result::CONTINUE;
 }
 

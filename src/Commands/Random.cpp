@@ -6,6 +6,7 @@ namespace MKTG::Command
 
 Result Random::run(MKTG::Generator &gen, std::string args)
 {
+    gen.nextDataLink();
     return Result::CONTINUE;
 }
 

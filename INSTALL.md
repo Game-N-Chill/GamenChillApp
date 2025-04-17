@@ -5,4 +5,5 @@ git submodule update --init --recursive
 
 ```
 cmake --preset windows-debug
+cmake --build build
 ```

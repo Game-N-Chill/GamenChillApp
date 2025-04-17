@@ -6,6 +6,7 @@ namespace MKTG::Command
 
 Result Load::run(MKTG::Generator &gen, std::string args)
 {
+    gen.Load(args);
     return Result::CONTINUE;
 }
 

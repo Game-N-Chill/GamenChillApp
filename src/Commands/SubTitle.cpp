@@ -6,6 +6,7 @@ namespace MKTG::Command
 
 Result SubTitle::run(MKTG::Generator &gen, std::string args)
 {
+    gen.setSubtitle(args);
     return Result::CONTINUE;
 }
 

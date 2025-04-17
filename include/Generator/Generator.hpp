@@ -20,6 +20,18 @@ class Generator
         Generator(std::string excelPath = "");
         ~Generator() = default;
 
+        std::string getTitle() const;
+        std::string getSubtitle() const;
+        std::string getDate() const;
+        size_t getPlayerCount() const;
+        std::string getDiscordUrl() const;
+
+        void setTitle(std::string str);
+        void setSubtitle(std::string str);
+        void setDate(std::string str);
+        void setPlayerCount(size_t value);
+        void setDiscordUrl(std::string str);
+
         void Load(std::string excelPath = "");
 
         void setDataLink(std::string character);
@@ -28,17 +40,8 @@ class Generator
         std::string getDataCharacter() const;
         std::string getDataTrack() const;
 
-        std::string getTitle() const;
-        std::string getSubtitle() const;
-        std::string getDate() const;
-        size_t getPlayerCount() const;
-        std::string getDiscordUrl() const;
-
-        void getTitle(std::string str);
-        void getSubtitle(std::string str);
-        void getDate(std::string str);
-        void getPlayerCount(size_t value);
-        void getDiscordUrl(std::string str);
+        void setPlayerInfo(size_t rank, std::string character, std::string name);
+        SharedPlayer getPlayerInfo(size_t rank) const;
 
         void createImage();
         void setImageDir(std::string path);

@@ -6,6 +6,7 @@ namespace MKTG::Command
 
 Result Create::run(MKTG::Generator &gen, std::string args)
 {
+    gen.createImage();
     return Result::CONTINUE;
 }
 

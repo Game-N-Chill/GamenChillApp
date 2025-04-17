@@ -23,6 +23,8 @@ using json = nlohmann::json;
 #include "Commands/Interface.hpp"
 #include "Generator/Generator.hpp"
 
+
+#define CELL_TITLE      "C2"
 #define LINE_FIRST      15
 #define COL_CHARACTER   "H"
 #define COL_PLAYER      "I"
