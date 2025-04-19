@@ -122,7 +122,11 @@ void Generator::Load(std::string excelPath)
         }
 
         if (i < 8) {
-            this->setPlayerInfo(i + 1, sheet.cell(OpenXLSX::XLCellReference(COL_CHARACTER + std::to_string(LINE_FIRST + i))).value().get<std::string>(), name);
+            std::string character = sheet.cell(OpenXLSX::XLCellReference(COL_CHARACTER + std::to_string(LINE_FIRST + i))).value().get<std::string>();
+            this->setPlayerInfo(i + 1, character, name);
+            if (i == 0) {
+                this->setDataLink(character);
+            }
         }
 
         if (name != "-") {
@@ -156,7 +160,7 @@ void Generator::setDataLink(std::string characterStr)
     std::advance(this->_dataTrackIt, index);
 }
 
-void Generator::nextDataLink()
+void Generator::nextDataTrack()
 {
     this->_dataTrackIt++;
     if (this->_dataTrackIt == this->_dataTracks.end()) {
@@ -164,7 +168,7 @@ void Generator::nextDataLink()
     }
 }
 
-void Generator::prevDataLink()
+void Generator::prevDataTrack()
 {
     if (this->_dataTrackIt == this->_dataTracks.begin()) {
         this->_dataTrackIt = this->_dataTracks.end();

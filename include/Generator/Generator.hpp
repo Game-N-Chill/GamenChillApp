@@ -35,8 +35,8 @@ class Generator
         void Load(std::string excelPath = "");
 
         void setDataLink(std::string character);
-        void nextDataLink();
-        void prevDataLink();
+        void nextDataTrack();
+        void prevDataTrack();
         std::string getDataCharacter() const;
         std::string getDataTrack() const;
 

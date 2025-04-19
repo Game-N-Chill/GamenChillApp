@@ -1,44 +1,47 @@
 cmake_minimum_required(VERSION 3.30)
 project(MarioKartTopGenerator)
 
+set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin")
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
 
 if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/package/scripts/buildsystems/vcpkg.cmake" CACHE STRING "" FORCE)
-    set(VCPKG_MANIFEST_MODE ON CACHE BOOL "" FORCE)
 endif()
 
-set(LIBRARY_DIR "lib")
-# add_subdirectory(${LIBRARY_DIR}/OuiGine)
-add_subdirectory(${LIBRARY_DIR}/SDL)
-add_subdirectory(${LIBRARY_DIR}/SDL_image)
-add_subdirectory(${LIBRARY_DIR}/OpenXLSX)
+add_subdirectory(${LIB_DIR}/SDL)
+add_subdirectory(${LIB_DIR}/SDL_image)
+add_subdirectory(${LIB_DIR}/SDL_ttf)
+add_subdirectory(${LIB_DIR}/OpenXLSX)
 
 # find_package(Boost REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(argparse REQUIRED)
 
 set(SRC_FILES
-    src/Main.cpp
-    src/Generator/Generator.cpp
-    src/Generator/Player.cpp
-    src/Commands/Count.cpp
-    src/Commands/Create.cpp
-    src/Commands/Date.cpp
-    src/Commands/Dir.cpp
-    src/Commands/Help.cpp
-    src/Commands/Load.cpp
-    src/Commands/Player.cpp
-    src/Commands/Print.cpp
-    src/Commands/Quit.cpp
-    src/Commands/Random.cpp
-    src/Commands/SubTitle.cpp
-    src/Commands/Title.cpp
-    src/Commands/Url.cpp
+    ${SRC_DIR}/Main.cpp
+    ${SRC_DIR}/Generator/Generator.cpp
+    ${SRC_DIR}/Generator/Player.cpp
+    ${SRC_DIR}/Commands/Count.cpp
+    ${SRC_DIR}/Commands/Create.cpp
+    ${SRC_DIR}/Commands/Date.cpp
+    ${SRC_DIR}/Commands/Dir.cpp
+    ${SRC_DIR}/Commands/Help.cpp
+    ${SRC_DIR}/Commands/Load.cpp
+    ${SRC_DIR}/Commands/Player.cpp
+    ${SRC_DIR}/Commands/Print.cpp
+    ${SRC_DIR}/Commands/Quit.cpp
+    ${SRC_DIR}/Commands/Random.cpp
+    ${SRC_DIR}/Commands/SubTitle.cpp
+    ${SRC_DIR}/Commands/Title.cpp
+    ${SRC_DIR}/Commands/Url.cpp
 )
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
@@ -47,8 +50,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL3_image::SDL3_image)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3_ttf::SDL3_ttf)
 target_link_libraries(${PROJECT_NAME} PRIVATE OpenXLSX::OpenXLSX)
 target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PRIVATE argparse::argparse)
 
 # Copy assets to the binary directory
 set(ASSETS_TO_COPY "Assets")
