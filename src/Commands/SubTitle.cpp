@@ -7,7 +7,7 @@ namespace MKTG::Command
 Result SubTitle::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
     if (args.size() < 2) {
-        throw std::runtime_error("ERROR: not enough arguments");
+        throw std::runtime_error("not enough arguments");
     }
 
     gen.setSubtitle(args[1]);

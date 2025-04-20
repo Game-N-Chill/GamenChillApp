@@ -7,7 +7,7 @@ namespace MKTG::Command
 Result Player::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
     if (args.size() < 4) {
-        throw std::runtime_error("ERROR: not enough arguments");
+        throw std::runtime_error("not enough arguments");
     }
 
     std::cout << "not implemented yet :(" << std::endl;
