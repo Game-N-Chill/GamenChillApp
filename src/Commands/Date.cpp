@@ -5,17 +5,20 @@
 namespace MKTG::Command
 {
 
-Result Date::run(MKTG::Generator &gen, std::string args)
+Result Date::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
+    if (args.size() < 2) {
+        throw std::runtime_error("ERROR: not enough arguments");
+    }
+
     std::regex regex("[0-9][0-9]\\/[0-9][0-9]\\/[0-9][0-9][0-9][0-9]");
     std::smatch match;
 
-    if (!std::regex_match(args, match, regex)) {
-        std::cerr << "ERROR: date must on format XX/XX/XXXX" << std::endl;
-        return Result::CONTINUE;
+    if (!std::regex_match(args[1], match, regex)) {
+        throw std::runtime_error("ERROR: date must on format XX/XX/XXXX");
     }
 
-    gen.setDate(args);
+    gen.setDate(args[1]);
     return Result::CONTINUE;
 }
 

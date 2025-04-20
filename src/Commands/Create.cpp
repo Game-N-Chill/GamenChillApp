@@ -4,7 +4,7 @@
 namespace MKTG::Command
 {
 
-Result Create::run(MKTG::Generator &gen, std::string args)
+Result Create::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
     gen.createImage();
     return Result::CONTINUE;

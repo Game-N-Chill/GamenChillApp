@@ -19,7 +19,7 @@ class ICommand
     public:
         virtual ~ICommand() = default;
 
-        virtual Result run(MKTG::Generator &gen, std::string args) = 0;
+        virtual Result run(MKTG::Generator &gen, std::vector<std::string> &args) = 0;
         virtual std::string getCommand() const = 0;
 };
 

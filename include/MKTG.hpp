@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <exception>
-#include <array>
 #include <fstream>
+#include <vector>
 
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
@@ -23,6 +23,7 @@ using json = nlohmann::json;
 #include "Commands/Handler.hpp"
 #include "Commands/Interface.hpp"
 #include "Generator/Generator.hpp"
+#include "Render/Canva.hpp"
 
 
 #define CELL_TITLE      "C2"
@@ -41,3 +42,6 @@ using json = nlohmann::json;
 #define PATH_CHARACTERS_TRACKS_LINK     "Assets\\Data\\CharactersTracksLinks.json"
 #define IMAGE_WIDTH                     1920
 #define IMAGE_HEIGHT                     1080
+
+int doLogic();
+std::vector<std::string> lineParser(std::string line);

@@ -6,13 +6,16 @@ namespace fs = std::filesystem;
 namespace MKTG::Command
 {
 
-Result Dir::run(MKTG::Generator &gen, std::string args)
+Result Dir::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
-    if (!fs::is_directory(args)) {
-        std::cerr << "ERROR: can't find directory " << args << std::endl;
-        return Result::CONTINUE;
+    if (args.size() < 2) {
+        throw std::runtime_error("ERROR: not enough arguments");
     }
-    gen.setImageDir(args);
+
+    if (!fs::is_directory(args[1])) {
+        throw std::runtime_error("ERROR: can't find directory " + args[1]);
+    }
+    gen.setImageDir(args[1]);
     return Result::CONTINUE;
 }
 

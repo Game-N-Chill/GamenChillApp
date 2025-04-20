@@ -4,18 +4,13 @@
 namespace MKTG::Command
 {
 
-Result Load::run(MKTG::Generator &gen, std::string args)
+Result Load::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
-    for (auto it = args.begin(); it != args.end(); it++) {
-        if (*it == '"') {
-            it = args.erase(it);
-            if (it == args.end()) {
-                break;
-            }
-        }
+    if (args.size() < 2) {
+        throw std::runtime_error("ERROR: not enough arguments");
     }
 
-    gen.Load(args);
+    gen.Load(args[1]);
     return Result::CONTINUE;
 }
 

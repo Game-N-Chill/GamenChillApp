@@ -4,7 +4,7 @@
 namespace MKTG::Command
 {
 
-Result Print::run(MKTG::Generator &gen, std::string args)
+Result Print::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
     std::cout << "====================[INFORMATION RENDU]====================" << std::endl << std::endl;
     std::cout << std::left << "-- " << std::setw(20) << "Titre"         << gen.getTitle() << std::endl;

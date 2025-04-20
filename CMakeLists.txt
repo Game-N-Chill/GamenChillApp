@@ -42,6 +42,12 @@ set(SRC_FILES
     ${SRC_DIR}/Commands/SubTitle.cpp
     ${SRC_DIR}/Commands/Title.cpp
     ${SRC_DIR}/Commands/Url.cpp
+    ${SRC_DIR}/Render/Canva.cpp
+    ${SRC_DIR}/Render/Image.cpp
+    ${SRC_DIR}/Render/Object.cpp
+    ${SRC_DIR}/Render/Text.cpp
+    ${SRC_DIR}/Logic/LineParser.cpp
+    ${SRC_DIR}/Logic/Terminal.cpp
 )
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 

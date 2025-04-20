@@ -1,0 +1,15 @@
+{
+    "Images": [
+        {
+            "name": "background",
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "scale": 1.5,
+            "path": ""
+        }
+    ],
+    "Texts": [
+    ]
+}

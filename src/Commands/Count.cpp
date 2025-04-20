@@ -4,9 +4,13 @@
 namespace MKTG::Command
 {
 
-Result Count::run(MKTG::Generator &gen, std::string args)
+Result Count::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
-    gen.setPlayerCount(std::atoi(args.c_str()));
+    if (args.size() < 2) {
+        throw std::runtime_error("ERROR: not enough arguments");
+    }
+
+    gen.setPlayerCount(std::atoi(args[1].c_str()));
     return Result::CONTINUE;
 }
 

@@ -11,7 +11,7 @@ namespace MKTG::Command
 class Player : public ICommand
 {
     public:
-        Result run(MKTG::Generator &gen, std::string args);
+        Result run(MKTG::Generator &gen, std::vector<std::string> &args);
         std::string getCommand() const;
 };
 

@@ -2,9 +2,7 @@
 #include "MKTG.hpp"
 #include <ctime>
 #include <sstream>
-#include <filesystem>
 
-namespace fs = std::filesystem;
 namespace MKTG
 {
 
@@ -218,32 +216,12 @@ SharedPlayer Generator::getPlayerInfo(size_t rank) const
 
 void Generator::createImage()
 {
-    float scaleBg = 1.5f;
-    std::string pathBg = "Assets\\Images\\Background\\" + *this->_dataTrackIt + ".png";
-    SDL_Surface *imgBg = IMG_Load(pathBg.c_str());
-    if (imgBg == nullptr) {
-        std::cerr << "imgBg is nullptr" << std::endl;
-        return;
-    }
+    Render::Canva canva(CANVA_PATH);
 
-    SDL_Surface* surface = SDL_CreateSurface(IMAGE_WIDTH, IMAGE_HEIGHT, SDL_PIXELFORMAT_RGBA32);
-    if (surface == nullptr) {
-        std::cerr << "surface is nullptr" << std::endl;
-        return;
-    }
+    canva.getImage("background")->load("Assets\\Images\\Background\\" + *this->_dataTrackIt + ".png");
 
-    SDL_Rect dst1 = {0, 0, static_cast<int>(imgBg->w * scaleBg), static_cast<int>(imgBg->h * scaleBg)};
-    SDL_BlitSurfaceScaled(imgBg, nullptr, surface, &dst1, SDL_SCALEMODE_LINEAR);
-
-    if (!fs::is_directory(this->_imageDir)) {
-        fs::create_directory(this->_imageDir);
-    }
-    std::string imagePath = this->_imageDir + '\\' + getTimeFormat("%Y_%m_%d__%H_%M_%S") + ".png";
-    std::cout << imagePath << std::endl;
-    IMG_SavePNG(surface, imagePath.c_str());
-
-    SDL_DestroySurface(imgBg);
-    SDL_DestroySurface(surface);
+    canva.draw("background");
+    canva.save(this->_imageDir, getTimeFormat("%Y_%m_%d__%H_%M_%S"));
 }
 
 void Generator::setImageDir(std::string path)

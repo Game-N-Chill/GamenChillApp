@@ -4,9 +4,13 @@
 namespace MKTG::Command
 {
 
-Result Url::run(MKTG::Generator &gen, std::string args)
+Result Url::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
-    gen.setDiscordUrl(args);
+    if (args.size() < 2) {
+        throw std::runtime_error("ERROR: not enough arguments");
+    }
+
+    gen.setDiscordUrl(args[1]);
     return Result::CONTINUE;
 }
 

@@ -4,7 +4,7 @@
 namespace MKTG::Command
 {
 
-Result Help::run(MKTG::Generator &gen, std::string args)
+Result Help::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
     std::cout << "====================[LISTE DES COMMANDES]====================" << std::endl << std::endl;
     std::cout << std::left << "-- " << std::setw(10) << "help"     << std::setw(30) << ""                          << "Affiche ce message" << std::endl;

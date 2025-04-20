@@ -4,9 +4,13 @@
 namespace MKTG::Command
 {
 
-Result Title::run(MKTG::Generator &gen, std::string args)
+Result Title::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
-    gen.setTitle(args);
+    if (args.size() < 2) {
+        throw std::runtime_error("ERROR: not enough arguments");
+    }
+
+    gen.setTitle(args[1]);
     return Result::CONTINUE;
 }
 
