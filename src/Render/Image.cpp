@@ -20,7 +20,7 @@ void Image::load(std::string path)
 
     this->_surface = IMG_Load(path.c_str());
     if (this->_surface == nullptr) {
-        std::cerr << "ERROR: failed to create image " << path << std::endl;
+        std::cerr << "ERROR: failed to create image " << path << " (" << SDL_GetError() << ")" << std::endl;
         return;
     }
 

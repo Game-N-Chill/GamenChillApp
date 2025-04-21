@@ -16,15 +16,21 @@ using json = nlohmann::json;
 namespace MKTG::Render
 {
 
-#define CANVA_PATH              "Assets\\Data\\Canva.json"
+#define CANVA_PATH                  "Assets\\Data\\Canva.json"
 
-#define CANVA_CATEGORY_IMAGE    "Images"
-#define CANVA_CATEGORY_TEXT     "Texts"
+#define CANVA_CATEGORY_IMAGE        "Images"
+#define CANVA_CATEGORY_TEXT         "Texts"
+#define CANVA_CATEGORY_ORDER        "Order"
 
-#define CANVA_INDEX_NAME        "name"
-#define CANVA_INDEX_PATH        "path"
-#define CANVA_INDEX_POSITION    "position"
-#define CANVA_INDEX_SCALE       "scale"
+#define CANVA_INDEX_NAME            "name"
+#define CANVA_INDEX_PATH            "path"
+#define CANVA_INDEX_POSITION        "position"
+#define CANVA_INDEX_SCALE           "scale"
+#define CANVA_INDEX_COLOR           "color"
+#define CANVA_INDEX_STRING          "str"
+#define CANVA_INDEX_OUTLINE         "outline"
+#define CANVA_INDEX_FONT_SIZE       "fontSize"
+#define CANVA_INDEX_ALIGNEMENT      "align"
 
 class Canva
 {
@@ -38,6 +44,7 @@ class Canva
 
         void draw(std::string name);
         void save(std::string dirPath, std::string fileName);
+        std::vector<std::string> getOrder() const;
 
     private:
         SDL_Surface *_canva;

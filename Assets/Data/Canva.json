@@ -8,8 +8,57 @@
             },
             "scale": 1.5,
             "path": ""
+        },
+        {
+            "name": "test",
+            "position": {
+                "x": 100,
+                "y": 100
+            },
+            "scale": 1.0,
+            "path": "Assets\\Images\\Characters\\Baby Daisy\\default.png"
         }
     ],
     "Texts": [
+        {
+            "name": "title",
+            "position": {
+                "x": 960,
+                "y": 540
+            },
+            "color": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
+            "str": "Titre",
+            "outline": 0,
+            "fontSize": 100.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\PixelifySans_Regular.ttf"
+        },
+        {
+            "name": "titleOutline",
+            "position": {
+                "x": 960,
+                "y": 540
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "str": "Titre",
+            "outline": 2,
+            "fontSize": 100.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\PixelifySans_Regular.ttf"
+        }
+    ],
+    "Order": [
+        "background",
+        "test",
+        "title",
+        "titleOutline"
     ]
 }

@@ -48,7 +48,21 @@ static void loadTexts(const json &content, std::map<std::string, SharedObject> &
     }
 
     for (const auto &txt : texts) {
-        std::shared_ptr<Image> object = std::make_shared<Image>();
+        std::shared_ptr<Text> object = std::make_shared<Text>();
+
+        object->setPosition(
+            txt[CANVA_INDEX_POSITION]["x"],
+            txt[CANVA_INDEX_POSITION]["y"]
+        );
+        object->setColor(
+            txt[CANVA_INDEX_COLOR]["r"],
+            txt[CANVA_INDEX_COLOR]["g"],
+            txt[CANVA_INDEX_COLOR]["b"]
+        );
+        object->setOutline(txt[CANVA_INDEX_OUTLINE]);
+        object->setFontSize(txt[CANVA_INDEX_FONT_SIZE]);
+        object->setAlignement(txt[CANVA_INDEX_ALIGNEMENT]);
+        object->setFont(txt[CANVA_INDEX_PATH]);
 
         map[txt[CANVA_INDEX_NAME]] = object;
     }
@@ -112,8 +126,10 @@ std::shared_ptr<Text> Canva::getText(std::string name)
 void Canva::draw(std::string name)
 {
     auto obj = this->get(name);
-    if (obj == nullptr)
+    if (obj == nullptr) {
+        std::cerr << "-- Drawing: Warning: can't find object: " << name << std::endl;
         return;
+    }
 
     std::cout << "-- Drawing " << name << " on the canva" << std::endl;
     SDL_Rect dst = {obj->getPosition().x, obj->getPosition().y, obj->getSize().x, obj->getSize().y};
@@ -128,6 +144,11 @@ void Canva::save(std::string dirPath, std::string fileName)
     std::string imagePath = dirPath + '\\' + fileName + ".png";
     std::cout << "-- Generating image from canva at " << imagePath << std::endl;
     IMG_SavePNG(this->_canva, imagePath.c_str());
+}
+
+std::vector<std::string> Canva::getOrder() const
+{
+    return this->_json[CANVA_CATEGORY_ORDER].get<std::vector<std::string>>();
 }
 
 } // namespace MKTG::Render

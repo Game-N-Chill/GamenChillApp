@@ -240,8 +240,13 @@ void Generator::createImage()
     Render::Canva canva(CANVA_PATH);
 
     canva.getImage("background")->load("Assets\\Images\\Background\\" + *this->_dataTrackIt + ".png");
+    canva.getText("title")->load(this->_title);
+    canva.getText("titleOutline")->load(this->_title);
 
-    canva.draw("background");
+    std::vector<std::string> vec = canva.getOrder();
+    for (auto &obj : vec) {
+        canva.draw(obj);
+    }
     canva.save(this->_imageDir, getTimeFormat("%Y_%m_%d__%H_%M_%S"));
 }
 

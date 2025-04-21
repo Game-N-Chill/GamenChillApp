@@ -23,13 +23,20 @@ static void preLoad()
         SetConsoleMode(hOut, dwMode);
     #endif
 
+    if (!TTF_Init())
+        throw std::runtime_error(SDL_GetError());
+
     std::signal(SIGINT, signalCatcher);
     std::signal(SIGTERM, signalCatcher);
 }
 
 int main(int ac, char **av)
 {
-    preLoad();
+    try {
+        preLoad();
+    } catch (std::runtime_error &e) {
+        std::cerr << "ERROR: " << e.what() << std::endl;
+    }
     doLogic();
     return EXIT_SUCCESS;
 }
