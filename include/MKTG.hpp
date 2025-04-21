@@ -27,6 +27,8 @@ using json = nlohmann::json;
 
 
 #define CELL_TITLE      "C2"
+#define CELL_SUBTITLE   "D7"
+#define CELL_DATE       "I7"
 #define LINE_FIRST      15
 #define COL_CHARACTER   "H"
 #define COL_PLAYER      "I"

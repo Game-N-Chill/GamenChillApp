@@ -62,9 +62,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(${PROJECT_NAME} PRIVATE argparse::argparse)
 
 # Copy assets to the binary directory
-set(ASSETS_TO_COPY "Assets")
+set(TO_COPY
+    "Assets"
+    "Template"
+)
 
-foreach(ITEM ${ASSETS_TO_COPY})
+foreach(ITEM ${TO_COPY})
     add_custom_command(
         TARGET ${PROJECT_NAME}
         POST_BUILD

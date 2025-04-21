@@ -105,10 +105,31 @@ void Generator::Load(std::string excelPath)
     auto sheetNames = file.workbook().worksheetNames();
     auto sheet = file.workbook().worksheet(sheetNames[0]);
 
-    OpenXLSX::XLCell cellTitle = sheet.cell(OpenXLSX::XLCellReference(CELL_TITLE));
-    this->setTitle(cellTitle.value().get<std::string>());
+    try {
+        OpenXLSX::XLCell cellTitle = sheet.cell(OpenXLSX::XLCellReference(CELL_TITLE));
+        this->setTitle(cellTitle.value().get<std::string>());
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: title format is incorrect (" << e.what() << ")" << std::endl;
+    }
 
-    this->setDate(getTimeFormat("%d/%m/%Y"));
+    try {
+        OpenXLSX::XLCell cellSubTitle = sheet.cell(OpenXLSX::XLCellReference(CELL_SUBTITLE));
+        this->setSubtitle(cellSubTitle.value().get<std::string>());
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: subtitle format is incorrect (" << e.what() << ")" << std::endl;
+    }
+
+    try {
+        OpenXLSX::XLCell cellDate = sheet.cell(OpenXLSX::XLCellReference(CELL_DATE));
+        std::string date = cellDate.value().get<std::string>();
+        if (date.empty()) {
+            this->setDate(getTimeFormat("%d/%m/%Y"));
+        } else {
+            this->setDate(date);
+        }
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: date format is incorrect (" << e.what() << ")" << std::endl;
+    }
 
     size_t count = 0;
     for (int i = 0; i < 48; i++) {
