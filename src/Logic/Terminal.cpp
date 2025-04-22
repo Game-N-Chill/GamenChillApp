@@ -7,28 +7,15 @@ static void printHeader(std::string &line)
     std::cout << "$> ";
 }
 
-static std::array<std::string, 2> parseLine(std::string line)
-{
-    std::array<std::string, 2> array;
-
-    size_t pos = line.find_first_of(' ');
-    array[0] = line.substr(0, pos);
-    if (pos != std::string::npos) {
-        while (pos < line.size() && line[pos] == ' ') {
-            pos++;
-        }
-        array[1] = line.substr(pos);
-    }
-
-    return array;
-}
-
 int doLogic()
 {
     MKTG::Generator gen;
     MKTG::Command::Handler cmdHandler;
     std::string line;
     bool loop = true;
+
+    std::cout << "====================[MARIO KART TOP GENERATOR]====================" << std::endl;
+    std::cout << "try \'help\' command to list all available commands" << std::endl << std::endl;
 
     printHeader(line);
     while (loop) {
@@ -42,7 +29,9 @@ int doLogic()
         try {
             auto args = lineParser(line);
             result = cmdHandler[args[0]]->run(gen, args);
-        } catch(const std::runtime_error &e) {
+        } catch (const std::runtime_error &e) {
+            std::cerr << "ERROR: " << e.what() << std::endl;
+        } catch (const std::out_of_range &e) {
             std::cerr << "ERROR: " << e.what() << std::endl;
         }
 

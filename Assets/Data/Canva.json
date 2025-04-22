@@ -35,6 +35,150 @@
             },
             "scale": 0.5,
             "path": "Assets\\Images\\Deerstalker\\LogoDeerstalker.png"
+        },
+        {
+            "name": "1_Character",
+            "position": {
+                "x": 44,
+                "y": 308
+            },
+            "scale": 1.0,
+            "path": ""
+        },
+        {
+            "name": "1_Background",
+            "position": {
+                "x": 50,
+                "y": 704
+            },
+            "scale": 1.0,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "2_Character",
+            "position": {
+                "x": 578,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "2_Background",
+            "position": {
+                "x": 582,
+                "y": 489
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "3_Character",
+            "position": {
+                "x": 1018,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "3_Background",
+            "position": {
+                "x": 1022,
+                "y": 489
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "4_Character",
+            "position": {
+                "x": 1458,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "4_Background",
+            "position": {
+                "x": 1462,
+                "y": 489
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "5_Character",
+            "position": {
+                "x": 561,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "5_Background",
+            "position": {
+                "x": 565,
+                "y": 850
+            },
+            "scale": 0.6,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "6_Character",
+            "position": {
+                "x": 891,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "6_Background",
+            "position": {
+                "x": 895,
+                "y": 850
+            },
+            "scale": 0.6,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "7_Character",
+            "position": {
+                "x": 1221,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "7_Background",
+            "position": {
+                "x": 1225,
+                "y": 850
+            },
+            "scale": 0.6,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "8_Character",
+            "position": {
+                "x": 1551,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "8_Background",
+            "position": {
+                "x": 1555,
+                "y": 850
+            },
+            "scale": 0.6,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
         }
     ],
     "Texts": [
@@ -165,6 +309,390 @@
             "fontSize": 45.0,
             "align": 1.0,
             "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "1_Name",
+            "position": {
+                "x": 300,
+                "y": 762
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 90.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "1_Rank",
+            "position": {
+                "x": 100,
+                "y": 572
+            },
+            "color": {
+                "r": 255,
+                "g": 215,
+                "b": 0
+            },
+            "outline": 0,
+            "fontSize": 125.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "1_RankOutline",
+            "position": {
+                "x": 100,
+                "y": 572
+            },
+            "color": {
+                "r": 155,
+                "g": 137,
+                "b": 42
+            },
+            "outline": 1,
+            "fontSize": 125.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "2_Name",
+            "position": {
+                "x": 770,
+                "y": 532
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "2_Rank",
+            "position": {
+                "x": 625,
+                "y": 399
+            },
+            "color": {
+                "r": 192,
+                "g": 192,
+                "b": 192
+            },
+            "outline": 0,
+            "fontSize": 80.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "2_RankOutline",
+            "position": {
+                "x": 625,
+                "y": 399
+            },
+            "color": {
+                "r": 128,
+                "g": 128,
+                "b": 128
+            },
+            "outline": 1,
+            "fontSize": 80.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "3_Name",
+            "position": {
+                "x": 1210,
+                "y": 532
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "3_Rank",
+            "position": {
+                "x": 1065,
+                "y": 399
+            },
+            "color": {
+                "r": 191,
+                "g": 137,
+                "b": 112
+            },
+            "outline": 0,
+            "fontSize": 80.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "3_RankOutline",
+            "position": {
+                "x": 1065,
+                "y": 399
+            },
+            "color": {
+                "r": 114,
+                "g": 80,
+                "b": 65
+            },
+            "outline": 1,
+            "fontSize": 80.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "4_Name",
+            "position": {
+                "x": 1650,
+                "y": 532
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "4_Rank",
+            "position": {
+                "x": 1505,
+                "y": 399
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 80.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "4_RankOutline",
+            "position": {
+                "x": 1505,
+                "y": 399
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 80.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "5_Name",
+            "position": {
+                "x": 715,
+                "y": 885
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "5_Rank",
+            "position": {
+                "x": 600,
+                "y": 795
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 50.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "5_RankOutline",
+            "position": {
+                "x": 600,
+                "y": 795
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 50.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "6_Name",
+            "position": {
+                "x": 1045,
+                "y": 885
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "6_Rank",
+            "position": {
+                "x": 930,
+                "y": 795
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 50.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "6_RankOutline",
+            "position": {
+                "x": 930,
+                "y": 795
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 50.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "7_Name",
+            "position": {
+                "x": 1375,
+                "y": 885
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "7_Rank",
+            "position": {
+                "x": 1260,
+                "y": 795
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 50.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "7_RankOutline",
+            "position": {
+                "x": 1260,
+                "y": 795
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 50.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "8_Name",
+            "position": {
+                "x": 1705,
+                "y": 885
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "8_Rank",
+            "position": {
+                "x": 1590,
+                "y": 795
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 50.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "8_RankOutline",
+            "position": {
+                "x": 1590,
+                "y": 795
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 50.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
         }
     ],
     "Order": [
@@ -179,6 +707,46 @@
         "date",
         "dateOutline",
         "url",
-        "urlOutline"
+        "urlOutline",
+        "1_Character",
+        "1_Background",
+        "1_Name",
+        "1_Rank",
+        "1_RankOutline",
+        "2_Character",
+        "2_Background",
+        "2_Name",
+        "2_Rank",
+        "2_RankOutline",
+        "3_Character",
+        "3_Background",
+        "3_Name",
+        "3_Rank",
+        "3_RankOutline",
+        "4_Character",
+        "4_Background",
+        "4_Name",
+        "4_Rank",
+        "4_RankOutline",
+        "5_Character",
+        "5_Background",
+        "5_Name",
+        "5_Rank",
+        "5_RankOutline",
+        "6_Character",
+        "6_Background",
+        "6_Name",
+        "6_Rank",
+        "6_RankOutline",
+        "7_Character",
+        "7_Background",
+        "7_Name",
+        "7_Rank",
+        "7_RankOutline",
+        "8_Character",
+        "8_Background",
+        "8_Name",
+        "8_Rank",
+        "8_RankOutline"
     ]
 }

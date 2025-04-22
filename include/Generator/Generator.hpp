@@ -60,6 +60,7 @@ class Generator
         std::vector<std::string>::iterator _dataTrackIt;
 
         std::array<SharedPlayer, PLAYER_GRAPH_COUNT> _players;
+        json _tags;
 
         std::string _imageDir;
 };

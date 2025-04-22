@@ -20,8 +20,12 @@ Generator::Generator(std::string excelPath)
     setDataLink(DEFAULT_DATA_LINK);
 
     for (int i = 0; i < this->_players.size(); i++) {
-        this->_players[i] = std::make_shared<Player>("Mario", "Player", i);
+        this->_players[i] = std::make_shared<Player>("Mario", "Player", i + 1);
     }
+
+    file.open(PATH_NAME_TAGS);
+    file >> this->_tags;
+    file.close();
 
     this->_imageDir = DEFAULT_IMAGE_DIR;
 }
@@ -206,6 +210,28 @@ std::string Generator::getDataTrack() const
 }
 
 
+static std::string stringToUpper(std::string str)
+{
+    std::transform(str.begin(), str.end(), str.begin(), [](uint8_t c) {
+        return std::toupper(c);
+    });
+    return str;
+}
+
+static std::string getCompleteName(std::string name, json &tags)
+{
+    name = stringToUpper(name);
+    for (auto &[key, value] : tags.items()) {
+        auto vec = value.get<std::vector<std::string>>();
+        for (auto &player : vec) {
+            if (name == player) {
+                name = key + " | " + name;
+                return name;
+            }
+        }
+    }
+    return name;
+}
 
 void Generator::setPlayerInfo(size_t rank, std::string character, std::string name)
 {
@@ -222,7 +248,11 @@ void Generator::setPlayerInfo(size_t rank, std::string character, std::string na
 
     player->SetRank(rank);
     player->SetCharacter(character);
-    player->SetName(name);
+    player->SetName(getCompleteName(name, this->_tags));
+
+    if (rank == 1) {
+        this->setDataLink(character);
+    }
 }
 
 SharedPlayer Generator::getPlayerInfo(size_t rank) const
@@ -248,6 +278,13 @@ void Generator::createImage()
     canva.getText("dateOutline")->load(this->_date + " - " + std::to_string(this->_playerCount) + " Participants");
     canva.getText("url")->load(this->_discordUrl);
     canva.getText("urlOutline")->load(this->_discordUrl);
+
+    for (size_t i = 0; i < this->_players.size(); i++) {
+        canva.getImage(std::to_string(i + 1) + '_' + "Character")->load("Assets\\Images\\Characters\\" + this->_players[i]->GetCharacter() + "\\default.png");
+        canva.getText(std::to_string(i + 1) + '_' + "Name")->load(this->_players[i]->GetName());
+        canva.getText(std::to_string(i + 1) + '_' + "Rank")->load(std::to_string(this->_players[i]->GetRank()));
+        canva.getText(std::to_string(i + 1) + '_' + "RankOutline")->load(std::to_string(this->_players[i]->GetRank()));
+    }
 
     std::vector<std::string> vec = canva.getOrder();
     for (auto &obj : vec) {

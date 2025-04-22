@@ -67,6 +67,4 @@ template <typename T>
 std::mutex Singleton<T>::_mutex;
 
 
-
-
 } // namespace Utils

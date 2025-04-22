@@ -34,7 +34,7 @@ using json = nlohmann::json;
 #define COL_PLAYER      "I"
 
 #define DEFAULT_TITLE                   "RIFIFI SUR LE CIRCUIT #"
-#define DEFAULT_SUBTITLE                ""
+#define DEFAULT_SUBTITLE                "Edition 150cc"
 #define DEFAULT_DATE                    "01/01/2025"
 #define DEFAULT_PLAYER_COUNT            16
 #define DEFAULT_DISCORD_URL             "discord.gg/E5PFehpAkS"
@@ -42,6 +42,7 @@ using json = nlohmann::json;
 #define DEFAULT_IMAGE_DIR               "Result"
 
 #define PATH_CHARACTERS_TRACKS_LINK     "Assets\\Data\\CharactersTracksLinks.json"
+#define PATH_NAME_TAGS                  "Assets\\Data\\Tags.json"
 #define IMAGE_WIDTH                     1920
 #define IMAGE_HEIGHT                     1080
 

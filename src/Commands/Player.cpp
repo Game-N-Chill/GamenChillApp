@@ -10,7 +10,11 @@ Result Player::run(MKTG::Generator &gen, std::vector<std::string> &args)
         throw std::runtime_error("not enough arguments");
     }
 
-    std::cout << "not implemented yet :(" << std::endl;
+    size_t rank = std::atoi(args[1].c_str());
+    std::string character = args[2];
+    std::string name = args[3];
+    gen.setPlayerInfo(rank, character, name);
+
     return Result::CONTINUE;
 }
 
