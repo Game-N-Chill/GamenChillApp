@@ -242,6 +242,12 @@ void Generator::createImage()
     canva.getImage("background")->load("Assets\\Images\\Background\\" + *this->_dataTrackIt + ".png");
     canva.getText("title")->load(this->_title);
     canva.getText("titleOutline")->load(this->_title);
+    canva.getText("subtitle")->load(this->_subtitle);
+    canva.getText("subtitleOutline")->load(this->_subtitle);
+    canva.getText("date")->load(this->_date + " - " + std::to_string(this->_playerCount) + " Participants");
+    canva.getText("dateOutline")->load(this->_date + " - " + std::to_string(this->_playerCount) + " Participants");
+    canva.getText("url")->load(this->_discordUrl);
+    canva.getText("urlOutline")->load(this->_discordUrl);
 
     std::vector<std::string> vec = canva.getOrder();
     for (auto &obj : vec) {

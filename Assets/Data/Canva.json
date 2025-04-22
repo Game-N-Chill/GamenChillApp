@@ -10,55 +10,175 @@
             "path": ""
         },
         {
-            "name": "test",
+            "name": "backgroundDeer",
             "position": {
-                "x": 100,
-                "y": 100
+                "x": 0,
+                "y": -54
+            },
+            "scale": 1.1,
+            "path": "Assets\\Images\\Deerstalker\\Background.png"
+        },
+        {
+            "name": "LogoPuzzleInn",
+            "position": {
+                "x": 0,
+                "y": 12
             },
             "scale": 1.0,
-            "path": "Assets\\Images\\Characters\\Baby Daisy\\default.png"
+            "path": "Assets\\Images\\Deerstalker\\LogoPuzzleInn.png"
+        },
+        {
+            "name": "LogoDeerstalker",
+            "position": {
+                "x": 1730,
+                "y": 7
+            },
+            "scale": 0.5,
+            "path": "Assets\\Images\\Deerstalker\\LogoDeerstalker.png"
         }
     ],
     "Texts": [
         {
             "name": "title",
             "position": {
-                "x": 960,
-                "y": 540
+                "x": 365,
+                "y": 20
             },
             "color": {
-                "r": 0,
-                "g": 0,
-                "b": 0
+                "r": 83,
+                "g": 95,
+                "b": 71
             },
-            "str": "Titre",
             "outline": 0,
-            "fontSize": 100.0,
-            "align": 0.5,
-            "path": "Assets\\Fonts\\PixelifySans_Regular.ttf"
+            "fontSize": 70.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
         },
         {
             "name": "titleOutline",
             "position": {
-                "x": 960,
-                "y": 540
+                "x": 365,
+                "y": 20
             },
             "color": {
-                "r": 255,
-                "g": 255,
-                "b": 255
+                "r": 192,
+                "g": 201,
+                "b": 184
             },
-            "str": "Titre",
-            "outline": 2,
-            "fontSize": 100.0,
+            "outline": 1,
+            "fontSize": 70.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "subtitle",
+            "position": {
+                "x": 960,
+                "y": 140
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 60.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\PixelifySans_Regular.ttf"
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "subtitleOutline",
+            "position": {
+                "x": 960,
+                "y": 140
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "date",
+            "position": {
+                "x": 20,
+                "y": 1015
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "dateOutline",
+            "position": {
+                "x": 20,
+                "y": 1015
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 45.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "url",
+            "position": {
+                "x": 1900,
+                "y": 1070
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 1.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "urlOutline",
+            "position": {
+                "x": 1900,
+                "y": 1070
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 45.0,
+            "align": 1.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
         }
     ],
     "Order": [
         "background",
-        "test",
+        "backgroundDeer",
+        "LogoPuzzleInn",
+        "LogoDeerstalker",
         "title",
-        "titleOutline"
+        "titleOutline",
+        "subtitle",
+        "subtitleOutline",
+        "date",
+        "dateOutline",
+        "url",
+        "urlOutline"
     ]
 }
