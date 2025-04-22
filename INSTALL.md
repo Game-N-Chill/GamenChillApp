@@ -1,9 +1,20 @@
+# Depedencies
 ```
-git submodule add <src> <dest>
-git submodule update --init --recursive
+Visual Studio
+nasm
+pearl
 ```
 
+# Build
+## Debug
 ```
+git submodule update --init --recursive
 cmake --preset windows-debug
+cmake --build build
+```
+## Release
+```
+git submodule update --init --recursive
+cmake --preset windows-release
 cmake --build build
 ```

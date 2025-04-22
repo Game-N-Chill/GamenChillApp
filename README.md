@@ -1,5 +1,8 @@
 # MarioKartTopGenerator
 
+Générateur de rendu pour les tournois "RIFIFI sur le circuit"
+
+## Liste des Commandes
 ```
 help                                    Affiche ce message
 quit                                    Quitte le programme
