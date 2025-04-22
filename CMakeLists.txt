@@ -21,7 +21,6 @@ add_subdirectory(${LIB_DIR}/SDL_image)
 add_subdirectory(${LIB_DIR}/SDL_ttf)
 add_subdirectory(${LIB_DIR}/OpenXLSX)
 
-# find_package(Boost REQUIRED)
 find_package(nlohmann_json REQUIRED)
 find_package(argparse REQUIRED)
 
@@ -49,10 +48,15 @@ set(SRC_FILES
     ${SRC_DIR}/Logic/LineParser.cpp
     ${SRC_DIR}/Logic/Terminal.cpp
 )
-add_executable(${PROJECT_NAME} ${SRC_FILES})
+
+if(WIN32)
+    enable_language("RC")
+    set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_icon.rc")
+endif()
+
+add_executable(${PROJECT_NAME} ${SRC_FILES} ${APP_ICON_RESOURCE})
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
-# target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
 target_link_libraries(${PROJECT_NAME} PRIVATE SDL3_image::SDL3_image)
