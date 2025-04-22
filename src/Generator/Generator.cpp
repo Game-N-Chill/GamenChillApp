@@ -282,8 +282,8 @@ void Generator::createImage()
     for (size_t i = 0; i < this->_players.size(); i++) {
         canva.getImage(std::to_string(i + 1) + '_' + "Character")->load("Assets\\Images\\Characters\\" + this->_players[i]->GetCharacter() + "\\default.png");
         canva.getText(std::to_string(i + 1) + '_' + "Name")->load(this->_players[i]->GetName());
-        canva.getText(std::to_string(i + 1) + '_' + "Rank")->load(std::to_string(this->_players[i]->GetRank()));
-        canva.getText(std::to_string(i + 1) + '_' + "RankOutline")->load(std::to_string(this->_players[i]->GetRank()));
+        // canva.getText(std::to_string(i + 1) + '_' + "Rank")->load(std::to_string(this->_players[i]->GetRank()));
+        // canva.getText(std::to_string(i + 1) + '_' + "RankOutline")->load(std::to_string(this->_players[i]->GetRank()));
     }
 
     std::vector<std::string> vec = canva.getOrder();
