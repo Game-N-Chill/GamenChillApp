@@ -26,8 +26,10 @@ find_package(argparse REQUIRED)
 
 set(SRC_FILES
     ${SRC_DIR}/Main.cpp
-    ${SRC_DIR}/Generator/Generator.cpp
-    ${SRC_DIR}/Generator/Player.cpp
+    ${SRC_DIR}/Utils.cpp
+    ${SRC_DIR}/Generator/Shared.cpp
+    ${SRC_DIR}/Generator/Solo.cpp
+    ${SRC_DIR}/Generator/Duo.cpp
     ${SRC_DIR}/Commands/Count.cpp
     ${SRC_DIR}/Commands/Create.cpp
     ${SRC_DIR}/Commands/Date.cpp

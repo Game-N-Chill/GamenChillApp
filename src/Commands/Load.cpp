@@ -10,7 +10,14 @@ Result Load::run(MKTG::Generator &gen, std::vector<std::string> &args)
         throw std::runtime_error("not enough arguments");
     }
 
-    gen.Load(args[1]);
+    std::string fileType = args[1].substr(args[1].size() - 4);
+    if (fileType == "xlsx") {
+        gen.LoadSolo(args[1]);
+    } else if (fileType == "json") {
+        gen.LoadDuo(args[1]);
+    } else {
+        throw std::runtime_error("can't load file type: " + fileType);
+    }
     return Result::CONTINUE;
 }
 

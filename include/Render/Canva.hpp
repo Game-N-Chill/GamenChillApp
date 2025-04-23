@@ -16,7 +16,8 @@ using json = nlohmann::json;
 namespace MKTG::Render
 {
 
-#define CANVA_PATH                  "Assets\\Data\\Canva.json"
+#define CANVA_SOLO_PATH                  "Assets\\Data\\CanvaSolo.json"
+#define CANVA_DUO_PATH                   "Assets\\Data\\CanvaDuo.json"
 
 #define CANVA_CATEGORY_IMAGE        "Images"
 #define CANVA_CATEGORY_TEXT         "Texts"

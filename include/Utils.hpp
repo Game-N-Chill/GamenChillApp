@@ -5,6 +5,9 @@
 #include <memory>
 #include <mutex>
 
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
 namespace Utils
 {
 
@@ -65,6 +68,10 @@ std::once_flag Singleton<T>::_flag;
 
 template <typename T>
 std::mutex Singleton<T>::_mutex;
+
+std::string getTimeFormat(std::string format);
+std::string stringToUpper(std::string str);
+std::string getCompleteName(std::string name, json &tags);
 
 
 } // namespace Utils

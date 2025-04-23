@@ -1,0 +1,560 @@
+{
+    "Images": [
+        {
+            "name": "background",
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "scale": 1.5,
+            "path": ""
+        },
+        {
+            "name": "backgroundDeer",
+            "position": {
+                "x": 0,
+                "y": -54
+            },
+            "scale": 1.1,
+            "path": "Assets\\Images\\Deerstalker\\Background.png"
+        },
+        {
+            "name": "LogoPuzzleInn",
+            "position": {
+                "x": 0,
+                "y": 12
+            },
+            "scale": 1.0,
+            "path": "Assets\\Images\\Deerstalker\\LogoPuzzleInn.png"
+        },
+        {
+            "name": "LogoDeerstalker",
+            "position": {
+                "x": 1730,
+                "y": 7
+            },
+            "scale": 0.5,
+            "path": "Assets\\Images\\Deerstalker\\LogoDeerstalker.png"
+        },
+        {
+            "name": "1_Rank",
+            "position": {
+                "x": 50,
+                "y": 576
+            },
+            "scale": 1.0,
+            "path": "Assets\\Images\\Position\\Pos01.png"
+        },
+        {
+            "name": "1_1_Character",
+            "position": {
+                "x": 44,
+                "y": 308
+            },
+            "scale": 1.0,
+            "path": ""
+        },
+        {
+            "name": "1_Background",
+            "position": {
+                "x": 50,
+                "y": 704
+            },
+            "scale": 1.0,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "2_Rank",
+            "position": {
+                "x": 582,
+                "y": 393
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Position\\Pos02.png"
+        },
+        {
+            "name": "2_1_Character",
+            "position": {
+                "x": 578,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "2_Background",
+            "position": {
+                "x": 582,
+                "y": 489
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "3_Rank",
+            "position": {
+                "x": 1022,
+                "y": 393
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Position\\Pos03.png"
+        },
+        {
+            "name": "3_1_Character",
+            "position": {
+                "x": 1018,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "3_Background",
+            "position": {
+                "x": 1022,
+                "y": 489
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "4_Rank",
+            "position": {
+                "x": 1462,
+                "y": 393
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Position\\Pos04.png"
+        },
+        {
+            "name": "4_1_Character",
+            "position": {
+                "x": 1458,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "4_Background",
+            "position": {
+                "x": 1462,
+                "y": 489
+            },
+            "scale": 0.75,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "5_Rank",
+            "position": {
+                "x": 565,
+                "y": 786
+            },
+            "scale": 0.5,
+            "path": "Assets\\Images\\Position\\Pos05.png"
+        },
+        {
+            "name": "5_1_Character",
+            "position": {
+                "x": 561,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "5_Background",
+            "position": {
+                "x": 565,
+                "y": 850
+            },
+            "scale": 0.6,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "6_Rank",
+            "position": {
+                "x": 895,
+                "y": 786
+            },
+            "scale": 0.5,
+            "path": "Assets\\Images\\Position\\Pos06.png"
+        },
+        {
+            "name": "6_1_Character",
+            "position": {
+                "x": 891,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "6_Background",
+            "position": {
+                "x": 895,
+                "y": 850
+            },
+            "scale": 0.6,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "7_Rank",
+            "position": {
+                "x": 1225,
+                "y": 786
+            },
+            "scale": 0.5,
+            "path": "Assets\\Images\\Position\\Pos07.png"
+        },
+        {
+            "name": "7_1_Character",
+            "position": {
+                "x": 1221,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "7_Background",
+            "position": {
+                "x": 1225,
+                "y": 850
+            },
+            "scale": 0.6,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        },
+        {
+            "name": "8_Rank",
+            "position": {
+                "x": 1555,
+                "y": 786
+            },
+            "scale": 0.5,
+            "path": "Assets\\Images\\Position\\Pos08.png"
+        },
+        {
+            "name": "8_1_Character",
+            "position": {
+                "x": 1551,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "8_Background",
+            "position": {
+                "x": 1555,
+                "y": 850
+            },
+            "scale": 0.6,
+            "path": "Assets\\Images\\Deerstalker\\BackgroundName.png"
+        }
+    ],
+    "Texts": [
+        {
+            "name": "title",
+            "position": {
+                "x": 365,
+                "y": 20
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 70.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "titleOutline",
+            "position": {
+                "x": 365,
+                "y": 20
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 70.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "subtitle",
+            "position": {
+                "x": 960,
+                "y": 140
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "subtitleOutline",
+            "position": {
+                "x": 960,
+                "y": 140
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "date",
+            "position": {
+                "x": 20,
+                "y": 1015
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "dateOutline",
+            "position": {
+                "x": 20,
+                "y": 1015
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 45.0,
+            "align": 0.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "url",
+            "position": {
+                "x": 1900,
+                "y": 1070
+            },
+            "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 1.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "urlOutline",
+            "position": {
+                "x": 1900,
+                "y": 1070
+            },
+            "color": {
+                "r": 192,
+                "g": 201,
+                "b": 184
+            },
+            "outline": 1,
+            "fontSize": 45.0,
+            "align": 1.0,
+            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+        },
+        {
+            "name": "1_1_Name",
+            "position": {
+                "x": 300,
+                "y": 762
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 90.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "2_1_Name",
+            "position": {
+                "x": 770,
+                "y": 532
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "3_1_Name",
+            "position": {
+                "x": 1210,
+                "y": 532
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "4_1_Name",
+            "position": {
+                "x": 1650,
+                "y": 532
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 60.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "5_1_Name",
+            "position": {
+                "x": 715,
+                "y": 885
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "6_1_Name",
+            "position": {
+                "x": 1045,
+                "y": 885
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "7_1_Name",
+            "position": {
+                "x": 1375,
+                "y": 885
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "8_1_Name",
+            "position": {
+                "x": 1705,
+                "y": 885
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 45.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        }
+    ],
+    "Order": [
+        "background",
+        "backgroundDeer",
+        "LogoPuzzleInn",
+        "LogoDeerstalker",
+        "title",
+        "titleOutline",
+        "subtitle",
+        "subtitleOutline",
+        "date",
+        "dateOutline",
+        "url",
+        "urlOutline",
+        "1_1_Character",
+        "1_Background",
+        "1_1_Name",
+        "1_Rank",
+        "2_1_Character",
+        "2_Background",
+        "2_1_Name",
+        "2_Rank",
+        "3_1_Character",
+        "3_Background",
+        "3_1_Name",
+        "3_Rank",
+        "4_1_Character",
+        "4_Background",
+        "4_1_Name",
+        "4_Rank",
+        "5_1_Character",
+        "5_Background",
+        "5_1_Name",
+        "5_Rank",
+        "6_1_Character",
+        "6_Background",
+        "6_1_Name",
+        "6_Rank",
+        "7_1_Character",
+        "7_Background",
+        "7_1_Name",
+        "7_Rank",
+        "8_1_Character",
+        "8_Background",
+        "8_1_Name",
+        "8_Rank"
+    ]
+}

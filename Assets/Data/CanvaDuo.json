@@ -40,15 +40,24 @@
             "name": "1_Rank",
             "position": {
                 "x": 50,
-                "y": 576
+                "y": 554
             },
             "scale": 1.0,
             "path": "Assets\\Images\\Position\\Pos01.png"
         },
         {
-            "name": "1_Character",
+            "name": "1_1_Character",
             "position": {
-                "x": 44,
+                "x": -56,
+                "y": 308
+            },
+            "scale": 1.0,
+            "path": ""
+        },
+        {
+            "name": "1_2_Character",
+            "position": {
+                "x": 144,
                 "y": 308
             },
             "scale": 1.0,
@@ -73,9 +82,18 @@
             "path": "Assets\\Images\\Position\\Pos02.png"
         },
         {
-            "name": "2_Character",
+            "name": "2_1_Character",
             "position": {
-                "x": 578,
+                "x": 508,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "2_2_Character",
+            "position": {
+                "x": 648,
                 "y": 192
             },
             "scale": 0.75,
@@ -100,9 +118,18 @@
             "path": "Assets\\Images\\Position\\Pos03.png"
         },
         {
-            "name": "3_Character",
+            "name": "3_1_Character",
             "position": {
-                "x": 1018,
+                "x": 948,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "3_2_Character",
+            "position": {
+                "x": 1088,
                 "y": 192
             },
             "scale": 0.75,
@@ -127,9 +154,18 @@
             "path": "Assets\\Images\\Position\\Pos04.png"
         },
         {
-            "name": "4_Character",
+            "name": "4_1_Character",
             "position": {
-                "x": 1458,
+                "x": 1388,
+                "y": 192
+            },
+            "scale": 0.75,
+            "path": ""
+        },
+        {
+            "name": "4_2_Character",
+            "position": {
+                "x": 1528,
                 "y": 192
             },
             "scale": 0.75,
@@ -154,9 +190,18 @@
             "path": "Assets\\Images\\Position\\Pos05.png"
         },
         {
-            "name": "5_Character",
+            "name": "5_1_Character",
             "position": {
-                "x": 561,
+                "x": 501,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "5_2_Character",
+            "position": {
+                "x": 621,
                 "y": 613
             },
             "scale": 0.6,
@@ -181,9 +226,18 @@
             "path": "Assets\\Images\\Position\\Pos06.png"
         },
         {
-            "name": "6_Character",
+            "name": "6_1_Character",
             "position": {
-                "x": 891,
+                "x": 831,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "6_2_Character",
+            "position": {
+                "x": 951,
                 "y": 613
             },
             "scale": 0.6,
@@ -208,9 +262,18 @@
             "path": "Assets\\Images\\Position\\Pos07.png"
         },
         {
-            "name": "7_Character",
+            "name": "7_1_Character",
             "position": {
-                "x": 1221,
+                "x": 1161,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "7_2_Character",
+            "position": {
+                "x": 1281,
                 "y": 613
             },
             "scale": 0.6,
@@ -235,9 +298,18 @@
             "path": "Assets\\Images\\Position\\Pos08.png"
         },
         {
-            "name": "8_Character",
+            "name": "8_1_Character",
             "position": {
-                "x": 1551,
+                "x": 1491,
+                "y": 613
+            },
+            "scale": 0.6,
+            "path": ""
+        },
+        {
+            "name": "8_2_Character",
+            "position": {
+                "x": 1611,
                 "y": 613
             },
             "scale": 0.6,
@@ -383,10 +455,10 @@
             "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
         },
         {
-            "name": "1_Name",
+            "name": "1_1_Name",
             "position": {
                 "x": 300,
-                "y": 762
+                "y": 733
             },
             "color": {
                 "r": 255,
@@ -394,15 +466,31 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 90.0,
+            "fontSize": 55.0,
             "align": 0.5,
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "2_Name",
+            "name": "1_2_Name",
+            "position": {
+                "x": 300,
+                "y": 791
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 55.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "2_1_Name",
             "position": {
                 "x": 770,
-                "y": 532
+                "y": 511
             },
             "color": {
                 "r": 255,
@@ -410,15 +498,31 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 60.0,
+            "fontSize": 40.0,
             "align": 0.5,
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "3_Name",
+            "name": "2_2_Name",
+            "position": {
+                "x": 770,
+                "y": 554
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 40.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "3_1_Name",
             "position": {
                 "x": 1210,
-                "y": 532
+                "y": 511
             },
             "color": {
                 "r": 255,
@@ -426,15 +530,31 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 60.0,
+            "fontSize": 40.0,
             "align": 0.5,
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "4_Name",
+            "name": "3_2_Name",
+            "position": {
+                "x": 1210,
+                "y": 554
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 40.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "4_1_Name",
             "position": {
                 "x": 1650,
-                "y": 532
+                "y": 511
             },
             "color": {
                 "r": 255,
@@ -442,15 +562,31 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 60.0,
+            "fontSize": 40.0,
             "align": 0.5,
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "5_Name",
+            "name": "4_2_Name",
+            "position": {
+                "x": 1650,
+                "y": 554
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 40.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "5_1_Name",
             "position": {
                 "x": 715,
-                "y": 885
+                "y": 867
             },
             "color": {
                 "r": 255,
@@ -458,15 +594,31 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
             "align": 0.5,
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "6_Name",
+            "name": "5_2_Name",
+            "position": {
+                "x": 715,
+                "y": 902
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 30.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "6_1_Name",
             "position": {
                 "x": 1045,
-                "y": 885
+                "y": 867
             },
             "color": {
                 "r": 255,
@@ -474,15 +626,31 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
             "align": 0.5,
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "7_Name",
+            "name": "6_2_Name",
+            "position": {
+                "x": 1045,
+                "y": 902
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 30.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "7_1_Name",
             "position": {
                 "x": 1375,
-                "y": 885
+                "y": 867
             },
             "color": {
                 "r": 255,
@@ -490,15 +658,15 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
             "align": 0.5,
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "8_Name",
+            "name": "7_2_Name",
             "position": {
-                "x": 1705,
-                "y": 885
+                "x": 1375,
+                "y": 902
             },
             "color": {
                 "r": 255,
@@ -506,7 +674,39 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "8_1_Name",
+            "position": {
+                "x": 1705,
+                "y": 867
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 30.0,
+            "align": 0.5,
+            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+        },
+        {
+            "name": "8_2_Name",
+            "position": {
+                "x": 1705,
+                "y": 902
+            },
+            "color": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "outline": 0,
+            "fontSize": 30.0,
             "align": 0.5,
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         }
@@ -524,37 +724,53 @@
         "dateOutline",
         "url",
         "urlOutline",
-        "1_Character",
+        "1_1_Character",
+        "1_2_Character",
         "1_Background",
-        "1_Name",
+        "1_1_Name",
+        "1_2_Name",
         "1_Rank",
-        "2_Character",
+        "2_1_Character",
+        "2_2_Character",
         "2_Background",
-        "2_Name",
+        "2_1_Name",
+        "2_2_Name",
         "2_Rank",
-        "3_Character",
+        "3_1_Character",
+        "3_2_Character",
         "3_Background",
-        "3_Name",
+        "3_1_Name",
+        "3_2_Name",
         "3_Rank",
-        "4_Character",
+        "4_1_Character",
+        "4_2_Character",
         "4_Background",
-        "4_Name",
+        "4_1_Name",
+        "4_2_Name",
         "4_Rank",
-        "5_Character",
+        "5_1_Character",
+        "5_2_Character",
         "5_Background",
-        "5_Name",
+        "5_1_Name",
+        "5_2_Name",
         "5_Rank",
-        "6_Character",
+        "6_1_Character",
+        "6_2_Character",
         "6_Background",
-        "6_Name",
+        "6_1_Name",
+        "6_2_Name",
         "6_Rank",
-        "7_Character",
+        "7_1_Character",
+        "7_2_Character",
         "7_Background",
-        "7_Name",
+        "7_1_Name",
+        "7_2_Name",
         "7_Rank",
-        "8_Character",
+        "8_1_Character",
+        "8_2_Character",
         "8_Background",
-        "8_Name",
+        "8_1_Name",
+        "8_2_Name",
         "8_Rank"
     ]
 }

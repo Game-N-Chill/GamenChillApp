@@ -72,14 +72,12 @@ Canva::Canva(std::string path)
 {
     this->_canva = SDL_CreateSurface(IMAGE_WIDTH, IMAGE_HEIGHT, SDL_PIXELFORMAT_RGBA32);
     if (this->_canva == nullptr) {
-        std::cerr << "ERROR: failed to create canva" << std::endl;
-        return;
+        throw std::runtime_error("failed to create canva");
     }
 
     std::ifstream file(path);
     if (!file.is_open()) {
-        std::cerr << "ERROR: failed to open file " << path << std::endl;
-        return;
+        throw std::runtime_error("failed to open file " + path);
     }
 
     file >> this->_json;

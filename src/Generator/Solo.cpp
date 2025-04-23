@@ -1,0 +1,96 @@
+
+#include "MKTG.hpp"
+
+namespace MKTG
+{
+
+//  Team GETTER/SETTER
+// *****************************************************************************
+
+Solo Generator::getSoloInfo(size_t rank)
+{
+    return this->getTeamInfo<1>(rank, this->_solo);
+}
+
+void Generator::setSoloInfo(size_t rank, std::string character, std::string name)
+{
+    this->setTeamInfo<1>(rank, 0, character, name, this->_solo);
+}
+
+//  Image Creation
+// *****************************************************************************
+
+void Generator::LoadSolo(std::string excelPath)
+{
+    if (excelPath.empty()) {
+        return;
+    }
+
+    OpenXLSX::XLDocument file;
+    file.open(excelPath);
+    if (!file.isOpen()) {
+        std::cerr << "ERROR: file " << excelPath << "can't be open" << std::endl;
+        return;
+    }
+
+    auto sheetNames = file.workbook().worksheetNames();
+    auto sheet = file.workbook().worksheet(sheetNames[0]);
+
+    try {
+        OpenXLSX::XLCell cellTitle = sheet.cell(OpenXLSX::XLCellReference(CELL_TITLE));
+        this->setTitle(cellTitle.value().get<std::string>());
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: title format is incorrect (" << e.what() << ")" << std::endl;
+    }
+
+    try {
+        OpenXLSX::XLCell cellSubTitle = sheet.cell(OpenXLSX::XLCellReference(CELL_SUBTITLE));
+        this->setSubtitle(cellSubTitle.value().get<std::string>());
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: subtitle format is incorrect (" << e.what() << ")" << std::endl;
+    }
+
+    try {
+        OpenXLSX::XLCell cellDate = sheet.cell(OpenXLSX::XLCellReference(CELL_DATE));
+        std::string date = cellDate.value().get<std::string>();
+        if (date.empty()) {
+            this->setDate(Utils::getTimeFormat("%d/%m/%Y"));
+        } else {
+            this->setDate(date);
+        }
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: date format is incorrect (" << e.what() << ")" << std::endl;
+    }
+
+    size_t count = 0;
+    for (int i = 0; i < 48; i++) {
+        OpenXLSX::XLCell cellName = sheet.cell(OpenXLSX::XLCellReference(COL_PLAYER + std::to_string(LINE_FIRST + i)));
+        std::string name = cellName.value().get<std::string>();
+
+        if (name.empty()) {
+            break;
+        }
+
+        if (i < 8) {
+            std::string character = sheet.cell(OpenXLSX::XLCellReference(COL_CHARACTER + std::to_string(LINE_FIRST + i))).value().get<std::string>();
+            this->setSoloInfo(i + 1, character, name);
+            if (i == 0) {
+                this->setDataLink(character);
+            }
+        }
+
+        if (name != "-") {
+            count++;
+        }
+    }
+    this->setPlayerCount(count);
+
+    file.close();
+}
+
+void Generator::createSolo()
+{
+    this->createImage<1>(CANVA_SOLO_PATH, this->_solo);
+}
+
+} // namespace MKTG

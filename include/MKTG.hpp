@@ -33,6 +33,15 @@ using json = nlohmann::json;
 #define COL_CHARACTER   "H"
 #define COL_PLAYER      "I"
 
+#define INDEX_TITLE                     "title"
+#define INDEX_SUBTITLE                  "subtitle"
+#define INDEX_DATE                      "date"
+#define INDEX_COUNT                     "count"
+#define INDEX_PLAYERS                   "players"
+#define INDEX_TEAM                      "team"
+#define INDEX_CHARACTER                 "character"
+#define INDEX_NAME                      "name"
+
 #define DEFAULT_TITLE                   "RIFIFI SUR LE CIRCUIT #"
 #define DEFAULT_SUBTITLE                "Edition 150cc"
 #define DEFAULT_DATE                    "01/01/2025"

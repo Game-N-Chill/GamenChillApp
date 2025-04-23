@@ -6,32 +6,48 @@
 namespace MKTG
 {
 
-class Player
+
+struct Player
 {
-    public:
-        Player();
-        Player(std::string character, std::string name, std::size_t rank);
-
-        void LoadExcelData();
-
-        void SetCharacter(std::string character);
-        void SetName(std::string name);
-        void SetRank(std::size_t rank);
-
-        std::string GetCharacter() const;
-        std::string GetName() const;
-        std::size_t GetRank() const;
-
-    private:
-        std::string _character;
-        std::string _name;
-        std::size_t _rank;
+    std::string character;
+    std::string name;
 };
 
-typedef std::shared_ptr<Player> SharedPlayer;
-typedef std::weak_ptr<Player>   WeakPlayer;
+template<size_t N>
+struct Team
+{
+    std::array<Player, N> players;
+    std::size_t rank;
+    std::string name;
 
+    Team(size_t rank)
+    {
+        this->rank = rank;
+        for (size_t i = 0; i < N; i++) {
+            this->players[i].character = "Mario";
+            this->players[i].name = "Player";
+        }
+    }
+};
+
+template<size_t N>
+using SharedTeam = std::shared_ptr<Team<N>>;
+
+typedef SharedTeam<1>   Solo;
+typedef SharedTeam<2>   Duo;
 
 } // namespace MKTG
 
-std::ostream &operator<<(std::ostream &flux, MKTG::Player &player);
+template<size_t N>
+std::ostream &operator<<(std::ostream &flux, MKTG::Team<N> &team)
+{
+    if (N == 1) {
+        flux << std::left << "-- Joueur  #" << std::setw(4) << team.rank << std::setw(22) << team.players[0].character << team.players[0].name << std::endl;
+    } else {
+        flux << std::left << "-- Team #" << std::setw(3) << team.rank << std::endl;
+        for (size_t i = 0; i < N; i++) {
+            std::cout << std::left << std::setw(15) << " -- Joueur" << std::setw(22) << team.players[i].character << team.players[i].name << std::endl;
+        }
+    }
+    return flux;
+}
