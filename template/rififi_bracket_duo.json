@@ -1,0 +1,48 @@
+{
+    "title": "RIFIFI sur le circuit #",
+    "subtitle": "Edition Double",
+    "date": "01/01/2025",
+    "count": 16,
+    "players": [
+        {
+            "team": "",
+            "character": ["Mario", "Mario"],
+            "name": ["Player", "Player"]
+        },
+        {
+            "team": "",
+            "character": ["Mario", "Mario"],
+            "name": ["Player", "Player"]
+        },
+        {
+            "team": "",
+            "character": ["Mario", "Mario"],
+            "name": ["Player", "Player"]
+        },
+        {
+            "team": "",
+            "character": ["Mario", "Mario"],
+            "name": ["Player", "Player"]
+        },
+        {
+            "team": "",
+            "character": ["Mario", "Mario"],
+            "name": ["Player", "Player"]
+        },
+        {
+            "team": "",
+            "character": ["Mario", "Mario"],
+            "name": ["Player", "Player"]
+        },
+        {
+            "team": "",
+            "character": ["Mario", "Mario"],
+            "name": ["Player", "Player"]
+        },
+        {
+            "team": "",
+            "character": ["Mario", "Mario"],
+            "name": ["Player", "Player"]
+        }
+    ]
+}

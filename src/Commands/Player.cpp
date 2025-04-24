@@ -3,7 +3,7 @@
 
 namespace MKTG::Command
 {
-// player <solo/duo> <rank> <index> <character> <name>
+// player [solo/duo] <rank> <index> <character> <name>
 Result Player::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
     if (args.size() < 6) {
