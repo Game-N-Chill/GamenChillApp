@@ -5,19 +5,25 @@
 #include <map>
 
 #include "Interface.hpp"
-#include "Cmd_Count.hpp"
-#include "Cmd_Create.hpp"
-#include "Cmd_Date.hpp"
-#include "Cmd_Dir.hpp"
 #include "Cmd_Help.hpp"
+#include "Cmd_Quit.hpp"
+#include "Cmd_List.hpp"
+
+#include "Cmd_Title.hpp"
+#include "Cmd_SubTitle.hpp"
+#include "Cmd_Date.hpp"
+#include "Cmd_Count.hpp"
+#include "Cmd_Url.hpp"
+
 #include "Cmd_Load.hpp"
 #include "Cmd_Player.hpp"
+#include "Cmd_Team.hpp"
+#include "Cmd_Background.hpp"
+#include "Cmd_Skin.hpp"
 #include "Cmd_Print.hpp"
-#include "Cmd_Random.hpp"
-#include "Cmd_Quit.hpp"
-#include "Cmd_SubTitle.hpp"
-#include "Cmd_Title.hpp"
-#include "Cmd_Url.hpp"
+
+#include "Cmd_Dir.hpp"
+#include "Cmd_Create.hpp"
 
 namespace MKTG::Command
 {
@@ -29,6 +35,7 @@ class Handler
         {
             addCommand<Help>();
             addCommand<Quit>();
+            addCommand<List>();
 
             addCommand<Title>();
             addCommand<SubTitle>();
@@ -38,7 +45,9 @@ class Handler
 
             addCommand<Load>();
             addCommand<Player>();
-            addCommand<Random>();
+            addCommand<Team>();
+            addCommand<Background>();
+            addCommand<Skin>();
             addCommand<Print>();
 
             addCommand<Dir>();

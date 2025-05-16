@@ -4,20 +4,23 @@ Générateur de rendu pour les tournois "RIFIFI sur le circuit"
 
 ## Liste des Commandes
 ```
-help                                                    Affiche ce message
-quit                                                    Quitte le programme
+help                                                                            Affiche ce message
+quit                                                                            Quitte le programme
+list                                                                            Affiche tout les noms des personnages
 
-title    <str>                                          Change le titre
-subtitle <str>                                          Change le sous-titre
-date     <str>                                          Change la date (format XX/XX/XXXX)
-count    <value>                                        Change le nombre de participants
-url      <str>                                          Change le lien d'invitation discord
+title       <str>                                                               Change le titre
+subtitle    <str>                                                               Change le sous-titre
+date        <str>                                                               Change la date (format XX/XX/XXXX)
+count       <value>                                                             Change le nombre de participants
+url         <str>                                                               Change le lien d'invitation discord
 
-load     <path/to/file>                                 Charge le fichier excel du bracket
-player   [solo/duo] <rank> <index> <character> <name>   Change les informations d'un joueur
-random                                                  Change le fond du rendu
-print    [solo/duo]                                     Affiche toutes les informations concernant le rendu
+load        <path/to/file>                                                      Charge le fichier excel du bracket
+player      <rank> <character> <name>                                           Change les informations d'un joueur (solo only)
+team        <rank> <name> <character_1> <player_1> <character_2> <player_2>     Change les informations d'une équipe (duo only)
+background  [name]                                                              Change le fond du rendu
+skin        <solo|duo> [name] [rank]                                            Change le skin du premier ou du joueur rank si précisé (utile pour les MIIs par exemple)
+print       <solo|duo>                                                          Affiche toutes les informations concernant le rendu
 
-dir      <path/to/dir>                                  Change le dossier où les rendus seront créés
-create   [solo/duo]                                     Créer le rendu
+dir         <path/to/dir>                                                       Change le dossier où les rendus seront créés
+create      <solo|duo>                                                          Créer le rendu
 ```

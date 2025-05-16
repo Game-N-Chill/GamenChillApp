@@ -18,6 +18,7 @@ Result Load::run(MKTG::Generator &gen, std::vector<std::string> &args)
     } else {
         throw std::runtime_error("can't load file type: " + fileType);
     }
+    gen.setBackground();
     return Result::CONTINUE;
 }
 

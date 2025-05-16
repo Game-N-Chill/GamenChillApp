@@ -6,9 +6,9 @@
 namespace MKTG::Command
 {
 
-    #define COMMAND_RANDOM           "random"
+    #define COMMAND_TEAM           "team"
 
-class Random : public ICommand
+class Team : public ICommand
 {
     public:
         Result run(MKTG::Generator &gen, std::vector<std::string> &args);

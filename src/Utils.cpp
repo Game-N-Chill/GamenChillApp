@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 
+#include <SDL3/SDL.h>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
@@ -39,6 +40,11 @@ std::string getCompleteName(std::string name, json &tags)
         }
     }
     return name;
+}
+
+std::string getFullPath(std::string path)
+{
+    return SDL_GetBasePath() + std::string(path);
 }
 
 }

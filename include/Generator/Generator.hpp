@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <array>
+#include <map>
 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
@@ -14,6 +15,7 @@ namespace MKTG
 {
 
     #define PLAYER_GRAPH_COUNT      8
+    #define PATH_BACKGROUND_DIR             "Assets\\Images\\Background\\"
 
 class Generator
 {
@@ -33,13 +35,10 @@ class Generator
         void setPlayerCount(size_t value);
         void setDiscordUrl(std::string str);
 
-
-        void setDataLink(std::string character);
-        void nextDataTrack();
-        void prevDataTrack();
-        std::string getDataCharacter() const;
-        std::string getDataTrack() const;
-
+        std::string getBackgroundName() const;
+        std::string getBackgroundPath() const;
+        void setBackground();
+        void setBackground(std::string name);
 
         void setImageDir(std::string path);
         std::string getImageDir() const;
@@ -48,8 +47,9 @@ class Generator
         Solo getSoloInfo(size_t rank);
         Duo getDuoInfo(size_t rank);
         void setSoloInfo(size_t rank, std::string character, std::string name);
-        void setDuoInfo(size_t rank, size_t index, std::string character, std::string name);
-
+        void setDuoInfo(size_t rank, std::string name, std::string character_01, std::string player_01, std::string character_02, std::string player_02);
+        void printSolo();
+        void printDuo();
 
         void LoadSolo(std::string excelPath = "");
         void LoadDuo(std::string jsonPath = "");
@@ -63,10 +63,12 @@ class Generator
         size_t _playerCount;
         std::string _discordUrl;
 
-        json _dataLinks;
-        std::string _dataCharacter;
-        std::vector<std::string> _dataTracks;
-        std::vector<std::string>::iterator _dataTrackIt;
+        // json _dataLinks;
+        // std::string _dataCharacter;
+        // std::vector<std::string> _dataTracks;
+        // std::vector<std::string>::iterator _dataTrackIt;
+        std::map<std::string, std::string> _backgrounds;
+        std::map<std::string, std::string>::iterator _backgroundIt;
 
         std::string _imageDir;
 
@@ -86,7 +88,7 @@ class Generator
         }
 
         template<size_t N>
-        void setTeamInfo(size_t rank, size_t index, std::string character, std::string name, std::array<SharedTeam<N>, PLAYER_GRAPH_COUNT> &array)
+        void setTeamInfo(size_t rank, std::string name, size_t index, std::string character, std::string player, std::array<SharedTeam<N>, PLAYER_GRAPH_COUNT> &array)
         {
             if (rank < 1 || rank > 8) {
                 std::cerr << "ERROR: rank out of range: " << rank << ", must be: [1,8]" << std::endl;
@@ -103,13 +105,11 @@ class Generator
                 return;
             }
 
+            team->name = name;
             team->rank = rank;
             team->players[index].character = character;
-            team->players[index].name = Utils::getCompleteName(name, this->_tags);
-
-            if (rank == 1) {
-                this->setDataLink(character);
-            }
+            team->players[index].name = Utils::getCompleteName(player, this->_tags);
+            team->players[index].parseSkins(rank);
         }
 
         template<size_t N>
@@ -120,7 +120,7 @@ class Generator
             }
             Render::Canva canva(path);
 
-            canva.getImage("background")->load("Assets\\Images\\Background\\" + *this->_dataTrackIt + ".png");
+            canva.getImage("background")->load(this->_backgroundIt->second);
             canva.getText("title")->load(this->_title);
             canva.getText("titleOutline")->load(this->_title);
             canva.getText("subtitle")->load(this->_subtitle);
@@ -132,10 +132,20 @@ class Generator
 
             for (size_t i = 0; i < array.size(); i++) {
                 SharedTeam<N> team = array[i];
-                for (size_t j = 0; j < team->players.size(); j++) {
-                    canva.getImage(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Character")->load("Assets\\Images\\Characters\\" + team->players[j].character + "\\default.png");
-                    canva.getText(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Name")->load(team->players[j].name);
+
+                if (N > 1) {
+                    canva.getText(std::to_string(i + 1) + '_' + "Team")->load(team->name);
                 }
+
+                std::string name;
+                for (size_t j = 0; j < team->players.size(); j++) {
+                    canva.getImage(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Character")->load(Utils::getFullPath(PATH_CHARACTERS_DIR) + team->players[j].character + '\\' + team->players[j].getSkin() + ".png");
+                    name += team->players[j].name;
+                    if (j < team->players.size() - 1) {
+                        name += " - ";
+                    }
+                }
+                canva.getText(std::to_string(i + 1) + '_' + "Name")->load(name);
             }
 
             std::vector<std::string> vec = canva.getOrder();

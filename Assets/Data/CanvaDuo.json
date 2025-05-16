@@ -455,7 +455,7 @@
             "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
         },
         {
-            "name": "1_1_Name",
+            "name": "1_Team",
             "position": {
                 "x": 300,
                 "y": 733
@@ -471,7 +471,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "1_2_Name",
+            "name": "1_Name",
             "position": {
                 "x": 300,
                 "y": 791
@@ -487,7 +487,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "2_1_Name",
+            "name": "2_Team",
             "position": {
                 "x": 770,
                 "y": 511
@@ -503,7 +503,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "2_2_Name",
+            "name": "2_Name",
             "position": {
                 "x": 770,
                 "y": 554
@@ -519,7 +519,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "3_1_Name",
+            "name": "3_Team",
             "position": {
                 "x": 1210,
                 "y": 511
@@ -535,7 +535,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "3_2_Name",
+            "name": "3_Name",
             "position": {
                 "x": 1210,
                 "y": 554
@@ -551,7 +551,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "4_1_Name",
+            "name": "4_Team",
             "position": {
                 "x": 1650,
                 "y": 511
@@ -567,7 +567,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "4_2_Name",
+            "name": "4_Name",
             "position": {
                 "x": 1650,
                 "y": 554
@@ -583,7 +583,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "5_1_Name",
+            "name": "5_Team",
             "position": {
                 "x": 715,
                 "y": 867
@@ -599,7 +599,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "5_2_Name",
+            "name": "5_Name",
             "position": {
                 "x": 715,
                 "y": 902
@@ -615,7 +615,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "6_1_Name",
+            "name": "6_Team",
             "position": {
                 "x": 1045,
                 "y": 867
@@ -631,7 +631,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "6_2_Name",
+            "name": "6_Name",
             "position": {
                 "x": 1045,
                 "y": 902
@@ -647,7 +647,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "7_1_Name",
+            "name": "7_Team",
             "position": {
                 "x": 1375,
                 "y": 867
@@ -663,7 +663,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "7_2_Name",
+            "name": "7_Name",
             "position": {
                 "x": 1375,
                 "y": 902
@@ -679,7 +679,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "8_1_Name",
+            "name": "8_Team",
             "position": {
                 "x": 1705,
                 "y": 867
@@ -695,7 +695,7 @@
             "path": "Assets\\Fonts\\Handjet_Bold.ttf"
         },
         {
-            "name": "8_2_Name",
+            "name": "8_Name",
             "position": {
                 "x": 1705,
                 "y": 902
@@ -727,50 +727,50 @@
         "1_1_Character",
         "1_2_Character",
         "1_Background",
-        "1_1_Name",
-        "1_2_Name",
+        "1_Team",
+        "1_Name",
         "1_Rank",
         "2_1_Character",
         "2_2_Character",
         "2_Background",
-        "2_1_Name",
-        "2_2_Name",
+        "2_Team",
+        "2_Name",
         "2_Rank",
         "3_1_Character",
         "3_2_Character",
         "3_Background",
-        "3_1_Name",
-        "3_2_Name",
+        "3_Team",
+        "3_Name",
         "3_Rank",
         "4_1_Character",
         "4_2_Character",
         "4_Background",
-        "4_1_Name",
-        "4_2_Name",
+        "4_Team",
+        "4_Name",
         "4_Rank",
         "5_1_Character",
         "5_2_Character",
         "5_Background",
-        "5_1_Name",
-        "5_2_Name",
+        "5_Team",
+        "5_Name",
         "5_Rank",
         "6_1_Character",
         "6_2_Character",
         "6_Background",
-        "6_1_Name",
-        "6_2_Name",
+        "6_Team",
+        "6_Name",
         "6_Rank",
         "7_1_Character",
         "7_2_Character",
         "7_Background",
-        "7_1_Name",
-        "7_2_Name",
+        "7_Team",
+        "7_Name",
         "7_Rank",
         "8_1_Character",
         "8_2_Character",
         "8_Background",
-        "8_1_Name",
-        "8_2_Name",
+        "8_Team",
+        "8_Name",
         "8_Rank"
     ]
 }

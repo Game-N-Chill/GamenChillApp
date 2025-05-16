@@ -52,8 +52,9 @@ using json = nlohmann::json;
 
 #define PATH_CHARACTERS_TRACKS_LINK     "Assets\\Data\\CharactersTracksLinks.json"
 #define PATH_NAME_TAGS                  "Assets\\Data\\Tags.json"
+#define PATH_HELP                       "Assets\\Data\\Help.txt"
 #define IMAGE_WIDTH                     1920
-#define IMAGE_HEIGHT                     1080
+#define IMAGE_HEIGHT                    1080
 
 int doLogic();
 std::vector<std::string> lineParser(std::string line);

@@ -30,19 +30,22 @@ set(SRC_FILES
     ${SRC_DIR}/Generator/Shared.cpp
     ${SRC_DIR}/Generator/Solo.cpp
     ${SRC_DIR}/Generator/Duo.cpp
-    ${SRC_DIR}/Commands/Count.cpp
-    ${SRC_DIR}/Commands/Create.cpp
-    ${SRC_DIR}/Commands/Date.cpp
-    ${SRC_DIR}/Commands/Dir.cpp
     ${SRC_DIR}/Commands/Help.cpp
+    ${SRC_DIR}/Commands/Quit.cpp
+    ${SRC_DIR}/Commands/List.cpp
+    ${SRC_DIR}/Commands/Title.cpp
+    ${SRC_DIR}/Commands/SubTitle.cpp
+    ${SRC_DIR}/Commands/Date.cpp
+    ${SRC_DIR}/Commands/Count.cpp
+    ${SRC_DIR}/Commands/Url.cpp
     ${SRC_DIR}/Commands/Load.cpp
     ${SRC_DIR}/Commands/Player.cpp
+    ${SRC_DIR}/Commands/Team.cpp
+    ${SRC_DIR}/Commands/Background.cpp
+    ${SRC_DIR}/Commands/Skin.cpp
     ${SRC_DIR}/Commands/Print.cpp
-    ${SRC_DIR}/Commands/Quit.cpp
-    ${SRC_DIR}/Commands/Random.cpp
-    ${SRC_DIR}/Commands/SubTitle.cpp
-    ${SRC_DIR}/Commands/Title.cpp
-    ${SRC_DIR}/Commands/Url.cpp
+    ${SRC_DIR}/Commands/Dir.cpp
+    ${SRC_DIR}/Commands/Create.cpp
     ${SRC_DIR}/Render/Canva.cpp
     ${SRC_DIR}/Render/Image.cpp
     ${SRC_DIR}/Render/Object.cpp
