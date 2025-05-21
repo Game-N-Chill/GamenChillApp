@@ -41,11 +41,7 @@ struct Player
             }
         }
 
-        if (rank == 1) {
-            setSkin();
-        } else {
-            skin = skins.end();
-        }
+        setSkin();
     }
 
     std::string getSkin() const
