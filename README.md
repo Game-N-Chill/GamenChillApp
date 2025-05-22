@@ -1,26 +1,43 @@
 # MarioKartTopGenerator
 
-Générateur de rendu pour les tournois "RIFIFI sur le circuit"
+MarioKartTopGenerator is an application for bracket render generation used by deerstalker association for their "Rififi sur le Circuit" tournaments.
+The application is a terminal with it's own set a commands
 
-## Liste des Commandes
+## Installation
+
+### Depedencies
+
+- [Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- [nasm](https://www.nasm.us/)
+- [pearl](https://www.perl.org/get.html)
+
+### CMake installation
+
+```bash
+git submodule update --init --recursive
+cmake --preset windows-release
+cmake --build build
 ```
-help                                                                            Affiche ce message
-quit                                                                            Quitte le programme
-list                                                                            Affiche tout les noms des personnages
 
-title       <str>                                                               Change le titre
-subtitle    <str>                                                               Change le sous-titre
-date        <str>                                                               Change la date (format XX/XX/XXXX)
-count       <value>                                                             Change le nombre de participants
-url         <str>                                                               Change le lien d'invitation discord
+## Commands list
+```
+help                                                                            Display this message
+quit                                                                            Exit the program
+list                                                                            Display all names for characters and tracks
 
-load        <path/to/file>                                                      Charge le fichier excel du bracket
-player      <rank> <character> <name>                                           Change les informations d'un joueur (solo only)
-team        <rank> <name> <character_1> <player_1> <character_2> <player_2>     Change les informations d'une équipe (duo only)
-background  [name]                                                              Change le fond du rendu
-skin        <solo|duo> [name] [rank]                                            Change le skin du premier ou du joueur rank si précisé (utile pour les MIIs par exemple)
-print       <solo|duo>                                                          Affiche toutes les informations concernant le rendu
+title       <str>                                                               Change title
+subtitle    <str>                                                               Change subtitre
+date        <str>                                                               Change date (DD/MM/YYYY format)
+count       <value>                                                             Change player count
+url         <str>                                                               Change discord invitation link
 
-dir         <path/to/dir>                                                       Change le dossier où les rendus seront créés
-create      <solo|duo>                                                          Créer le rendu
+load        <path/to/file>                                                      Load file for auto loading (.xlsx for solo|.json for duo)
+player      <rank> <character> <name>                                           Change player information (solo only)
+team        <rank> <name> <character_1> <player_1> <character_2> <player_2>     Change team information (duo only)
+background  [name]                                                              Change background
+skin        <solo|duo> [name] [rank]                                            Change skin for first or ranked player if precised (usefull for MIIs)
+print       <solo|duo>                                                          Display all information of the render
+
+dir         <path/to/dir>                                                       Change destination directory
+create      <solo|duo>                                                          Generate render
 ```
