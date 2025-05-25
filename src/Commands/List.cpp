@@ -42,7 +42,7 @@ Result List::run(MKTG::Generator &gen, std::vector<std::string> &args)
 {
     auto vecBg = getBackgrounds();
     auto vecCh = getCharacters();
-    size_t maxSize = std::max(vecBg.size(), vecCh.size());
+    size_t maxSize = std::max<size_t>(vecBg.size(), vecCh.size());
 
     std::cout << std::left << std::setw(20) << "Characters" << "| Backgrounds" << std::endl;
     for (size_t i = 0; i < 40; i++)

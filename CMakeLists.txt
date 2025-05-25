@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.30)
 project(MarioKartTopGenerator)
 
+#  INITIALIZATION
+# ------------------------------------------------------------------------------
+
+set(APP_NAME "${PROJECT_NAME}")
+set(UPD_NAME "${PROJECT_NAME}_Updater")
+
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin")
@@ -16,15 +22,25 @@ if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/package/scripts/buildsystems/vcpkg.cmake" CACHE STRING "" FORCE)
 endif()
 
+if(WIN32)
+    enable_language("RC")
+    set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_icon.rc")
+    set(UPD_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/resources/upd_icon.rc")
+endif()
+
+#  APPLICATION
+# ------------------------------------------------------------------------------
+
 add_subdirectory(${LIB_DIR}/SDL)
 add_subdirectory(${LIB_DIR}/SDL_image)
 add_subdirectory(${LIB_DIR}/SDL_ttf)
 add_subdirectory(${LIB_DIR}/OpenXLSX)
 
 find_package(nlohmann_json REQUIRED)
-find_package(argparse REQUIRED)
+find_package(CURL REQUIRED)
+find_package(minizip REQUIRED)
 
-set(SRC_FILES
+set(APP_SRC_FILES
     ${SRC_DIR}/Main.cpp
     ${SRC_DIR}/Utils.cpp
     ${SRC_DIR}/Generator/Shared.cpp
@@ -52,25 +68,39 @@ set(SRC_FILES
     ${SRC_DIR}/Render/Text.cpp
     ${SRC_DIR}/Logic/LineParser.cpp
     ${SRC_DIR}/Logic/Terminal.cpp
+    ${SRC_DIR}/Update/Updater.cpp
 )
 
-if(WIN32)
-    enable_language("RC")
-    set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_icon.rc")
-endif()
+add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
 
-add_executable(${PROJECT_NAME} ${SRC_FILES} ${APP_ICON_RESOURCE})
+target_include_directories(${APP_NAME} PRIVATE include)
 
-target_include_directories(${PROJECT_NAME} PRIVATE include)
+target_link_libraries(${APP_NAME} PRIVATE SDL3::SDL3)
+target_link_libraries(${APP_NAME} PRIVATE SDL3_image::SDL3_image)
+target_link_libraries(${APP_NAME} PRIVATE SDL3_ttf::SDL3_ttf)
+target_link_libraries(${APP_NAME} PRIVATE OpenXLSX::OpenXLSX)
+target_link_libraries(${APP_NAME} PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(${APP_NAME} PRIVATE CURL::libcurl)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3_image::SDL3_image)
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3_ttf::SDL3_ttf)
-target_link_libraries(${PROJECT_NAME} PRIVATE OpenXLSX::OpenXLSX)
-target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)
-target_link_libraries(${PROJECT_NAME} PRIVATE argparse::argparse)
+#  UPDATER
+# ------------------------------------------------------------------------------
 
-# Copy assets to the binary directory
+set(UPD_SRC_FILES
+    ${SRC_DIR}/Update/Main.cpp
+    ${SRC_DIR}/Update/Updater.cpp
+    ${SRC_DIR}/Update/Request.cpp
+)
+
+add_executable(${UPD_NAME} ${UPD_SRC_FILES} ${UPD_ICON_RESOURCE})
+
+target_include_directories(${UPD_NAME} PRIVATE include)
+
+target_link_libraries(${UPD_NAME} PRIVATE CURL::libcurl)
+target_link_libraries(${UPD_NAME} PRIVATE minizip::minizip)
+
+#  POST BUILD
+# ------------------------------------------------------------------------------
+
 set(TO_COPY
     "Assets"
     "Template"
@@ -78,7 +108,7 @@ set(TO_COPY
 
 foreach(ITEM ${TO_COPY})
     add_custom_command(
-        TARGET ${PROJECT_NAME}
+        TARGET ${APP_NAME}
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
         COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"

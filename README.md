@@ -41,3 +41,13 @@ print       <solo|duo>                                                          
 dir         <path/to/dir>                                                       Change destination directory
 create      <solo|duo>                                                          Generate render
 ```
+
+### Third-Party Libraries
+
+This project uses the following libraries:
+
+- [SDL](https://github.com/libsdl-org/SDL) — licensed under the zlib license
+- [OpenXLSX](https://github.com/troldal/OpenXLSX) — licensed under the BSD 3-Clause License
+- [nlohmann-json](https://github.com/nlohmann/json/blob/develop/LICENSE.MIT) — licensed under the MIT License
+- [libcurl](https://github.com/curl/curl/blob/master/LICENSES/curl.txt) — licensed under the MIT License
+- [minizip](https://github.com/madler/zlib/blob/master/LICENSE) — licensed under the MIT License

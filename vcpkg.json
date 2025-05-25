@@ -4,7 +4,10 @@
             "name": "nlohmann-json"
         },
         {
-            "name": "argparse"
+            "name": "curl"
+        },
+        {
+            "name": "minizip"
         }
     ]
 }

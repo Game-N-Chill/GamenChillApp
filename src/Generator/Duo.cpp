@@ -1,5 +1,6 @@
 
 #include "MKTG.hpp"
+#include <algorithm>
 
 namespace MKTG
 {
@@ -26,9 +27,9 @@ void Generator::printDuo()
         for (size_t j = 0; j < team->players.size(); j++) {
             std::string skin = team->players[j].getSkin();
             if (skin != CHARACTER_DEFAULT_NAME) {
-                len = std::max(len, team->players[j].character.size() + skin.size() + 3); // +3 for space and parenthesis
+                len = std::max<size_t>(len, team->players[j].character.size() + skin.size() + 3); // +3 for space and parenthesis
             } else {
-                len = std::max(len, team->players[j].character.size());
+                len = std::max<size_t>(len, team->players[j].character.size());
             }
         }
     }

@@ -20,11 +20,11 @@
 using json = nlohmann::json;
 
 #include "Utils.hpp"
+#include "Update.hpp"
 #include "Commands/Handler.hpp"
 #include "Commands/Interface.hpp"
 #include "Generator/Generator.hpp"
 #include "Render/Canva.hpp"
-
 
 #define CELL_TITLE      "C2"
 #define CELL_SUBTITLE   "D7"

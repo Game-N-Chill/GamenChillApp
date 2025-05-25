@@ -1,5 +1,6 @@
 
 #include "MKTG.hpp"
+#include <algorithm>
 
 namespace MKTG
 {
@@ -25,9 +26,9 @@ void Generator::printSolo()
         Solo team = getSoloInfo(i);
         std::string skin = team->players[0].getSkin();
         if (skin != CHARACTER_DEFAULT_NAME) {
-            len = std::max(len, team->players[0].character.size() + skin.size() + 3); // +3 for space and parenthesis
+            len = std::max<size_t>(len, team->players[0].character.size() + skin.size() + 3); // +3 for space and parenthesis
         } else {
-            len = std::max(len, team->players[0].character.size());
+            len = std::max<size_t>(len, team->players[0].character.size());
         }
     }
     len += 2;
