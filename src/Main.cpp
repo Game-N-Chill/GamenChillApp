@@ -28,6 +28,14 @@ static void preLoad()
 
     std::signal(SIGINT, signalCatcher);
     std::signal(SIGTERM, signalCatcher);
+
+    MKTG::Updater updater(MKTG_API_URL);
+    if (updater.needsUpdate()) {
+        int result = MessageBoxA(nullptr, "An update is available, do you want to install it ?", "Confirmation", MB_YESNO | MB_ICONQUESTION);
+        if (result == IDYES) {
+            Utils::createProcess(std::filesystem::current_path().string() + "\\MarioKartTopGenerator_Updater.exe");
+        }
+    }
 }
 
 int main(int ac, char **av)

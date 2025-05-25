@@ -89,6 +89,7 @@ target_link_libraries(${APP_NAME} PRIVATE minizip::minizip)
 # ------------------------------------------------------------------------------
 
 set(UPD_SRC_FILES
+    ${SRC_DIR}/Utils.cpp
     ${SRC_DIR}/Update/Main.cpp
     ${SRC_DIR}/Update/Updater.cpp
     ${SRC_DIR}/Update/Request.cpp
