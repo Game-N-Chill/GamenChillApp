@@ -47,6 +47,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Generator/Solo.cpp
     ${SRC_DIR}/Generator/Duo.cpp
     ${SRC_DIR}/Commands/Help.cpp
+    ${SRC_DIR}/Commands/Version.cpp
     ${SRC_DIR}/Commands/Quit.cpp
     ${SRC_DIR}/Commands/List.cpp
     ${SRC_DIR}/Commands/Title.cpp
@@ -69,6 +70,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Logic/LineParser.cpp
     ${SRC_DIR}/Logic/Terminal.cpp
     ${SRC_DIR}/Update/Updater.cpp
+    ${SRC_DIR}/Update/Request.cpp
 )
 
 add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
@@ -81,6 +83,7 @@ target_link_libraries(${APP_NAME} PRIVATE SDL3_ttf::SDL3_ttf)
 target_link_libraries(${APP_NAME} PRIVATE OpenXLSX::OpenXLSX)
 target_link_libraries(${APP_NAME} PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(${APP_NAME} PRIVATE CURL::libcurl)
+target_link_libraries(${APP_NAME} PRIVATE minizip::minizip)
 
 #  UPDATER
 # ------------------------------------------------------------------------------

@@ -1,9 +1,10 @@
 <> : Mandatory argument
 [] : Optionnal argument
 
--- help                                                                            Display this message
+-- help                                                                            Show this message
+-- version                                                                         Show current version
 -- quit                                                                            Exit the program
--- list                                                                            Display all names for characters and tracks
+-- list                                                                            Show all names for characters and tracks
 
 -- title       <str>                                                               Change title
 -- subtitle    <str>                                                               Change subtitre
@@ -16,7 +17,7 @@
 -- team        <rank> <name> <character_1> <player_1> <character_2> <player_2>     Change team information (duo only)
 -- background  [name]                                                              Change background
 -- skin        <solo|duo> [name] [rank]                                            Change skin for first or ranked player if precised (usefull for MIIs)
--- print       <solo|duo>                                                          Display all information of the render
+-- print       <solo|duo>                                                          Show all information of the render
 
 -- dir         <path/to/dir>                                                       Change destination directory
 -- create      <solo|duo>                                                          Generate render

@@ -6,6 +6,7 @@
 
 #include "Interface.hpp"
 #include "Cmd_Help.hpp"
+#include "Cmd_Version.hpp"
 #include "Cmd_Quit.hpp"
 #include "Cmd_List.hpp"
 
@@ -34,6 +35,7 @@ class Handler
         Handler()
         {
             addCommand<Help>();
+            addCommand<Version>();
             addCommand<Quit>();
             addCommand<List>();
 

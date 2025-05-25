@@ -33,6 +33,7 @@
 
 # Custom
 .vscode/
+.release/
 build/
 Result/
 Brackets/

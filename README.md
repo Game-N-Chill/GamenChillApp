@@ -22,6 +22,7 @@ cmake --build build
 ## Commands list
 ```
 help                                                                            Display this message
+version                                                                         Show current version
 quit                                                                            Exit the program
 list                                                                            Display all names for characters and tracks
 
