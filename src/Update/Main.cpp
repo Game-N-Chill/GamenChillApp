@@ -8,13 +8,6 @@ int main(int ac, char **av)
 {
     try {
         MKTG::Updater updater(MKTG_API_URL);
-
-        std::cout << "-- Checking latest version..." << std::endl;
-        if (!updater.needsUpdate()) {
-            std::cout << "-- Actuel version matches latest, no need to update, leaving..." << std::endl;
-            return EXIT_SUCCESS;
-        }
-
         updater.downloadUpdate();
         updater.saveApp();
         updater.clearApp();

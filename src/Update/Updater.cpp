@@ -57,7 +57,7 @@ void Updater::downloadUpdate()
     for (json &release : this->_json[GITHUB_API_ASSETS]) {
         std::string name = release[GITHUB_API_ASSET_NAME].get<std::string>();
         std::string url = release[GITHUB_API_ASSET_URL].get<std::string>();
-        if (name == "include.zip") {
+        if (name == MKTG_TARGET) {
             this->_pathFile = this->_pathTemp + name;
             this->_req.Download(url, this->_pathFile);
             return;
