@@ -1,5 +1,6 @@
 
 #include "Update.hpp"
+#include "Utils.hpp"
 #include <filesystem>
 
 namespace fs = std::filesystem;
@@ -24,5 +25,6 @@ int main(int ac, char **av)
         return EXIT_FAILURE;
     }
 
+    Utils::createProcess(std::filesystem::current_path().string() + "\\MarioKartTopGenerator.exe");
     return EXIT_SUCCESS;
 }

@@ -3,10 +3,16 @@
 #include <ctime>
 #include <sstream>
 #include <vector>
+#include <filesystem>
 
-#include <SDL3/SDL.h>
+namespace fs = std::filesystem;
+
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
+
+#if defined(_WIN32)
+#include <Windows.h>
+#endif
 
 namespace Utils
 {
@@ -44,7 +50,32 @@ std::string getCompleteName(std::string name, json &tags)
 
 std::string getFullPath(std::string path)
 {
-    return SDL_GetBasePath() + std::string(path);
+    return std::filesystem::current_path().string() + "\\" + std::string(path);
+}
+
+void createProcess(std::string path)
+{
+    STARTUPINFOA si = { sizeof(STARTUPINFOA) };
+    PROCESS_INFORMATION pi;
+
+    if (CreateProcessA(
+        path.c_str(),           // Application name
+        nullptr,                // Command line args
+        nullptr,                // Process handle not inheritable
+        nullptr,                // Thread handle not inheritable
+        false,                  // Don't inherit handles
+        CREATE_NEW_CONSOLE,     // New console window
+        nullptr,                // Use parent's environment
+        nullptr,                // Use parent's current directory
+        &si,                    // Pointer to STARTUPINFO
+        &pi)                    // Pointer to PROCESS_INFORMATION
+    ) {
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+        std::exit(EXIT_SUCCESS);
+    } else {
+        MessageBoxA(nullptr, "Can't find MarioKartTopGenerator_Updater.exe", "Error", MB_OK | MB_ICONERROR);
+    }
 }
 
 }
