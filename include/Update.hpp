@@ -9,7 +9,7 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-#define MKTG_VERSION                "v2.4.0"
+#define MKTG_VERSION                "v2.4.1"
 #define MKTG_API_URL                "https://api.github.com/repos/Mr-GoGu/MarioKartTopGenerator/releases/latest"
 #define MKTG_API_USERAGENT          "MKTG"
 #define MKTG_TARGET                 "MarioKartTopGenerator_WIN32.zip"
