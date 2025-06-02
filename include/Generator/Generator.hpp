@@ -51,7 +51,7 @@ class Generator
         void printSolo();
         void printDuo();
 
-        void LoadSolo(std::string excelPath = "");
+        void LoadSolo(std::string excelPath = "", std::string sheetName = "");
         void LoadDuo(std::string jsonPath = "");
         void createSolo();
         void createDuo();

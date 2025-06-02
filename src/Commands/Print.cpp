@@ -13,11 +13,11 @@ Result Print::run(MKTG::Generator &gen, std::vector<std::string> &args)
     std::string team = Utils::stringToUpper(args[1]);
 
     std::cout << "====================[INFORMATION RENDU]====================" << std::endl << std::endl;
-    std::cout << std::left << "-- " << std::setw(20) << "Titre"         << gen.getTitle() << std::endl;
-    std::cout << std::left << "-- " << std::setw(20) << "Sous-Titre"    << gen.getSubtitle() << std::endl;
+    std::cout << std::left << "-- " << std::setw(20) << "Title"         << gen.getTitle() << std::endl;
+    std::cout << std::left << "-- " << std::setw(20) << "SubTitle"    << gen.getSubtitle() << std::endl;
     std::cout << std::left << "-- " << std::setw(20) << "Date"          << gen.getDate() << std::endl;
-    std::cout << std::left << "-- " << std::setw(20) << "Participants"  << gen.getPlayerCount() << std::endl;
-    std::cout << std::left << "-- " << std::setw(20) << "Lien Discord"  << gen.getDiscordUrl() << std::endl << std::endl;
+    std::cout << std::left << "-- " << std::setw(20) << "Player Count"  << gen.getPlayerCount() << std::endl;
+    std::cout << std::left << "-- " << std::setw(20) << "Discord Link"  << gen.getDiscordUrl() << std::endl << std::endl;
 
     if (team == "SOLO") {
         gen.printSolo();
@@ -27,9 +27,9 @@ Result Print::run(MKTG::Generator &gen, std::vector<std::string> &args)
         throw std::runtime_error("can't find team name: " + team);
     }
 
-    std::cout << std::left << "-- " << std::setw(20) << "Fond" << gen.getBackgroundName() << std::endl << std::endl;
+    std::cout << std::left << "-- " << std::setw(20) << "Background" << gen.getBackgroundName() << std::endl << std::endl;
 
-    std::cout << std::left << "-- " << std::setw(20) << "Dossier Sauvegarde" << gen.getImageDir() << std::endl;
+    std::cout << std::left << "-- " << std::setw(20) << "Save Directory" << gen.getImageDir() << std::endl;
     return Result::CONTINUE;
 }
 
