@@ -40,14 +40,14 @@ void Generator::printSolo()
         if (team->players[0].getSkin() != CHARACTER_DEFAULT_NAME) {
             character += " (" + team->players[0].getSkin() + ')';
         }
-        std::cout << std::left << "-- Joueur  #" << std::setw(4) << team->rank << std::setw(len) << character << team->players[0].name << std::endl;
+        std::cout << std::left << "-- Player  #" << std::setw(4) << team->rank << std::setw(len) << character << team->players[0].name << std::endl;
     }
 }
 
 //  Image Creation
 // *****************************************************************************
 
-void Generator::LoadSolo(std::string excelPath)
+void Generator::LoadSolo(std::string excelPath, std::string sheetName)
 {
     if (excelPath.empty()) {
         return;
@@ -60,8 +60,10 @@ void Generator::LoadSolo(std::string excelPath)
         return;
     }
 
-    auto sheetNames = file.workbook().worksheetNames();
-    auto sheet = file.workbook().worksheet(sheetNames[0]);
+    if (sheetName.empty()) {
+        sheetName = file.workbook().worksheetNames()[0];
+    }
+    OpenXLSX::XLWorksheet sheet = file.workbook().worksheet(sheetName);
 
     try {
         OpenXLSX::XLCell cellTitle = sheet.cell(OpenXLSX::XLCellReference(CELL_TITLE));

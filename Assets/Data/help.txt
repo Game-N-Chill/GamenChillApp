@@ -12,7 +12,7 @@
 -- count       <value>                                                             Change player count
 -- url         <str>                                                               Change discord invitation link
 
--- load        <path/to/file>                                                      Load file for auto loading (.xlsx for solo|.json for duo)
+-- load        <path/to/file> [sheet]                                              Load file for auto loading (.xlsx for solo|.json for duo)
 -- player      <rank> <character> <name>                                           Change player information (solo only)
 -- team        <rank> <name> <character_1> <player_1> <character_2> <player_2>     Change team information (duo only)
 -- background  [name]                                                              Change background
