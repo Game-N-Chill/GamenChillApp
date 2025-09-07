@@ -5,6 +5,7 @@ project(MarioKartTopGenerator)
 # ------------------------------------------------------------------------------
 
 set(APP_NAME "${PROJECT_NAME}")
+set(APP_DIR $<TARGET_FILE_DIR:${APP_NAME}>)
 set(UPD_NAME "${PROJECT_NAME}_Updater")
 
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
@@ -39,6 +40,7 @@ add_subdirectory(${LIB_DIR}/OpenXLSX)
 find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
 find_package(minizip REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 set(APP_SRC_FILES
     ${SRC_DIR}/Main.cpp
@@ -84,6 +86,7 @@ target_link_libraries(${APP_NAME} PRIVATE OpenXLSX::OpenXLSX)
 target_link_libraries(${APP_NAME} PRIVATE nlohmann_json::nlohmann_json)
 target_link_libraries(${APP_NAME} PRIVATE CURL::libcurl)
 target_link_libraries(${APP_NAME} PRIVATE minizip::minizip)
+target_link_libraries(${APP_NAME} PRIVATE Qt6::Widgets)
 
 #  UPDATER
 # ------------------------------------------------------------------------------
@@ -105,16 +108,47 @@ target_link_libraries(${UPD_NAME} PRIVATE minizip::minizip)
 #  POST BUILD
 # ------------------------------------------------------------------------------
 
-set(TO_COPY
-    "Assets"
-    "Template"
+# set(ASSETS_TO_COPY
+#     "Assets"
+#     "Template"
+# )
+
+# add_custom_command(
+#         TARGET ${APP_NAME}
+#         POST_BUILD
+#         COMMAND ${CMAKE_COMMAND} -E make_directory ${PLUGIN_DIR}
+#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qminimal.dll" ${PLUGIN_DIR}
+#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qoffscreen.dll" ${PLUGIN_DIR}
+#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qwindows.dll" ${PLUGIN_DIR}
+# )
+
+# foreach(ITEM ${ASSETS_TO_COPY})
+#     add_custom_command(
+#         TARGET ${APP_NAME}
+#         POST_BUILD
+#         COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
+#         COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
+#     )
+# endforeach()
+
+
+set(QT_BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows")
+set(QT_PLUGINS_DIR "Qt6/plugins")
+set(QT_DIR "$<IF:$<CONFIG:Debug>,${QT_BASE_DIR}/debug/${QT_PLUGINS_DIR},${QT_BASE_DIR}/${QT_PLUGINS_DIR}>")
+
+add_custom_command(TARGET ${APP_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/platforms
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${QT_DIR}/platforms/qwindows$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/platforms
 )
 
-foreach(ITEM ${TO_COPY})
-    add_custom_command(
-        TARGET ${APP_NAME}
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
-        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
-    )
-endforeach()
+# # Copy image format plugins (jpeg + png)
+# add_custom_command(TARGET ${APP_NAME} POST_BUILD
+#     COMMAND ${CMAKE_COMMAND} -E make_directory
+#             $<TARGET_FILE_DIR:${APP_NAME}>/imageformats
+#     COMMAND ${CMAKE_COMMAND} -E copy_if_different
+#             "${QT_PLUGINS_DIR}/imageformats/qjpeg.dll"
+#             $<TARGET_FILE_DIR:${APP_NAME}>/imageformats
+#     # COMMAND ${CMAKE_COMMAND} -E copy_if_different
+#     #         "${QT_PLUGINS_DIR}/imageformats/qpng.dll"
+#     #         $<TARGET_FILE_DIR:${APP_NAME}>/imageformats
+# )
