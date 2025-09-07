@@ -8,6 +8,9 @@
         },
         {
             "name": "minizip"
+        },
+        {
+            "name": "qtbase"
         }
     ]
 }

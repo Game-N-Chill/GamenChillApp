@@ -8,8 +8,9 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-#include "Player.hpp"
 #include "Utils.hpp"
+#include "Generator/Player.hpp"
+#include "Render/Canva.hpp"
 
 namespace MKTG
 {
