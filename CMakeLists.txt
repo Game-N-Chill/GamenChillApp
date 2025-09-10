@@ -10,6 +10,7 @@ set(UPD_NAME "${PROJECT_NAME}_Updater")
 
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin")
 
 set(CMAKE_CXX_STANDARD 17)
@@ -41,6 +42,7 @@ find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
 find_package(minizip REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
+qt_standard_project_setup()
 
 set(APP_SRC_FILES
     ${SRC_DIR}/Main.cpp
@@ -73,6 +75,20 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Logic/Terminal.cpp
     ${SRC_DIR}/Update/Updater.cpp
     ${SRC_DIR}/Update/Request.cpp
+    ${INC_DIR}/UI/Windows/Primary.hpp
+    ${SRC_DIR}/UI/Windows/Primary/Core.cpp
+    ${SRC_DIR}/UI/Windows/Primary/PageWinner.cpp
+    ${SRC_DIR}/UI/Windows/Primary/PageBracket.cpp
+    ${INC_DIR}/UI/Windows/PlayerSettings.hpp
+    ${SRC_DIR}/UI/Windows/PlayerSettings/Info.cpp
+    ${SRC_DIR}/UI/Windows/PlayerSettings/Solo.cpp
+    ${SRC_DIR}/UI/Windows/PlayerSettings/Duo.cpp
+    ${SRC_DIR}/UI/Tools/Browser.cpp
+    ${INC_DIR}/UI/Tools/Browser.hpp
+    ${SRC_DIR}/UI/Tools/GroupBox.cpp
+    ${INC_DIR}/UI/Tools/GroupBox.hpp
+    ${SRC_DIR}/UI/Tools/Window.cpp
+    ${INC_DIR}/UI/Tools/Window.hpp
 )
 
 add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
