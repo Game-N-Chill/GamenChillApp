@@ -57,23 +57,29 @@ BoxInfo::BoxInfo(QWidget *parent) :
 
     _title = new QLineEdit(this);
     _title->setText(QString::fromStdString(dataWinner->getTitle()));
+    connect(_title, &QLineEdit::editingFinished, this, &BoxInfo::onTitleEdited);
     _subtitle = new QLineEdit(this);
     _subtitle->setText(QString::fromStdString(dataWinner->getSubtitle()));
+    connect(_subtitle, &QLineEdit::editingFinished, this, &BoxInfo::onSubtitleEdited);
 
     _date = new QDateEdit(this);
     _date->setDisplayFormat("dd/MM/yyyy");
     _date->setCalendarPopup(true);
     _date->setDate(QDate::currentDate());
+    connect(_date, &QDateEdit::dateChanged, this, &BoxInfo::onDateEdited);
 
     _playerCount = new QSpinBox(this);
     _playerCount->setRange(1, 48);
     _playerCount->setValue(static_cast<int>(dataWinner->getPlayerCount()));
+    connect(_playerCount, &QSpinBox::valueChanged, this, &BoxInfo::onPlayerCountEdited);
 
     _background = new Tools::Randomizer(Data::DictBackground::getInstance()->list(), this);
     _background->getComboBox()->setCurrentText(QString::fromStdString(dataWinner->getBackground().get()));
+    connect(this->_background->getComboBox(), &QComboBox::currentIndexChanged, this, &BoxInfo::onBackgroundChanged);
 
     _output = new Tools::DirBrowser(this);
     _output->getLineEdit()->setText(QString::fromStdString(dataWinner->getOutputDir()));
+    connect(_output->getLineEdit(), &QLineEdit::editingFinished, this, &BoxInfo::onOutputDirEdited);
 
     _layoutLeft->addRow("Title : ", _title);
     _layoutLeft->addRow("SubTitle : ", _subtitle);
@@ -122,7 +128,9 @@ BoxRank::BoxRank(QWidget *parent) :
         }
         _playerButton[i] = new QToolButton(this);
         _playerButton[i]->setText("...");
-        connect(_playerButton[i], &QToolButton::clicked, this, &BoxRank::onPlayerClicked);
+        connect(_playerButton[i], &QToolButton::clicked, this, [this, i](bool checked) {
+            onPlayerClicked(i, checked);
+        });
         _playerBox[i]->addWidget(_playerButton[i]);
 
         currLayout->addWidget(_playerBox[i]);
@@ -139,15 +147,49 @@ BoxRank::BoxRank(QWidget *parent) :
 }
 
 
+
 void PageWinner::onGenerateClicked()
 {
     std::cout << "generate clicked" << std::endl;
 }
 
+
 void BoxAutoLoad::onLoadClicked()
 {
     std::cout << "load clicked" << std::endl;
 }
+
+
+void BoxInfo::onTitleEdited(const QString &str)
+{
+    Data::Winner::getInstance()->setTitle(str.toStdString());
+}
+
+void BoxInfo::onSubtitleEdited(const QString &str)
+{
+    Data::Winner::getInstance()->setSubtitle(str.toStdString());
+}
+
+void BoxInfo::onDateEdited(const QDate &date)
+{
+    Data::Winner::getInstance()->setDate(date.toString().toStdString());
+}
+
+void BoxInfo::onPlayerCountEdited(int value)
+{
+    Data::Winner::getInstance()->setPlayerCount(value);
+}
+
+void BoxInfo::onBackgroundChanged(int index)
+{
+    Data::Winner::getInstance()->setBackground(index);
+}
+
+void BoxInfo::onOutputDirEdited(const QString &str)
+{
+    Data::Winner::getInstance()->setOutputDir(str.toStdString());
+}
+
 
 template<size_t N>
 void BoxRank::setTeamInfo(int index, Generator::Data::Team<N> team)
@@ -180,25 +222,40 @@ void BoxRank::onTeamChanged(int index)
     }
 }
 
-void BoxRank::onPlayerClicked()
+void BoxRank::onPlayerClicked(int index, bool checked)
 {
-    Tools::Window *window = nullptr;
-
     if (this->_team->currentIndex() == 0) { // Solo
-        window = new PlayerSolo("Player Settings", this);
+        openPlayerSoloWindow(index);
     } else { // Duo
-        window = new PlayerDuo("Player Settings", this);
+        openPlayerDuoWindow(index);
     }
-
-    (*window)();
-
-    if (window->hasValidate()) {
-        std::cout << "OK" << std::endl;
-    } else {
-        std::cout << "Cancel" << std::endl;
-    }
-
-    delete window;
 }
+
+void BoxRank::openPlayerSoloWindow(int index)
+{
+    auto dataWinner = Data::Winner::getInstance();
+
+    Windows::PlayerSolo window(index, "Player Settings", this);
+    window();
+
+    if (window.hasValidate()) {
+        dataWinner->getTeamSolo(index) = window.getData();
+        setTeamInfo(index, window.getData());
+    }
+}
+
+void BoxRank::openPlayerDuoWindow(int index)
+{
+    auto dataWinner = Data::Winner::getInstance();
+
+    Windows::PlayerDuo window(index, "Player Settings", this);
+    window();
+
+    if (window.hasValidate()) {
+        dataWinner->getTeamDuo(index) = window.getData();
+        setTeamInfo(index, window.getData());
+    }
+}
+
 
 }

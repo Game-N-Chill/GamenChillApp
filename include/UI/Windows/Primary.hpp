@@ -59,6 +59,13 @@ class BoxInfo : public QWidget
     public:
         BoxInfo(QWidget *parent);
 
+        void onTitleEdited(const QString &str);
+        void onSubtitleEdited(const QString &str);
+        void onDateEdited(const QDate &date);
+        void onPlayerCountEdited(int value);
+        void onBackgroundChanged(int index);
+        void onOutputDirEdited(const QString &str);
+
     private:
         QVBoxLayout *_layout;
         Tools::HGroupBox *_box;
@@ -83,7 +90,9 @@ class BoxRank : public QWidget
         void setTeamInfo(int index, Generator::Data::Team<N> team);
 
         void onTeamChanged(int index);
-        void onPlayerClicked();
+        void onPlayerClicked(int index, bool checked);
+        void openPlayerSoloWindow(int index);
+        void openPlayerDuoWindow(int index);
 
     private:
         QVBoxLayout *_layout;

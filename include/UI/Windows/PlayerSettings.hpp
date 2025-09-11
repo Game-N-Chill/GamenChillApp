@@ -29,6 +29,8 @@
 #include "UI/Tools/GroupBox.hpp"
 #include "UI/Tools/Browser.hpp"
 #include "UI/Tools/Window.hpp"
+#include "UI/Tools/Randomizer.hpp"
+#include "Data/Data.hpp"
 
 namespace Generator::UI::Windows
 {
@@ -38,7 +40,13 @@ class PlayerInfo : public QWidget
     Q_OBJECT
 
     public:
-        PlayerInfo(const QString &title, QWidget *parent = nullptr);
+        PlayerInfo(const Data::Player &data, const QString &title, QWidget *parent = nullptr);
+
+        Data::Player getData() const;
+
+        void onNameEdited(const QString &str);
+        void onCharacterChanged(const QString &str);
+        void onSkinChanged(int index);
 
     private:
         QVBoxLayout *_layout;
@@ -46,6 +54,8 @@ class PlayerInfo : public QWidget
         QLineEdit *_player;
         QComboBox *_character;
         QComboBox *_skins;
+
+        Data::Player _data;
 };
 
 class PlayerSolo : public Tools::Window
@@ -53,7 +63,9 @@ class PlayerSolo : public Tools::Window
     Q_OBJECT
 
     public:
-        PlayerSolo(const QString &title, QWidget *parent = nullptr);
+        PlayerSolo(const int &index, const QString &title, QWidget *parent = nullptr);
+
+        Data::Solo getData() const;
 
     private:
         PlayerInfo *_info;
@@ -64,7 +76,9 @@ class PlayerDuo : public Tools::Window
     Q_OBJECT
 
     public:
-        PlayerDuo(const QString &title, QWidget *parent = nullptr);
+        PlayerDuo(const int &index, const QString &title, QWidget *parent = nullptr);
+
+        Data::Duo getData() const;
 
     private:
         QLabel *_teamLabel;

@@ -112,10 +112,6 @@ void Winner::randomizeBackground()
     Utils::Randomizer rand;
     size_t index = rand.GetRandom(Data::DictBackground::getInstance()->size());
     setBackground(index);
-
-    // Utils::Randomizer rand;
-    // this->_backgroundIt = this->_backgrounds.begin();
-    // std::advance(this->_backgroundIt, rand.GetRandom(this->_backgrounds.size()));
 }
 
 
