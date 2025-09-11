@@ -87,8 +87,15 @@ set(APP_SRC_FILES
     ${INC_DIR}/UI/Tools/Browser.hpp
     ${SRC_DIR}/UI/Tools/GroupBox.cpp
     ${INC_DIR}/UI/Tools/GroupBox.hpp
+    ${SRC_DIR}/UI/Tools/Randomizer.cpp
+    ${INC_DIR}/UI/Tools/Randomizer.hpp
     ${SRC_DIR}/UI/Tools/Window.cpp
     ${INC_DIR}/UI/Tools/Window.hpp
+    ${SRC_DIR}/Data/Data.cpp
+    ${SRC_DIR}/Data/Player.cpp
+    ${SRC_DIR}/Data/Winner.cpp
+    ${SRC_DIR}/Data/Dictionary/Background.cpp
+    ${SRC_DIR}/Data/Dictionary/Character.cpp
 )
 
 add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_ICON_RESOURCE})

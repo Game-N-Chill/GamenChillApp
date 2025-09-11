@@ -1,6 +1,9 @@
 
+#include <QOverload>
+
 #include "UI/Windows/Primary.hpp"
 #include "UI/Windows/PlayerSettings.hpp"
+#include "Data/Data.hpp"
 
 namespace Generator::UI::Windows
 {
@@ -45,13 +48,17 @@ BoxAutoLoad::BoxAutoLoad(QWidget *parent) :
 BoxInfo::BoxInfo(QWidget *parent) :
     QWidget(parent)
 {
+    auto dataWinner = Data::Winner::getInstance();
+
     _box = new Tools::HGroupBox("Information", this);
 
     _layoutLeft = new QFormLayout;
     _layoutRight = new QFormLayout;
 
     _title = new QLineEdit(this);
+    _title->setText(QString::fromStdString(dataWinner->getTitle()));
     _subtitle = new QLineEdit(this);
+    _subtitle->setText(QString::fromStdString(dataWinner->getSubtitle()));
 
     _date = new QDateEdit(this);
     _date->setDisplayFormat("dd/MM/yyyy");
@@ -60,13 +67,13 @@ BoxInfo::BoxInfo(QWidget *parent) :
 
     _playerCount = new QSpinBox(this);
     _playerCount->setRange(1, 48);
-    _playerCount->setValue(16);
+    _playerCount->setValue(static_cast<int>(dataWinner->getPlayerCount()));
 
-    _background = new QComboBox(this);
-    _background->addItem("Circuit Mario");
-    _background->addItem("Chateau de Peach");
+    _background = new Tools::Randomizer(Data::DictBackground::getInstance()->list(), this);
+    _background->getComboBox()->setCurrentText(QString::fromStdString(dataWinner->getBackground().get()));
 
     _output = new Tools::DirBrowser(this);
+    _output->getLineEdit()->setText(QString::fromStdString(dataWinner->getOutputDir()));
 
     _layoutLeft->addRow("Title : ", _title);
     _layoutLeft->addRow("SubTitle : ", _subtitle);
@@ -85,18 +92,21 @@ BoxInfo::BoxInfo(QWidget *parent) :
 BoxRank::BoxRank(QWidget *parent) :
     QWidget(parent)
 {
+    auto dataWinner = Data::Winner::getInstance();
+
     _box = new Tools::VGroupBox("Players Rank", this);
 
     _team = new QComboBox(this);
     _team->addItem("Solo");
     _team->addItem("Duo");
+    connect(_team, &QComboBox::currentIndexChanged, this, &BoxRank::onTeamChanged);
     _box->addWidget(_team);
 
     _layoutBox = new Tools::HGroupBox("", this);
     _layoutLeft = new QVBoxLayout;
     _layoutRight = new QVBoxLayout;
     QLayout *currLayout = _layoutLeft;
-    for (size_t i = 0; i <  _playerLabel.size(); i++) {
+    for (int i = 0; i <  PLAYER_GRAPH_COUNT; i++) {
         if (i < 4) {
             currLayout = _layoutLeft;
         } else {
@@ -105,9 +115,9 @@ BoxRank::BoxRank(QWidget *parent) :
 
         QString pos = QString::number(i + 1);
 
-        _playerBox[i] = new Tools::HGroupBox("N°" + pos + " - Team Name", this);
-        for (size_t j = 0; j < _playerLabel[i].size(); j++) {
-            _playerLabel[i][j] = new QLabel("Player " + pos + " (Mario)");
+        _playerBox[i] = new Tools::HGroupBox("", this);
+        for (int j = 0; j < _playerLabel[i].size(); j++) {
+            _playerLabel[i][j] = new QLabel("");
             _playerBox[i]->addWidget(_playerLabel[i][j]);
         }
         _playerButton[i] = new QToolButton(this);
@@ -116,6 +126,8 @@ BoxRank::BoxRank(QWidget *parent) :
         _playerBox[i]->addWidget(_playerButton[i]);
 
         currLayout->addWidget(_playerBox[i]);
+
+        setTeamInfo(i, dataWinner->getTeamSolo(i));
     }
     _layoutBox->addLayout(_layoutLeft);
     _layoutBox->addLayout(_layoutRight);
@@ -135,6 +147,37 @@ void PageWinner::onGenerateClicked()
 void BoxAutoLoad::onLoadClicked()
 {
     std::cout << "load clicked" << std::endl;
+}
+
+template<size_t N>
+void BoxRank::setTeamInfo(int index, Generator::Data::Team<N> team)
+{
+    if (N == 1) {
+        _playerBox[index]->setTitle("N°" + QString::number(index + 1));
+    } else {
+        _playerBox[index]->setTitle("N°" + QString::number(index + 1) + " - " + QString::fromStdString(team.name));
+    }
+
+    for (size_t i = 0; i < _playerLabel[index].size(); i++) {
+        if (i < N) {
+            _playerLabel[index][i]->setText(QString::fromStdString(team.players[i].getName()) + " (" + QString::fromStdString(team.players[i].getSkin()) + ")");
+        } else {
+            _playerLabel[index][i]->setText("");
+        }
+    }
+}
+
+void BoxRank::onTeamChanged(int index)
+{
+    auto dataWinner = Data::Winner::getInstance();
+
+    for (int i = 0; i <  PLAYER_GRAPH_COUNT; i++) {
+        if (index == 0) { // Solo
+            setTeamInfo(i, dataWinner->getTeamSolo(i));
+        } else { // Duo
+            setTeamInfo(i, dataWinner->getTeamDuo(i));
+        }
+    }
 }
 
 void BoxRank::onPlayerClicked()

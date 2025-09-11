@@ -11,7 +11,7 @@ namespace MKTG
 
 static void loadBackgrounds(std::map<std::string, std::string> &backgrounds)
 {
-    std::string path = Utils::getFullPath(PATH_BACKGROUND_DIR);
+    std::string path = Utils::getFullPath("");
 
     for (const auto &entryCup : std::filesystem::recursive_directory_iterator(path)) {
         if (entryCup.is_directory()) {

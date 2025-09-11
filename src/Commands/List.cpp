@@ -7,7 +7,7 @@ namespace MKTG::Command
 static std::vector<std::string> getBackgrounds()
 {
     std::vector<std::string> vec;
-    std::string path = Utils::getFullPath(PATH_BACKGROUND_DIR);
+    std::string path = Utils::getFullPath("");
 
     for (const auto &entryCup : std::filesystem::recursive_directory_iterator(path)) {
         if (entryCup.is_directory()) {

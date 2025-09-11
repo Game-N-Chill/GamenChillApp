@@ -16,7 +16,7 @@ class Browser : public QWidget
     public:
         Browser(QWidget *parent = nullptr, QWidget *additionalWidget = nullptr);
 
-        QString getPath() const;
+        QLineEdit *getLineEdit();
 
     protected:
         QLineEdit *_lineEdit;

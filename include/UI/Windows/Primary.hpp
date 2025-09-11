@@ -28,6 +28,9 @@
 
 #include "UI/Tools/GroupBox.hpp"
 #include "UI/Tools/Browser.hpp"
+#include "UI/Tools/Randomizer.hpp"
+
+#include "Data/Data.hpp"
 
 namespace Generator::UI::Windows
 {
@@ -65,7 +68,7 @@ class BoxInfo : public QWidget
         QLineEdit *_subtitle;
         QDateEdit *_date;
         QSpinBox *_playerCount;
-        QComboBox *_background;
+        Tools::Randomizer *_background;
         Tools::DirBrowser *_output;
 };
 
@@ -76,6 +79,10 @@ class BoxRank : public QWidget
     public:
         BoxRank(QWidget *parent);
 
+        template<size_t N>
+        void setTeamInfo(int index, Generator::Data::Team<N> team);
+
+        void onTeamChanged(int index);
         void onPlayerClicked();
 
     private:
@@ -85,9 +92,9 @@ class BoxRank : public QWidget
         Tools::HGroupBox *_layoutBox;
         QVBoxLayout *_layoutLeft;
         QVBoxLayout *_layoutRight;
-        std::array<Tools::HGroupBox *, 8> _playerBox;
-        std::array<std::array<QLabel *, 2>, 8> _playerLabel;
-        std::array<QToolButton *, 8> _playerButton;
+        std::array<Tools::HGroupBox *, PLAYER_GRAPH_COUNT> _playerBox;
+        std::array<std::array<QLabel *, 2>, PLAYER_GRAPH_COUNT> _playerLabel;
+        std::array<QToolButton *, PLAYER_GRAPH_COUNT> _playerButton;
 };
 
 class PageWinner : public QWidget

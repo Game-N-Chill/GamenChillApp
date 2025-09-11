@@ -16,7 +16,6 @@ namespace MKTG
 {
 
     #define PLAYER_GRAPH_COUNT      8
-    #define PATH_BACKGROUND_DIR             "Assets\\Images\\Background\\"
 
 class Generator
 {

@@ -22,9 +22,9 @@ Browser::Browser(QWidget *parent, QWidget *additionalWidget) :
     }
 }
 
-QString Browser::getPath() const
+QLineEdit *Browser::getLineEdit()
 {
-    return _lineEdit->text();
+    return _lineEdit;
 }
 
 FileBrowser::FileBrowser(QWidget *parent, QWidget *additionalWidget) :

@@ -1,6 +1,7 @@
 
 #include "MKTG.hpp"
 #include "UI/Windows/Primary.hpp"
+#include "Data/Data.hpp"
 #include <csignal>
 
 #if defined(_WIN32)
@@ -61,6 +62,7 @@ static void preLoad()
 
 int main(int ac, char **av)
 {
+    Generator::Data::loadData();
     QApplication app(ac, av);
 
     Generator::UI::Windows::Primary winPrimary;
@@ -69,3 +71,13 @@ int main(int ac, char **av)
 
     return app.exec();
 }
+
+
+// int main(int ac, char **av)
+// {
+//     Generator::Data::loadData();
+
+//     auto winner = Generator::Data::Winner::getInstance();
+//     std::cout << *winner << std::endl;
+//     return 0;
+// }
