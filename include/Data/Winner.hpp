@@ -30,7 +30,9 @@ class Winner : public Utils::Singleton<Winner>
         size_t getPlayerCount() const;
         std::string getOutputDir() const;
         Background getBackground() const;
+        std::array<Solo, PLAYER_GRAPH_COUNT> &getSolo();
         Solo &getTeamSolo(size_t index);
+        std::array<Duo, PLAYER_GRAPH_COUNT> &getDuo();
         Duo &getTeamDuo(size_t index);
 
         void setTitle(std::string str);

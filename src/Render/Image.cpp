@@ -1,7 +1,7 @@
 
-#include "MKTG.hpp"
+#include "Render/Image.hpp"
 
-namespace MKTG::Render
+namespace Generator::Render
 {
 
 Image::Image()

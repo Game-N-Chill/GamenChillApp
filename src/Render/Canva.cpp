@@ -1,10 +1,10 @@
 
-#include "MKTG.hpp"
+#include "Render/Canva.hpp"
 #include <fstream>
 #include <filesystem>
 
 namespace fs = std::filesystem;
-namespace MKTG::Render
+namespace Generator::Render
 {
 
 static void loadImages(const json &content, std::map<std::string, SharedObject> &map)
@@ -68,9 +68,9 @@ static void loadTexts(const json &content, std::map<std::string, SharedObject> &
     }
 }
 
-Canva::Canva(std::string path)
+Canva::Canva(std::string path, int width, int height)
 {
-    this->_canva = SDL_CreateSurface(IMAGE_WIDTH, IMAGE_HEIGHT, SDL_PIXELFORMAT_RGBA32);
+    this->_canva = SDL_CreateSurface(width, height, SDL_PIXELFORMAT_RGBA32);
     if (this->_canva == nullptr) {
         throw std::runtime_error("failed to create canva");
     }

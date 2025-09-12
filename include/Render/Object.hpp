@@ -1,9 +1,10 @@
 
 #pragma once
 
+#include <iostream>
 #include <SDL3/SDL.h>
 
-namespace MKTG::Render
+namespace Generator::Render
 {
 
 class IObject

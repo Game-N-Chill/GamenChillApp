@@ -34,7 +34,7 @@ class Player
         void setSkin(std::string name);
         void setSkin(size_t index);
         std::string getSkin() const;
-        std::vector<std::string> getSkinList() const;
+        std::list<std::string> getSkinList() const;
         void parseSkins();
         void randomizeSkin();
 
@@ -44,7 +44,7 @@ class Player
         std::string _name;
         Character _character;
 
-        std::vector<std::string> _skins;
+        std::list<std::string> _skins;
         size_t _index;
 };
 

@@ -21,7 +21,7 @@ using json = nlohmann::json;
 #define GITHUB_API_ASSET_NAME       "name"
 #define GITHUB_API_ASSET_URL        "browser_download_url"
 
-namespace MKTG
+namespace Generator::Update
 {
 
 class Request
@@ -44,11 +44,11 @@ class Request
         void SetOpt(std::string url, Func func, void *data);
 };
 
-class Updater
+class Manager
 {
     public:
-        Updater(std::string url);
-        ~Updater();
+        Manager(std::string url);
+        ~Manager();
 
         bool needsUpdate();
         void downloadUpdate();

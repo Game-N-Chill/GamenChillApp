@@ -139,4 +139,9 @@ void BoxRank::openPlayerDuoWindow(int index)
     }
 }
 
+int BoxRank::getTeamSelected()
+{
+    return this->_team->currentIndex();
+}
+
 }

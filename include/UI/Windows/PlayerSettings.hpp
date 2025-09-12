@@ -53,7 +53,7 @@ class PlayerInfo : public QWidget
         Tools::FGroupBox *_box;
         QLineEdit *_player;
         QComboBox *_character;
-        QComboBox *_skins;
+        Tools::Randomizer *_skins;
 
         Data::Player _data;
 };

@@ -87,6 +87,7 @@ void BoxAutoLoad::onLoadClicked()
             std::string character = sheet.cell(OpenXLSX::XLCellReference(EXCEL_COL_CHARACTER + std::to_string(EXCEL_LINE_FIRST + i))).value().get<std::string>();
             solo.players[0].setName(name);
             solo.players[0].setCharacter(character);
+            solo.players[0].randomizeSkin();
         }
 
         if (name != "-") {

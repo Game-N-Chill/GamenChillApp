@@ -1,5 +1,6 @@
 
 #include "UI/Windows/Primary.hpp"
+#include "Logic.hpp"
 
 namespace Generator::UI::Windows
 {
@@ -40,7 +41,11 @@ void PageWinner::updateAllInfos()
 
 void PageWinner::onGenerateClicked()
 {
-    std::cout << "generate clicked" << std::endl;
+    if (this->_rank->getTeamSelected() == 0) { // Solo
+        Logic::createWinnerSoloImage();
+    } else { // Duo
+        Logic::createWinnerDuoImage();
+    }
 }
 
 }

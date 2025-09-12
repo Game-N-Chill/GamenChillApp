@@ -23,12 +23,9 @@ PlayerInfo::PlayerInfo(const Data::Player &data, const QString &title, QWidget *
     this->_character->setCurrentText(QString::fromStdString(this->_data.getCharacter().name));
     connect(this->_character, &QComboBox::currentIndexChanged, this, &PlayerInfo::onCharacterChanged);
 
-    this->_skins = new QComboBox(this);
-    for (auto &it : this->_data.getSkinList()) {
-        this->_skins->addItem(QString::fromStdString(it));
-    }
-    this->_skins->setCurrentText(QString::fromStdString(this->_data.getSkin()));
-    connect(this->_skins, &QComboBox::currentIndexChanged, this, &PlayerInfo::onSkinChanged);
+    this->_skins = new Tools::Randomizer(this->_data.getSkinList(), this);
+    this->_skins->getComboBox()->setCurrentText(QString::fromStdString(this->_data.getSkin()));
+    connect(this->_skins->getComboBox(), &QComboBox::currentIndexChanged, this, &PlayerInfo::onSkinChanged);
 
     this->_box->addRow("Name : ", this->_player);
     this->_box->addRow("Character : ", this->_character);
@@ -56,11 +53,11 @@ void PlayerInfo::onCharacterChanged(int index)
     this->_data.setCharacter(index);
 
     // Deleting current skin list and update it for the new character
-    this->_skins->clear();
+    this->_skins->getComboBox()->clear();
     for (auto &it : this->_data.getSkinList()) {
-        this->_skins->addItem(QString::fromStdString(it));
+        this->_skins->getComboBox()->addItem(QString::fromStdString(it));
     }
-    this->_skins->setCurrentIndex(0);
+    this->_skins->getComboBox()->setCurrentIndex(0);
 }
 
 void PlayerInfo::onSkinChanged(int index)

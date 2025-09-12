@@ -351,38 +351,6 @@
             "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
         },
         {
-            "name": "url",
-            "position": {
-                "x": 1900,
-                "y": 1070
-            },
-            "color": {
-                "r": 83,
-                "g": 95,
-                "b": 71
-            },
-            "outline": 0,
-            "fontSize": 45.0,
-            "align": 1.0,
-            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
-        },
-        {
-            "name": "urlOutline",
-            "position": {
-                "x": 1900,
-                "y": 1070
-            },
-            "color": {
-                "r": 192,
-                "g": 201,
-                "b": 184
-            },
-            "outline": 1,
-            "fontSize": 45.0,
-            "align": 1.0,
-            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
-        },
-        {
             "name": "1_Name",
             "position": {
                 "x": 300,
@@ -522,8 +490,6 @@
         "subtitleOutline",
         "date",
         "dateOutline",
-        "url",
-        "urlOutline",
         "1_1_Character",
         "1_Background",
         "1_Name",

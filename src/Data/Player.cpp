@@ -59,10 +59,11 @@ void Player::setSkin(std::string name)
     }
 
     this->_index = 0;
-    for (size_t i = 0; i < this->_skins.size(); i++) {
-        if (this->_skins[i] == name) {
-            this->_index = i;
-            break;
+    size_t tempIndex = 0;
+    for (auto it = this->_skins.begin(); it != this->_skins.end(); it++, tempIndex++) {
+        if (*it == name) {
+            this->_index = tempIndex;
+            return;
         }
     }
 }
@@ -76,10 +77,12 @@ void Player::setSkin(size_t index)
 
 std::string Player::getSkin() const
 {
-    return this->_skins[this->_index];
+    auto it = this->_skins.begin();
+    std::advance(it, this->_index);
+    return *it;
 }
 
-std::vector<std::string> Player::getSkinList() const
+std::list<std::string> Player::getSkinList() const
 {
     return this->_skins;
 }
@@ -120,7 +123,7 @@ void Player::print(std::ostream &flux) const
 {
     flux << "Name: " << this->_name << std::endl;
     flux << "Character: " << this->_character << std::endl;
-    flux << "Skin: " << this->_skins[this->_index] << std::endl;
+    flux << "Skin: " << this->getSkin() << std::endl;
 }
 
 }

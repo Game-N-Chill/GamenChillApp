@@ -5,10 +5,10 @@
 #include <minizip/unzip.h>
 
 namespace fs = std::filesystem;
-namespace MKTG
+namespace Generator::Update
 {
 
-Updater::Updater(std::string url)
+Manager::Manager(std::string url)
 {
     try {
         std::string response = this->_req.Get(url);
@@ -41,16 +41,16 @@ Updater::Updater(std::string url)
     }
 }
 
-Updater::~Updater()
+Manager::~Manager()
 {
 }
 
-bool Updater::needsUpdate()
+bool Manager::needsUpdate()
 {
     return (this->_json[GITHUB_API_TAG] != MKTG_VERSION);
 }
 
-void Updater::downloadUpdate()
+void Manager::downloadUpdate()
 {
     std::cout << "-- Update found, downloading latest version..." << std::endl;
 
@@ -68,7 +68,7 @@ void Updater::downloadUpdate()
 
 }
 
-void Updater::saveApp()
+void Manager::saveApp()
 {
     std::cout << "-- Saving data from current version..." << std::endl;
 
@@ -85,7 +85,7 @@ void Updater::saveApp()
     }
 }
 
-void Updater::clearApp()
+void Manager::clearApp()
 {
     std::cout << "-- Clearing current application..." << std::endl;
 
@@ -103,7 +103,7 @@ void Updater::clearApp()
     }
 }
 
-void Updater::installUpdate()
+void Manager::installUpdate()
 {
     std::cout << "-- Installing update..." << std::endl;
 
@@ -155,7 +155,7 @@ void Updater::installUpdate()
     fs::remove(this->_pathFile);
 }
 
-void Updater::installSave()
+void Manager::installSave()
 {
     std::cout << "-- Installing save..." << std::endl;
 

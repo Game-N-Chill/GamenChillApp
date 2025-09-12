@@ -114,6 +114,8 @@ class BoxRank : public QWidget
         void openPlayerSoloWindow(int index);
         void openPlayerDuoWindow(int index);
 
+        int getTeamSelected();
+
     private:
         QVBoxLayout *_layout;
         Tools::VGroupBox *_box;

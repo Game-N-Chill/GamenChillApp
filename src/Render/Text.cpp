@@ -1,7 +1,7 @@
 
-#include "MKTG.hpp"
+#include "Render/Text.hpp"
 
-namespace MKTG::Render
+namespace Generator::Render
 {
 
 Text::Text()

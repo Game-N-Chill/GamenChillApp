@@ -77,6 +77,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Data/Winner.cpp
     ${SRC_DIR}/Data/Dictionary/Background.cpp
     ${SRC_DIR}/Data/Dictionary/Character.cpp
+    ${SRC_DIR}/Logic/Winner.cpp
 )
 
 add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_ICON_RESOURCE})

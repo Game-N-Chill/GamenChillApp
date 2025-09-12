@@ -8,7 +8,7 @@ namespace fs = std::filesystem;
 int main(int ac, char **av)
 {
     try {
-        MKTG::Updater updater(MKTG_API_URL);
+        Generator::Update::Manager updater(MKTG_API_URL);
         updater.downloadUpdate();
         updater.saveApp();
         updater.clearApp();

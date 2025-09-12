@@ -62,6 +62,7 @@ void BoxInfo::updateAllInfos()
     this->_subtitle->setText(QString::fromStdString(dataWinner->getSubtitle()));
     this->_date->setDate(QDate::fromString(QString::fromStdString(dataWinner->getDate()), DATE_FORMAT));
     this->_playerCount->setValue(static_cast<int>(dataWinner->getPlayerCount()));
+    this->_background->randomize();
 }
 
 // *****************************************************************************

@@ -1,9 +1,11 @@
 
 #pragma once
 
+#include <iostream>
+#include <SDL3_image/SDL_image.h>
 #include "Object.hpp"
 
-namespace MKTG::Render
+namespace Generator::Render
 {
 
 class Image : public AObject

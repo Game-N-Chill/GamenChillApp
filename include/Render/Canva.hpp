@@ -1,42 +1,41 @@
 
 #pragma once
 
+#include <map>
 #include <SDL3/SDL.h>
-#include <SDL3_image/SDL_image.h>
-#include <SDL3_ttf/SDL_ttf.h>
-
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
-
-#include <map>
 
 #include "Image.hpp"
 #include "Text.hpp"
 
-namespace MKTG::Render
+namespace Generator::Render
 {
 
-#define CANVA_SOLO_PATH                  "Assets\\Data\\CanvaSolo.json"
-#define CANVA_DUO_PATH                   "Assets\\Data\\CanvaDuo.json"
+#define CANVA_SOLO_PATH                     "Assets\\Data\\CanvaSolo.json"
+#define CANVA_DUO_PATH                      "Assets\\Data\\CanvaDuo.json"
 
-#define CANVA_CATEGORY_IMAGE        "Images"
-#define CANVA_CATEGORY_TEXT         "Texts"
-#define CANVA_CATEGORY_ORDER        "Order"
+#define CANVA_CATEGORY_IMAGE                "Images"
+#define CANVA_CATEGORY_TEXT                 "Texts"
+#define CANVA_CATEGORY_ORDER                "Order"
 
-#define CANVA_INDEX_NAME            "name"
-#define CANVA_INDEX_PATH            "path"
-#define CANVA_INDEX_POSITION        "position"
-#define CANVA_INDEX_SCALE           "scale"
-#define CANVA_INDEX_COLOR           "color"
-#define CANVA_INDEX_STRING          "str"
-#define CANVA_INDEX_OUTLINE         "outline"
-#define CANVA_INDEX_FONT_SIZE       "fontSize"
-#define CANVA_INDEX_ALIGNEMENT      "align"
+#define CANVA_INDEX_NAME                    "name"
+#define CANVA_INDEX_PATH                    "path"
+#define CANVA_INDEX_POSITION                "position"
+#define CANVA_INDEX_SCALE                   "scale"
+#define CANVA_INDEX_COLOR                   "color"
+#define CANVA_INDEX_STRING                  "str"
+#define CANVA_INDEX_OUTLINE                 "outline"
+#define CANVA_INDEX_FONT_SIZE               "fontSize"
+#define CANVA_INDEX_ALIGNEMENT              "align"
+
+#define CANVA_DEFAULT_IMAGE_WIDTH           1920
+#define CANVA_DEFAULT_IMAGE_HEIGHT          1080
 
 class Canva
 {
     public:
-        Canva(std::string path);
+        Canva(std::string path, int width = CANVA_DEFAULT_IMAGE_WIDTH, int height = CANVA_DEFAULT_IMAGE_HEIGHT);
         ~Canva();
 
         std::shared_ptr<AObject> get(std::string name);

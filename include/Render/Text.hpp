@@ -1,9 +1,11 @@
 
 #pragma once
 
+#include <iostream>
+#include <SDL3_ttf/SDL_ttf.h>
 #include "Object.hpp"
 
-namespace MKTG::Render
+namespace Generator::Render
 {
 
 class Text : public AObject

@@ -1,7 +1,7 @@
 
-#include "MKTG.hpp"
+#include "Render/Object.hpp"
 
-namespace MKTG::Render
+namespace Generator::Render
 {
 
 AObject::AObject()

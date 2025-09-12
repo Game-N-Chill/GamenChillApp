@@ -1,7 +1,7 @@
 
 #include "Update.hpp"
 
-namespace MKTG
+namespace Generator::Update
 {
 
 size_t Request::WriteToString(void *contents, size_t size, size_t nmemb, void *output)
