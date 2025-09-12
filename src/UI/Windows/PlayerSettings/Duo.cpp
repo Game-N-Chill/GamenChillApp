@@ -28,7 +28,7 @@ Data::Duo PlayerDuo::getData() const
 
     data.name = this->_team->text().toStdString();
     data.players[0] = this->_infoFirst->getData();
-    data.players[1] = this->_infoFirst->getData();
+    data.players[1] = this->_infoSecond->getData();
 
     return data;
 }

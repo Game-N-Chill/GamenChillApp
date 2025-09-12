@@ -47,38 +47,19 @@ qt_standard_project_setup()
 set(APP_SRC_FILES
     ${SRC_DIR}/Main.cpp
     ${SRC_DIR}/Utils.cpp
-    ${SRC_DIR}/Generator/Shared.cpp
-    ${SRC_DIR}/Generator/Solo.cpp
-    ${SRC_DIR}/Generator/Duo.cpp
-    ${SRC_DIR}/Commands/Help.cpp
-    ${SRC_DIR}/Commands/Version.cpp
-    ${SRC_DIR}/Commands/Quit.cpp
-    ${SRC_DIR}/Commands/List.cpp
-    ${SRC_DIR}/Commands/Title.cpp
-    ${SRC_DIR}/Commands/SubTitle.cpp
-    ${SRC_DIR}/Commands/Date.cpp
-    ${SRC_DIR}/Commands/Count.cpp
-    ${SRC_DIR}/Commands/Url.cpp
-    ${SRC_DIR}/Commands/Load.cpp
-    ${SRC_DIR}/Commands/Player.cpp
-    ${SRC_DIR}/Commands/Team.cpp
-    ${SRC_DIR}/Commands/Background.cpp
-    ${SRC_DIR}/Commands/Skin.cpp
-    ${SRC_DIR}/Commands/Print.cpp
-    ${SRC_DIR}/Commands/Dir.cpp
-    ${SRC_DIR}/Commands/Create.cpp
     ${SRC_DIR}/Render/Canva.cpp
     ${SRC_DIR}/Render/Image.cpp
     ${SRC_DIR}/Render/Object.cpp
     ${SRC_DIR}/Render/Text.cpp
-    ${SRC_DIR}/Logic/LineParser.cpp
-    ${SRC_DIR}/Logic/Terminal.cpp
     ${SRC_DIR}/Update/Updater.cpp
     ${SRC_DIR}/Update/Request.cpp
     ${INC_DIR}/UI/Windows/Primary.hpp
     ${SRC_DIR}/UI/Windows/Primary/Core.cpp
-    ${SRC_DIR}/UI/Windows/Primary/PageWinner.cpp
-    ${SRC_DIR}/UI/Windows/Primary/PageBracket.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Winner/Page.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxAutoLoad.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxInfo.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxRank.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Bracket/Page.cpp
     ${INC_DIR}/UI/Windows/PlayerSettings.hpp
     ${SRC_DIR}/UI/Windows/PlayerSettings/Info.cpp
     ${SRC_DIR}/UI/Windows/PlayerSettings/Solo.cpp

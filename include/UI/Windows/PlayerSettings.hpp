@@ -45,7 +45,7 @@ class PlayerInfo : public QWidget
         Data::Player getData() const;
 
         void onNameEdited(const QString &str);
-        void onCharacterChanged(const QString &str);
+        void onCharacterChanged(int index);
         void onSkinChanged(int index);
 
     private:

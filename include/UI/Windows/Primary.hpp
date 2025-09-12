@@ -26,14 +26,30 @@
 #include <QAction>
 #include <QFileDialog>
 
+#pragma warning(push)
+#pragma warning(disable : 4244)
+#pragma warning(disable : 4267)
+#include <OpenXLSX.hpp>
+#pragma warning(pop)
+
 #include "UI/Tools/GroupBox.hpp"
 #include "UI/Tools/Browser.hpp"
 #include "UI/Tools/Randomizer.hpp"
 
+#include "UI/Windows/PlayerSettings.hpp"
 #include "Data/Data.hpp"
 
 namespace Generator::UI::Windows
 {
+
+    #define EXCEL_CELL_TITLE        "C2"
+    #define EXCEL_CELL_SUBTITLE     "D7"
+    #define EXCEL_CELL_DATE         "I7"
+    #define EXCEL_LINE_FIRST        15
+    #define EXCEL_COL_CHARACTER     "H"
+    #define EXCEL_COL_PLAYER        "I"
+
+    #define DATE_FORMAT             "dd/MM/yyyy"
 
 class BoxAutoLoad : public QWidget
 {
@@ -58,6 +74,8 @@ class BoxInfo : public QWidget
 
     public:
         BoxInfo(QWidget *parent);
+
+        void updateAllInfos();
 
         void onTitleEdited(const QString &str);
         void onSubtitleEdited(const QString &str);
@@ -86,11 +104,13 @@ class BoxRank : public QWidget
     public:
         BoxRank(QWidget *parent);
 
-        template<size_t N>
-        void setTeamInfo(int index, Generator::Data::Team<N> team);
+        void updateAllInfos();
 
         void onTeamChanged(int index);
         void onPlayerClicked(int index, bool checked);
+
+        template<size_t N>
+        void setTeamInfo(int index, Generator::Data::Team<N> team);
         void openPlayerSoloWindow(int index);
         void openPlayerDuoWindow(int index);
 
@@ -114,6 +134,8 @@ class PageWinner : public QWidget
         PageWinner(QWidget *parent);
 
         void onGenerateClicked();
+
+        void updateAllInfos();
 
     private:
         QVBoxLayout *_layout;

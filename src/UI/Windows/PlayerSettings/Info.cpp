@@ -14,7 +14,7 @@ PlayerInfo::PlayerInfo(const Data::Player &data, const QString &title, QWidget *
 
     this->_player = new QLineEdit(this);
     this->_player->setText(QString::fromStdString(this->_data.getName()));
-    connect(this->_player, &QLineEdit::editingFinished, this, &PlayerInfo::onNameEdited);
+    connect(this->_player, &QLineEdit::textEdited, this, &PlayerInfo::onNameEdited);
 
     this->_character = new QComboBox(this);
     for (auto &it : Data::DictCharacter::getInstance()->list()) {
@@ -50,10 +50,10 @@ void PlayerInfo::onNameEdited(const QString &str)
     this->_data.setName(str.toStdString());
 }
 
-void PlayerInfo::onCharacterChanged(const QString &str)
+void PlayerInfo::onCharacterChanged(int index)
 {
     // Change character into local data so all skins are fetch
-    this->_data.setCharacter(str.toStdString());
+    this->_data.setCharacter(index);
 
     // Deleting current skin list and update it for the new character
     this->_skins->clear();

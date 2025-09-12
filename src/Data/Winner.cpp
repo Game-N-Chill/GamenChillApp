@@ -10,7 +10,7 @@ Winner::Winner()
 {
     this->_title = DATA_WINNER_DEFAULT_TITLE;
     this->_subtitle = DATA_WINNER_DEFAULT_SUBTITLE;
-    this->_date = DATA_WINNER_DEFAULT_DATE;
+    this->_date = Utils::getTimeFormat("%d/%m/%Y");
     this->_playerCount = DATA_WINNER_DEFAULT_PLAYER_COUNT;
     this->_outputDir = Utils::getFullPath(DATA_WINNER_DEFAULT_OUTPUT_DIR);
     this->_background = Background();
