@@ -1,5 +1,6 @@
 
 #include "UI/Windows/Primary.hpp"
+#include "UI/Windows/Notification.hpp"
 #include "Logic.hpp"
 
 namespace Generator::UI::Windows
@@ -46,6 +47,8 @@ void PageWinner::onGenerateClicked()
     } else { // Duo
         Logic::createWinnerDuoImage();
     }
+
+    Windows::Notification window("Game'n Chill App Notification", "Winner image generation done", this);
 }
 
 }

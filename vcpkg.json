@@ -11,6 +11,9 @@
         },
         {
             "name": "qtbase"
+        },
+        {
+            "name": "qtmultimedia"
         }
     ]
 }

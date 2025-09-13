@@ -41,7 +41,7 @@ add_subdirectory(${LIB_DIR}/OpenXLSX)
 find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
 find_package(minizip REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia)
 qt_standard_project_setup()
 
 set(APP_SRC_FILES
@@ -64,6 +64,8 @@ set(APP_SRC_FILES
     ${SRC_DIR}/UI/Windows/PlayerSettings/Info.cpp
     ${SRC_DIR}/UI/Windows/PlayerSettings/Solo.cpp
     ${SRC_DIR}/UI/Windows/PlayerSettings/Duo.cpp
+    ${INC_DIR}/UI/Windows/Notification.hpp
+    ${SRC_DIR}/UI/Windows/Notification.cpp
     ${SRC_DIR}/UI/Tools/Browser.cpp
     ${INC_DIR}/UI/Tools/Browser.hpp
     ${SRC_DIR}/UI/Tools/GroupBox.cpp
@@ -73,6 +75,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/UI/Tools/Window.cpp
     ${INC_DIR}/UI/Tools/Window.hpp
     ${SRC_DIR}/Data/Data.cpp
+    ${SRC_DIR}/Data/Assets.cpp
     ${SRC_DIR}/Data/Player.cpp
     ${SRC_DIR}/Data/Winner.cpp
     ${SRC_DIR}/Data/Dictionary/Background.cpp
@@ -80,18 +83,23 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Logic/Winner.cpp
 )
 
-add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
+qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.rc")
+
+add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_RSC_FILES} ${APP_ICON_RESOURCE})
 
 target_include_directories(${APP_NAME} PRIVATE include)
 
-target_link_libraries(${APP_NAME} PRIVATE SDL3::SDL3)
-target_link_libraries(${APP_NAME} PRIVATE SDL3_image::SDL3_image)
-target_link_libraries(${APP_NAME} PRIVATE SDL3_ttf::SDL3_ttf)
-target_link_libraries(${APP_NAME} PRIVATE OpenXLSX::OpenXLSX)
-target_link_libraries(${APP_NAME} PRIVATE nlohmann_json::nlohmann_json)
-target_link_libraries(${APP_NAME} PRIVATE CURL::libcurl)
-target_link_libraries(${APP_NAME} PRIVATE minizip::minizip)
-target_link_libraries(${APP_NAME} PRIVATE Qt6::Widgets)
+target_link_libraries(${APP_NAME} PRIVATE
+    SDL3::SDL3
+    SDL3_image::SDL3_image
+    SDL3_ttf::SDL3_ttf
+    OpenXLSX::OpenXLSX
+    nlohmann_json::nlohmann_json
+    CURL::libcurl
+    minizip::minizip
+    Qt6::Widgets
+    Qt6::Multimedia
+)
 
 #  UPDATER
 # ------------------------------------------------------------------------------
@@ -107,8 +115,10 @@ add_executable(${UPD_NAME} ${UPD_SRC_FILES} ${UPD_ICON_RESOURCE})
 
 target_include_directories(${UPD_NAME} PRIVATE include)
 
-target_link_libraries(${UPD_NAME} PRIVATE CURL::libcurl)
-target_link_libraries(${UPD_NAME} PRIVATE minizip::minizip)
+target_link_libraries(${UPD_NAME} PRIVATE
+    CURL::libcurl
+    minizip::minizip
+)
 
 #  POST BUILD
 # ------------------------------------------------------------------------------

@@ -257,8 +257,10 @@
         {
             "name": "title",
             "position": {
-                "x": 365,
-                "y": 20
+                "x": 370,
+                "y": 0,
+                "w": 1180,
+                "h": 100
             },
             "color": {
                 "r": 83,
@@ -267,30 +269,16 @@
             },
             "outline": 0,
             "fontSize": 70.0,
-            "align": 0.0,
-            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
-        },
-        {
-            "name": "titleOutline",
-            "position": {
-                "x": 365,
-                "y": 20
-            },
-            "color": {
-                "r": 192,
-                "g": 201,
-                "b": 184
-            },
-            "outline": 1,
-            "fontSize": 70.0,
-            "align": 0.0,
-            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+            "align": 0.5,
+            "path": ":/fonts/RetroGaming_Regular.ttf"
         },
         {
             "name": "subtitle",
             "position": {
-                "x": 960,
-                "y": 140
+                "x": 370,
+                "y": 105,
+                "w": 1180,
+                "h": 75
             },
             "color": {
                 "r": 83,
@@ -298,31 +286,17 @@
                 "b": 71
             },
             "outline": 0,
-            "fontSize": 60.0,
+            "fontSize": 45.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
-        },
-        {
-            "name": "subtitleOutline",
-            "position": {
-                "x": 960,
-                "y": 140
-            },
-            "color": {
-                "r": 192,
-                "g": 201,
-                "b": 184
-            },
-            "outline": 1,
-            "fontSize": 60.0,
-            "align": 0.5,
-            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+            "path": ":/fonts/RetroGaming_Regular.ttf"
         },
         {
             "name": "date",
             "position": {
                 "x": 20,
-                "y": 1015
+                "y": 1020,
+                "w": 1000,
+                "h": 40
             },
             "color": {
                 "r": 83,
@@ -330,31 +304,17 @@
                 "b": 71
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
             "align": 0.0,
-            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
-        },
-        {
-            "name": "dateOutline",
-            "position": {
-                "x": 20,
-                "y": 1015
-            },
-            "color": {
-                "r": 192,
-                "g": 201,
-                "b": 184
-            },
-            "outline": 1,
-            "fontSize": 45.0,
-            "align": 0.0,
-            "path": "Assets\\Fonts\\RetroGaming_Regular.ttf"
+            "path": ":/fonts/RetroGaming_Regular.ttf"
         },
         {
             "name": "1_Name",
             "position": {
-                "x": 300,
-                "y": 762
+                "x": 50,
+                "y": 704,
+                "w": 500,
+                "h": 116
             },
             "color": {
                 "r": 255,
@@ -362,15 +322,17 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 90.0,
+            "fontSize": 60.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+            "path": ":/fonts/Handjet_Bold.ttf"
         },
         {
             "name": "2_Name",
             "position": {
-                "x": 770,
-                "y": 532
+                "x": 582,
+                "y": 489,
+                "w": 375,
+                "h": 87
             },
             "color": {
                 "r": 255,
@@ -378,15 +340,17 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 60.0,
+            "fontSize": 45.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+            "path": ":/fonts/Handjet_Bold.ttf"
         },
         {
             "name": "3_Name",
             "position": {
-                "x": 1210,
-                "y": 532
+                "x": 1022,
+                "y": 489,
+                "w": 375,
+                "h": 87
             },
             "color": {
                 "r": 255,
@@ -394,15 +358,17 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 60.0,
+            "fontSize": 45.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+            "path": ":/fonts/Handjet_Bold.ttf"
         },
         {
             "name": "4_Name",
             "position": {
-                "x": 1650,
-                "y": 532
+                "x": 1462,
+                "y": 489,
+                "w": 375,
+                "h": 87
             },
             "color": {
                 "r": 255,
@@ -410,15 +376,17 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 60.0,
+            "fontSize": 45.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+            "path": ":/fonts/Handjet_Bold.ttf"
         },
         {
             "name": "5_Name",
             "position": {
-                "x": 715,
-                "y": 885
+                "x": 565,
+                "y": 850,
+                "w": 300,
+                "h": 70
             },
             "color": {
                 "r": 255,
@@ -426,15 +394,17 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+            "path": ":/fonts/Handjet_Bold.ttf"
         },
         {
             "name": "6_Name",
             "position": {
-                "x": 1045,
-                "y": 885
+                "x": 895,
+                "y": 850,
+                "w": 300,
+                "h": 70
             },
             "color": {
                 "r": 255,
@@ -442,15 +412,17 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+            "path": ":/fonts/Handjet_Bold.ttf"
         },
         {
             "name": "7_Name",
             "position": {
-                "x": 1375,
-                "y": 885
+                "x": 1225,
+                "y": 850,
+                "w": 300,
+                "h": 70
             },
             "color": {
                 "r": 255,
@@ -458,15 +430,17 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+            "path": ":/fonts/Handjet_Bold.ttf"
         },
         {
             "name": "8_Name",
             "position": {
-                "x": 1705,
-                "y": 885
+                "x": 1555,
+                "y": 850,
+                "w": 300,
+                "h": 70
             },
             "color": {
                 "r": 255,
@@ -474,9 +448,9 @@
                 "b": 255
             },
             "outline": 0,
-            "fontSize": 45.0,
+            "fontSize": 30.0,
             "align": 0.5,
-            "path": "Assets\\Fonts\\Handjet_Bold.ttf"
+            "path": ":/fonts/Handjet_Bold.ttf"
         }
     ],
     "Order": [

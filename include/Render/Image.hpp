@@ -1,24 +1,24 @@
 
-#pragma once
+// #pragma once
 
-#include <iostream>
-#include <SDL3_image/SDL_image.h>
-#include "Object.hpp"
+// #include <iostream>
+// #include <SDL3_image/SDL_image.h>
+// #include "Object.hpp"
 
-namespace Generator::Render
-{
+// namespace Generator::Render
+// {
 
-class Image : public AObject
-{
-    public:
-        Image();
-        Image(SDL_Point pos, SDL_Point size, float scale);
-        virtual ~Image() = default;
+// class Image : public AObject
+// {
+//     public:
+//         Image();
+//         Image(SDL_Point pos, SDL_Point size, float scale);
+//         virtual ~Image() = default;
 
-        void load(std::string path);
+//         void load(std::string path);
 
-    private:
-};
+//     private:
+// };
 
 
-} // namespace MKTG::Render
+// } // namespace MKTG::Render

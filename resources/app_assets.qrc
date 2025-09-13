@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file>Handjet_Bold.ttf</file>
+        <file>RetroGaming_Regular.ttf</file>
+    </qresource>
+</RCC>

@@ -13,36 +13,33 @@ static void createWinnerShared(std::string path, const std::array<Data::Team<N>,
     Render::Canva canva(path);
     Data::Winner *dataWinner = Data::Winner::getInstance();
 
-    canva.getImage("background")->load(dataWinner->getBackground().path);
-    canva.getText("title")->load(dataWinner->getTitle());
-    canva.getText("titleOutline")->load(dataWinner->getTitle());
-    canva.getText("subtitle")->load(dataWinner->getSubtitle());
-    canva.getText("subtitleOutline")->load(dataWinner->getSubtitle());
-    canva.getText("date")->load(dataWinner->getDate() + " - " + std::to_string(dataWinner->getPlayerCount()) + " Participants");
-    canva.getText("dateOutline")->load(dataWinner->getDate() + " - " + std::to_string(dataWinner->getPlayerCount()) + " Participants");
+    canva.getImage("background").image.load(dataWinner->getBackground().path.c_str());
+    canva.getText("title").str = dataWinner->getTitle().c_str();
+    // canva.getText("titleOutline").str = dataWinner->getTitle();
+    canva.getText("subtitle").str = dataWinner->getSubtitle().c_str();
+    // canva.getText("subtitleOutline").str = dataWinner->getSubtitle();
+    canva.getText("date").str = (dataWinner->getDate() + " - " + std::to_string(dataWinner->getPlayerCount()) + " Participants").c_str();
+    // canva.getText("dateOutline").str = dataWinner->getDate() + " - " + std::to_string(dataWinner->getPlayerCount()) + " Participants";
 
     for (size_t i = 0; i < array.size(); i++) {
         Data::Team<N> team = array[i];
 
         if (N > 1) {
-            canva.getText(std::to_string(i + 1) + '_' + "Team")->load(team.name);
+            canva.getText(std::to_string(i + 1) + '_' + "Team").str = team.name.c_str();
         }
 
         std::string name;
         for (size_t j = 0; j < team.players.size(); j++) {
-            canva.getImage(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Character")->load(team.players[j].getCharacter().path + '\\' + team.players[j].getSkin() + ".png");
+            canva.getImage(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Character").image.load((team.players[j].getCharacter().path + '\\' + team.players[j].getSkin() + ".png").c_str());
             name += team.players[j].getName();
             if (j < team.players.size() - 1) {
                 name += " - ";
             }
         }
-        canva.getText(std::to_string(i + 1) + '_' + "Name")->load(name);
+        canva.getText(std::to_string(i + 1) + '_' + "Name").str = name.c_str();
     }
 
-    std::vector<std::string> vec = canva.getOrder();
-    for (auto &obj : vec) {
-        canva.draw(obj);
-    }
+    canva.draw();
     canva.save(dataWinner->getOutputDir(), Utils::getTimeFormat("%Y_%m_%d__%H_%M_%S"));
 }
 

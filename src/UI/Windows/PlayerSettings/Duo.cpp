@@ -20,6 +20,8 @@ PlayerDuo::PlayerDuo(const int &index, const QString &title, QWidget *parent) :
     this->_layout->addWidget(this->_team);
     this->_layout->addWidget(this->_infoFirst);
     this->_layout->addWidget(this->_infoSecond);
+
+    (*this)();
 }
 
 Data::Duo PlayerDuo::getData() const

@@ -1,8 +1,16 @@
 
 #pragma once
 
+#include <iostream>
+#include <vector>
 #include <map>
-#include <SDL3/SDL.h>
+#include <variant>
+#include <QImage>
+#include <QPainter>
+#include <QPoint>
+#include <QColor>
+#include <QFont>
+#include <QFontDatabase>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
@@ -32,24 +40,47 @@ namespace Generator::Render
 #define CANVA_DEFAULT_IMAGE_WIDTH           1920
 #define CANVA_DEFAULT_IMAGE_HEIGHT          1080
 
+struct Image
+{
+    QImage image;
+    QPoint pos;
+    float scale;
+};
+
+struct Text
+{
+    QFont font;
+    QString str;
+    float size;
+    QRect rect;
+    QColor color;
+    Qt::Alignment alignement;
+
+    Text(QString fontPath, int fontSize);
+};
+
+typedef std::variant<Image, Text> Object;
+
 class Canva
 {
     public:
         Canva(std::string path, int width = CANVA_DEFAULT_IMAGE_WIDTH, int height = CANVA_DEFAULT_IMAGE_HEIGHT);
-        ~Canva();
+        ~Canva() = default;
 
-        std::shared_ptr<AObject> get(std::string name);
-        std::shared_ptr<Image> getImage(std::string name);
-        std::shared_ptr<Text> getText(std::string name);
+        Object &getObject(std::string name);
+        Image &getImage(std::string name);
+        Text &getText(std::string name);
 
-        void draw(std::string name);
-        void save(std::string dirPath, std::string fileName);
+        void draw();
+        bool save(std::string dirPath, std::string fileName);
         std::vector<std::string> getOrder() const;
 
     private:
-        SDL_Surface *_canva;
-        json _json;
-        std::map<std::string, std::shared_ptr<AObject>> _objects;
+        QImage _canva;
+        QPainter _painter;
+
+        std::vector<std::string> _order;
+        std::map<std::string, Object> _objects;
 };
 
 } // namespace MKTG::Render

@@ -8,6 +8,7 @@ void loadData()
 {
     DictBackground::getInstance()->load(&Background::load);
     DictCharacter::getInstance()->load(&Character::load);
+    // Generator::Data::Assets::getInstance();
     Generator::Data::Winner::getInstance();
 }
 

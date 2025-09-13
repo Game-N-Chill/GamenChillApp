@@ -118,7 +118,6 @@ void BoxRank::openPlayerSoloWindow(int index)
     auto dataWinner = Data::Winner::getInstance();
 
     Windows::PlayerSolo window(index, "Player Settings", this);
-    window();
 
     if (window.hasValidate()) {
         dataWinner->getTeamSolo(index) = window.getData();
@@ -131,7 +130,6 @@ void BoxRank::openPlayerDuoWindow(int index)
     auto dataWinner = Data::Winner::getInstance();
 
     Windows::PlayerDuo window(index, "Player Settings", this);
-    window();
 
     if (window.hasValidate()) {
         dataWinner->getTeamDuo(index) = window.getData();

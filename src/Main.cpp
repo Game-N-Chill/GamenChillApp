@@ -17,8 +17,8 @@ static void preLoad()
         SetConsoleMode(hOut, dwMode);
     #endif
 
-    if (!TTF_Init())
-        throw std::runtime_error(SDL_GetError());
+    // if (!TTF_Init())
+        // throw std::runtime_error(SDL_GetError());
 
     // Generator::Update::Manager updater(MKTG_API_URL);
     // if (updater.needsUpdate()) {
@@ -28,6 +28,8 @@ static void preLoad()
     //     }
     // }
 }
+
+#include <QImageWriter>
 
 int main(int ac, char **av)
 {
