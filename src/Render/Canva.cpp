@@ -3,6 +3,7 @@
 #include "Data/Assets.hpp"
 #include <fstream>
 #include <filesystem>
+#include <QPainterPath>
 
 namespace fs = std::filesystem;
 namespace Generator::Render
@@ -11,69 +12,7 @@ namespace Generator::Render
 Text::Text(QString fontPath, int fontSize) :
     font(fontPath, fontSize)
 {
-
 }
-
-// static void loadImages(const json &content, std::map<std::string, SharedObject> &map)
-// {
-//     json images;
-//     try {
-//         images = content.at(CANVA_CATEGORY_IMAGE);
-//     } catch (const json::type_error &e) {
-//         std::cerr << e.what() << std::endl;
-//         return;
-//     } catch (const json::out_of_range &e) {
-//         std::cerr << e.what() << std::endl;
-//         return;
-//     }
-
-//     for (const auto &img : images) {
-//         std::shared_ptr<Image> object = std::make_shared<Image>();
-
-//         object->setPosition(
-//             img[CANVA_INDEX_POSITION]["x"],
-//             img[CANVA_INDEX_POSITION]["y"]
-//         );
-//         object->setScale(img[CANVA_INDEX_SCALE]);
-//         object->load(img[CANVA_INDEX_PATH]);
-
-//         map[img[CANVA_INDEX_NAME]] = object;
-//     }
-// }
-
-// static void loadTexts(const json &content, std::map<std::string, SharedObject> &map)
-// {
-//     json texts;
-//     try {
-//         texts = content.at(CANVA_CATEGORY_TEXT);
-//     } catch (const json::type_error &e) {
-//         std::cerr << e.what() << std::endl;
-//         return;
-//     } catch (const json::out_of_range &e) {
-//         std::cerr << e.what() << std::endl;
-//         return;
-//     }
-
-//     for (const auto &txt : texts) {
-//         std::shared_ptr<Text> object = std::make_shared<Text>();
-
-//         object->setPosition(
-//             txt[CANVA_INDEX_POSITION]["x"],
-//             txt[CANVA_INDEX_POSITION]["y"]
-//         );
-//         object->setColor(
-//             txt[CANVA_INDEX_COLOR]["r"],
-//             txt[CANVA_INDEX_COLOR]["g"],
-//             txt[CANVA_INDEX_COLOR]["b"]
-//         );
-//         object->setOutline(txt[CANVA_INDEX_OUTLINE]);
-//         object->setFontSize(txt[CANVA_INDEX_FONT_SIZE]);
-//         object->setAlignement(txt[CANVA_INDEX_ALIGNEMENT]);
-//         object->setFont(txt[CANVA_INDEX_PATH]);
-
-//         map[txt[CANVA_INDEX_NAME]] = object;
-//     }
-// }
 
 static void loadImages(const json &content, std::map<std::string, Object> &map)
 {
@@ -127,16 +66,21 @@ static void loadTexts(const json &content, std::map<std::string, Object> &map)
         object.color.setRed(txt[CANVA_INDEX_COLOR]["r"]);
         object.color.setGreen(txt[CANVA_INDEX_COLOR]["g"]);
         object.color.setBlue(txt[CANVA_INDEX_COLOR]["b"]);
-        float alignement = txt[CANVA_INDEX_ALIGNEMENT];
-        if (alignement == 0.0f) {
+        float alignementValue = txt[CANVA_INDEX_ALIGNEMENT];
+        if (alignementValue == 0.0f) {
             object.alignement = Qt::AlignLeft | Qt::AlignVCenter;
-        } else if (alignement == 0.5f) {
+        } else if (alignementValue == 0.5f) {
             object.alignement = Qt::AlignCenter;
-        } else if (alignement == 1.0f) {
+        } else if (alignementValue == 1.0f) {
             object.alignement = Qt::AlignRight | Qt::AlignVCenter;
         } else {
             object.alignement = Qt::AlignCenter;
         }
+        object.outlineAlignement = alignementValue;
+        object.outline = txt[CANVA_INDEX_OUTLINE];
+        object.outlineColor.setRed(txt[CANVA_INDEX_OUTLINE_COLOR]["r"]);
+        object.outlineColor.setGreen(txt[CANVA_INDEX_OUTLINE_COLOR]["g"]);
+        object.outlineColor.setBlue(txt[CANVA_INDEX_OUTLINE_COLOR]["b"]);
 
         map[txt[CANVA_INDEX_NAME]] = object;
     }
@@ -146,7 +90,8 @@ Canva::Canva(std::string path, int width, int height) :
     _canva(width, height, QImage::Format_ARGB32),
     _painter(&this->_canva)
 {
-    std::cout << "json path: " << path << std::endl;
+    _painter.setRenderHint(QPainter::Antialiasing);
+
     std::ifstream file(path);
     if (!file.is_open()) {
         throw std::runtime_error("failed to open file " + path);
@@ -158,9 +103,7 @@ Canva::Canva(std::string path, int width, int height) :
 
     this->_order = jsonFile[CANVA_CATEGORY_ORDER].get<std::vector<std::string>>();
     loadImages(jsonFile, this->_objects);
-    std::cout << "load images" << std::endl;
     loadTexts(jsonFile, this->_objects);
-    std::cout << "load texts" << std::endl;
 }
 
 Object &Canva::getObject(std::string name)
@@ -192,9 +135,27 @@ static void drawImage(QPainter &painter, Image object)
 
 static void drawText(QPainter &painter, Text object)
 {
-    painter.setFont(object.font);
-    painter.setPen(object.color);
-    painter.drawText(object.rect, object.alignement, object.str);
+
+    if (object.outline > 0) {
+        QFontMetrics metrics(object.font);
+        QSize textSize = metrics.size(Qt::TextSingleLine, object.str);
+
+        QPoint outlinePos(
+            object.rect.x() + (object.rect.width() - textSize.width()) * object.outlineAlignement,
+            object.rect.y() + object.rect.height() - metrics.descent()
+        );
+        std::cout << object.rect.y() << " + (" << object.rect.height() << " - " << textSize.height() << ") / 2 - " << metrics.descent() << " = " << outlinePos.y() << std::endl;
+
+        QPainterPath path;
+        path.addText(outlinePos.x(), outlinePos.y(), object.font, object.str);
+        painter.strokePath(path, QPen(object.outlineColor, object.outline));
+        painter.fillPath(path, QBrush(object.color));
+    } else {
+        painter.setFont(object.font);
+        painter.setPen(object.color);
+        painter.drawText(object.rect, object.alignement, object.str);
+    }
+
 }
 
 void Canva::draw()

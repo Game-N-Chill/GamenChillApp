@@ -267,10 +267,15 @@
                 "g": 95,
                 "b": 71
             },
-            "outline": 0,
-            "fontSize": 70.0,
+            "outline": 20,
+            "outlineColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "fontSize": 55.0,
             "align": 0.5,
-            "path": ":/fonts/RetroGaming_Regular.ttf"
+            "path": "RetroGaming_Regular.ttf"
         },
         {
             "name": "subtitle",
@@ -285,10 +290,15 @@
                 "g": 95,
                 "b": 71
             },
-            "outline": 0,
-            "fontSize": 45.0,
+            "outline": 2,
+            "outlineColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
+            "fontSize": 40.0,
             "align": 0.5,
-            "path": ":/fonts/RetroGaming_Regular.ttf"
+            "path": "RetroGaming_Regular.ttf"
         },
         {
             "name": "date",
@@ -303,10 +313,15 @@
                 "g": 95,
                 "b": 71
             },
-            "outline": 0,
+            "outline": 2,
+            "outlineColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255
+            },
             "fontSize": 30.0,
             "align": 0.0,
-            "path": ":/fonts/RetroGaming_Regular.ttf"
+            "path": "RetroGaming_Regular.ttf"
         },
         {
             "name": "1_Name",
@@ -322,9 +337,14 @@
                 "b": 255
             },
             "outline": 0,
+            "outlineColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
             "fontSize": 60.0,
             "align": 0.5,
-            "path": ":/fonts/Handjet_Bold.ttf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "2_Name",
@@ -340,9 +360,14 @@
                 "b": 255
             },
             "outline": 0,
+            "outlineColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
             "fontSize": 45.0,
             "align": 0.5,
-            "path": ":/fonts/Handjet_Bold.ttf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "3_Name",
@@ -358,9 +383,14 @@
                 "b": 255
             },
             "outline": 0,
+            "outlineColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
             "fontSize": 45.0,
             "align": 0.5,
-            "path": ":/fonts/Handjet_Bold.ttf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "4_Name",
@@ -376,9 +406,14 @@
                 "b": 255
             },
             "outline": 0,
+            "outlineColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
             "fontSize": 45.0,
             "align": 0.5,
-            "path": ":/fonts/Handjet_Bold.ttf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "5_Name",
@@ -394,9 +429,14 @@
                 "b": 255
             },
             "outline": 0,
+            "outlineColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
             "fontSize": 30.0,
             "align": 0.5,
-            "path": ":/fonts/Handjet_Bold.ttf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "6_Name",
@@ -412,9 +452,14 @@
                 "b": 255
             },
             "outline": 0,
+            "outlineColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
             "fontSize": 30.0,
             "align": 0.5,
-            "path": ":/fonts/Handjet_Bold.ttf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "7_Name",
@@ -430,9 +475,14 @@
                 "b": 255
             },
             "outline": 0,
+            "outlineColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
             "fontSize": 30.0,
             "align": 0.5,
-            "path": ":/fonts/Handjet_Bold.ttf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "8_Name",
@@ -448,9 +498,14 @@
                 "b": 255
             },
             "outline": 0,
+            "outlineColor": {
+                "r": 0,
+                "g": 0,
+                "b": 0
+            },
             "fontSize": 30.0,
             "align": 0.5,
-            "path": ":/fonts/Handjet_Bold.ttf"
+            "path": "Handjet_Bold.ttf"
         }
     ],
     "Order": [

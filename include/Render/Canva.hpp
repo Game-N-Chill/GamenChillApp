@@ -34,6 +34,7 @@ namespace Generator::Render
 #define CANVA_INDEX_COLOR                   "color"
 #define CANVA_INDEX_STRING                  "str"
 #define CANVA_INDEX_OUTLINE                 "outline"
+#define CANVA_INDEX_OUTLINE_COLOR           "outlineColor"
 #define CANVA_INDEX_FONT_SIZE               "fontSize"
 #define CANVA_INDEX_ALIGNEMENT              "align"
 
@@ -55,6 +56,10 @@ struct Text
     QRect rect;
     QColor color;
     Qt::Alignment alignement;
+
+    int outline;
+    QColor outlineColor;
+    float outlineAlignement;
 
     Text(QString fontPath, int fontSize);
 };

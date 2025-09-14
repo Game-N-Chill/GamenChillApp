@@ -8,17 +8,18 @@ namespace Generator::Data
 
 Assets::Assets()
 {
-    QDir dir(":/fonts");
-    QStringList list = dir.entryList(QDir::Files);
+    QStringList list = {
+        "Handjet_Bold.ttf",
+        "RetroGaming_Regular.ttf"
+    };
 
     for (auto &it : list) {
-        int id = QFontDatabase::addApplicationFont(it);
+        int id = QFontDatabase::addApplicationFont(PREFIX_FONTS + it);
         if (id == -1) {
             std::cerr << "ERROR: can't load font: " << it.toStdString() << std::endl;
             continue;
         }
         this->_fonts[it] = id;
-        std::cout << "add: " << it.toStdString() << std::endl;
     }
 }
 

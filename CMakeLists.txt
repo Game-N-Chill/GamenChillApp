@@ -83,7 +83,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Logic/Winner.cpp
 )
 
-qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.rc")
+qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
 
 add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_RSC_FILES} ${APP_ICON_RESOURCE})
 
@@ -154,6 +154,8 @@ set(QT_DIR "$<IF:$<CONFIG:Debug>,${QT_BASE_DIR}/debug/${QT_PLUGINS_DIR},${QT_BAS
 add_custom_command(TARGET ${APP_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/platforms
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${QT_DIR}/platforms/qwindows$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/platforms
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/multimedia
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${QT_DIR}/multimedia/windowsmediaplugin$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/multimedia
 )
 
 # # Copy image format plugins (jpeg + png)

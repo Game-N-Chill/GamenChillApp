@@ -10,7 +10,7 @@
 namespace Generator::Data
 {
 
-    #define PATH_FONTS_DIR      "Assets\\Fonts"
+    #define PREFIX_FONTS      ":/Fonts/"
 
 class Assets : public Utils::Singleton<Assets>
 {
