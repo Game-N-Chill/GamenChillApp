@@ -33,7 +33,8 @@ endif()
 #  APPLICATION
 # ------------------------------------------------------------------------------
 
-add_subdirectory(${LIB_DIR}/OpenXLSX)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+add_subdirectory(${LIB_DIR}/OpenXLSX EXCLUDE_FROM_ALL)
 
 find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
