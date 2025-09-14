@@ -1,7 +1,7 @@
 
 #include "UI/Windows/PlayerSettings.hpp"
 
-namespace Generator::UI::Windows
+namespace GNCApp::UI::Windows
 {
 
 PlayerDuo::PlayerDuo(const int &index, const QString &title, QWidget *parent) :

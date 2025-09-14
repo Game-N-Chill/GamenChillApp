@@ -1,7 +1,7 @@
 
 #include "UI/Tools/Window.hpp"
 
-namespace Generator::UI::Tools
+namespace GNCApp::UI::Tools
 {
 
 Window::Window(const QString &title, QWidget *parent, int buttons) :

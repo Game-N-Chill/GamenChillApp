@@ -3,7 +3,7 @@
 #include "Data/Dictionary/Dictionary.hpp"
 #include "Utils.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
 Winner::Winner()
@@ -150,7 +150,7 @@ void Winner::print(std::ostream &flux) const
 } // namespace Winner::Data
 
 
-std::ostream &operator<<(std::ostream &flux, const Generator::Data::Winner &winner)
+std::ostream &operator<<(std::ostream &flux, const GNCApp::Data::Winner &winner)
 {
     winner.print();
     return flux;

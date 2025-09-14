@@ -6,7 +6,7 @@
 #include <QPainterPath>
 
 namespace fs = std::filesystem;
-namespace Generator::Logic
+namespace GNCApp::Logic
 {
 
 Text::Text(QString fontPath, int fontSize) :
@@ -57,7 +57,7 @@ static void loadTexts(const json &content, std::map<std::string, Object> &map)
 
     auto assets = Data::Assets::getInstance();
     for (const auto &txt : texts) {
-        Text object(assets->getFont(QString::fromStdString(txt[CANVA_INDEX_PATH])), txt[CANVA_INDEX_FONT_SIZE]);
+        Text object(assets->getFont(txt[CANVA_INDEX_PATH]), txt[CANVA_INDEX_FONT_SIZE]);
 
         object.rect.setX(txt[CANVA_INDEX_POSITION]["x"]);
         object.rect.setY(txt[CANVA_INDEX_POSITION]["y"]);
@@ -191,7 +191,7 @@ bool Canva::save(std::string dirPath, std::string fileName)
     if (!fs::is_directory(dirPath)) {
         fs::create_directory(dirPath);
     }
-    std::string imagePath = dirPath + '\\' + fileName + ".png";
+    std::string imagePath = dirPath + '/' + fileName + ".png";
     std::cout << "-- Generating image from canva at " << imagePath << std::endl;
     return this->_canva.save(imagePath.c_str());
 }

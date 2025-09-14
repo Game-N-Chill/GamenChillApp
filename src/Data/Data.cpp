@@ -1,15 +1,15 @@
 
 #include "Data/Data.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
 void loadData()
 {
     DictBackground::getInstance()->load(&Background::load);
     DictCharacter::getInstance()->load(&Character::load);
-    // Generator::Data::Assets::getInstance();
-    Generator::Data::Winner::getInstance();
+    GNCApp::Data::Assets::getInstance();
+    GNCApp::Data::Winner::getInstance();
 }
 
-} // namespace Generator::Data
+} // namespace GNCApp::Data

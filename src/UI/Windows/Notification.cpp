@@ -1,14 +1,12 @@
 
 #include "UI/Windows/Notification.hpp"
 
-namespace Generator::UI::Windows
+namespace GNCApp::UI::Windows
 {
 
-Notification::Notification(const QString &title, const QString &subtitle, QWidget *parent) :
-    Window(title, parent, WINDOW_TOOL_BUTTON_VALIDATE)
+Notification::Notification(const QString &title, const QString &subtitle, const QString &soundPath, QWidget *parent, int buttons) :
+    Window(title, parent, buttons)
 {
-    setWindowTitle(title);
-
     this->_infoLayout = new QHBoxLayout;
 
     this->_icon = new QLabel(this);
@@ -19,7 +17,7 @@ Notification::Notification(const QString &title, const QString &subtitle, QWidge
     this->_infoLayout->addWidget(this->_text);
     this->_layout->addLayout(this->_infoLayout);
 
-    _sound.setSource(QUrl::fromLocalFile("C:\\Users\\hugor\\GitHub\\Asso\\AssetsGenerator\\Assets\\Sounds\\SE_SYS_BTN_OK.wav"));
+    _sound.setSource(QUrl::fromLocalFile(soundPath));
     _sound.setVolume(0.8f);
     _sound.play();
 

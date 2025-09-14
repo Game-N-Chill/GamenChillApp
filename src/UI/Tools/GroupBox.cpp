@@ -1,7 +1,7 @@
 
 #include "UI/Tools/GroupBox.hpp"
 
-namespace Generator::UI::Tools
+namespace GNCApp::UI::Tools
 {
 
 GroupBox::GroupBox(const QString &title, QWidget *parent) :

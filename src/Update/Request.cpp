@@ -1,7 +1,7 @@
 
 #include "Update/Update.hpp"
 
-namespace Generator::Update
+namespace GNCApp::Update
 {
 
 size_t Request::WriteToString(void *contents, size_t size, size_t nmemb, void *output)
@@ -40,7 +40,7 @@ void Request::SetOpt(std::string url, Func func, void *data)
 {
     curl_easy_setopt(this->_curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(this->_curl, CURLOPT_FOLLOWLOCATION, 1L);
-    curl_easy_setopt(this->_curl, CURLOPT_USERAGENT, MKTG_API_USERAGENT); // GitHub requires a User-Agent
+    curl_easy_setopt(this->_curl, CURLOPT_USERAGENT, GNCAPP_API_USERAGENT); // GitHub requires a User-Agent
     curl_easy_setopt(this->_curl, CURLOPT_WRITEFUNCTION, func);
     curl_easy_setopt(this->_curl, CURLOPT_WRITEDATA, data);
 

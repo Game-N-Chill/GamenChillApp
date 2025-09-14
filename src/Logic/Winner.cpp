@@ -2,7 +2,7 @@
 #include "Logic/Logic.hpp"
 #include "Data/Data.hpp"
 
-namespace Generator::Logic
+namespace GNCApp::Logic
 {
 
 template<size_t N>
@@ -31,7 +31,7 @@ static void createWinnerShared(std::string path, const std::array<Data::Team<N>,
 
         std::string name;
         for (size_t j = 0; j < team.players.size(); j++) {
-            canva.getImage(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Character").image.load((team.players[j].getCharacter().path + '\\' + team.players[j].getSkin() + ".png").c_str());
+            canva.getImage(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Character").image.load((team.players[j].getCharacter().path + '/' + team.players[j].getSkin() + ".png").c_str());
             name += team.players[j].getName();
             if (j < team.players.size() - 1) {
                 name += " - ";

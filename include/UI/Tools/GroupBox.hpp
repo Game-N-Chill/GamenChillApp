@@ -5,7 +5,7 @@
 #include <QFormLayout>
 #include <QVBoxLayout>
 
-namespace Generator::UI::Tools
+namespace GNCApp::UI::Tools
 {
 
 class GroupBox : public QGroupBox

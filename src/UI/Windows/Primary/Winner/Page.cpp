@@ -3,7 +3,7 @@
 #include "UI/Windows/Notification.hpp"
 #include "Logic/Logic.hpp"
 
-namespace Generator::UI::Windows
+namespace GNCApp::UI::Windows
 {
 
 // *****************************************************************************
@@ -48,7 +48,7 @@ void PageWinner::onGenerateClicked()
         Logic::createWinnerDuoImage();
     }
 
-    Windows::Notification window("Game'n Chill App Notification", "Winner image generation done", this);
+    Windows::Notification window("Game'n Chill App Notification", "Winner image generation done", PATH_DEFAULT_NOTIFICATION_SOUND, this);
 }
 
 }

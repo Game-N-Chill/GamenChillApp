@@ -1,7 +1,7 @@
 
 #include "UI/Windows/Primary.hpp"
 
-namespace Generator::UI::Windows
+namespace GNCApp::UI::Windows
 {
 
 BoxRank::BoxRank(QWidget *parent) :
@@ -96,7 +96,7 @@ void BoxRank::onPlayerClicked(int index, bool checked)
 // *****************************************************************************
 
 template<size_t N>
-void BoxRank::setTeamInfo(int index, Generator::Data::Team<N> team)
+void BoxRank::setTeamInfo(int index, GNCApp::Data::Team<N> team)
 {
     if (N == 1) {
         _playerBox[index]->setTitle("N°" + QString::number(index + 1));

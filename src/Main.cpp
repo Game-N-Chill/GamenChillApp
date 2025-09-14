@@ -1,5 +1,6 @@
 
-#include "Generator.hpp"
+#include "GNCApp.hpp"
+#include <QTimer>
 
 #if defined(_WIN32)
 #include <Windows.h>
@@ -16,17 +17,7 @@ static void preLoad()
         dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
         SetConsoleMode(hOut, dwMode);
     #endif
-
-    // Generator::Update::Manager updater(MKTG_API_URL);
-    // if (updater.needsUpdate()) {
-    //     int result = MessageBoxA(nullptr, "An update is available, do you want to install it ?", "Confirmation", MB_YESNO | MB_ICONQUESTION);
-    //     if (result == IDYES) {
-    //         Utils::createProcess(std::filesystem::current_path().string() + "\\MarioKartTopGenerator_Updater.exe");
-    //     }
-    // }
 }
-
-#include <QImageWriter>
 
 int main(int ac, char **av)
 {
@@ -36,12 +27,14 @@ int main(int ac, char **av)
         std::cerr << "ERROR: " << e.what() << std::endl;
     }
 
-    Generator::Data::loadData();
     QApplication app(ac, av);
+    GNCApp::Data::loadData();
 
-    Generator::UI::Windows::Primary winPrimary;
-    winPrimary.lockSize();
-    winPrimary.show();
+    GNCApp::UI::Windows::Primary windowPrimary;
+    windowPrimary.lockSize();
+    windowPrimary.show();
+    windowPrimary.checkUpdate();
 
     return app.exec();
+    return 0;
 }

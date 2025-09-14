@@ -7,17 +7,17 @@
 #include <QFontDatabase>
 #include "Utils.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
-    #define PREFIX_FONTS      ":/Fonts/"
+    #define PATH_ASSETS_FONTS   "Assets/Fonts/"
 
 class Assets : public Utils::Singleton<Assets>
 {
     public:
         ~Assets() = default;
 
-        QString getFont(QString fontName);
+        QString getFont(std::string fontName);
 
     private:
         friend class Utils::Singleton<Assets>;

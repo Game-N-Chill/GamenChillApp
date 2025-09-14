@@ -4,7 +4,7 @@
 #include "Data/Dictionary/Character.hpp"
 #include "Utils.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
 Character::Character()
@@ -16,7 +16,7 @@ Character::Character()
 Character::Character(std::string str)
 {
     this->path = str;
-    this->name = str.substr(str.find_last_of('\\') + 1);
+    this->name = str.substr(str.find_last_of('/') + 1);
 }
 
 void Character::load(std::list<Character> &list)
@@ -43,9 +43,9 @@ Character::operator std::string() const
     return oss.str();
 }
 
-} // namespace Generator::Data
+} // namespace GNCApp::Data
 
-std::ostream &operator<<(std::ostream &flux, const Generator::Data::Character &character)
+std::ostream &operator<<(std::ostream &flux, const GNCApp::Data::Character &character)
 {
     flux << character.name;
     return flux;

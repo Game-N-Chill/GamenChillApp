@@ -1,6 +1,6 @@
-# MarioKartTopGenerator
+# GamenChillApp
 
-MarioKartTopGenerator is an application for bracket render generation used by deerstalker association for their "Rififi sur le Circuit" tournaments.
+GamenChillApp is an application for bracket render generation used by deerstalker association for their "Rififi sur le Circuit" tournaments.
 The application is a terminal with it's own set a commands
 
 ## Installation

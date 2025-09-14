@@ -8,7 +8,7 @@
 #include "Utils.hpp"
 #include "Data/Dictionary/Character.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
     #define PATH_CHARACTERS_DIR             "Assets\\Images\\Characters\\"
@@ -86,7 +86,7 @@ typedef SharedTeam<2>   SharedDuo;
 } // namespace MKTG
 
 template<size_t N>
-std::ostream &operator<<(std::ostream &flux, const Generator::Data::Team<N> team)
+std::ostream &operator<<(std::ostream &flux, const GNCApp::Data::Team<N> team)
 {
     team.print(flux);
     return flux;

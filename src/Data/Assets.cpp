@@ -3,31 +3,33 @@
 #include <QStringList>
 #include <QDir>
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
 Assets::Assets()
 {
-    QStringList list = {
-        "Handjet_Bold.ttf",
-        "RetroGaming_Regular.ttf"
-    };
+    for (const auto &entry : std::filesystem::recursive_directory_iterator(PATH_ASSETS_FONTS)) {
+        if (entry.is_regular_file()) {
+            std::string path = entry.path().string();
+            std::string name = path.substr(path.find_last_of('/') + 1);
 
-    for (auto &it : list) {
-        int id = QFontDatabase::addApplicationFont(PREFIX_FONTS + it);
-        if (id == -1) {
-            std::cerr << "ERROR: can't load font: " << it.toStdString() << std::endl;
-            continue;
+            std::cout << name << std::endl;
+
+            int id = QFontDatabase::addApplicationFont(QString::fromStdString(path));
+            if (id == -1) {
+                std::cerr << "ERROR: can't load font: " << path << std::endl;
+                continue;
+            }
+            this->_fonts[QString::fromStdString(name)] = id;
         }
-        this->_fonts[it] = id;
     }
 }
 
-QString Assets::getFont(QString fontName)
+QString Assets::getFont(std::string fontName)
 {
-    std::map<QString, int>::iterator it = this->_fonts.find(fontName);
+    std::map<QString, int>::iterator it = this->_fonts.find(fontName.c_str());
     if (it == this->_fonts.end()) {
-        std::cerr << "can't find font name: " << fontName.toStdString() << std::endl;
+        std::cerr << "can't find font name: " << fontName << std::endl;
         return "";
     }
 

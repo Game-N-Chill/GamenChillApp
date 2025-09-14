@@ -8,7 +8,7 @@
 #include "Data/Player.hpp"
 #include "Data/Dictionary/Dictionary.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
     #define PLAYER_GRAPH_COUNT                  8
@@ -62,6 +62,6 @@ class Winner : public Utils::Singleton<Winner>
         std::array<Duo,  PLAYER_GRAPH_COUNT> _duo;
 };
 
-} // namespace Generator::Data
+} // namespace GNCApp::Data
 
-std::ostream &operator<<(std::ostream &flux, const Generator::Data::Winner &winner);
+std::ostream &operator<<(std::ostream &flux, const GNCApp::Data::Winner &winner);

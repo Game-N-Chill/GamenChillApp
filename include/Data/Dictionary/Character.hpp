@@ -5,7 +5,7 @@
 #include <fstream>
 #include <list>
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
     #define PATH_CHARACTER_DIR                  "Assets\\Images\\Characters\\"
@@ -27,6 +27,6 @@ struct Character
     static void load(std::list<Character> &list);
 };
 
-} // namespace Generator::Data
+} // namespace GNCApp::Data
 
-std::ostream &operator<<(std::ostream &flux, const Generator::Data::Character &character);
+std::ostream &operator<<(std::ostream &flux, const GNCApp::Data::Character &character);

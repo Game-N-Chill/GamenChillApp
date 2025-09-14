@@ -4,7 +4,7 @@
 #include "Data/Dictionary/Background.hpp"
 #include "Utils.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
 Background::Background()
@@ -16,7 +16,7 @@ Background::Background()
 
 Background::Background(std::string pathCup, std::string pathTrack)
 {
-    this->cup = pathCup.substr(pathCup.find_last_of('\\') + 4);
+    this->cup = pathCup.substr(pathCup.find_last_of('/') + 4);
     this->track = pathTrack.substr(pathCup.size() + 4, pathTrack.size() - (pathCup.size() + 4) - 4);
     this->path = pathTrack;
 }
@@ -28,9 +28,7 @@ std::string Background::get() const
 
 void Background::load(std::list<Background> &list)
 {
-    std::string path = Utils::getFullPath(PATH_BACKGROUND_DIR);
-
-    for (const auto &entryCup : std::filesystem::recursive_directory_iterator(path)) {
+    for (const auto &entryCup : std::filesystem::recursive_directory_iterator(PATH_BACKGROUND_DIR)) {
         if (entryCup.is_directory()) {
             std::string pathCup = entryCup.path().string();
             for (const auto &entryTrack : std::filesystem::recursive_directory_iterator(pathCup)) {
@@ -57,9 +55,9 @@ Background::operator std::string() const
     return oss.str();
 }
 
-} // namespace Generator::Data
+} // namespace GNCApp::Data
 
-std::ostream &operator<<(std::ostream &flux, const Generator::Data::Background &background)
+std::ostream &operator<<(std::ostream &flux, const GNCApp::Data::Background &background)
 {
     flux << background.cup << "/" << background.track;
     return flux;

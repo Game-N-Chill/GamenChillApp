@@ -7,7 +7,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 
-namespace Generator::UI::Tools
+namespace GNCApp::UI::Tools
 {
 
     #define WINDOW_TOOL_BUTTON_VALIDATE         (1 << 0)
@@ -36,4 +36,4 @@ class Window : public QDialog
         bool _ret;
 };
 
-} // namespace Generator::UI
+} // namespace GNCApp::UI

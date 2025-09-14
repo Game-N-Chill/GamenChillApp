@@ -5,13 +5,13 @@
 #include "Dictionary/Background.hpp"
 #include "Dictionary/Character.hpp"
 
-// #include "Assets.hpp"
+#include "Assets.hpp"
 #include "Player.hpp"
 #include "Winner.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
     void loadData();
 
-} // namespace Generator::Data
+} // namespace GNCApp::Data

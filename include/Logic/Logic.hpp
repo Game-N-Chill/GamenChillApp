@@ -11,7 +11,7 @@ using json = nlohmann::json;
 #include "Utils.hpp"
 #include "Render.hpp"
 
-namespace Generator::Logic
+namespace GNCApp::Logic
 {
 
 void createWinnerSoloImage();

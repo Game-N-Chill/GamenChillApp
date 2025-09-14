@@ -39,7 +39,7 @@
 #include "UI/Windows/PlayerSettings.hpp"
 #include "Data/Data.hpp"
 
-namespace Generator::UI::Windows
+namespace GNCApp::UI::Windows
 {
 
     #define EXCEL_CELL_TITLE        "C2"
@@ -110,7 +110,7 @@ class BoxRank : public QWidget
         void onPlayerClicked(int index, bool checked);
 
         template<size_t N>
-        void setTeamInfo(int index, Generator::Data::Team<N> team);
+        void setTeamInfo(int index, GNCApp::Data::Team<N> team);
         void openPlayerSoloWindow(int index);
         void openPlayerDuoWindow(int index);
 
@@ -169,6 +169,7 @@ class Primary : public QMainWindow
         ~Primary();
 
         void lockSize();
+        void checkUpdate();
 
     private slots:
         void onQuit();

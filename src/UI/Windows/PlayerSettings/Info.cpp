@@ -1,7 +1,7 @@
 
 #include "UI/Windows/PlayerSettings.hpp"
 
-namespace Generator::UI::Windows
+namespace GNCApp::UI::Windows
 {
 
 PlayerInfo::PlayerInfo(const Data::Player &data, const QString &title, QWidget *parent) :

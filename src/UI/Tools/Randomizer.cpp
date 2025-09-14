@@ -2,7 +2,7 @@
 #include "UI/Tools/Randomizer.hpp"
 #include <QFileDialog>
 
-namespace Generator::UI::Tools
+namespace GNCApp::UI::Tools
 {
 
 Randomizer::Randomizer(const std::list<std::string> &list, QWidget *parent) :
@@ -41,4 +41,4 @@ void Randomizer::onClicked()
     randomize();
 }
 
-} // namespace Generator::UI
+} // namespace GNCApp::UI

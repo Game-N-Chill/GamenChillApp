@@ -2,7 +2,7 @@
 #include "UI/Tools/Browser.hpp"
 #include <QFileDialog>
 
-namespace Generator::UI::Tools
+namespace GNCApp::UI::Tools
 {
 
 Browser::Browser(QWidget *parent, QWidget *additionalWidget) :
@@ -53,4 +53,4 @@ void DirBrowser::onClicked()
         _lineEdit->setText(file);
 }
 
-} // namespace Generator::UI
+} // namespace GNCApp::UI

@@ -10,7 +10,7 @@
 
 #include "Data/Data.hpp"
 
-namespace Generator::UI::Tools
+namespace GNCApp::UI::Tools
 {
 
 class Randomizer : public QWidget
@@ -32,4 +32,4 @@ class Randomizer : public QWidget
         void onClicked();
 };
 
-} // namespace Generator::UI
+} // namespace GNCApp::UI

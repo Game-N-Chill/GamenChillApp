@@ -1,7 +1,7 @@
 
 #include "UI/Windows/Primary.hpp"
 
-namespace Generator::UI::Windows
+namespace GNCApp::UI::Windows
 {
 
 BoxInfo::BoxInfo(QWidget *parent) :

@@ -2,7 +2,7 @@
 #include "Data/Player.hpp"
 #include "Data/Dictionary/Dictionary.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
 Player::Player()

@@ -6,7 +6,7 @@
 #include <QLineEdit>
 #include <QToolButton>
 
-namespace Generator::UI::Tools
+namespace GNCApp::UI::Tools
 {
 
 class Browser : public QWidget
@@ -45,4 +45,4 @@ class DirBrowser : public Browser
         void onClicked();
 };
 
-} // namespace Generator::UI
+} // namespace GNCApp::UI

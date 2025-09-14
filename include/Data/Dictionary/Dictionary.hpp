@@ -9,7 +9,7 @@
 #include "Data/Dictionary/Character.hpp"
 #include "Utils.hpp"
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
 template<typename U>
@@ -84,4 +84,4 @@ class Dictionary : public Utils::Singleton<Dictionary<U>>
 typedef Dictionary<Background>   DictBackground;
 typedef Dictionary<Character>    DictCharacter;
 
-} // namespace Generator::Data
+} // namespace GNCApp::Data

@@ -4,14 +4,14 @@
 #include <iostream>
 #include <list>
 
-namespace Generator::Data
+namespace GNCApp::Data
 {
 
-    #define PATH_BACKGROUND_DIR                 "Assets\\Images\\Background\\"
+    #define PATH_BACKGROUND_DIR                 "Assets/Images/Background/"
 
     #define DATA_BACKGROUND_DEFAULT_CUP         "Champignon"
     #define DATA_BACKGROUND_DEFAULT_TRACK       "Champidrome"
-    #define DATA_BACKGROUND_DEFAULT_PATH        "Assets\\Images\\Background\\01_Champignon\\01_Champidrome.png"
+    #define DATA_BACKGROUND_DEFAULT_PATH        "Assets/Images/Background/01_Champignon/01_Champidrome.png"
 
 struct Background
 {
@@ -30,6 +30,6 @@ struct Background
     static void load(std::list<Background> &list);
 };
 
-} // namespace Generator::Data
+} // namespace GNCApp::Data
 
-std::ostream &operator<<(std::ostream &flux, const Generator::Data::Background &background);
+std::ostream &operator<<(std::ostream &flux, const GNCApp::Data::Background &background);

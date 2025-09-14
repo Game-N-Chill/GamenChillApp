@@ -1,5 +1,6 @@
 
 #include "Utils.hpp"
+#include "Update/Update.hpp"
 #include <ctime>
 #include <sstream>
 #include <vector>
@@ -50,7 +51,9 @@ std::string getCompleteName(std::string name, json &tags)
 
 std::string getFullPath(std::string path)
 {
-    return std::filesystem::current_path().string() + "\\" + std::string(path);
+    std::string fullPath = std::filesystem::current_path().string() + "/" + std::string(path);
+    std::replace(fullPath.begin(), fullPath.end(), '\\', '/');
+    return fullPath;
 }
 
 void createProcess(std::string path)
@@ -74,7 +77,7 @@ void createProcess(std::string path)
         CloseHandle(pi.hThread);
         std::exit(EXIT_SUCCESS);
     } else {
-        MessageBoxA(nullptr, "Can't find MarioKartTopGenerator_Updater.exe", "Error", MB_OK | MB_ICONERROR);
+        MessageBoxA(nullptr, (std::string("Can't find ") + GNCAPP_NAME + "_Updater.exe").c_str(), "Error", MB_OK | MB_ICONERROR);
     }
 }
 

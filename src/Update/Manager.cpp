@@ -5,7 +5,7 @@
 #include <minizip/unzip.h>
 
 namespace fs = std::filesystem;
-namespace Generator::Update
+namespace GNCApp::Update
 {
 
 Manager::Manager(std::string url)
@@ -28,8 +28,8 @@ Manager::Manager(std::string url)
             throw std::runtime_error(path + " path doesn't exist");
         }
 
-        this->_pathTemp = path + MKTG_APPDATA_DIR;
-        this->_pathSave = this->_pathTemp + MKTG_APPDATA_SAVE_DIR;
+        this->_pathTemp = path + GNCAPP_APPDATA_DIR;
+        this->_pathSave = this->_pathTemp + GNCAPP_APPDATA_SAVE_DIR;
         if (!fs::exists(this->_pathTemp)) {
             fs::create_directory(this->_pathTemp);
         }
@@ -47,7 +47,7 @@ Manager::~Manager()
 
 bool Manager::needsUpdate()
 {
-    return (this->_json[GITHUB_API_TAG] != MKTG_VERSION);
+    return (this->_json[GITHUB_API_TAG] != GNCAPP_VERSION);
 }
 
 void Manager::downloadUpdate()
@@ -57,14 +57,14 @@ void Manager::downloadUpdate()
     for (json &release : this->_json[GITHUB_API_ASSETS]) {
         std::string name = release[GITHUB_API_ASSET_NAME].get<std::string>();
         std::string url = release[GITHUB_API_ASSET_URL].get<std::string>();
-        if (name == MKTG_TARGET) {
+        if (name == GNCAPP_TARGET) {
             this->_pathFile = this->_pathTemp + name;
             this->_req.Download(url, this->_pathFile);
             return;
         }
     }
 
-    throw std::runtime_error(std::string("could not find target ") + MKTG_TARGET);
+    throw std::runtime_error(std::string("could not find target ") + GNCAPP_TARGET);
 
 }
 
@@ -75,8 +75,8 @@ void Manager::saveApp()
     for (const auto &entry : std::filesystem::directory_iterator(fs::current_path())) {
         if (entry.is_directory()) {
             std::string path = entry.path().string();
-            std::string name = path.substr(path.find_last_of('\\'));
-            if (name == "\\Assets" || name == "\\Template")
+            std::string name = path.substr(path.find_last_of('/'));
+            if (name == "/Assets" || name == "/Template")
                 continue;
 
             fs::copy(path, this->_pathSave + name, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
@@ -107,7 +107,7 @@ void Manager::installUpdate()
 {
     std::cout << "-- Installing update..." << std::endl;
 
-    std::string fileName = _pathFile.substr(_pathFile.find_last_of('\\'));
+    std::string fileName = _pathFile.substr(_pathFile.find_last_of('/'));
 
     fs::copy(this->_pathFile, fs::current_path().string() + fileName);
     fs::remove(this->_pathFile);
@@ -161,7 +161,7 @@ void Manager::installSave()
 
     for (const auto &entry : std::filesystem::directory_iterator(this->_pathSave)) {
         std::string path = entry.path().string();
-        std::string name = path.substr(path.find_last_of('\\'));
+        std::string name = path.substr(path.find_last_of('/'));
 
         fs::copy(path, fs::current_path().string() + name, fs::copy_options::recursive);
         fs::remove_all(path);

@@ -14,7 +14,7 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-namespace Generator::Logic
+namespace GNCApp::Logic
 {
 
 #define CANVA_SOLO_PATH                     "Assets\\Data\\CanvaSolo.json"

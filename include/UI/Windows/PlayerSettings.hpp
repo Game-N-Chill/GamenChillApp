@@ -32,7 +32,7 @@
 #include "UI/Tools/Randomizer.hpp"
 #include "Data/Data.hpp"
 
-namespace Generator::UI::Windows
+namespace GNCApp::UI::Windows
 {
 
 class PlayerInfo : public QWidget
