@@ -1,5 +1,6 @@
 
-#include "Logic.hpp"
+#include "Logic/Logic.hpp"
+#include "Data/Data.hpp"
 
 namespace Generator::Logic
 {
@@ -10,7 +11,7 @@ static void createWinnerShared(std::string path, const std::array<Data::Team<N>,
     if (path.empty()) {
         throw std::runtime_error("can't open file: " + path);
     }
-    Render::Canva canva(path);
+    Canva canva(path);
     Data::Winner *dataWinner = Data::Winner::getInstance();
 
     canva.getImage("background").image.load(dataWinner->getBackground().path.c_str());

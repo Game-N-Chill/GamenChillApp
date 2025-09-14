@@ -33,9 +33,6 @@ endif()
 #  APPLICATION
 # ------------------------------------------------------------------------------
 
-add_subdirectory(${LIB_DIR}/SDL)
-add_subdirectory(${LIB_DIR}/SDL_image)
-add_subdirectory(${LIB_DIR}/SDL_ttf)
 add_subdirectory(${LIB_DIR}/OpenXLSX)
 
 find_package(nlohmann_json REQUIRED)
@@ -47,12 +44,16 @@ qt_standard_project_setup()
 set(APP_SRC_FILES
     ${SRC_DIR}/Main.cpp
     ${SRC_DIR}/Utils.cpp
-    ${SRC_DIR}/Render/Canva.cpp
-    ${SRC_DIR}/Render/Image.cpp
-    ${SRC_DIR}/Render/Object.cpp
-    ${SRC_DIR}/Render/Text.cpp
-    ${SRC_DIR}/Update/Updater.cpp
+    ${SRC_DIR}/Update/Manager.cpp
     ${SRC_DIR}/Update/Request.cpp
+    ${SRC_DIR}/Data/Data.cpp
+    ${SRC_DIR}/Data/Assets.cpp
+    ${SRC_DIR}/Data/Player.cpp
+    ${SRC_DIR}/Data/Winner.cpp
+    ${SRC_DIR}/Data/Dictionary/Background.cpp
+    ${SRC_DIR}/Data/Dictionary/Character.cpp
+    ${SRC_DIR}/Logic/Render.cpp
+    ${SRC_DIR}/Logic/Winner.cpp
     ${INC_DIR}/UI/Windows/Primary.hpp
     ${SRC_DIR}/UI/Windows/Primary/Core.cpp
     ${SRC_DIR}/UI/Windows/Primary/Winner/Page.cpp
@@ -74,13 +75,6 @@ set(APP_SRC_FILES
     ${INC_DIR}/UI/Tools/Randomizer.hpp
     ${SRC_DIR}/UI/Tools/Window.cpp
     ${INC_DIR}/UI/Tools/Window.hpp
-    ${SRC_DIR}/Data/Data.cpp
-    ${SRC_DIR}/Data/Assets.cpp
-    ${SRC_DIR}/Data/Player.cpp
-    ${SRC_DIR}/Data/Winner.cpp
-    ${SRC_DIR}/Data/Dictionary/Background.cpp
-    ${SRC_DIR}/Data/Dictionary/Character.cpp
-    ${SRC_DIR}/Logic/Winner.cpp
 )
 
 qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
@@ -90,9 +84,6 @@ add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_RSC_FILES} ${APP_ICON_RESOURCE
 target_include_directories(${APP_NAME} PRIVATE include)
 
 target_link_libraries(${APP_NAME} PRIVATE
-    SDL3::SDL3
-    SDL3_image::SDL3_image
-    SDL3_ttf::SDL3_ttf
     OpenXLSX::OpenXLSX
     nlohmann_json::nlohmann_json
     CURL::libcurl
@@ -107,7 +98,7 @@ target_link_libraries(${APP_NAME} PRIVATE
 set(UPD_SRC_FILES
     ${SRC_DIR}/Utils.cpp
     ${SRC_DIR}/Update/Main.cpp
-    ${SRC_DIR}/Update/Updater.cpp
+    ${SRC_DIR}/Update/Manager.cpp
     ${SRC_DIR}/Update/Request.cpp
 )
 

@@ -17,9 +17,6 @@ static void preLoad()
         SetConsoleMode(hOut, dwMode);
     #endif
 
-    // if (!TTF_Init())
-        // throw std::runtime_error(SDL_GetError());
-
     // Generator::Update::Manager updater(MKTG_API_URL);
     // if (updater.needsUpdate()) {
     //     int result = MessageBoxA(nullptr, "An update is available, do you want to install it ?", "Confirmation", MB_YESNO | MB_ICONQUESTION);

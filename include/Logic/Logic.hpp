@@ -9,8 +9,7 @@
 using json = nlohmann::json;
 
 #include "Utils.hpp"
-#include "Data/Data.hpp"
-#include "Render/Canva.hpp"
+#include "Render.hpp"
 
 namespace Generator::Logic
 {

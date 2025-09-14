@@ -1,15 +1,6 @@
 [submodule "lib/OpenXLSX"]
 	path = lib/OpenXLSX
 	url = https://github.com/troldal/OpenXLSX.git
-[submodule "lib/SDL"]
-	path = lib/SDL
-	url = https://github.com/libsdl-org/SDL.git
-[submodule "lib/SDL_image"]
-	path = lib/SDL_image
-	url = https://github.com/libsdl-org/SDL_image.git
 [submodule "package"]
 	path = package
 	url = https://github.com/microsoft/vcpkg.git
-[submodule "lib/SDL_ttf"]
-	path = lib/SDL_ttf
-	url = https://github.com/libsdl-org/SDL_ttf.git

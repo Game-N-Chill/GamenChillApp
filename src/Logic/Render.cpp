@@ -1,12 +1,12 @@
 
-#include "Render/Canva.hpp"
+#include "Logic/Render.hpp"
 #include "Data/Assets.hpp"
 #include <fstream>
 #include <filesystem>
 #include <QPainterPath>
 
 namespace fs = std::filesystem;
-namespace Generator::Render
+namespace Generator::Logic
 {
 
 Text::Text(QString fontPath, int fontSize) :
@@ -144,7 +144,6 @@ static void drawText(QPainter &painter, Text object)
             object.rect.x() + (object.rect.width() - textSize.width()) * object.outlineAlignement,
             object.rect.y() + object.rect.height() - metrics.descent()
         );
-        std::cout << object.rect.y() << " + (" << object.rect.height() << " - " << textSize.height() << ") / 2 - " << metrics.descent() << " = " << outlinePos.y() << std::endl;
 
         QPainterPath path;
         path.addText(outlinePos.x(), outlinePos.y(), object.font, object.str);

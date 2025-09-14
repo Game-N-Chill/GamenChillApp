@@ -1,7 +1,7 @@
 
 #include "UI/Windows/Primary.hpp"
 #include "UI/Windows/Notification.hpp"
-#include "Logic.hpp"
+#include "Logic/Logic.hpp"
 
 namespace Generator::UI::Windows
 {
