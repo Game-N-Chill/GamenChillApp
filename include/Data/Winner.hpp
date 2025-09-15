@@ -17,7 +17,7 @@ namespace GNCApp::Data
     #define DATA_WINNER_DEFAULT_SUBTITLE        "Edition 150cc"
     #define DATA_WINNER_DEFAULT_DATE            "01/01/2000"
     #define DATA_WINNER_DEFAULT_PLAYER_COUNT    16
-    #define DATA_WINNER_DEFAULT_OUTPUT_DIR      "Result"
+    #define DATA_WINNER_DEFAULT_OUTPUT_DIR      "result"
 
 class Winner : public Utils::Singleton<Winner>
 {
