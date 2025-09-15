@@ -13,8 +13,6 @@ Assets::Assets()
             std::string path = entry.path().string();
             std::string name = path.substr(path.find_last_of('/') + 1);
 
-            std::cout << name << std::endl;
-
             int id = QFontDatabase::addApplicationFont(QString::fromStdString(path));
             if (id == -1) {
                 std::cerr << "ERROR: can't load font: " << path << std::endl;

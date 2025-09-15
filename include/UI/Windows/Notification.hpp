@@ -19,7 +19,7 @@
 namespace GNCApp::UI::Windows
 {
 
-    #define PATH_DEFAULT_NOTIFICATION_SOUND     "Assets/Sounds/SE_SYS_BTN_OK.wav"
+    #define PATH_DEFAULT_NOTIFICATION_SOUND     "assets/Sounds/SE_SYS_BTN_OK.wav"
 
 class Notification : public Tools::Window
 {

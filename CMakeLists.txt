@@ -115,28 +115,21 @@ target_link_libraries(${UPD_NAME} PRIVATE
 #  POST BUILD
 # ------------------------------------------------------------------------------
 
-# set(ASSETS_TO_COPY
-#     "Assets"
-#     "Template"
-# )
+set(ASSETS_TO_COPY
+    "assets"
+    "data"
+    "template"
+    "themes"
+)
 
-# add_custom_command(
-#         TARGET ${APP_NAME}
-#         POST_BUILD
-#         COMMAND ${CMAKE_COMMAND} -E make_directory ${PLUGIN_DIR}
-#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qminimal.dll" ${PLUGIN_DIR}
-#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qoffscreen.dll" ${PLUGIN_DIR}
-#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qwindows.dll" ${PLUGIN_DIR}
-# )
-
-# foreach(ITEM ${ASSETS_TO_COPY})
-#     add_custom_command(
-#         TARGET ${APP_NAME}
-#         POST_BUILD
-#         COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
-#         COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
-#     )
-# endforeach()
+foreach(ITEM ${ASSETS_TO_COPY})
+    add_custom_command(
+        TARGET ${APP_NAME}
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/resources/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
+        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/resources/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
+    )
+endforeach()
 
 
 set(QT_BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows")

@@ -17,8 +17,8 @@ using json = nlohmann::json;
 namespace GNCApp::Logic
 {
 
-#define CANVA_SOLO_PATH                     "Assets\\Data\\CanvaSolo.json"
-#define CANVA_DUO_PATH                      "Assets\\Data\\CanvaDuo.json"
+#define CANVA_SOLO_PATH                     "data/CanvaSolo.json"
+#define CANVA_DUO_PATH                      "data/CanvaDuo.json"
 
 #define CANVA_CATEGORY_IMAGE                "Images"
 #define CANVA_CATEGORY_TEXT                 "Texts"

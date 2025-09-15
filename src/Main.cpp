@@ -1,6 +1,7 @@
 
 #include "GNCApp.hpp"
-#include <QTimer>
+#include <QDebug>
+#include <QStyleFactory>
 
 #if defined(_WIN32)
 #include <Windows.h>
@@ -28,6 +29,13 @@ int main(int ac, char **av)
     }
 
     QApplication app(ac, av);
+
+    QFile file("themes/Darkeum.qss");
+    if (file.open(QFile::ReadOnly)) {
+        QString styleSheet = QString::fromUtf8(file.readAll());
+        app.setStyleSheet(styleSheet);
+    }
+
     GNCApp::Data::loadData();
 
     GNCApp::UI::Windows::Primary windowPrimary;

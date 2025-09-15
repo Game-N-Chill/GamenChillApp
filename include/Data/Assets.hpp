@@ -10,7 +10,7 @@
 namespace GNCApp::Data
 {
 
-    #define PATH_ASSETS_FONTS   "Assets/Fonts/"
+    #define PATH_ASSETS_FONTS   "assets/Fonts/"
 
 class Assets : public Utils::Singleton<Assets>
 {
