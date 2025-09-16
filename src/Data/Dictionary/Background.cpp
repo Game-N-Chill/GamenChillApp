@@ -14,8 +14,10 @@ Background::Background()
     this->path = DATA_BACKGROUND_DEFAULT_PATH;
 }
 
-Background::Background(std::string pathCup, std::string pathTrack)
+Background::Background(std::string pathGame, std::string pathCup, std::string pathTrack)
 {
+    this->game = pathGame.substr(pathGame.find_last_of("MK") - 1); // '-1 to have the M
+    this->game.erase(this->game.end().operator--()); // remove last '/'
     this->cup = pathCup.substr(pathCup.find_last_of('/') + 4);
     this->track = pathTrack.substr(pathCup.size() + 4, pathTrack.size() - (pathCup.size() + 4) - 4);
     this->path = pathTrack;
@@ -23,7 +25,7 @@ Background::Background(std::string pathCup, std::string pathTrack)
 
 std::string Background::get() const
 {
-    return this->cup + '/' + this->track;
+    return this->game + '/' + this->cup + '/' + this->track;
 }
 
 void Background::load(std::list<Background> &list)
@@ -33,7 +35,7 @@ void Background::load(std::list<Background> &list)
             std::string pathCup = entryCup.path().string();
             for (const auto &entryTrack : std::filesystem::recursive_directory_iterator(pathCup)) {
                 std::string pathTrack = entryTrack.path().string();
-                list.push_back(Background(pathCup, pathTrack));
+                list.push_back(Background(PATH_BACKGROUND_DIR, pathCup, pathTrack));
             }
         }
     }

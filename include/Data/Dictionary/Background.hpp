@@ -7,7 +7,7 @@
 namespace GNCApp::Data
 {
 
-    #define PATH_BACKGROUND_DIR                 "assets/Images/Background/"
+    #define PATH_BACKGROUND_DIR                 "assets/Images/Background/MKWorld/"
 
     #define DATA_BACKGROUND_DEFAULT_CUP         "Champignon"
     #define DATA_BACKGROUND_DEFAULT_TRACK       "Champidrome"
@@ -15,12 +15,13 @@ namespace GNCApp::Data
 
 struct Background
 {
+    std::string game;
     std::string cup;
     std::string track;
     std::string path;
 
     Background();
-    Background(std::string pathCup, std::string pathTrack);
+    Background(std::string pathGame, std::string pathCup, std::string pathTrack);
 
     std::string get() const;
 

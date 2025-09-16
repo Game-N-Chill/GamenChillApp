@@ -16,11 +16,9 @@ static void createWinnerShared(std::string path, const std::array<Data::Team<N>,
 
     canva.getImage("background").image.load(dataWinner->getBackground().path.c_str());
     canva.getText("title").str = dataWinner->getTitle().c_str();
-    // canva.getText("titleOutline").str = dataWinner->getTitle();
     canva.getText("subtitle").str = dataWinner->getSubtitle().c_str();
-    // canva.getText("subtitleOutline").str = dataWinner->getSubtitle();
-    canva.getText("date").str = (dataWinner->getDate() + " - " + std::to_string(dataWinner->getPlayerCount()) + " Participants").c_str();
-    // canva.getText("dateOutline").str = dataWinner->getDate() + " - " + std::to_string(dataWinner->getPlayerCount()) + " Participants";
+    canva.getText("date").str = (dataWinner->getDate()).c_str();
+    canva.getText("playerCount").str = (std::to_string(dataWinner->getPlayerCount()) + " Participants").c_str();
 
     for (size_t i = 0; i < array.size(); i++) {
         Data::Team<N> team = array[i];

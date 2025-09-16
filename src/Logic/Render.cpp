@@ -4,6 +4,9 @@
 #include <fstream>
 #include <filesystem>
 #include <QPainterPath>
+#include <QGraphicsBlurEffect>
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 
 namespace fs = std::filesystem;
 namespace GNCApp::Logic
