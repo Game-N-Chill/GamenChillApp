@@ -9,8 +9,8 @@ namespace GNCApp::Data
 
 Character::Character()
 {
-    this->path = DATA_CHARACTER_DEFAULT_NAME;
-    this->name = DATA_CHARACTER_DEFAULT_PATH;
+    this->path = DATA_CHARACTER_DEFAULT_PATH;
+    this->name = DATA_CHARACTER_DEFAULT_NAME;
 }
 
 Character::Character(std::string str)

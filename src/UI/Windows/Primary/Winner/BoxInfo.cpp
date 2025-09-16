@@ -32,6 +32,16 @@ BoxInfo::BoxInfo(QWidget *parent) :
     _playerCount->setValue(static_cast<int>(dataWinner->getPlayerCount()));
     connect(_playerCount, &QSpinBox::valueChanged, this, &BoxInfo::onPlayerCountEdited);
 
+    QVBoxLayout *gamesLayout = new QVBoxLayout;
+    QStringList gamesList = {"Mario Kart 8 Deluxe", "Mario Kart World"};
+    _games = new QButtonGroup(this);
+    _games->setExclusive(true);
+    for (int i = 0; i < gamesList.size(); i++) {
+        QRadioButton *radio = new QRadioButton(gamesList[i]);
+        gamesLayout->addWidget(radio);
+        _games->addButton(radio, i);
+    }
+
     _background = new Tools::Randomizer(Data::DictBackground::getInstance()->list(), this);
     _background->getComboBox()->setCurrentText(QString::fromStdString(dataWinner->getBackground().get()));
     connect(this->_background->getComboBox(), &QComboBox::currentIndexChanged, this, &BoxInfo::onBackgroundChanged);
@@ -44,6 +54,7 @@ BoxInfo::BoxInfo(QWidget *parent) :
     _layoutLeft->addRow("SubTitle : ", _subtitle);
     _layoutLeft->addRow("Date : ", _date);
     _layoutLeft->addRow("Player Count : ", _playerCount);
+    _layoutRight->addRow("Game Selected : ", gamesLayout);
     _layoutRight->addRow("Background : ", _background);
     _layoutRight->addRow("Output : ", _output);
     _box->addLayout(_layoutLeft);

@@ -44,5 +44,4 @@ int main(int ac, char **av)
     windowPrimary.checkUpdate();
 
     return app.exec();
-    return 0;
 }

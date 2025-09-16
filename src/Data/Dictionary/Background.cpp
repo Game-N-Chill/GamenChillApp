@@ -9,18 +9,22 @@ namespace GNCApp::Data
 
 Background::Background()
 {
+    this->game = DATA_BACKGROUND_DEFAULT_GAME;
     this->cup = DATA_BACKGROUND_DEFAULT_CUP;
     this->track = DATA_BACKGROUND_DEFAULT_TRACK;
     this->path = DATA_BACKGROUND_DEFAULT_PATH;
 }
 
-Background::Background(std::string pathGame, std::string pathCup, std::string pathTrack)
+Background::Background(std::string path)
 {
-    this->game = pathGame.substr(pathGame.find_last_of("MK") - 1); // '-1 to have the M
-    this->game.erase(this->game.end().operator--()); // remove last '/'
-    this->cup = pathCup.substr(pathCup.find_last_of('/') + 4);
-    this->track = pathTrack.substr(pathCup.size() + 4, pathTrack.size() - (pathCup.size() + 4) - 4);
-    this->path = pathTrack;
+    std::replace(path.begin(), path.end(), '\\', '/');
+    this->path = path;
+    this->track = path.substr(path.find_last_of('/') + 4);
+    this->track.erase(this->track.size() - 4, this->track.size());
+    path = path.substr(0, path.find_last_of('/'));
+    this->cup = path.substr(path.find_last_of('/') + 4);
+    path = path.substr(0, path.find_last_of('/'));
+    this->game = path.substr(path.find_last_of('/') + 1);
 }
 
 std::string Background::get() const
@@ -32,12 +36,9 @@ void Background::load(std::list<Background> &list)
 {
     for (const auto &entryCup : std::filesystem::recursive_directory_iterator(PATH_BACKGROUND_DIR)) {
         if (entryCup.is_directory()) {
-            std::string pathCup = entryCup.path().string();
-            for (const auto &entryTrack : std::filesystem::recursive_directory_iterator(pathCup)) {
-                std::string pathTrack = entryTrack.path().string();
-                list.push_back(Background(PATH_BACKGROUND_DIR, pathCup, pathTrack));
-            }
+            continue;
         }
+        list.push_back(Background(entryCup.path().string()));
     }
 }
 
@@ -61,6 +62,6 @@ Background::operator std::string() const
 
 std::ostream &operator<<(std::ostream &flux, const GNCApp::Data::Background &background)
 {
-    flux << background.cup << "/" << background.track;
+    flux << background.game << "/" << background.cup << "/" << background.track;
     return flux;
 }

@@ -10,7 +10,7 @@
             "scale": 1
         },
         {
-            "path": "assets/Images/Front/EffectTop.png",
+            "path": "assets/Images/Winner/Front/MKWorld/EffectTop.png",
             "name": "EffectTop",
             "position": {
                 "x": 0,
@@ -19,7 +19,7 @@
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Front/EffectBottom.png",
+            "path": "assets/Images/Winner/Front/MKWorld/EffectBottom.png",
             "name": "EffectBottom",
             "position": {
                 "x": 0,
@@ -28,7 +28,7 @@
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Front/LogoPuzzleInn.png",
+            "path": "assets/Images/Winner/Front/MKWorld/LogoPuzzleInn.png",
             "name": "LogoPuzzleInn",
             "position": {
                 "x": 25,
@@ -37,7 +37,7 @@
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Front/LogoAsso.png",
+            "path": "assets/Images/Winner/Front/MKWorld/LogoAsso.png",
             "name": "LogoAsso",
             "position": {
                 "x": 1676,
@@ -46,7 +46,7 @@
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Front/TitleUnderline.png",
+            "path": "assets/Images/Winner/Front/MKWorld/TitleUnderline.png",
             "name": "TitleUnderline",
             "position": {
                 "x": 308,
@@ -64,7 +64,7 @@
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Front/BackgroundName.png",
+            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
             "name": "1_Background",
             "position": {
                 "x": 50,
@@ -73,7 +73,7 @@
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Position/MKWorld/Pos01.png",
+            "path": "assets/Images/Winner/Position/MKWorld/Pos01.png",
             "name": "1_Rank",
             "position": {
                 "x": 50,
@@ -91,7 +91,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Front/BackgroundName.png",
+            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
             "name": "2_Background",
             "position": {
                 "x": 580,
@@ -100,7 +100,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Position/MKWorld/Pos02.png",
+            "path": "assets/Images/Winner/Position/MKWorld/Pos02.png",
             "name": "2_Rank",
             "position": {
                 "x": 580,
@@ -118,7 +118,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Front/BackgroundName.png",
+            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
             "name": "3_Background",
             "position": {
                 "x": 1037,
@@ -127,7 +127,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Position/MKWorld/Pos03.png",
+            "path": "assets/Images/Winner/Position/MKWorld/Pos03.png",
             "name": "3_Rank",
             "position": {
                 "x": 1037,
@@ -145,7 +145,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Front/BackgroundName.png",
+            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
             "name": "4_Background",
             "position": {
                 "x": 1494,
@@ -154,7 +154,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Position/MKWorld/Pos04.png",
+            "path": "assets/Images/Winner/Position/MKWorld/Pos04.png",
             "name": "4_Rank",
             "position": {
                 "x": 1494,
@@ -172,7 +172,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Front/BackgroundName.png",
+            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
             "name": "5_Background",
             "position": {
                 "x": 580,
@@ -181,7 +181,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Position/MKWorld/Pos05.png",
+            "path": "assets/Images/Winner/Position/MKWorld/Pos05.png",
             "name": "5_Rank",
             "position": {
                 "x": 580,
@@ -199,7 +199,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Front/BackgroundName.png",
+            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
             "name": "6_Background",
             "position": {
                 "x": 910,
@@ -208,7 +208,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Position/MKWorld/Pos06.png",
+            "path": "assets/Images/Winner/Position/MKWorld/Pos06.png",
             "name": "6_Rank",
             "position": {
                 "x": 910,
@@ -226,7 +226,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Front/BackgroundName.png",
+            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
             "name": "7_Background",
             "position": {
                 "x": 1240,
@@ -235,7 +235,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Position/MKWorld/Pos07.png",
+            "path": "assets/Images/Winner/Position/MKWorld/Pos07.png",
             "name": "7_Rank",
             "position": {
                 "x": 1240,
@@ -253,7 +253,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Front/BackgroundName.png",
+            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
             "name": "8_Background",
             "position": {
                 "x": 1570,
@@ -262,7 +262,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Position/MKWorld/Pos08.png",
+            "path": "assets/Images/Winner/Position/MKWorld/Pos08.png",
             "name": "8_Rank",
             "position": {
                 "x": 1570,

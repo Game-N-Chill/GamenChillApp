@@ -25,6 +25,8 @@
 #include <QMenuBar>
 #include <QAction>
 #include <QFileDialog>
+#include <QButtonGroup>
+#include <QRadioButton>
 
 #pragma warning(push)
 #pragma warning(disable : 4244)
@@ -93,6 +95,7 @@ class BoxInfo : public QWidget
         QLineEdit *_subtitle;
         QDateEdit *_date;
         QSpinBox *_playerCount;
+        QButtonGroup *_games;
         Tools::Randomizer *_background;
         Tools::DirBrowser *_output;
 };

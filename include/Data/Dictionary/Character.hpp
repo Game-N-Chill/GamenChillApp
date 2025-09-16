@@ -8,10 +8,10 @@
 namespace GNCApp::Data
 {
 
-    #define PATH_CHARACTER_DIR                  "Assets\\Images\\Characters\\"
+    #define PATH_CHARACTER_DIR                  "Assets/Images/Winner/Characters/"
 
     #define DATA_CHARACTER_DEFAULT_NAME         "Mario"
-    #define DATA_CHARACTER_DEFAULT_PATH         "Assets\\Images\\Characters\\Mario"
+    #define DATA_CHARACTER_DEFAULT_PATH         "Assets/Images/Winner/Characters/Mario/"
 
 struct Character
 {
