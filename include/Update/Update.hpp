@@ -14,7 +14,7 @@ using json = nlohmann::json;
 #define GNCAPP_API_URL                  "https://api.github.com/repos/Game-N-Chill/GamenChillApp/releases/latest"
 #define GNCAPP_API_USERAGENT            "GNCApp"
 #define GNCAPP_TARGET                   "GamenChillApp_WIN32.zip"
-#define GNCAPP_APPDATA_DIR              "\\GamenChill\\"
+#define GNCAPP_APPDATA_DIR              "/GamenChill/"
 #define GNCAPP_APPDATA_SAVE_DIR         "Save"
 
 #define GITHUB_API_TAG                  "tag_name"
@@ -62,6 +62,7 @@ class Manager
         Request _req;
         json _json;
 
+        std::string _pathCurr;
         std::string _pathTemp;
         std::string _pathSave;
         std::string _pathFile;

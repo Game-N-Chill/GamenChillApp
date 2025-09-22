@@ -28,6 +28,7 @@ Manager::Manager(std::string url)
             throw std::runtime_error(path + " path doesn't exist");
         }
 
+        std::replace(path.begin(), path.end(), '\\', '/');
         this->_pathTemp = path + GNCAPP_APPDATA_DIR;
         this->_pathSave = this->_pathTemp + GNCAPP_APPDATA_SAVE_DIR;
         if (!fs::exists(this->_pathTemp)) {
@@ -36,6 +37,9 @@ Manager::Manager(std::string url)
         if (!fs::exists(this->_pathSave)) {
             fs::create_directory(this->_pathSave);
         }
+
+        this->_pathCurr = fs::current_path().string();
+        std::replace(this->_pathCurr.begin(), this->_pathCurr.end(), '\\', '/');
     } catch (std::runtime_error &e) {
         std::cerr << "ERROR: " << e.what() << std::endl;
     }
@@ -72,11 +76,20 @@ void Manager::saveApp()
 {
     std::cout << "-- Saving data from current version..." << std::endl;
 
-    for (const auto &entry : std::filesystem::directory_iterator(fs::current_path())) {
+    std::vector<std::string> toSave = {
+        "/assets",
+        "/data",
+        "/template",
+        "/themes"
+    };
+
+    for (const auto &entry : std::filesystem::directory_iterator(this->_pathCurr)) {
         if (entry.is_directory()) {
             std::string path = entry.path().string();
+            std::replace(path.begin(), path.end(), '\\', '/');
             std::string name = path.substr(path.find_last_of('/'));
-            if (name == "/Assets" || name == "/Template")
+
+            if (std::find(toSave.begin(), toSave.end(), name) == toSave.end())
                 continue;
 
             fs::copy(path, this->_pathSave + name, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
@@ -89,14 +102,17 @@ void Manager::clearApp()
 {
     std::cout << "-- Clearing current application..." << std::endl;
 
-    for (const auto &entry : std::filesystem::directory_iterator(fs::current_path())) {
+    for (const auto &entry : std::filesystem::directory_iterator(this->_pathCurr)) {
         try {
+            std::string path = entry.path().string();
+            std::replace(path.begin(), path.end(), '\\', '/');
+
             if (entry.is_directory()) {
-                fs::remove_all(entry.path());
+                fs::remove_all(path);
             } else {
-                fs::remove(entry.path());
+                fs::remove(path);
             }
-            std::cout << "-- Successfully deleted " << entry.path() << std::endl;
+            std::cout << "-- Successfully deleted " << path << std::endl;
         } catch (const fs::filesystem_error& e) {
             std::cerr << "WARNING: " << e.what() << std::endl;
         }
@@ -109,10 +125,10 @@ void Manager::installUpdate()
 
     std::string fileName = _pathFile.substr(_pathFile.find_last_of('/'));
 
-    fs::copy(this->_pathFile, fs::current_path().string() + fileName);
+    fs::copy(this->_pathFile, this->_pathCurr + fileName);
     fs::remove(this->_pathFile);
-    std::cout << "-- moved " << this->_pathFile << " to " << fs::current_path().string() + fileName << std::endl;
-    this->_pathFile = fs::current_path().string() + fileName;
+    std::cout << "-- moved " << this->_pathFile << " to " << this->_pathCurr + fileName << std::endl;
+    this->_pathFile = this->_pathCurr + fileName;
 
     std::cout << "-- extracting " << this->_pathFile << std::endl;
     unzFile zip = unzOpen(this->_pathFile.c_str());
@@ -161,12 +177,13 @@ void Manager::installSave()
 
     for (const auto &entry : std::filesystem::directory_iterator(this->_pathSave)) {
         std::string path = entry.path().string();
+        std::replace(path.begin(), path.end(), '\\', '/');
         std::string name = path.substr(path.find_last_of('/'));
 
-        fs::copy(path, fs::current_path().string() + name, fs::copy_options::recursive);
+        fs::copy(path, this->_pathCurr + name, fs::copy_options::recursive | fs::copy_options::update_existing);
         fs::remove_all(path);
 
-        std::cout << "-- moved " << entry.path() << " to " << fs::current_path().string() + name << std::endl;
+        std::cout << "-- moved " << path << " to " << this->_pathCurr + name << std::endl;
     }
 }
 
