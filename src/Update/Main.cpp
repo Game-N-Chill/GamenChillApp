@@ -1,5 +1,5 @@
 
-#include "Update.hpp"
+#include "Update/Update.hpp"
 #include "Utils.hpp"
 #include <filesystem>
 
@@ -8,7 +8,7 @@ namespace fs = std::filesystem;
 int main(int ac, char **av)
 {
     try {
-        MKTG::Updater updater(MKTG_API_URL);
+        GNCApp::Update::Manager updater(GNCAPP_API_URL);
         updater.downloadUpdate();
         updater.saveApp();
         updater.clearApp();
@@ -25,6 +25,6 @@ int main(int ac, char **av)
         return EXIT_FAILURE;
     }
 
-    Utils::createProcess(std::filesystem::current_path().string() + "\\MarioKartTopGenerator.exe");
+    Utils::createProcess(std::filesystem::current_path().string() + '/' + GNCAPP_NAME + ".exe");
     return EXIT_SUCCESS;
 }

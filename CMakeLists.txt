@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.30)
-project(MarioKartTopGenerator)
+project(GamenChillApp)
 
 #  INITIALIZATION
 # ------------------------------------------------------------------------------
@@ -10,6 +10,7 @@ set(UPD_NAME "${PROJECT_NAME}_Updater")
 
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin")
 
 set(CMAKE_CXX_STANDARD 17)
@@ -32,61 +33,65 @@ endif()
 #  APPLICATION
 # ------------------------------------------------------------------------------
 
-add_subdirectory(${LIB_DIR}/SDL)
-add_subdirectory(${LIB_DIR}/SDL_image)
-add_subdirectory(${LIB_DIR}/SDL_ttf)
-add_subdirectory(${LIB_DIR}/OpenXLSX)
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+add_subdirectory(${LIB_DIR}/OpenXLSX EXCLUDE_FROM_ALL)
 
 find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
 find_package(minizip REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia)
+qt_standard_project_setup()
 
 set(APP_SRC_FILES
     ${SRC_DIR}/Main.cpp
     ${SRC_DIR}/Utils.cpp
-    ${SRC_DIR}/Generator/Shared.cpp
-    ${SRC_DIR}/Generator/Solo.cpp
-    ${SRC_DIR}/Generator/Duo.cpp
-    ${SRC_DIR}/Commands/Help.cpp
-    ${SRC_DIR}/Commands/Version.cpp
-    ${SRC_DIR}/Commands/Quit.cpp
-    ${SRC_DIR}/Commands/List.cpp
-    ${SRC_DIR}/Commands/Title.cpp
-    ${SRC_DIR}/Commands/SubTitle.cpp
-    ${SRC_DIR}/Commands/Date.cpp
-    ${SRC_DIR}/Commands/Count.cpp
-    ${SRC_DIR}/Commands/Url.cpp
-    ${SRC_DIR}/Commands/Load.cpp
-    ${SRC_DIR}/Commands/Player.cpp
-    ${SRC_DIR}/Commands/Team.cpp
-    ${SRC_DIR}/Commands/Background.cpp
-    ${SRC_DIR}/Commands/Skin.cpp
-    ${SRC_DIR}/Commands/Print.cpp
-    ${SRC_DIR}/Commands/Dir.cpp
-    ${SRC_DIR}/Commands/Create.cpp
-    ${SRC_DIR}/Render/Canva.cpp
-    ${SRC_DIR}/Render/Image.cpp
-    ${SRC_DIR}/Render/Object.cpp
-    ${SRC_DIR}/Render/Text.cpp
-    ${SRC_DIR}/Logic/LineParser.cpp
-    ${SRC_DIR}/Logic/Terminal.cpp
-    ${SRC_DIR}/Update/Updater.cpp
+    ${SRC_DIR}/Update/Manager.cpp
     ${SRC_DIR}/Update/Request.cpp
+    ${SRC_DIR}/Data/Data.cpp
+    ${SRC_DIR}/Data/Assets.cpp
+    ${SRC_DIR}/Data/Player.cpp
+    ${SRC_DIR}/Data/Winner.cpp
+    ${SRC_DIR}/Data/Dictionary/Background.cpp
+    ${SRC_DIR}/Data/Dictionary/Character.cpp
+    ${SRC_DIR}/Logic/Render.cpp
+    ${SRC_DIR}/Logic/Winner.cpp
+    ${INC_DIR}/UI/Windows/Primary.hpp
+    ${SRC_DIR}/UI/Windows/Primary/Core.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Winner/Page.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxAutoLoad.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxInfo.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxRank.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Bracket/Page.cpp
+    ${INC_DIR}/UI/Windows/PlayerSettings.hpp
+    ${SRC_DIR}/UI/Windows/PlayerSettings/Info.cpp
+    ${SRC_DIR}/UI/Windows/PlayerSettings/Solo.cpp
+    ${SRC_DIR}/UI/Windows/PlayerSettings/Duo.cpp
+    ${INC_DIR}/UI/Windows/Notification.hpp
+    ${SRC_DIR}/UI/Windows/Notification.cpp
+    ${SRC_DIR}/UI/Tools/Browser.cpp
+    ${INC_DIR}/UI/Tools/Browser.hpp
+    ${SRC_DIR}/UI/Tools/GroupBox.cpp
+    ${INC_DIR}/UI/Tools/GroupBox.hpp
+    ${SRC_DIR}/UI/Tools/Randomizer.cpp
+    ${INC_DIR}/UI/Tools/Randomizer.hpp
+    ${SRC_DIR}/UI/Tools/Window.cpp
+    ${INC_DIR}/UI/Tools/Window.hpp
 )
 
-add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
+# qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
+
+add_executable(${APP_NAME} WIN32 ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
 
 target_include_directories(${APP_NAME} PRIVATE include)
 
-target_link_libraries(${APP_NAME} PRIVATE SDL3::SDL3)
-target_link_libraries(${APP_NAME} PRIVATE SDL3_image::SDL3_image)
-target_link_libraries(${APP_NAME} PRIVATE SDL3_ttf::SDL3_ttf)
-target_link_libraries(${APP_NAME} PRIVATE OpenXLSX::OpenXLSX)
-target_link_libraries(${APP_NAME} PRIVATE nlohmann_json::nlohmann_json)
-target_link_libraries(${APP_NAME} PRIVATE CURL::libcurl)
-target_link_libraries(${APP_NAME} PRIVATE minizip::minizip)
-target_link_libraries(${APP_NAME} PRIVATE Qt6::Widgets)
+target_link_libraries(${APP_NAME} PRIVATE
+    OpenXLSX::OpenXLSX
+    nlohmann_json::nlohmann_json
+    CURL::libcurl
+    minizip::minizip
+    Qt6::Widgets
+    Qt6::Multimedia
+)
 
 #  UPDATER
 # ------------------------------------------------------------------------------
@@ -94,7 +99,7 @@ target_link_libraries(${APP_NAME} PRIVATE Qt6::Widgets)
 set(UPD_SRC_FILES
     ${SRC_DIR}/Utils.cpp
     ${SRC_DIR}/Update/Main.cpp
-    ${SRC_DIR}/Update/Updater.cpp
+    ${SRC_DIR}/Update/Manager.cpp
     ${SRC_DIR}/Update/Request.cpp
 )
 
@@ -102,34 +107,29 @@ add_executable(${UPD_NAME} ${UPD_SRC_FILES} ${UPD_ICON_RESOURCE})
 
 target_include_directories(${UPD_NAME} PRIVATE include)
 
-target_link_libraries(${UPD_NAME} PRIVATE CURL::libcurl)
-target_link_libraries(${UPD_NAME} PRIVATE minizip::minizip)
+target_link_libraries(${UPD_NAME} PRIVATE
+    CURL::libcurl
+    minizip::minizip
+)
 
 #  POST BUILD
 # ------------------------------------------------------------------------------
 
-# set(ASSETS_TO_COPY
-#     "Assets"
-#     "Template"
-# )
+set(ASSETS_TO_COPY
+    "assets"
+    "data"
+    "template"
+    "themes"
+)
 
-# add_custom_command(
-#         TARGET ${APP_NAME}
-#         POST_BUILD
-#         COMMAND ${CMAKE_COMMAND} -E make_directory ${PLUGIN_DIR}
-#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qminimal.dll" ${PLUGIN_DIR}
-#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qoffscreen.dll" ${PLUGIN_DIR}
-#         COMMAND ${CMAKE_COMMAND} -E copy "${_VCPKG_INSTALLED_DIR}/x64-windows/Qt6/plugins/platforms/qwindows.dll" ${PLUGIN_DIR}
-# )
-
-# foreach(ITEM ${ASSETS_TO_COPY})
-#     add_custom_command(
-#         TARGET ${APP_NAME}
-#         POST_BUILD
-#         COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
-#         COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
-#     )
-# endforeach()
+foreach(ITEM ${ASSETS_TO_COPY})
+    add_custom_command(
+        TARGET ${APP_NAME}
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/resources/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
+        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/resources/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
+    )
+endforeach()
 
 
 set(QT_BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows")
@@ -139,6 +139,8 @@ set(QT_DIR "$<IF:$<CONFIG:Debug>,${QT_BASE_DIR}/debug/${QT_PLUGINS_DIR},${QT_BAS
 add_custom_command(TARGET ${APP_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/platforms
     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${QT_DIR}/platforms/qwindows$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/platforms
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/multimedia
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${QT_DIR}/multimedia/windowsmediaplugin$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/multimedia
 )
 
 # # Copy image format plugins (jpeg + png)
