@@ -6,7 +6,8 @@ namespace GNCApp::Data
 
 void loadData()
 {
-    DictBackground::getInstance()->load(&Background::load);
+    DictBackgroundMKWorld::getInstance()->load(&BackgroundMKWorld::load);
+    DictBackgroundMK8::getInstance()->load(&BackgroundMK8::load);
     DictCharacter::getInstance()->load(&Character::load);
     GNCApp::Data::Assets::getInstance();
     GNCApp::Data::Winner::getInstance();

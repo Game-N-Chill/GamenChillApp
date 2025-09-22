@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <filesystem>
 
 namespace GNCApp::Data
 {
@@ -30,9 +31,37 @@ struct Background
     std::string get() const;
 
     bool operator==(std::string key);
+    bool operator==(Background key);
     explicit operator std::string() const;
 
-    static void load(std::list<Background> &list);
+    template<typename T>
+    static void load(std::list<T> &list, std::string game)
+    {
+        static_assert(std::is_base_of<Background, T>::value);
+
+        std::string pathDir = PATH_BACKGROUND_DIR + game + '/';
+        for (const auto &entry : std::filesystem::recursive_directory_iterator(pathDir)) {
+            if (entry.is_regular_file()) {
+                list.push_back(T(entry.path().string()));
+            }
+        }
+    }
+};
+
+struct BackgroundMKWorld : public Background
+{
+    BackgroundMKWorld() = default;
+    BackgroundMKWorld(std::string path);
+
+    static void load(std::list<BackgroundMKWorld> &list);
+};
+
+struct BackgroundMK8 : public Background
+{
+    BackgroundMK8() = default;
+    BackgroundMK8(std::string path);
+
+    static void load(std::list<BackgroundMK8> &list);
 };
 
 } // namespace GNCApp::Data

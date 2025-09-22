@@ -81,7 +81,8 @@ class Dictionary : public Utils::Singleton<Dictionary<U>>
         std::list<U> _list;
 };
 
-typedef Dictionary<Background>   DictBackground;
-typedef Dictionary<Character>    DictCharacter;
+typedef Dictionary<BackgroundMKWorld>   DictBackgroundMKWorld;
+typedef Dictionary<BackgroundMK8>       DictBackgroundMK8;
+typedef Dictionary<Character>           DictCharacter;
 
 } // namespace GNCApp::Data

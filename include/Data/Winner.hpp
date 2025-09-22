@@ -40,10 +40,28 @@ class Winner : public Utils::Singleton<Winner>
         void setDate(std::string str);
         void setPlayerCount(size_t value);
         void setOutputDir(std::string str);
-        void setBackground(size_t index);
-        void setBackground(std::string str);
+        template<typename T>
+        void setBackground(size_t index)
+        {
+            static_assert(std::is_base_of<Background, T>::value);
 
-        void randomizeBackground();
+            try {
+                this->_background = Data::Dictionary<T>::getInstance()->find(index);
+            } catch (std::out_of_range &e) {
+                std::cerr << e.what() << std::endl;
+            }
+        }
+        template<typename T>
+        void setBackground(std::string str)
+        {
+            static_assert(std::is_base_of<Background, T>::value);
+
+            try {
+                this->_background = Data::Dictionary<T>::getInstance()->find(str);
+            } catch (std::out_of_range &e) {
+                std::cerr << e.what() << std::endl;
+            }
+        }
 
         void print(std::ostream &flux = std::cout) const;
 

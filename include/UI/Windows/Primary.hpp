@@ -53,6 +53,9 @@ namespace GNCApp::UI::Windows
 
     #define DATE_FORMAT             "dd/MM/yyyy"
 
+    #define GAME_SELECTION_MKWORLD  0
+    #define GAME_SELECTION_MK8      1
+
 class BoxAutoLoad : public QWidget
 {
     Q_OBJECT
@@ -83,6 +86,7 @@ class BoxInfo : public QWidget
         void onSubtitleEdited(const QString &str);
         void onDateEdited(const QDate &date);
         void onPlayerCountEdited(int value);
+        void onGameChanged(int id, bool checked);
         void onBackgroundChanged(int index);
         void onOutputDirEdited(const QString &str);
 

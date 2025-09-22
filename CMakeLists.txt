@@ -80,7 +80,7 @@ set(APP_SRC_FILES
 
 # qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
 
-add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
+add_executable(${APP_NAME} WIN32 ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
 
 target_include_directories(${APP_NAME} PRIVATE include)
 

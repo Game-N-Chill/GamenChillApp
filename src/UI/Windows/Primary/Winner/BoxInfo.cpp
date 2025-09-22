@@ -33,16 +33,23 @@ BoxInfo::BoxInfo(QWidget *parent) :
     connect(_playerCount, &QSpinBox::valueChanged, this, &BoxInfo::onPlayerCountEdited);
 
     QVBoxLayout *gamesLayout = new QVBoxLayout;
-    QStringList gamesList = {"Mario Kart 8 Deluxe", "Mario Kart World"};
+    QStringList gamesList = {
+        "Mario Kart World",
+        "Mario Kart 8 Deluxe"
+    };
     _games = new QButtonGroup(this);
     _games->setExclusive(true);
     for (int i = 0; i < gamesList.size(); i++) {
         QRadioButton *radio = new QRadioButton(gamesList[i]);
         gamesLayout->addWidget(radio);
         _games->addButton(radio, i);
+        if (i == GAME_SELECTION_MKWORLD) {
+            radio->setChecked(true);
+        }
     }
+    connect(_games, &QButtonGroup::idToggled, this, &BoxInfo::onGameChanged);
 
-    _background = new Tools::Randomizer(Data::DictBackground::getInstance()->list(), this);
+    _background = new Tools::Randomizer(Data::DictBackgroundMKWorld::getInstance()->list(), this);
     _background->getComboBox()->setCurrentText(QString::fromStdString(dataWinner->getBackground().get()));
     connect(this->_background->getComboBox(), &QComboBox::currentIndexChanged, this, &BoxInfo::onBackgroundChanged);
 
@@ -100,9 +107,39 @@ void BoxInfo::onPlayerCountEdited(int value)
     Data::Winner::getInstance()->setPlayerCount(value);
 }
 
+void BoxInfo::onGameChanged(int id, bool checked)
+{
+    if (checked) {
+        auto comboBox = this->_background->getComboBox();
+        std::list<std::string> list;
+
+        comboBox->clear();
+        switch (id) {
+            case GAME_SELECTION_MKWORLD:
+                list = Data::DictBackgroundMKWorld::getInstance()->list();
+                break;
+            case GAME_SELECTION_MK8:
+                list = Data::DictBackgroundMK8::getInstance()->list();
+                break;
+        }
+
+        for (auto &it : list) {
+            comboBox->addItem(QString::fromStdString(it));
+        }
+        comboBox->setCurrentIndex(0);
+    }
+}
+
 void BoxInfo::onBackgroundChanged(int index)
 {
-    Data::Winner::getInstance()->setBackground(index);
+    switch (this->_games->checkedId()) {
+        case GAME_SELECTION_MKWORLD:
+            Data::Winner::getInstance()->setBackground<Data::BackgroundMKWorld>(index);
+            break;
+        case GAME_SELECTION_MK8:
+            Data::Winner::getInstance()->setBackground<Data::BackgroundMK8>(index);
+            break;
+    }
 }
 
 void BoxInfo::onOutputDirEdited(const QString &str)

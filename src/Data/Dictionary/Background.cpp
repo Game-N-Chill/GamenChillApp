@@ -32,23 +32,18 @@ std::string Background::get() const
     return this->game + '/' + this->cup + '/' + this->track;
 }
 
-void Background::load(std::list<Background> &list)
-{
-    for (const auto &entryCup : std::filesystem::recursive_directory_iterator(PATH_BACKGROUND_DIR)) {
-        if (entryCup.is_directory()) {
-            continue;
-        }
-        list.push_back(Background(entryCup.path().string()));
-    }
-}
-
 bool Background::operator==(std::string key)
 {
     if (key == track)
         return true;
-    if (key == cup + '/' + track)
+    if (key == get())
         return true;
     return false;
+}
+
+bool Background::operator==(Background key)
+{
+    return (get() == key.get());
 }
 
 Background::operator std::string() const
@@ -56,6 +51,26 @@ Background::operator std::string() const
     std::ostringstream oss;
     oss << this->get();
     return oss.str();
+}
+
+BackgroundMKWorld::BackgroundMKWorld(std::string path) :
+    Background(path)
+{
+}
+
+void BackgroundMKWorld::load(std::list<BackgroundMKWorld> &list)
+{
+    Background::load(list, DATA_BACKGROUND_GAME_MKWORLD);
+}
+
+BackgroundMK8::BackgroundMK8(std::string path) :
+    Background(path)
+{
+}
+
+void BackgroundMK8::load(std::list<BackgroundMK8> &list)
+{
+    Background::load(list, DATA_BACKGROUND_GAME_MK8);
 }
 
 } // namespace GNCApp::Data

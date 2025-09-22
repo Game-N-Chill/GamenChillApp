@@ -97,33 +97,6 @@ void Winner::setOutputDir(std::string str)
     this->_outputDir = str;
 }
 
-void Winner::setBackground(size_t index)
-{
-    try {
-        this->_background = Data::DictBackground::getInstance()->find(index);
-    } catch (std::out_of_range &e) {
-        std::cerr << e.what() << std::endl;
-    }
-}
-
-void Winner::setBackground(std::string str)
-{
-    try {
-        this->_background = Data::DictBackground::getInstance()->find(str);
-    } catch (std::out_of_range &e) {
-        std::cerr << e.what() << std::endl;
-    }
-}
-
-
-
-void Winner::randomizeBackground()
-{
-    Utils::Randomizer rand;
-    size_t index = rand.GetRandom(Data::DictBackground::getInstance()->size());
-    setBackground(index);
-}
-
 
 void Winner::print(std::ostream &flux) const
 {
