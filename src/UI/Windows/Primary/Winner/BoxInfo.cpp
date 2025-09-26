@@ -43,7 +43,7 @@ BoxInfo::BoxInfo(QWidget *parent) :
         QRadioButton *radio = new QRadioButton(gamesList[i]);
         gamesLayout->addWidget(radio);
         _games->addButton(radio, i);
-        if (i == GAME_SELECTION_MKWORLD) {
+        if (i == DATA_WINNER_GAME_MKWORLD) {
             radio->setChecked(true);
         }
     }
@@ -99,7 +99,7 @@ void BoxInfo::onSubtitleEdited(const QString &str)
 
 void BoxInfo::onDateEdited(const QDate &date)
 {
-    Data::Winner::getInstance()->setDate(date.toString().toStdString());
+    Data::Winner::getInstance()->setDate(date.toString("dd/MM/yyyy").toStdString());
 }
 
 void BoxInfo::onPlayerCountEdited(int value)
@@ -115,13 +115,14 @@ void BoxInfo::onGameChanged(int id, bool checked)
 
         comboBox->clear();
         switch (id) {
-            case GAME_SELECTION_MKWORLD:
+            case DATA_WINNER_GAME_MKWORLD:
                 list = Data::DictBackgroundMKWorld::getInstance()->list();
                 break;
-            case GAME_SELECTION_MK8:
+            case DATA_WINNER_GAME_MK8:
                 list = Data::DictBackgroundMK8::getInstance()->list();
                 break;
         }
+        Data::Winner::getInstance()->setGame(id);
 
         for (auto &it : list) {
             comboBox->addItem(QString::fromStdString(it));
@@ -133,10 +134,10 @@ void BoxInfo::onGameChanged(int id, bool checked)
 void BoxInfo::onBackgroundChanged(int index)
 {
     switch (this->_games->checkedId()) {
-        case GAME_SELECTION_MKWORLD:
+        case DATA_WINNER_GAME_MKWORLD:
             Data::Winner::getInstance()->setBackground<Data::BackgroundMKWorld>(index);
             break;
-        case GAME_SELECTION_MK8:
+        case DATA_WINNER_GAME_MK8:
             Data::Winner::getInstance()->setBackground<Data::BackgroundMK8>(index);
             break;
     }

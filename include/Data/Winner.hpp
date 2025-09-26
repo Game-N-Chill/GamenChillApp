@@ -19,6 +19,9 @@ namespace GNCApp::Data
     #define DATA_WINNER_DEFAULT_PLAYER_COUNT    16
     #define DATA_WINNER_DEFAULT_OUTPUT_DIR      "result"
 
+    #define DATA_WINNER_GAME_MKWORLD            0
+    #define DATA_WINNER_GAME_MK8                1
+
 class Winner : public Utils::Singleton<Winner>
 {
     public:
@@ -34,6 +37,7 @@ class Winner : public Utils::Singleton<Winner>
         Solo &getTeamSolo(size_t index);
         std::array<Duo, PLAYER_GRAPH_COUNT> &getDuo();
         Duo &getTeamDuo(size_t index);
+        int getGame() const;
 
         void setTitle(std::string str);
         void setSubtitle(std::string str);
@@ -62,6 +66,7 @@ class Winner : public Utils::Singleton<Winner>
                 std::cerr << e.what() << std::endl;
             }
         }
+        void setGame(int game);
 
         void print(std::ostream &flux = std::cout) const;
 
@@ -75,6 +80,7 @@ class Winner : public Utils::Singleton<Winner>
         size_t _playerCount;
         std::string _outputDir;
         Background _background;
+        int _game;
 
         std::array<Solo, PLAYER_GRAPH_COUNT> _solo;
         std::array<Duo,  PLAYER_GRAPH_COUNT> _duo;

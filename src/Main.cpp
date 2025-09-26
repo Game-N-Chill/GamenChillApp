@@ -45,3 +45,12 @@ int main(int ac, char **av)
 
     return app.exec();
 }
+
+#if defined(_WIN32)
+
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    return main(__argc, __argv);
+}
+
+#endif

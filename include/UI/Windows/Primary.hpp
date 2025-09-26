@@ -27,6 +27,8 @@
 #include <QFileDialog>
 #include <QButtonGroup>
 #include <QRadioButton>
+#include <QScrollArea>
+#include <QListWidget>
 
 #pragma warning(push)
 #pragma warning(disable : 4244)
@@ -53,8 +55,8 @@ namespace GNCApp::UI::Windows
 
     #define DATE_FORMAT             "dd/MM/yyyy"
 
-    #define GAME_SELECTION_MKWORLD  0
-    #define GAME_SELECTION_MK8      1
+//  WINNER DATA STRUCTURE
+// *****************************************************************************
 
 class BoxAutoLoad : public QWidget
 {
@@ -156,6 +158,9 @@ class PageWinner : public QWidget
         QPushButton *_btnWinner;
 };
 
+//  BRACKET DATA STRUCTURE
+// *****************************************************************************
+
 class PageBracket : public QWidget
 {
     Q_OBJECT
@@ -165,7 +170,20 @@ class PageBracket : public QWidget
 
     private:
         QVBoxLayout *_layout;
+
+        Tools::HGroupBox *_box;
+        QVBoxLayout *_layoutLeft;
+        QVBoxLayout *_layoutRight;
+
+        QPushButton *_buttonAdd;
+        QPushButton *_buttonRemove;
+        QPushButton *_buttonModify;
+
+        QListWidget *_areaList;
 };
+
+//  CORE DATA STRUCTURE
+// *****************************************************************************
 
 class Primary : public QMainWindow
 {

@@ -78,9 +78,9 @@ set(APP_SRC_FILES
     ${INC_DIR}/UI/Tools/Window.hpp
 )
 
-# qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
+qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
 
-add_executable(${APP_NAME} WIN32 ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
+add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_RSC_FILES} ${APP_ICON_RESOURCE})
 
 target_include_directories(${APP_NAME} PRIVATE include)
 
@@ -92,6 +92,11 @@ target_link_libraries(${APP_NAME} PRIVATE
     Qt6::Widgets
     Qt6::Multimedia
 )
+
+if (WIN32)
+    target_link_options(${APP_NAME} PRIVATE $<$<CONFIG:Debug>:/SUBSYSTEM:CONSOLE>)
+    target_link_options(${APP_NAME} PRIVATE $<$<CONFIG:Release>:/SUBSYSTEM:WINDOWS>)
+endif()
 
 #  UPDATER
 # ------------------------------------------------------------------------------
@@ -126,8 +131,8 @@ foreach(ITEM ${ASSETS_TO_COPY})
     add_custom_command(
         TARGET ${APP_NAME}
         POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/resources/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
-        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/resources/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different "${CMAKE_SOURCE_DIR}/resources/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
+        COMMAND ${CMAKE_COMMAND} -E echo "Copied resource directory: ${ITEM}"
     )
 endforeach()
 

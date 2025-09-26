@@ -14,6 +14,7 @@ Winner::Winner()
     this->_playerCount = DATA_WINNER_DEFAULT_PLAYER_COUNT;
     this->_outputDir = Utils::getFullPath(DATA_WINNER_DEFAULT_OUTPUT_DIR);
     this->_background = Background();
+    this->_game = DATA_WINNER_GAME_MKWORLD;
 
     for (int i = 0; i < PLAYER_GRAPH_COUNT; i++) {
         this->_solo[i] = Solo();
@@ -71,6 +72,11 @@ Duo &Winner::getTeamDuo(size_t index)
     return this->_duo[index];
 }
 
+int Winner::getGame() const
+{
+    return this->_game;
+}
+
 
 void Winner::setTitle(std::string str)
 {
@@ -95,6 +101,11 @@ void Winner::setPlayerCount(size_t value)
 void Winner::setOutputDir(std::string str)
 {
     this->_outputDir = str;
+}
+
+void Winner::setGame(int game)
+{
+    this->_game = game;
 }
 
 

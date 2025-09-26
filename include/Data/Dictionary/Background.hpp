@@ -15,8 +15,8 @@ namespace GNCApp::Data
 
     #define DATA_BACKGROUND_DEFAULT_GAME        DATA_BACKGROUND_GAME_MKWORLD
     #define DATA_BACKGROUND_DEFAULT_CUP         "Champignon"
-    #define DATA_BACKGROUND_DEFAULT_TRACK       "Champidrome"
-    #define DATA_BACKGROUND_DEFAULT_PATH        "assets/Images/Winner/Background/MKWorld/01_Champignon/01_Champidrome.png"
+    #define DATA_BACKGROUND_DEFAULT_TRACK       "01_MarioBrosCircuit01"
+    #define DATA_BACKGROUND_DEFAULT_PATH        "assets/Images/Winner/Background/MKWorld/01_Champignon/01_MarioBrosCircuit01.png"
 
 struct Background
 {

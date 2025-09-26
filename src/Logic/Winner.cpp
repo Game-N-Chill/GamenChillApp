@@ -42,14 +42,24 @@ static void createWinnerShared(std::string path, const std::array<Data::Team<N>,
     canva.save(dataWinner->getOutputDir(), Utils::getTimeFormat("%Y_%m_%d__%H_%M_%S"));
 }
 
+static std::string getCanvaPath(std::string pathFile)
+{
+    std::vector<std::string> map = {
+        "MKWorld",
+        "MK8"
+    };
+
+    return CANVA_PATH + map[Data::Winner::getInstance()->getGame()] + '/' + pathFile;
+}
+
 void createWinnerSoloImage()
 {
-    createWinnerShared(CANVA_SOLO_PATH, Data::Winner::getInstance()->getSolo());
+    createWinnerShared(getCanvaPath(CANVA_SOLO_PATH), Data::Winner::getInstance()->getSolo());
 }
 
 void createWinnerDuoImage()
 {
-    createWinnerShared(CANVA_DUO_PATH, Data::Winner::getInstance()->getDuo());
+    createWinnerShared(getCanvaPath(CANVA_DUO_PATH), Data::Winner::getInstance()->getDuo());
 }
 
 }

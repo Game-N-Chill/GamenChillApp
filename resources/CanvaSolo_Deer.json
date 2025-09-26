@@ -10,49 +10,31 @@
             "scale": 1
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/EffectTop.png",
-            "name": "EffectTop",
+            "path": "assets/Images/Winner/Deerstalker/Background.png",
+            "name": "backgroundDeer",
             "position": {
                 "x": 0,
-                "y": 0
+                "y": -54
             },
-            "scale": 1.0
+            "scale": 1.1
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/EffectBottom.png",
-            "name": "EffectBottom",
-            "position": {
-                "x": 0,
-                "y": 1000
-            },
-            "scale": 1.0
-        },
-        {
-            "path": "assets/Images/Winner/Front/MKWorld/LogoPuzzleInn.png",
+            "path": "assets/Images/Winner/Deerstalker/LogoPuzzleInn.png",
             "name": "LogoPuzzleInn",
             "position": {
-                "x": 25,
-                "y": 25
+                "x": 0,
+                "y": 12
             },
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/LogoAsso.png",
-            "name": "LogoAsso",
+            "path": "assets/Images/Winner/Deerstalker/LogoDeerstalker.png",
+            "name": "LogoDeerstalker",
             "position": {
-                "x": 1676,
-                "y": 25
+                "x": 1730,
+                "y": 7
             },
-            "scale": 1.0
-        },
-        {
-            "path": "assets/Images/Winner/Front/MKWorld/TitleUnderline.png",
-            "name": "TitleUnderline",
-            "position": {
-                "x": 308,
-                "y": 121
-            },
-            "scale": 1.0
+            "scale": 0.5
         },
         {
             "path": "",
@@ -64,7 +46,7 @@
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
+            "path": "assets/Images/Winner/Deerstalker/BackgroundName.png",
             "name": "1_Background",
             "position": {
                 "x": 50,
@@ -73,7 +55,7 @@
             "scale": 1.0
         },
         {
-            "path": "assets/Images/Winner/Position/MKWorld/Pos01.png",
+            "path": "assets/Images/Winner/Position/MKWii/Pos01.png",
             "name": "1_Rank",
             "position": {
                 "x": 50,
@@ -91,7 +73,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
+            "path": "assets/Images/Winner/Deerstalker/BackgroundName.png",
             "name": "2_Background",
             "position": {
                 "x": 580,
@@ -100,7 +82,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Winner/Position/MKWorld/Pos02.png",
+            "path": "assets/Images/Winner/Position/MKWii/Pos02.png",
             "name": "2_Rank",
             "position": {
                 "x": 580,
@@ -118,7 +100,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
+            "path": "assets/Images/Winner/Deerstalker/BackgroundName.png",
             "name": "3_Background",
             "position": {
                 "x": 1037,
@@ -127,7 +109,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Winner/Position/MKWorld/Pos03.png",
+            "path": "assets/Images/Winner/Position/MKWii/Pos03.png",
             "name": "3_Rank",
             "position": {
                 "x": 1037,
@@ -145,7 +127,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
+            "path": "assets/Images/Winner/Deerstalker/BackgroundName.png",
             "name": "4_Background",
             "position": {
                 "x": 1494,
@@ -154,7 +136,7 @@
             "scale": 0.75
         },
         {
-            "path": "assets/Images/Winner/Position/MKWorld/Pos04.png",
+            "path": "assets/Images/Winner/Position/MKWii/Pos04.png",
             "name": "4_Rank",
             "position": {
                 "x": 1494,
@@ -172,7 +154,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
+            "path": "assets/Images/Winner/Deerstalker/BackgroundName.png",
             "name": "5_Background",
             "position": {
                 "x": 580,
@@ -181,7 +163,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Winner/Position/MKWorld/Pos05.png",
+            "path": "assets/Images/Winner/Position/MKWii/Pos05.png",
             "name": "5_Rank",
             "position": {
                 "x": 580,
@@ -199,7 +181,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
+            "path": "assets/Images/Winner/Deerstalker/BackgroundName.png",
             "name": "6_Background",
             "position": {
                 "x": 910,
@@ -208,7 +190,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Winner/Position/MKWorld/Pos06.png",
+            "path": "assets/Images/Winner/Position/MKWii/Pos06.png",
             "name": "6_Rank",
             "position": {
                 "x": 910,
@@ -226,7 +208,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
+            "path": "assets/Images/Winner/Deerstalker/BackgroundName.png",
             "name": "7_Background",
             "position": {
                 "x": 1240,
@@ -235,7 +217,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Winner/Position/MKWorld/Pos07.png",
+            "path": "assets/Images/Winner/Position/MKWii/Pos07.png",
             "name": "7_Rank",
             "position": {
                 "x": 1240,
@@ -253,7 +235,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Winner/Front/MKWorld/BackgroundName.png",
+            "path": "assets/Images/Winner/Deerstalker/BackgroundName.png",
             "name": "8_Background",
             "position": {
                 "x": 1570,
@@ -262,7 +244,7 @@
             "scale": 0.6
         },
         {
-            "path": "assets/Images/Winner/Position/MKWorld/Pos08.png",
+            "path": "assets/Images/Winner/Position/MKWii/Pos08.png",
             "name": "8_Rank",
             "position": {
                 "x": 1570,
@@ -275,100 +257,100 @@
         {
             "name": "title",
             "position": {
-                "x": 408,
-                "y": 62,
+                "x": 365,
+                "y": 20,
                 "w": 1138,
-                "h": 105
+                "h": 95
             },
             "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 4,
+            "outlineColor": {
                 "r": 255,
                 "g": 255,
                 "b": 255
             },
-            "outline": 10,
-            "outlineColor": {
-                "r": 0,
-                "g": 0,
-                "b": 0
-            },
-            "fontSize": 70.0,
-            "align": 0.5,
-            "path": "RacersDelight.otf"
+            "fontSize": 60.0,
+            "align": 0.0,
+            "path": "RetroGaming_Regular.ttf"
         },
         {
             "name": "subtitle",
             "position": {
-                "x": 50,
-                "y": 830,
-                "w": 500,
-                "h": 60
+                "x": 365,
+                "y": 105,
+                "w": 1138,
+                "h": 65
             },
             "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 4,
+            "outlineColor": {
                 "r": 255,
                 "g": 255,
                 "b": 255
             },
-            "outline": 7,
-            "outlineColor": {
-                "r": 0,
-                "g": 0,
-                "b": 0
-            },
-            "fontSize": 40.0,
+            "fontSize": 45.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "RetroGaming_Regular.ttf"
         },
         {
             "name": "date",
             "position": {
-                "x": 50,
-                "y": 910,
+                "x": 20,
+                "y": 940,
                 "w": 500,
-                "h": 40
+                "h": 60
             },
             "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 2,
+            "outlineColor": {
                 "r": 255,
                 "g": 255,
                 "b": 255
             },
-            "outline": 5,
-            "outlineColor": {
-                "r": 0,
-                "g": 0,
-                "b": 0
-            },
-            "fontSize": 25.0,
-            "align": 0.5,
-            "path": "RacersDelight.otf"
+            "fontSize": 30.0,
+            "align": 0.0,
+            "path": "RetroGaming_Regular.ttf"
         },
         {
             "name": "playerCount",
             "position": {
-                "x": 50,
-                "y": 970,
+                "x": 20,
+                "y": 1000,
                 "w": 500,
-                "h": 40
+                "h": 60
             },
             "color": {
+                "r": 83,
+                "g": 95,
+                "b": 71
+            },
+            "outline": 2,
+            "outlineColor": {
                 "r": 255,
                 "g": 255,
                 "b": 255
             },
-            "outline": 5,
-            "outlineColor": {
-                "r": 0,
-                "g": 0,
-                "b": 0
-            },
-            "fontSize": 25.0,
-            "align": 0.5,
-            "path": "RacersDelight.otf"
+            "fontSize": 30.0,
+            "align": 0.0,
+            "path": "RetroGaming_Regular.ttf"
         },
         {
             "name": "1_Name",
             "position": {
                 "x": 50,
-                "y": 704,
+                "y": 719,
                 "w": 500,
                 "h": 85
             },
@@ -383,15 +365,15 @@
                 "g": 0,
                 "b": 0
             },
-            "fontSize": 40.0,
+            "fontSize": 50.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "2_Name",
             "position": {
                 "x": 580,
-                "y": 602,
+                "y": 612,
                 "w": 375,
                 "h": 64
             },
@@ -406,15 +388,15 @@
                 "g": 0,
                 "b": 0
             },
-            "fontSize": 30.0,
+            "fontSize": 40.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "3_Name",
             "position": {
                 "x": 1037,
-                "y": 602,
+                "y": 612,
                 "w": 375,
                 "h": 64
             },
@@ -429,15 +411,15 @@
                 "g": 0,
                 "b": 0
             },
-            "fontSize": 30.0,
+            "fontSize": 40.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "4_Name",
             "position": {
                 "x": 1494,
-                "y": 602,
+                "y": 612,
                 "w": 375,
                 "h": 64
             },
@@ -452,15 +434,15 @@
                 "g": 0,
                 "b": 0
             },
-            "fontSize": 30.0,
+            "fontSize": 40.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "5_Name",
             "position": {
                 "x": 580,
-                "y": 989,
+                "y": 999,
                 "w": 300,
                 "h": 51
             },
@@ -475,15 +457,15 @@
                 "g": 0,
                 "b": 0
             },
-            "fontSize": 25.0,
+            "fontSize": 30.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "6_Name",
             "position": {
                 "x": 910,
-                "y": 989,
+                "y": 999,
                 "w": 300,
                 "h": 51
             },
@@ -498,15 +480,15 @@
                 "g": 0,
                 "b": 0
             },
-            "fontSize": 25.0,
+            "fontSize": 30.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "7_Name",
             "position": {
                 "x": 1240,
-                "y": 989,
+                "y": 999,
                 "w": 300,
                 "h": 51
             },
@@ -521,15 +503,15 @@
                 "g": 0,
                 "b": 0
             },
-            "fontSize": 25.0,
+            "fontSize": 30.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "Handjet_Bold.ttf"
         },
         {
             "name": "8_Name",
             "position": {
                 "x": 1570,
-                "y": 989,
+                "y": 999,
                 "w": 300,
                 "h": 51
             },
@@ -544,18 +526,16 @@
                 "g": 0,
                 "b": 0
             },
-            "fontSize": 25.0,
+            "fontSize": 30.0,
             "align": 0.5,
-            "path": "RacersDelight.otf"
+            "path": "Handjet_Bold.ttf"
         }
     ],
     "Order": [
         "background",
-        "EffectTop",
-        "EffectBottom",
+        "backgroundDeer",
         "LogoPuzzleInn",
-        "LogoAsso",
-        "TitleUnderline",
+        "LogoDeerstalker",
         "title",
         "subtitle",
         "date",

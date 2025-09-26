@@ -1,4 +1,8 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/icon">
+        <file>icons/random.png</file>
+        <file>icons/add.png</file>
+        <file>icons/remove.png</file>
+        <file>icons/modify.png</file>
     </qresource>
 </RCC>
