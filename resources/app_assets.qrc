@@ -1,8 +1,15 @@
 <RCC>
-    <qresource prefix="/icon">
+    <qresource prefix="/">
         <file>icons/random.png</file>
         <file>icons/add.png</file>
         <file>icons/remove.png</file>
         <file>icons/modify.png</file>
+        <file>icons/sort.png</file>
+        <file>icons/validate.png</file>
+        <file>icons/generate.png</file>
+        <file>icons/info.png</file>
+        <file>icons/load.png</file>
+        <file>icons/up.png</file>
+        <file>icons/down.png</file>
     </qresource>
 </RCC>

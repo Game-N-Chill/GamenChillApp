@@ -24,8 +24,9 @@ PageWinner::PageWinner(QWidget *parent) :
     _rank = new BoxRank(this);
     _layout->addWidget(_rank);
 
-    _btnWinner = new QPushButton("Generate", this);
+    _btnWinner = new QPushButton(" Generate", this);
     _btnWinner->setFixedWidth(80);
+    _btnWinner->setIcon(QIcon(":/icons/generate"));
     connect(_btnWinner, &QPushButton::clicked, this, &PageWinner::onGenerateClicked);
     _layout->addWidget(_btnWinner);
 }

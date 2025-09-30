@@ -14,7 +14,6 @@ void GroupBox::addWidget(QWidget *widget)
     this->_layout->addWidget(widget);
 }
 
-
 HGroupBox::HGroupBox(const QString &title, QWidget *parent) :
     GroupBox(title, parent)
 {

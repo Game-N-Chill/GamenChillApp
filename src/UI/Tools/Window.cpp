@@ -14,13 +14,17 @@ Window::Window(const QString &title, QWidget *parent, int buttons) :
     _btnLayout->addStretch();
 
     if ((buttons & WINDOW_TOOL_BUTTON_VALIDATE) == WINDOW_TOOL_BUTTON_VALIDATE) {
-        _btnValidate = new QPushButton("OK", this);
+        _btnValidate = new QPushButton(" OK", this);
+        _btnValidate->setIcon(QIcon(":/icons/validate"));
+        _btnValidate->setMinimumWidth(80);
         connect(_btnValidate, &QPushButton::clicked, this, &QDialog::accept);
         _btnLayout->addWidget(_btnValidate);
     }
 
     if ((buttons & WINDOW_TOOL_BUTTON_CANCEL) == WINDOW_TOOL_BUTTON_CANCEL) {
-        _btnCancel = new QPushButton("Cancel", this);
+        _btnCancel = new QPushButton(" Cancel", this);
+        _btnCancel->setIcon(QIcon(":/icons/remove"));
+        _btnCancel->setMinimumWidth(80);
         connect(_btnCancel, &QPushButton::clicked, this, &QDialog::reject);
         _btnLayout->addWidget(_btnCancel);
     }

@@ -171,15 +171,18 @@ class PageBracket : public QWidget
     private:
         QVBoxLayout *_layout;
 
-        Tools::HGroupBox *_box;
-        QVBoxLayout *_layoutLeft;
-        QVBoxLayout *_layoutRight;
+        QListWidget *_areaList;
 
+        QHBoxLayout *_layoutButtons;
+        QHBoxLayout *_layoutLeft;
+        QHBoxLayout *_layoutRight;
+
+        QPushButton *_buttonSort;
+        QPushButton *_buttonModify;
+        QPushButton *_buttonUp;
+        QPushButton *_buttonDown;
         QPushButton *_buttonAdd;
         QPushButton *_buttonRemove;
-        QPushButton *_buttonModify;
-
-        QListWidget *_areaList;
 };
 
 //  CORE DATA STRUCTURE

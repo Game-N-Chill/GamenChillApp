@@ -9,8 +9,11 @@ Notification::Notification(const QString &title, const QString &subtitle, const 
 {
     this->_infoLayout = new QHBoxLayout;
 
+    QPixmap pix(":/icons/info");
+    pix = pix.scaled(QSize(48, 48), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
     this->_icon = new QLabel(this);
-    this->_icon->setPixmap(style()->standardPixmap(QStyle::SP_MessageBoxInformation).scaled(32, 32));
+    this->_icon->setPixmap(pix);
     this->_text = new QLabel(subtitle, this);
 
     this->_infoLayout->addWidget(this->_icon);

@@ -17,7 +17,7 @@ Randomizer::Randomizer(const std::list<std::string> &list, QWidget *parent) :
     }
 
     _toolBtn = new QToolButton(this);
-    _toolBtn->setIcon(style()->standardIcon(QStyle::SP_BrowserReload));
+    _toolBtn->setIcon(QIcon(":/icons/random"));
 
     layout->addWidget(_comboBox);
     layout->addWidget(_toolBtn);

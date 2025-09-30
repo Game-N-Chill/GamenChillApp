@@ -9,8 +9,9 @@ BoxAutoLoad::BoxAutoLoad(QWidget *parent) :
 {
     _box = new Tools::FGroupBox("Auto Loader", this);
 
-    _btnLoad = new QPushButton("Load", this);
-    _btnLoad->setFixedWidth(60);
+    _btnLoad = new QPushButton(" Load", this);
+    _btnLoad->setIcon(QIcon(":/icons/load"));
+    _btnLoad->setFixedWidth(80);
     connect(_btnLoad, &QToolButton::clicked, this, &BoxAutoLoad::onLoadClicked);
     _browserFile = new Tools::FileBrowser(this, _btnLoad);
 
