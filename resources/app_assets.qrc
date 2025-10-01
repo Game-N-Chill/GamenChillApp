@@ -11,5 +11,6 @@
         <file>icons/load.png</file>
         <file>icons/up.png</file>
         <file>icons/down.png</file>
+        <file>icons/dir.png</file>
     </qresource>
 </RCC>

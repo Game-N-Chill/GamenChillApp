@@ -40,6 +40,7 @@
 #include "UI/Tools/Browser.hpp"
 #include "UI/Tools/Randomizer.hpp"
 
+#include "UI/Windows/Shared.hpp"
 #include "UI/Windows/PlayerSettings.hpp"
 #include "Data/Data.hpp"
 
@@ -54,6 +55,11 @@ namespace GNCApp::UI::Windows
     #define EXCEL_COL_PLAYER        "I"
 
     #define DATE_FORMAT             "dd/MM/yyyy"
+
+    // https://drive.proton.me/urls/B4QRBAC9N4#jLPHFgdDzc1b
+    // #define PROTON_API_URL              "https://drive.proton.me/api/drive/urls/B4QRBAC9N4/files/yxbGyegyGjpPqOWlOhjc4DMVgKRpDlkYyRp-2sh3WnZ23hH0ygld66DroA5PoBGYg3qvWBBaWKmCUG5AdLJLPg==?FromBlockIndex=1&PageSize=50"
+    #define PROTON_API_URL              "https://1drv.ms/x/c/8e2ad450607c91c5/EYttSBbg-mFLimzAYMBm7f8BGWBCNxbc0jiQRK8PWEmrkw"
+    #define PROTON_API_FILE_NAME        "seeding.xlsx"
 
 //  WINNER DATA STRUCTURE
 // *****************************************************************************
@@ -167,6 +173,8 @@ class PageBracket : public QWidget
 
     public:
         PageBracket(QWidget *parent);
+
+        void onSortClicked();
 
     private:
         QVBoxLayout *_layout;

@@ -44,9 +44,11 @@ qt_standard_project_setup()
 
 set(APP_SRC_FILES
     ${SRC_DIR}/Main.cpp
-    ${SRC_DIR}/Utils.cpp
+    ${SRC_DIR}/Utils/Process.cpp
+    ${SRC_DIR}/Utils/Request.cpp
+    ${SRC_DIR}/Utils/String.cpp
+    ${SRC_DIR}/Utils/Temp.cpp
     ${SRC_DIR}/Update/Manager.cpp
-    ${SRC_DIR}/Update/Request.cpp
     ${SRC_DIR}/Data/Data.cpp
     ${SRC_DIR}/Data/Assets.cpp
     ${SRC_DIR}/Data/Player.cpp
@@ -55,6 +57,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Data/Dictionary/Character.cpp
     ${SRC_DIR}/Logic/Render.cpp
     ${SRC_DIR}/Logic/Winner.cpp
+    ${SRC_DIR}/UI/Windows/Shared.cpp
     ${INC_DIR}/UI/Windows/Primary.hpp
     ${SRC_DIR}/UI/Windows/Primary/Core.cpp
     ${SRC_DIR}/UI/Windows/Primary/Winner/Page.cpp
@@ -102,10 +105,12 @@ endif()
 # ------------------------------------------------------------------------------
 
 set(UPD_SRC_FILES
-    ${SRC_DIR}/Utils.cpp
+    ${SRC_DIR}/Utils/Process.cpp
+    ${SRC_DIR}/Utils/Request.cpp
+    ${SRC_DIR}/Utils/String.cpp
+    ${SRC_DIR}/Utils/Temp.cpp
     ${SRC_DIR}/Update/Main.cpp
     ${SRC_DIR}/Update/Manager.cpp
-    ${SRC_DIR}/Update/Request.cpp
 )
 
 add_executable(${UPD_NAME} ${UPD_SRC_FILES} ${UPD_ICON_RESOURCE})

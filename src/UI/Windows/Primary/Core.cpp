@@ -2,7 +2,9 @@
 #include "UI/Windows/Primary.hpp"
 #include "UI/Windows/Notification.hpp"
 #include "Update/Update.hpp"
+#include <filesystem>
 
+namespace fs = std::filesystem;
 namespace GNCApp::UI::Windows
 {
 
@@ -38,12 +40,17 @@ void Primary::lockSize()
 
 void Primary::checkUpdate()
 {
-    GNCApp::Update::Manager updateManager(GNCAPP_API_URL);
-    if (updateManager.needsUpdate()) {
-        Notification updateWindow("Update", "An update has been found, do you want to install it ?", PATH_DEFAULT_NOTIFICATION_SOUND, this, WINDOW_TOOL_BUTTON_VALIDATE | WINDOW_TOOL_BUTTON_CANCEL);
-        if (updateWindow.hasValidate()) {
-            Utils::createProcess(std::filesystem::current_path().string() + '/' + GNCAPP_NAME + "_Updater.exe");
+    try {
+        GNCApp::Update::Manager updateManager(UPDATE_API_URL);
+        if (updateManager.needsUpdate()) {
+            openWindowUpdate(this);
         }
+    } catch (const fs::filesystem_error &e) {
+        std::cerr << "ERROR: filesystem: " << e.what() << std::endl;
+    } catch (const std::runtime_error &e) {
+        std::cerr << "ERROR: " << e.what() << std::endl;
+    } catch (const std::exception &e) {
+        std::cerr << "ERROR: " << e.what() << std::endl;
     }
 }
 

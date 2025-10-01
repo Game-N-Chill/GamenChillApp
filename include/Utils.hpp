@@ -6,11 +6,16 @@
 #include <mutex>
 #include <random>
 
+#include <curl/curl.h>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
 namespace Utils
 {
+
+    #define GNCAPP_API_USERAGENT            "GNCApp"
+    #define GNCAPP_TEMP_DIR                 "GamenChill"
+    #define GNCAPP_TEMP_DIR_SAVE            "Save"
 
 class Randomizer
 {
@@ -113,6 +118,29 @@ class Singleton
         static std::mutex _mutex;
 };
 
+class Request
+{
+    public:
+        typedef size_t (*Func)(void *, size_t, size_t, void *);
+
+        static size_t WriteToString(void *contents, size_t size, size_t nmemb, void *output);
+        static size_t WriteToFile(void *contents, size_t size, size_t nmemb, void *output);
+
+        Request();
+        ~Request();
+
+        std::string Get(std::string url);
+        void Download(std::string url, std::string path);
+
+        void SetOpt(CURLoption key, std::string value);
+        void SetHeader(std::vector<std::string> vec);
+
+    private:
+        CURL *_curl;
+
+        void SetFetchOpt(std::string url, Func func, void *data);
+};
+
 template <typename T>
 T* Singleton<T>::_instance = nullptr;
 
@@ -127,5 +155,6 @@ std::string stringToUpper(std::string str);
 std::string getCompleteName(std::string name, json &tags);
 std::string getFullPath(std::string path);;
 void createProcess(std::string path);
+std::string getTempDir();
 
 } // namespace Utils

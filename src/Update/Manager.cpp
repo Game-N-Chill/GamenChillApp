@@ -10,39 +10,20 @@ namespace GNCApp::Update
 
 Manager::Manager(std::string url)
 {
-    try {
-        std::string response = this->_req.Get(url);
-        this->_json = json::parse(response);
-    } catch (std::runtime_error &e) {
-        std::cerr << "ERROR: " << e.what() << std::endl;
-        return;
+    std::string response = this->_req.Get(url);
+    this->_json = json::parse(response);
+
+    this->_pathTemp = Utils::getTempDir() + '/' + GNCAPP_TEMP_DIR + '/';
+    this->_pathSave = this->_pathTemp + GNCAPP_TEMP_DIR_SAVE;
+    if (!fs::exists(this->_pathTemp)) {
+        fs::create_directory(this->_pathTemp);
+    }
+    if (!fs::exists(this->_pathSave)) {
+        fs::create_directory(this->_pathSave);
     }
 
-    try {
-        std::string path = std::getenv("LOCALAPPDATA");
-        if (path.empty()) {
-            throw std::runtime_error("can't find envrionment variable LOCALAPPDATA");
-        }
-
-        if (!fs::exists(path)) {
-            throw std::runtime_error(path + " path doesn't exist");
-        }
-
-        std::replace(path.begin(), path.end(), '\\', '/');
-        this->_pathTemp = path + GNCAPP_APPDATA_DIR;
-        this->_pathSave = this->_pathTemp + GNCAPP_APPDATA_SAVE_DIR;
-        if (!fs::exists(this->_pathTemp)) {
-            fs::create_directory(this->_pathTemp);
-        }
-        if (!fs::exists(this->_pathSave)) {
-            fs::create_directory(this->_pathSave);
-        }
-
-        this->_pathCurr = fs::current_path().string();
-        std::replace(this->_pathCurr.begin(), this->_pathCurr.end(), '\\', '/');
-    } catch (std::runtime_error &e) {
-        std::cerr << "ERROR: " << e.what() << std::endl;
-    }
+    this->_pathCurr = fs::current_path().string();
+    std::replace(this->_pathCurr.begin(), this->_pathCurr.end(), '\\', '/');
 }
 
 Manager::~Manager()
@@ -61,14 +42,18 @@ void Manager::downloadUpdate()
     for (json &release : this->_json[GITHUB_API_ASSETS]) {
         std::string name = release[GITHUB_API_ASSET_NAME].get<std::string>();
         std::string url = release[GITHUB_API_ASSET_URL].get<std::string>();
-        if (name == GNCAPP_TARGET) {
+        if (name == UPDATE_API_TARGET) {
             this->_pathFile = this->_pathTemp + name;
-            this->_req.Download(url, this->_pathFile);
+            try {
+                this->_req.Download(url, this->_pathFile);
+            } catch (std::runtime_error &e) {
+                std::cerr << "ERROR: " << e.what() << std::endl;
+            }
             return;
         }
     }
 
-    throw std::runtime_error(std::string("could not find target ") + GNCAPP_TARGET);
+    throw std::runtime_error(std::string("could not find target ") + UPDATE_API_TARGET);
 
 }
 

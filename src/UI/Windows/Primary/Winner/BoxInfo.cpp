@@ -55,7 +55,7 @@ BoxInfo::BoxInfo(QWidget *parent) :
 
     _output = new Tools::DirBrowser(this);
     _output->getLineEdit()->setText(QString::fromStdString(dataWinner->getOutputDir()));
-    connect(_output->getLineEdit(), &QLineEdit::textEdited, this, &BoxInfo::onOutputDirEdited);
+    connect(_output->getLineEdit(), &QLineEdit::textChanged, this, &BoxInfo::onOutputDirEdited);
 
     _layoutLeft->addRow("Title : ", _title);
     _layoutLeft->addRow("SubTitle : ", _subtitle);
