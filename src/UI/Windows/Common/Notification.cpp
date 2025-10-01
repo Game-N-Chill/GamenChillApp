@@ -1,5 +1,5 @@
 
-#include "UI/Windows/Notification.hpp"
+#include "UI/Windows/Common/Notification.hpp"
 
 namespace GNCApp::UI::Windows
 {

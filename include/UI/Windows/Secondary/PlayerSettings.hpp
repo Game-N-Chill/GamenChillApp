@@ -30,7 +30,7 @@
 #include "UI/Tools/Browser.hpp"
 #include "UI/Tools/Window.hpp"
 #include "UI/Tools/Randomizer.hpp"
-#include "UI/Windows/Shared.hpp"
+#include "UI/Windows/Common/Shared.hpp"
 #include "Data/Data.hpp"
 
 namespace GNCApp::UI::Windows

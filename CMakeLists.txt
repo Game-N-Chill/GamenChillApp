@@ -57,20 +57,23 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Data/Dictionary/Character.cpp
     ${SRC_DIR}/Logic/Render.cpp
     ${SRC_DIR}/Logic/Winner.cpp
-    ${SRC_DIR}/UI/Windows/Shared.cpp
+    ${SRC_DIR}/UI/App/Themes.cpp
+    ${SRC_DIR}/UI/Windows/Common/Shared.cpp
+    ${INC_DIR}/UI/Windows/Common/Notification.hpp
+    ${SRC_DIR}/UI/Windows/Common/Notification.cpp
     ${INC_DIR}/UI/Windows/Primary.hpp
     ${SRC_DIR}/UI/Windows/Primary/Core.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Winner/Page.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxAutoLoad.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxInfo.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxRank.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Bracket/Page.cpp
-    ${INC_DIR}/UI/Windows/PlayerSettings.hpp
-    ${SRC_DIR}/UI/Windows/PlayerSettings/Info.cpp
-    ${SRC_DIR}/UI/Windows/PlayerSettings/Solo.cpp
-    ${SRC_DIR}/UI/Windows/PlayerSettings/Duo.cpp
-    ${INC_DIR}/UI/Windows/Notification.hpp
-    ${SRC_DIR}/UI/Windows/Notification.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Menu/Bar.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/Page.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxAutoLoad.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxInfo.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxRank.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Bracket/Page.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Bracket/Callback.cpp
+    ${INC_DIR}/UI/Windows/Secondary/PlayerSettings.hpp
+    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Info.cpp
+    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Solo.cpp
+    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Duo.cpp
     ${SRC_DIR}/UI/Tools/Browser.cpp
     ${INC_DIR}/UI/Tools/Browser.hpp
     ${SRC_DIR}/UI/Tools/GroupBox.cpp

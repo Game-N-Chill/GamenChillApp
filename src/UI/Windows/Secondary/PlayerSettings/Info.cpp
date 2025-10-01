@@ -1,5 +1,5 @@
 
-#include "UI/Windows/PlayerSettings.hpp"
+#include "UI/Windows/Secondary/PlayerSettings.hpp"
 
 namespace GNCApp::UI::Windows
 {

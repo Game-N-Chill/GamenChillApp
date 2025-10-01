@@ -3,8 +3,8 @@
 #include <QDesktopServices>
 #include <QUrl>
 
-#include "UI/Windows/Shared.hpp"
-#include "UI/Windows/Notification.hpp"
+#include "UI/Windows/Common/Shared.hpp"
+#include "UI/Windows/Common/Notification.hpp"
 #include "Data/Data.hpp"
 #include "Update/Update.hpp"
 
@@ -54,25 +54,29 @@ void callbackOpenDirectory()
 
 void openWindowUpdate(QWidget *parent)
 {
-    Tools::Window *updateWindow = new Notification("Update", "An update has been found, do you want to install it ?", PATH_DEFAULT_NOTIFICATION_SOUND, parent);
+    Tools::Window *window = new Notification("Update", "An update has been found, do you want to install it ?", PATH_DEFAULT_NOTIFICATION_SOUND, parent);
 
-    addWindowButtonValidate(updateWindow);
-    addWindowButtonCancel(updateWindow);
+    addWindowButtonValidate(window);
+    addWindowButtonCancel(window);
 
-    (*updateWindow)();
-    if (updateWindow->hasValidate()) {
+    (*window)();
+    if (window->hasValidate()) {
         Utils::createProcess(std::filesystem::current_path().string() + '/' + GNCAPP_NAME + "_Updater.exe");
     }
+
+    delete window;
 }
 
 void openWindowNotificationGeneration(QWidget *parent)
 {
-    Tools::Window *updateWindow = new Notification("Game'n Chill App Notification", "Winner image generation done", PATH_DEFAULT_NOTIFICATION_SOUND, parent);
+    Tools::Window *window = new Notification("Game'n Chill App Notification", "Winner image generation done", PATH_DEFAULT_NOTIFICATION_SOUND, parent);
 
-    addWindowButtonOpenDir(updateWindow);
-    addWindowButtonValidate(updateWindow);
+    addWindowButtonOpenDir(window);
+    addWindowButtonValidate(window);
 
-    (*updateWindow)();
+    (*window)();
+
+    delete window;
 }
 
 }

@@ -117,24 +117,34 @@ void BoxRank::openPlayerSoloWindow(int index)
 {
     auto dataWinner = Data::Winner::getInstance();
 
-    Windows::PlayerSolo window(index, "Player Settings", this);
+    Tools::Window *window = new PlayerSolo(index, "Player Settings", this);
+    addWindowButtonCancel(window);
+    addWindowButtonValidate(window);
 
-    if (window.hasValidate()) {
-        dataWinner->getTeamSolo(index) = window.getData();
-        setTeamInfo(index, window.getData());
+    (*window)();
+    if (window->hasValidate()) {
+        dataWinner->getTeamSolo(index) = dynamic_cast<PlayerSolo *>(window)->getData();
+        setTeamInfo(index, dataWinner->getTeamSolo(index));
     }
+
+    delete window;
 }
 
 void BoxRank::openPlayerDuoWindow(int index)
 {
     auto dataWinner = Data::Winner::getInstance();
 
-    Windows::PlayerDuo window(index, "Player Settings", this);
+    Tools::Window *window =  new PlayerDuo(index, "Player Settings", this);
+    addWindowButtonCancel(window);
+    addWindowButtonValidate(window);
 
-    if (window.hasValidate()) {
-        dataWinner->getTeamDuo(index) = window.getData();
-        setTeamInfo(index, window.getData());
+    (*window)();
+    if (window->hasValidate()) {
+        dataWinner->getTeamDuo(index) = dynamic_cast<PlayerDuo *>(window)->getData();
+        setTeamInfo(index, dataWinner->getTeamDuo(index));
     }
+
+    delete window;
 }
 
 int BoxRank::getTeamSelected()

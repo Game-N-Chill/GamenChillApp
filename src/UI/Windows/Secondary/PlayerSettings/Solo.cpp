@@ -1,5 +1,5 @@
 
-#include "UI/Windows/PlayerSettings.hpp"
+#include "UI/Windows/Secondary/PlayerSettings.hpp"
 
 namespace GNCApp::UI::Windows
 {
@@ -12,8 +12,6 @@ PlayerSolo::PlayerSolo(const int &index, const QString &title, QWidget *parent) 
     setMinimumSize(350, 150);
     this->_info = new PlayerInfo(dataWinner->getTeamSolo(index).players[0], "Player 1", this);
     this->_layout->addWidget(this->_info);
-
-    (*this)();
 }
 
 Data::Solo PlayerSolo::getData() const

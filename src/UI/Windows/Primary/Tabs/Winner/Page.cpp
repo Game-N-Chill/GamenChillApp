@@ -1,6 +1,6 @@
 
 #include "UI/Windows/Primary.hpp"
-#include "UI/Windows/Notification.hpp"
+#include "UI/Windows/Common/Notification.hpp"
 #include "Logic/Logic.hpp"
 
 namespace GNCApp::UI::Windows

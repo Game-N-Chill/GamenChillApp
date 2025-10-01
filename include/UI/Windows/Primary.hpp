@@ -40,8 +40,8 @@
 #include "UI/Tools/Browser.hpp"
 #include "UI/Tools/Randomizer.hpp"
 
-#include "UI/Windows/Shared.hpp"
-#include "UI/Windows/PlayerSettings.hpp"
+#include "UI/Windows/Common/Shared.hpp"
+#include "UI/Windows/Secondary/PlayerSettings.hpp"
 #include "Data/Data.hpp"
 
 namespace GNCApp::UI::Windows
@@ -174,12 +174,22 @@ class PageBracket : public QWidget
     public:
         PageBracket(QWidget *parent);
 
+        void onListItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+        void onListItemSelected(QListWidgetItem *item);
+
+
         void onSortClicked();
+        void onModifyClicked();
+        void onUpClicked();
+        void onDownClicked();
+        void onAddClicked();
+        void onRemoveClicked();
 
     private:
         QVBoxLayout *_layout;
 
         QListWidget *_areaList;
+        size_t _areaIndex;
 
         QHBoxLayout *_layoutButtons;
         QHBoxLayout *_layoutLeft;
