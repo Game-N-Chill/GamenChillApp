@@ -11,9 +11,6 @@ using json = nlohmann::json;
 
 #include "Utils.hpp"
 
-#define GNCAPP_NAME                     "GamenChillApp"
-#define GNCAPP_VERSION                  "v3.0.0"
-
 #define UPDATE_API_URL                  "https://api.github.com/repos/Game-N-Chill/GamenChillApp/releases/latest"
 #define UPDATE_API_TARGET               "GamenChillApp_WIN32.zip"
 

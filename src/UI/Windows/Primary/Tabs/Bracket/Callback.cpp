@@ -1,10 +1,32 @@
 
 #include "UI/Windows/Primary.hpp"
+#include "Logic/Logic.hpp"
+#include "UI/Windows/Common/Notification.hpp"
 #include <filesystem>
 
 namespace fs = std::filesystem;
 namespace GNCApp::UI::Windows
 {
+
+static QString openWindowPlayerBracket(QString title, PageBracket *parent, bool buttonEnabled, QString playerName)
+{
+    auto dataWinner = Data::Winner::getInstance();
+    QString ret;
+
+    Tools::Window *window =  new PlayerBracket(title, parent);
+    auto button = addWindowButtonValidate(window);
+    dynamic_cast<PlayerBracket *>(window)->setupInfo(button, buttonEnabled, playerName);
+    addWindowButtonCancel(window);
+
+    (*window)();
+    if (window->hasValidate()) {
+        ret = dynamic_cast<PlayerBracket *>(window)->getNameString();
+    }
+
+    delete window;
+    return ret;
+}
+
 
 void PageBracket::onListItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
@@ -19,6 +41,9 @@ void PageBracket::onListItemSelected(QListWidgetItem *item)
 
 void PageBracket::onSortClicked()
 {
+    if (this->_areaList->count() == 0)
+        return;
+
     return;
 
     try {
@@ -43,7 +68,16 @@ void PageBracket::onSortClicked()
 
 void PageBracket::onModifyClicked()
 {
-    std::cout << "modifying element index " << this->_areaIndex << " = " << this->_areaList->item(this->_areaIndex)->text().toStdString() << std::endl;
+    if (this->_areaList->count() == 0)
+        return;
+
+    Data::Seeding *dataSeeding = Data::Seeding::getInstance();
+
+    QString ret = openWindowPlayerBracket("Player Modification", this, true, QString::fromStdString(dataSeeding->getPlayer(this->_areaIndex).getName()));
+    if (!ret.isEmpty()) {
+        dataSeeding->atPlayer(this->_areaIndex).setName(ret.toStdString());
+        this->_areaList->item(this->_areaIndex)->setText(ret);
+    }
 }
 
 void PageBracket::onMove(int indexSrc, int indexDest)
@@ -59,31 +93,64 @@ void PageBracket::onMove(int indexSrc, int indexDest)
 
 void PageBracket::onUpClicked()
 {
-    if (this->_areaIndex <= 0) {
+    if (this->_areaList->count() == 0)
         return;
-    }
+    if (this->_areaIndex <= 0)
+        return;
 
     onMove(this->_areaIndex, this->_areaIndex - 1);
 }
 
 void PageBracket::onDownClicked()
 {
-    if (this->_areaIndex >= this->_areaList->count() - 1) {
+    if (this->_areaList->count() == 0)
         return;
-    }
+    if (this->_areaIndex >= this->_areaList->count() - 1)
+        return;
 
     onMove(this->_areaIndex, this->_areaIndex + 1);
 }
 
 void PageBracket::onAddClicked()
 {
+    if (this->_areaList->count() >= PLAYER_LIMIT)
+        return;
 
+    Data::Seeding *dataSeeding = Data::Seeding::getInstance();
+
+    QString ret = openWindowPlayerBracket("New Player", this, false, "");
+
+    dataSeeding->addPlayer(ret.toStdString(), 0.0f);
+    this->_areaList->addItem(ret);
+    this->_areaIndex = this->_areaList->count() - 1;
+    this->_areaList->setCurrentRow(this->_areaIndex);
 }
 
 void PageBracket::onRemoveClicked()
 {
+    if (this->_areaList->count() == 0)
+        return;
 
+    Data::Seeding *dataSeeding = Data::Seeding::getInstance();
+    dataSeeding->removePlayer(this->_areaIndex);
+    this->_areaList->takeItem(this->_areaIndex);
+    this->_areaIndex = this->_areaList->currentRow();
 }
 
+void PageBracket::onOutputEdited(const QString &str)
+{
+    Data::Seeding::getInstance()->setOutputPath(str.toStdString());
+}
+
+void PageBracket::onEditionEdited(int value)
+{
+    Data::Seeding::getInstance()->setEdition(value);
+}
+
+void PageBracket::onGenerateClicked()
+{
+    Logic::createBracketFile();
+    Notification::openGeneration(this);
+}
 
 }

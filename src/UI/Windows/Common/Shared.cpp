@@ -6,77 +6,50 @@
 #include "UI/Windows/Common/Shared.hpp"
 #include "UI/Windows/Common/Notification.hpp"
 #include "Data/Data.hpp"
-#include "Update/Update.hpp"
 
 namespace GNCApp::UI::Windows
 {
 
-static QPushButton *createButton(Tools::Window *window, QString title, QString iconPath, int minWidth)
+QPushButton *createPushButton(QWidget *parent, QString title, QString toolTip, QString iconPath, int width, std::function<void()> func)
 {
-    QPushButton *button = new QPushButton(title, window);
+    QPushButton *button = new QPushButton(title, parent);
 
-    if (!iconPath.isEmpty()) {
+    if (!toolTip.isEmpty())
+        button->setToolTip(toolTip);
+    if (!iconPath.isEmpty())
         button->setIcon(QIcon(iconPath));
-    }
-    if (minWidth > 0) {
-        button->setMinimumWidth(minWidth);
-    }
-
-    window->addButton(button);
+    if (width > 0)
+        button->setMinimumWidth(width);
+    if (func != nullptr)
+        parent->connect(button, &QPushButton::clicked, parent, func);
     return button;
 }
 
-void addWindowButtonValidate(Tools::Window *window)
-{
-    QPushButton *button = createButton(window, " OK", ":/icons/validate", 80);
-    window->connect(button, &QPushButton::clicked, window, &QDialog::accept);
-}
-
-void addWindowButtonCancel(Tools::Window *window)
-{
-    QPushButton *button = createButton(window, " Cancel", ":/icons/remove", 80);
-    window->connect(button, &QPushButton::clicked, window, &QDialog::reject);
-}
-
-void addWindowButtonOpenDir(Tools::Window *window)
-{
-    QPushButton *button = createButton(window, " Open", ":/icons/dir", 80);
-    window->connect(button, &QPushButton::clicked, window, &callbackOpenDirectory);
-}
-
-
-void callbackOpenDirectory()
+static void callbackOpenDirectory()
 {
     QString path = QString::fromStdString(Data::Winner::getInstance()->getOutputDir());
     QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
-
-void openWindowUpdate(QWidget *parent)
+QPushButton *addWindowButtonValidate(Tools::Window *window)
 {
-    Tools::Window *window = new Notification("Update", "An update has been found, do you want to install it ?", PATH_DEFAULT_NOTIFICATION_SOUND, parent);
-
-    addWindowButtonValidate(window);
-    addWindowButtonCancel(window);
-
-    (*window)();
-    if (window->hasValidate()) {
-        Utils::createProcess(std::filesystem::current_path().string() + '/' + GNCAPP_NAME + "_Updater.exe");
-    }
-
-    delete window;
+    QPushButton *button = createPushButton(window, " OK", "", ":/icons/validate", 80, std::bind(&QDialog::accept, window));
+    window->addButton(button);
+    return button;
 }
 
-void openWindowNotificationGeneration(QWidget *parent)
+QPushButton *addWindowButtonCancel(Tools::Window *window)
 {
-    Tools::Window *window = new Notification("Game'n Chill App Notification", "Winner image generation done", PATH_DEFAULT_NOTIFICATION_SOUND, parent);
+    QPushButton *button = createPushButton(window, " Cancel", "", ":/icons/remove", 80, std::bind(&QDialog::reject, window));
+    window->addButton(button);
+    return button;
+}
 
-    addWindowButtonOpenDir(window);
-    addWindowButtonValidate(window);
-
-    (*window)();
-
-    delete window;
+QPushButton *addWindowButtonOpenDir(Tools::Window *window)
+{
+    QPushButton *button = createPushButton(window, " Open", "", ":/icons/dir", 80, &callbackOpenDirectory);
+    window->addButton(button);
+    return button;
 }
 
 }

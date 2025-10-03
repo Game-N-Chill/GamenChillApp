@@ -12,7 +12,8 @@ using json = nlohmann::json;
 
 namespace Utils
 {
-
+    #define GNCAPP_NAME                     "GamenChillApp"
+    #define GNCAPP_VERSION                  "v3.0.0"
     #define GNCAPP_API_USERAGENT            "GNCApp"
     #define GNCAPP_TEMP_DIR                 "GamenChill"
     #define GNCAPP_TEMP_DIR_SAVE            "Save"

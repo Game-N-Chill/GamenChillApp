@@ -5,6 +5,80 @@
 namespace GNCApp::Logic
 {
 
+void loadExcelFile(std::string path)
+{
+    if (path.empty()) {
+        std::cerr << "ERROR: path empty" << std::endl;
+        return;
+    }
+
+    OpenXLSX::XLDocument file;
+    file.open(path);
+    if (!file.isOpen()) {
+        std::cerr << "ERROR: file at " << path << " can't be open" << std::endl;
+        return;
+    }
+
+
+    Data::Winner *dataWinner = Data::Winner::getInstance();
+    std::string sheetName = file.workbook().worksheetNames()[0];
+    OpenXLSX::XLWorksheet sheet = file.workbook().worksheet(sheetName);
+
+    try {
+        OpenXLSX::XLCell cellTitle = sheet.cell(OpenXLSX::XLCellReference(EXCEL_CELL_TITLE));
+        dataWinner->setTitle(cellTitle.value().get<std::string>());
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: title format is incorrect (" << e.what() << ")" << std::endl;
+    }
+
+    try {
+        OpenXLSX::XLCell cellSubTitle = sheet.cell(OpenXLSX::XLCellReference(EXCEL_CELL_SUBTITLE));
+        dataWinner->setSubtitle(cellSubTitle.value().get<std::string>());
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: subtitle format is incorrect (" << e.what() << ")" << std::endl;
+    }
+
+    try {
+        OpenXLSX::XLCell cellDate = sheet.cell(OpenXLSX::XLCellReference(EXCEL_CELL_DATE));
+        std::string date = cellDate.value().get<std::string>();
+        if (date.empty()) {
+            dataWinner->setDate(Utils::getTimeFormat("%d/%m/%Y"));
+        } else {
+            dataWinner->setDate(date);
+        }
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: date format is incorrect (" << e.what() << ")" << std::endl;
+    }
+
+    size_t count = 0;
+    for (int i = 0; i < 48; i++) {
+        OpenXLSX::XLCell cellName = sheet.cell(OpenXLSX::XLCellReference(EXCEL_COL_PLAYER + std::to_string(EXCEL_LINE_FIRST + i)));
+        std::string name = cellName.value().get<std::string>();
+
+        if (name.empty()) {
+            break;
+        }
+
+        // register top 8
+        if (i < 8) {
+            GNCApp::Data::Winner::Solo &solo = dataWinner->getTeamSolo(i);
+
+            std::string character = sheet.cell(OpenXLSX::XLCellReference(EXCEL_COL_CHARACTER + std::to_string(EXCEL_LINE_FIRST + i))).value().get<std::string>();
+            solo[0].setName(name);
+            solo[0].setCharacter(character);
+            solo[0].randomizeSkin();
+        }
+
+        if (name != "-") {
+            count++;
+        }
+    }
+    dataWinner->setPlayerCount(count);
+
+    file.close();
+}
+
+
 template<size_t N>
 static void createWinnerShared(std::string path, const std::array<Data::Winner::Team<N>, PLAYER_GRAPH_COUNT> &array)
 {

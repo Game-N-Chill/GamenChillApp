@@ -1,7 +1,6 @@
 
 #include "UI/Windows/Primary.hpp"
 #include "UI/Windows/Common/Notification.hpp"
-#include "Update/Update.hpp"
 #include <filesystem>
 
 namespace fs = std::filesystem;

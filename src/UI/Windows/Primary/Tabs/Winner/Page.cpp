@@ -24,10 +24,7 @@ PageWinner::PageWinner(QWidget *parent) :
     _rank = new BoxRank(this);
     _layout->addWidget(_rank);
 
-    _btnWinner = new QPushButton(" Generate", this);
-    _btnWinner->setFixedWidth(80);
-    _btnWinner->setIcon(QIcon(":/icons/generate"));
-    connect(_btnWinner, &QPushButton::clicked, this, &PageWinner::onGenerateClicked);
+    _btnWinner = createPushButton(this, " Generate", "Will create top 8 image from data", ":/icons/generate", 80, std::bind(&PageWinner::onGenerateClicked, this));
     _layout->addWidget(_btnWinner);
 }
 
@@ -49,7 +46,7 @@ void PageWinner::onGenerateClicked()
         Logic::createWinnerDuoImage();
     }
 
-    openWindowNotificationGeneration(this);
+    Notification::openGeneration(this);
 }
 
 }

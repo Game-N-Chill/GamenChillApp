@@ -9,6 +9,8 @@
 namespace GNCApp::Data
 {
 
+    #define DATA_BRACKET_DEFAULT_OUTPUT_DIR          "result"
+
 class Seeding : public Utils::Singleton<Seeding>
 {
     public:
@@ -39,6 +41,12 @@ class Seeding : public Utils::Singleton<Seeding>
 
         ~Seeding() = default;
 
+        std::string getOutputPath() const;
+        void setOutputPath(std::string path);
+
+        size_t getEdition() const;
+        void setEdition(size_t value);
+
         void addPlayer(size_t pos = std::string::npos);
         void addPlayer(const Player &player, size_t pos = std::string::npos);
         void addPlayer(std::string name, float seeding, size_t pos = std::string::npos);
@@ -60,8 +68,10 @@ class Seeding : public Utils::Singleton<Seeding>
 
     private:
         friend class Utils::Singleton<Seeding>;
-        Seeding() = default;
+        Seeding();
 
+        std::string _pathOutput;
+        size_t _edition;
         std::list<Player> _list;
 };
 

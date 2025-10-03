@@ -5,6 +5,33 @@
 namespace GNCApp::Data
 {
 
+Seeding::Seeding()
+{
+    this->_pathOutput = Utils::getFullPath(DATA_BRACKET_DEFAULT_OUTPUT_DIR);
+    this->_edition = 1;
+}
+
+std::string Seeding::getOutputPath() const
+{
+    return this->_pathOutput;
+}
+
+void Seeding::setOutputPath(std::string path)
+{
+    this->_pathOutput = path;
+}
+
+size_t Seeding::getEdition() const
+{
+    return this->_edition;
+}
+
+void Seeding::setEdition(size_t value)
+{
+    this->_edition = value;
+}
+
+
 static void genericAddPlayer(std::list<Seeding::Player> &list, const Seeding::Player &player, size_t pos)
 {
     for (auto &it : list) {

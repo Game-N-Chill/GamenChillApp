@@ -2,14 +2,17 @@
 #pragma once
 
     #include <QWidget>
+    #include <functional>
     #include "UI/Tools/Window.hpp"
 
 namespace GNCApp::UI::Windows
 {
 
-void addWindowButtonValidate(Tools::Window *window);
-void addWindowButtonCancel(Tools::Window *window);
-void addWindowButtonOpenDir(Tools::Window *window);
+QPushButton *createPushButton(QWidget *parent, QString title, QString toolTip = "", QString iconPath = "", int width = 0, std::function<void()> func = nullptr);
+
+QPushButton *addWindowButtonValidate(Tools::Window *window);
+QPushButton *addWindowButtonCancel(Tools::Window *window);
+QPushButton *addWindowButtonOpenDir(Tools::Window *window);
 
 void callbackOpenDirectory();
 

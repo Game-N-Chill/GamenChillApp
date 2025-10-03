@@ -17,6 +17,7 @@
 #include "UI/Tools/Randomizer.hpp"
 #include "UI/Windows/Common/Shared.hpp"
 #include "Data/Data.hpp"
+#include "Utils.hpp"
 
 namespace GNCApp::UI::Windows
 {
@@ -30,7 +31,8 @@ class Notification : public Tools::Window
     public:
         Notification(const QString &title, const QString &subtitle, const QString &soundPath = PATH_DEFAULT_NOTIFICATION_SOUND, QWidget *parent = nullptr);
 
-        static void callbackOpenDirectory();
+        static void openUpdate(QWidget *parent);
+        static void openGeneration(QWidget *parent);
 
     private:
         QHBoxLayout *_infoLayout;

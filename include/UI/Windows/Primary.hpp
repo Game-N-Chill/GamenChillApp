@@ -30,31 +30,21 @@
 #include <QScrollArea>
 #include <QListWidget>
 
-#pragma warning(push)
-#pragma warning(disable : 4244)
-#pragma warning(disable : 4267)
-#include <OpenXLSX.hpp>
-#pragma warning(pop)
-
 #include "UI/Tools/GroupBox.hpp"
 #include "UI/Tools/Browser.hpp"
 #include "UI/Tools/Randomizer.hpp"
 
 #include "UI/Windows/Common/Shared.hpp"
 #include "UI/Windows/Secondary/PlayerSettings.hpp"
+#include "UI/Windows/Secondary/PlayerBracket.hpp"
 #include "Data/Data.hpp"
+#include "Utils.hpp"
 
 namespace GNCApp::UI::Windows
 {
-
-    #define EXCEL_CELL_TITLE        "C2"
-    #define EXCEL_CELL_SUBTITLE     "D7"
-    #define EXCEL_CELL_DATE         "I7"
-    #define EXCEL_LINE_FIRST        15
-    #define EXCEL_COL_CHARACTER     "H"
-    #define EXCEL_COL_PLAYER        "I"
-
     #define DATE_FORMAT             "dd/MM/yyyy"
+
+    #define PLAYER_LIMIT            48
 
     // https://drive.proton.me/urls/B4QRBAC9N4#jLPHFgdDzc1b
     // #define PROTON_API_URL              "https://drive.proton.me/api/drive/urls/B4QRBAC9N4/files/yxbGyegyGjpPqOWlOhjc4DMVgKRpDlkYyRp-2sh3WnZ23hH0ygld66DroA5PoBGYg3qvWBBaWKmCUG5AdLJLPg==?FromBlockIndex=1&PageSize=50"
@@ -71,6 +61,7 @@ class BoxAutoLoad : public QWidget
     public:
         BoxAutoLoad(QWidget *parent);
 
+        void onPathEdited(const QString &str);
         void onLoadClicked();
 
     private:
@@ -174,9 +165,9 @@ class PageBracket : public QWidget
     public:
         PageBracket(QWidget *parent);
 
+    private:
         void onListItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
         void onListItemSelected(QListWidgetItem *item);
-
 
         void onSortClicked();
         void onModifyClicked();
@@ -184,8 +175,10 @@ class PageBracket : public QWidget
         void onDownClicked();
         void onAddClicked();
         void onRemoveClicked();
+        void onOutputEdited(const QString &str);
+        void onEditionEdited(int value);
+        void onGenerateClicked();
 
-    private:
         void onMove(int indexSrc, int indexDest);
 
         QVBoxLayout *_layout;
@@ -203,6 +196,14 @@ class PageBracket : public QWidget
         QPushButton *_buttonDown;
         QPushButton *_buttonAdd;
         QPushButton *_buttonRemove;
+
+        QFrame *_separator01;
+        QLabel *_outputLabel;
+        Tools::DirBrowser *_output;
+        QLabel *_editionLabel;
+        QSpinBox *_edition;
+        QFrame *_separator02;
+        QPushButton *_buttonGenerator;
 };
 
 //  CORE DATA STRUCTURE

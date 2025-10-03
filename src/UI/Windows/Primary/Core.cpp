@@ -45,7 +45,7 @@ void Primary::checkUpdate()
     try {
         GNCApp::Update::Manager updateManager(UPDATE_API_URL);
         if (updateManager.needsUpdate()) {
-            openWindowUpdate(this);
+            Notification::openUpdate(this);
         }
     } catch (const fs::filesystem_error &e) {
         std::cerr << "ERROR: filesystem: " << e.what() << std::endl;

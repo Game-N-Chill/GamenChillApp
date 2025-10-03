@@ -59,6 +59,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Data/Seeding/Player.cpp
     ${SRC_DIR}/Logic/Render.cpp
     ${SRC_DIR}/Logic/Winner.cpp
+    ${SRC_DIR}/Logic/Bracket.cpp
     ${SRC_DIR}/UI/App/Themes.cpp
     ${SRC_DIR}/UI/Windows/Common/Shared.cpp
     ${INC_DIR}/UI/Windows/Common/Notification.hpp
@@ -76,6 +77,8 @@ set(APP_SRC_FILES
     ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Info.cpp
     ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Solo.cpp
     ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Duo.cpp
+    ${INC_DIR}/UI/Windows/Secondary/PlayerBracket.hpp
+    ${SRC_DIR}/UI/Windows/Secondary/PlayerBracket.cpp
     ${SRC_DIR}/UI/Tools/Browser.cpp
     ${INC_DIR}/UI/Tools/Browser.hpp
     ${SRC_DIR}/UI/Tools/GroupBox.cpp
