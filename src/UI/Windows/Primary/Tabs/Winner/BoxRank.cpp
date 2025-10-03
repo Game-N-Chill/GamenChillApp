@@ -96,17 +96,17 @@ void BoxRank::onPlayerClicked(int index, bool checked)
 // *****************************************************************************
 
 template<size_t N>
-void BoxRank::setTeamInfo(int index, GNCApp::Data::Team<N> team)
+void BoxRank::setTeamInfo(int index, GNCApp::Data::Winner::Team<N> team)
 {
     if (N == 1) {
         _playerBox[index]->setTitle("N°" + QString::number(index + 1));
     } else {
-        _playerBox[index]->setTitle("N°" + QString::number(index + 1) + " - " + QString::fromStdString(team.name));
+        _playerBox[index]->setTitle("N°" + QString::number(index + 1) + " - " + QString::fromStdString(*team));
     }
 
     for (size_t i = 0; i < _playerLabel[index].size(); i++) {
         if (i < N) {
-            _playerLabel[index][i]->setText(QString::fromStdString(team.players[i].getName()) + " (" + QString::fromStdString(team.players[i].getCharacter().name) + " - " + QString::fromStdString(team.players[i].getSkin()) + ")");
+            _playerLabel[index][i]->setText(QString::fromStdString(team[i].getName()) + " (" + QString::fromStdString(team[i].getCharacter().name) + " - " + QString::fromStdString(team[i].getSkin()) + ")");
         } else {
             _playerLabel[index][i]->setText("");
         }
@@ -118,8 +118,8 @@ void BoxRank::openPlayerSoloWindow(int index)
     auto dataWinner = Data::Winner::getInstance();
 
     Tools::Window *window = new PlayerSolo(index, "Player Settings", this);
-    addWindowButtonCancel(window);
     addWindowButtonValidate(window);
+    addWindowButtonCancel(window);
 
     (*window)();
     if (window->hasValidate()) {
@@ -135,8 +135,8 @@ void BoxRank::openPlayerDuoWindow(int index)
     auto dataWinner = Data::Winner::getInstance();
 
     Tools::Window *window =  new PlayerDuo(index, "Player Settings", this);
-    addWindowButtonCancel(window);
     addWindowButtonValidate(window);
+    addWindowButtonCancel(window);
 
     (*window)();
     if (window->hasValidate()) {

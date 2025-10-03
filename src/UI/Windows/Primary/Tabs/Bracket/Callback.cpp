@@ -19,6 +19,8 @@ void PageBracket::onListItemSelected(QListWidgetItem *item)
 
 void PageBracket::onSortClicked()
 {
+    return;
+
     try {
         std::string path = Utils::getTempDir() + '/' + GNCAPP_TEMP_DIR + '/' + PROTON_API_FILE_NAME;
 
@@ -44,14 +46,33 @@ void PageBracket::onModifyClicked()
     std::cout << "modifying element index " << this->_areaIndex << " = " << this->_areaList->item(this->_areaIndex)->text().toStdString() << std::endl;
 }
 
+void PageBracket::onMove(int indexSrc, int indexDest)
+{
+    Data::Seeding *dataSeeding = Data::Seeding::getInstance();
+    dataSeeding->move(indexSrc, indexDest);
+
+    this->_areaList->item(indexSrc)->setText(QString::fromStdString(dataSeeding->getPlayer(indexSrc).getName()));
+    this->_areaList->item(indexDest)->setText(QString::fromStdString(dataSeeding->getPlayer(indexDest).getName()));
+    this->_areaIndex = indexDest;
+    this->_areaList->setCurrentRow(indexDest);
+}
+
 void PageBracket::onUpClicked()
 {
+    if (this->_areaIndex <= 0) {
+        return;
+    }
 
+    onMove(this->_areaIndex, this->_areaIndex - 1);
 }
 
 void PageBracket::onDownClicked()
 {
+    if (this->_areaIndex >= this->_areaList->count() - 1) {
+        return;
+    }
 
+    onMove(this->_areaIndex, this->_areaIndex + 1);
 }
 
 void PageBracket::onAddClicked()

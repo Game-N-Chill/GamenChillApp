@@ -8,6 +8,7 @@
 #include "Assets.hpp"
 #include "Player.hpp"
 #include "Winner.hpp"
+#include "Seeding.hpp"
 
 namespace GNCApp::Data
 {

@@ -52,22 +52,22 @@ Background Winner::getBackground() const
     return this->_background;
 }
 
-std::array<Solo, PLAYER_GRAPH_COUNT> &Winner::getSolo()
+std::array<Winner::Solo, PLAYER_GRAPH_COUNT> &Winner::getSolo()
 {
     return this->_solo;
 }
 
-Solo &Winner::getTeamSolo(size_t index)
+Winner::Solo &Winner::getTeamSolo(size_t index)
 {
     return this->_solo[index];
 }
 
-std::array<Duo, PLAYER_GRAPH_COUNT> &Winner::getDuo()
+std::array<Winner::Duo, PLAYER_GRAPH_COUNT> &Winner::getDuo()
 {
     return this->_duo;
 }
 
-Duo &Winner::getTeamDuo(size_t index)
+Winner::Duo &Winner::getTeamDuo(size_t index)
 {
     return this->_duo[index];
 }

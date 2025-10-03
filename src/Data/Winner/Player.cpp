@@ -1,30 +1,30 @@
 
-#include "Data/Player.hpp"
+#include "Data/Winner.hpp"
 #include "Data/Dictionary/Dictionary.hpp"
 
 namespace GNCApp::Data
 {
 
-Player::Player()
+Winner::Player::Player()
 {
-    setName(DATA_PLAYER_DEFAULT_NAME);
-    setCharacter(DATA_PLAYER_DEFAULT_CHARACTER);
+    setName(DATA_WINNER_PLAYER_DEFAULT_NAME);
+    setCharacter(DATA_WINNER_PLAYER_DEFAULT_CHARACTER);
     parseSkins();
 }
 
 
-void Player::setName(std::string name)
+void Winner::Player::setName(std::string name)
 {
     this->_name = name;
 }
 
-std::string Player::getName() const
+std::string Winner::Player::getName() const
 {
     return this->_name;
 }
 
 
-void Player::setCharacter(size_t index)
+void Winner::Player::setCharacter(size_t index)
 {
     try {
         this->_character = Data::DictCharacter::getInstance()->find(index);
@@ -34,7 +34,7 @@ void Player::setCharacter(size_t index)
     }
 }
 
-void Player::setCharacter(std::string str)
+void Winner::Player::setCharacter(std::string str)
 {
     try {
         this->_character = Data::DictCharacter::getInstance()->find(str);
@@ -44,14 +44,14 @@ void Player::setCharacter(std::string str)
     }
 }
 
-Character Player::getCharacter() const
+Character Winner::Player::getCharacter() const
 {
     return this->_character;
 }
 
 
 
-void Player::setSkin(std::string name)
+void Winner::Player::setSkin(std::string name)
 {
     if (name.empty()) {
         randomizeSkin();
@@ -68,32 +68,32 @@ void Player::setSkin(std::string name)
     }
 }
 
-void Player::setSkin(size_t index)
+void Winner::Player::setSkin(size_t index)
 {
     if (index < this->_skins.size()) {
         this->_index = index;
     }
 }
 
-std::string Player::getSkin() const
+std::string Winner::Player::getSkin() const
 {
     auto it = this->_skins.begin();
     std::advance(it, this->_index);
     return *it;
 }
 
-std::list<std::string> Player::getSkinList() const
+std::list<std::string> Winner::Player::getSkinList() const
 {
     return this->_skins;
 }
 
-void Player::randomizeSkin()
+void Winner::Player::randomizeSkin()
 {
     Utils::Randomizer rand;
     this->_index = rand.GetRandom(this->_skins.size());
 }
 
-void Player::parseSkins()
+void Winner::Player::parseSkins()
 {
     this->_skins.clear();
     this->_index = 0;
@@ -105,13 +105,13 @@ void Player::parseSkins()
     }
 
     // index 0 is always for default
-    this->_skins.push_back(DATA_PLAYER_DEFAULT_SKIN);
+    this->_skins.push_back(DATA_WINNER_PLAYER_DEFAULT_SKIN);
     for (const auto &entry : std::filesystem::recursive_directory_iterator(pathDir)) {
         if (entry.is_regular_file()) {
             std::string path = entry.path().string();
             std::string name = path.substr(pathDir.size() + 1, path.size() - (pathDir.size() + 1) - 4);
 
-            if (name != DATA_PLAYER_DEFAULT_SKIN) {
+            if (name != DATA_WINNER_PLAYER_DEFAULT_SKIN) {
                 this->_skins.push_back(name);
             }
         }
@@ -119,7 +119,7 @@ void Player::parseSkins()
 }
 
 
-void Player::print(std::ostream &flux) const
+void Winner::Player::print(std::ostream &flux) const
 {
     flux << "Name: " << this->_name << std::endl;
     flux << "Character: " << this->_character << std::endl;

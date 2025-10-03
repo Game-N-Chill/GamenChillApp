@@ -125,7 +125,7 @@ class BoxRank : public QWidget
         void onPlayerClicked(int index, bool checked);
 
         template<size_t N>
-        void setTeamInfo(int index, GNCApp::Data::Team<N> team);
+        void setTeamInfo(int index, GNCApp::Data::Winner::Team<N> team);
         void openPlayerSoloWindow(int index);
         void openPlayerDuoWindow(int index);
 
@@ -186,6 +186,8 @@ class PageBracket : public QWidget
         void onRemoveClicked();
 
     private:
+        void onMove(int indexSrc, int indexDest);
+
         QVBoxLayout *_layout;
 
         QListWidget *_areaList;

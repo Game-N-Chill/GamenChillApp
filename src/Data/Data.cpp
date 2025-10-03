@@ -11,6 +11,7 @@ void loadData()
     DictCharacter::getInstance()->load(&Character::load);
     GNCApp::Data::Assets::getInstance();
     GNCApp::Data::Winner::getInstance();
+    GNCApp::Data::Seeding::getInstance()->loadFromFile();
 }
 
 } // namespace GNCApp::Data

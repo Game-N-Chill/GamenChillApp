@@ -18,9 +18,10 @@ PageBracket::PageBracket(QWidget *parent) :
 {
     this->_layout = new QVBoxLayout(this);
 
+    auto dataSeeding = Data::Seeding::getInstance();
     this->_areaList = new QListWidget(this);
-    for (int i = 1; i <= 48; i++) {
-        this->_areaList->addItem(QString("line %1").arg(i));
+    for (size_t i = 0; i < dataSeeding->getSize(); i++) {
+        this->_areaList->addItem(QString::fromStdString(dataSeeding->getPlayer(i).getName()));
     }
     this->_areaList->setSelectionMode(QAbstractItemView::SingleSelection);
     this->_areaList->setMaximumHeight(300);

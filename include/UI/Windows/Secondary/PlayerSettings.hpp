@@ -41,9 +41,9 @@ class PlayerInfo : public QWidget
     Q_OBJECT
 
     public:
-        PlayerInfo(const Data::Player &data, const QString &title, QWidget *parent = nullptr);
+        PlayerInfo(const Data::Winner::Player &data, const QString &title, QWidget *parent = nullptr);
 
-        Data::Player getData() const;
+        Data::Winner::Player getData() const;
 
         void onNameEdited(const QString &str);
         void onCharacterChanged(int index);
@@ -56,7 +56,7 @@ class PlayerInfo : public QWidget
         QComboBox *_character;
         Tools::Randomizer *_skins;
 
-        Data::Player _data;
+        Data::Winner::Player _data;
 };
 
 class PlayerSolo : public Tools::Window
@@ -66,7 +66,7 @@ class PlayerSolo : public Tools::Window
     public:
         PlayerSolo(const int &index, const QString &title, QWidget *parent = nullptr);
 
-        Data::Solo getData() const;
+        Data::Winner::Solo getData() const;
 
     private:
         PlayerInfo *_info;
@@ -79,7 +79,7 @@ class PlayerDuo : public Tools::Window
     public:
         PlayerDuo(const int &index, const QString &title, QWidget *parent = nullptr);
 
-        Data::Duo getData() const;
+        Data::Winner::Duo getData() const;
 
     private:
         QLabel *_teamLabel;

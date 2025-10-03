@@ -6,7 +6,7 @@ namespace GNCApp::Logic
 {
 
 template<size_t N>
-static void createWinnerShared(std::string path, const std::array<Data::Team<N>, PLAYER_GRAPH_COUNT> &array)
+static void createWinnerShared(std::string path, const std::array<Data::Winner::Team<N>, PLAYER_GRAPH_COUNT> &array)
 {
     if (path.empty()) {
         throw std::runtime_error("can't open file: " + path);
@@ -21,17 +21,17 @@ static void createWinnerShared(std::string path, const std::array<Data::Team<N>,
     canva.getText("playerCount").str = (std::to_string(dataWinner->getPlayerCount()) + " Participants").c_str();
 
     for (size_t i = 0; i < array.size(); i++) {
-        Data::Team<N> team = array[i];
+        Data::Winner::Team<N> team = array[i];
 
         if (N > 1) {
-            canva.getText(std::to_string(i + 1) + '_' + "Team").str = team.name.c_str();
+            canva.getText(std::to_string(i + 1) + '_' + "Team").str = team.getName().c_str();
         }
 
         std::string name;
-        for (size_t j = 0; j < team.players.size(); j++) {
-            canva.getImage(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Character").image.load((team.players[j].getCharacter().path + '/' + team.players[j].getSkin() + ".png").c_str());
-            name += team.players[j].getName();
-            if (j < team.players.size() - 1) {
+        for (size_t j = 0; j < N; j++) {
+            canva.getImage(std::to_string(i + 1) + '_' + std::to_string(j + 1) + '_' + "Character").image.load((team.getPlayer(j).getCharacter().path + '/' + team.getPlayer(j).getSkin() + ".png").c_str());
+            name += team.getPlayer(j).getName();
+            if (j < N - 1) {
                 name += " - ";
             }
         }

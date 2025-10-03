@@ -4,7 +4,7 @@
 namespace GNCApp::UI::Windows
 {
 
-PlayerInfo::PlayerInfo(const Data::Player &data, const QString &title, QWidget *parent) :
+PlayerInfo::PlayerInfo(const Data::Winner::Player &data, const QString &title, QWidget *parent) :
     QWidget(parent)
 {
     auto dataWinner = Data::Winner::getInstance();
@@ -36,7 +36,7 @@ PlayerInfo::PlayerInfo(const Data::Player &data, const QString &title, QWidget *
     setLayout(_layout);
 }
 
-Data::Player PlayerInfo::getData() const
+Data::Winner::Player PlayerInfo::getData() const
 {
     return this->_data;
 }

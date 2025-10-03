@@ -50,11 +50,13 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Utils/Temp.cpp
     ${SRC_DIR}/Update/Manager.cpp
     ${SRC_DIR}/Data/Data.cpp
-    ${SRC_DIR}/Data/Assets.cpp
-    ${SRC_DIR}/Data/Player.cpp
-    ${SRC_DIR}/Data/Winner.cpp
     ${SRC_DIR}/Data/Dictionary/Background.cpp
     ${SRC_DIR}/Data/Dictionary/Character.cpp
+    ${SRC_DIR}/Data/Assets.cpp
+    ${SRC_DIR}/Data/Winner/Winner.cpp
+    ${SRC_DIR}/Data/Winner/Player.cpp
+    ${SRC_DIR}/Data/Seeding/Seeding.cpp
+    ${SRC_DIR}/Data/Seeding/Player.cpp
     ${SRC_DIR}/Logic/Render.cpp
     ${SRC_DIR}/Logic/Winner.cpp
     ${SRC_DIR}/UI/App/Themes.cpp
