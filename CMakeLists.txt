@@ -61,6 +61,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Logic/Render.cpp
     ${SRC_DIR}/Logic/Winner.cpp
     ${SRC_DIR}/Logic/Bracket.cpp
+    ${SRC_DIR}/Logic/Seeding.cpp
     ${SRC_DIR}/UI/App/Themes.cpp
     ${SRC_DIR}/UI/Windows/Common/Shared.cpp
     ${INC_DIR}/UI/Windows/Common/Notification.hpp

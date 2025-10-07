@@ -134,6 +134,7 @@ class Request
         void Download(std::string url, std::string path);
 
         void SetOpt(CURLoption key, std::string value);
+        void SetOpt(CURLoption key, int value);
         void SetHeader(std::vector<std::string> vec);
 
     private:
@@ -153,6 +154,7 @@ std::mutex Singleton<T>::_mutex;
 
 std::string getTimeFormat(std::string format);
 std::string stringToUpper(std::string str);
+std::string stringToLower(std::string str);
 std::string getCompleteName(std::string name, json &tags);
 std::string getFullPath(std::string path);;
 void createProcess(std::string path);

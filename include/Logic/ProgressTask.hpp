@@ -9,7 +9,8 @@
 namespace GNCApp::Logic
 {
 
-#define DO_PROGRESS_TASK        (*Logic::ProgressTask::getInstance())++
+#define DO_PROGRESS_TASK            (*Logic::ProgressTask::getInstance())++
+#define RESET_PROGRESS_TASK         Logic::ProgressTask::getInstance()->reset()
 
 class ProgressTask : public Utils::Singleton<ProgressTask>
 {
@@ -34,6 +35,7 @@ class ProgressTask : public Utils::Singleton<ProgressTask>
 
         static void loadTaskWinner();
         static void loadTaskBracket();
+        static void loadTaskSeeding();
 
     private:
         friend class Utils::Singleton<ProgressTask>;

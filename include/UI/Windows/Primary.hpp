@@ -47,11 +47,6 @@ namespace GNCApp::UI::Windows
 
     #define PLAYER_LIMIT            48
 
-    // https://drive.proton.me/urls/B4QRBAC9N4#jLPHFgdDzc1b
-    // #define PROTON_API_URL              "https://drive.proton.me/api/drive/urls/B4QRBAC9N4/files/yxbGyegyGjpPqOWlOhjc4DMVgKRpDlkYyRp-2sh3WnZ23hH0ygld66DroA5PoBGYg3qvWBBaWKmCUG5AdLJLPg==?FromBlockIndex=1&PageSize=50"
-    #define PROTON_API_URL              "https://1drv.ms/x/c/8e2ad450607c91c5/EYttSBbg-mFLimzAYMBm7f8BGWBCNxbc0jiQRK8PWEmrkw"
-    #define PROTON_API_FILE_NAME        "seeding.xlsx"
-
 //  WINNER DATA STRUCTURE
 // *****************************************************************************
 

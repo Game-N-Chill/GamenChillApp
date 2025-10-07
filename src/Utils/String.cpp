@@ -24,6 +24,14 @@ std::string stringToUpper(std::string str)
     return str;
 }
 
+std::string stringToLower(std::string str)
+{
+    std::transform(str.begin(), str.end(), str.begin(), [](uint8_t c) {
+        return std::tolower(c);
+    });
+    return str;
+}
+
 std::string getCompleteName(std::string name, json &tags)
 {
     name = stringToUpper(name);

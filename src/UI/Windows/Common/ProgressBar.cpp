@@ -33,7 +33,6 @@ void ProgressBar::loop()
 {
     auto pair = getCurrentProgressTask();
 
-    std::cout << pair.second << std::endl;
     if (pair.second >= 100) {
         this->close();
     } else {

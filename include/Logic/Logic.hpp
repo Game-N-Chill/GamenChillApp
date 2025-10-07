@@ -32,10 +32,15 @@ namespace GNCApp::Logic
     #define EXCEL_COL_CHARACTER     "H"
     #define EXCEL_COL_PLAYER        "I"
 
+    #define SEEDING_URL             "https://drive.google.com/uc?export=download&id=1szRPeNovIz4KA_X-uQG0UOoGVIeAYWCY"
+    #define SEEDING_FILE_NAME       "seeding.xlsx"
+    #define SEEDING_WORKSHEET       "Seeding"
+
 void loadExcelFile(std::string path);
 void createWinnerSoloImage();
 void createWinnerDuoImage();
 
+void fetchSeeding();
 void createBracketFile();
 
 } // namespace MKTG

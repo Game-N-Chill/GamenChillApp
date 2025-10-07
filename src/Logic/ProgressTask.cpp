@@ -90,9 +90,17 @@ void ProgressTask::loadTaskBracket()
 {
     auto instance = ProgressTask::getInstance();
     *instance << "copying template"
-              << "Modifying information"
-              << "Modifying seeding"
+              << "modifying information"
+              << "modifying seeding"
               << "saving file";
+}
+
+void ProgressTask::loadTaskSeeding()
+{
+    auto instance = ProgressTask::getInstance();
+    *instance << "downloading seeding file"
+              << "parsing seeding file"
+              << "modifying seeding list";
 }
 
 }

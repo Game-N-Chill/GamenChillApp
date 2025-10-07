@@ -1,6 +1,7 @@
 
 #include "Data/Seeding.hpp"
 #include <algorithm>
+#include <limits>
 
 namespace GNCApp::Data
 {
@@ -173,49 +174,18 @@ void Seeding::move(int indexSrc, int indexDest)
     }
 }
 
-void Seeding::sort()
+void Seeding::sort(const std::map<std::string, float> &map)
 {
-    this->_list.sort(std::greater<Player>());
+    for (auto it = this->_list.begin(); it != this->_list.end(); it++) {
+        std::string name = it->getName();
+
+        auto itMap = map.find(Utils::stringToLower(name));
+        if (itMap != map.end()) {
+            it->setSeeding(itMap->second);
+        }
+    }
+
+    this->_list.sort(std::less<Player>());
 }
-
-
-void Seeding::loadFromFile()
-{
-    clear();
-    addPlayer("Batefimbi", 0.8f);
-    addPlayer("GoGu", 1.0f);
-    addPlayer("Main.cpp", 0.5f);
-    addPlayer("Process.cpp", 0.6f);
-    addPlayer("Request.cpp", 0.1f);
-    addPlayer("String.cpp", 0.1f);
-    addPlayer("Temp.cpp", 0.1f);
-    addPlayer("Manager.cpp", 0.1f);
-    addPlayer("Data.cpp", 0.1f);
-    addPlayer("Background.cpp", 0.1f);
-    addPlayer("Character.cpp", 0.1f);
-    addPlayer("Assets.cpp", 0.1f);
-    addPlayer("Seeding.cpp", 0.1f);
-    addPlayer("Render.cpp", 0.1f);
-    addPlayer("Bracket.cpp", 0.1f);
-    addPlayer("Themes.cpp", 0.1f);
-    addPlayer("Shared.cpp", 0.1f);
-    addPlayer("Notification.cpp", 0.1f);
-    addPlayer("Core.cpp", 0.1f);
-    addPlayer("Bar.cpp", 0.1f);
-    addPlayer("BoxAutoLoad.cpp", 0.1f);
-    addPlayer("BoxInfo.cpp", 0.1f);
-    addPlayer("BoxRank.cpp", 0.1f);
-    addPlayer("Callback.cpp", 0.1f);
-    addPlayer("Info.cpp", 0.1f);
-    addPlayer("Solo.cpp", 0.1f);
-    addPlayer("Duo.cpp", 0.1f);
-    addPlayer("PlayerBracket.cpp", 0.1f);
-    addPlayer("Browser.cpp", 0.1f);
-    addPlayer("GroupBox.cpp", 0.1f);
-    addPlayer("Randomizer.cpp", 0.1f);
-    addPlayer("Window.cpp", 0.1f);
-    sort();
-}
-
 
 }

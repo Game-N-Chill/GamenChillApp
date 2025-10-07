@@ -83,7 +83,9 @@ template<size_t N>
 static void createWinnerShared(std::string path, const std::array<Data::Winner::Team<N>, PLAYER_GRAPH_COUNT> &array)
 {
     if (path.empty()) {
-        throw std::runtime_error("can't open file: " + path);
+        RESET_PROGRESS_TASK;
+        std::cerr << "can't open file: " << path << std::endl;
+        return;
     }
 
     Canva canva(path);

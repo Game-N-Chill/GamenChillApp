@@ -52,7 +52,7 @@ class Seeding : public Utils::Singleton<Seeding>
 
         void addPlayer(size_t pos = std::string::npos);
         void addPlayer(const Player &player, size_t pos = std::string::npos);
-        void addPlayer(std::string name, float seeding, size_t pos = std::string::npos);
+        void addPlayer(std::string name, float seeding = std::numeric_limits<float>::infinity(), size_t pos = std::string::npos);
         void removePlayer(size_t index);
         void removePlayer(std::string name);
         void removePlayer(const Player &player);
@@ -65,9 +65,7 @@ class Seeding : public Utils::Singleton<Seeding>
         Player &operator[](std::string name);
         size_t getSize() const;
         void move(int indexSrc, int indexDest);
-        void sort();
-
-        void loadFromFile();
+        void sort(const std::map<std::string, float> &map);
 
     private:
         friend class Utils::Singleton<Seeding>;

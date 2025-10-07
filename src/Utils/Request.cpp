@@ -62,6 +62,11 @@ void Request::SetOpt(CURLoption key, std::string value)
     curl_easy_setopt(this->_curl, key, value.c_str());
 }
 
+void Request::SetOpt(CURLoption key, int value)
+{
+    curl_easy_setopt(this->_curl, key, value);
+}
+
 void Request::SetHeader(std::vector<std::string> vec)
 {
     struct curl_slist *headers = NULL;

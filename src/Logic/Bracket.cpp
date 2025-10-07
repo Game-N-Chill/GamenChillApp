@@ -34,12 +34,19 @@ void createBracketFile()
     std::string path = getFilePath(dataSeeding->getOutputPath(), pathTemplate);
     size_t size = dataSeeding->getSize();
 
-    std::filesystem::copy_file(pathTemplate, path, std::filesystem::copy_options::overwrite_existing);
+    try {
+        std::filesystem::copy_file(pathTemplate, path, std::filesystem::copy_options::overwrite_existing);
+    } catch (std::filesystem::filesystem_error &e) {
+        RESET_PROGRESS_TASK;
+        std::cerr << "Could not copy file: " << e.what() << '\n';
+        return;
+    }
     DO_PROGRESS_TASK;
 
     OpenXLSX::XLDocument file;
     file.open(path);
     if (!file.isOpen()) {
+        Logic::ProgressTask::getInstance()->reset();
         std::cerr << "ERROR: file at " << path << " can't be open" << std::endl;
         return;
     }
