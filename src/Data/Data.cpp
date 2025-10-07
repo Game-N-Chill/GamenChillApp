@@ -12,12 +12,6 @@ void loadData()
     GNCApp::Data::Assets::getInstance();
     GNCApp::Data::Winner::getInstance();
     GNCApp::Data::Seeding::getInstance();
-
-    GNCApp::Data::Seeding::getInstance()->addPlayer("Groluche");
-    GNCApp::Data::Seeding::getInstance()->addPlayer("Batefimbi");
-    GNCApp::Data::Seeding::getInstance()->addPlayer("GoGu");
-    GNCApp::Data::Seeding::getInstance()->addPlayer("Supnyus");
-    GNCApp::Data::Seeding::getInstance()->addPlayer("SewLink");
 }
 
 } // namespace GNCApp::Data
