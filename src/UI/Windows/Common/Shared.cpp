@@ -25,12 +25,6 @@ QPushButton *createPushButton(QWidget *parent, QString title, QString toolTip, Q
     return button;
 }
 
-static void callbackOpenDirectory()
-{
-    QString path = QString::fromStdString(Data::Winner::getInstance()->getOutputDir());
-    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
-}
-
 QPushButton *addWindowButtonValidate(Tools::Window *window)
 {
     QPushButton *button = createPushButton(window, " OK", "", ":/icons/validate", 80, std::bind(&QDialog::accept, window));
@@ -45,9 +39,9 @@ QPushButton *addWindowButtonCancel(Tools::Window *window)
     return button;
 }
 
-QPushButton *addWindowButtonOpenDir(Tools::Window *window)
+QPushButton *addWindowButtonOpen(Tools::Window *window, std::function<void()> callback)
 {
-    QPushButton *button = createPushButton(window, " Open", "", ":/icons/dir", 80, &callbackOpenDirectory);
+    QPushButton *button = createPushButton(window, " Open", "", ":/icons/dir", 80, callback);
     window->addButton(button);
     return button;
 }

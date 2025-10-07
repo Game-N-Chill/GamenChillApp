@@ -8,7 +8,8 @@ namespace GNCApp::Data
 Seeding::Seeding()
 {
     this->_pathOutput = Utils::getFullPath(DATA_BRACKET_DEFAULT_OUTPUT_DIR);
-    this->_edition = 1;
+    this->_number = 1;
+    this->_edition = "150cc";
 }
 
 std::string Seeding::getOutputPath() const
@@ -21,12 +22,23 @@ void Seeding::setOutputPath(std::string path)
     this->_pathOutput = path;
 }
 
-size_t Seeding::getEdition() const
+size_t Seeding::getNumber() const
 {
-    return this->_edition;
+    return this->_number;
 }
 
-void Seeding::setEdition(size_t value)
+void Seeding::setNumber(size_t value)
+{
+    this->_number = value;
+}
+
+
+std::string Seeding::getEdition() const
+{
+    return "Edition " + this->_edition;
+}
+
+void Seeding::setEdition(std::string value)
 {
     this->_edition = value;
 }
@@ -172,14 +184,36 @@ void Seeding::loadFromFile()
     clear();
     addPlayer("Batefimbi", 0.8f);
     addPlayer("GoGu", 1.0f);
-    addPlayer("Supnyus", 0.5f);
-    addPlayer("Bastien", 0.6f);
-    addPlayer("fnzéibvze_12", 0.04f);
-    addPlayer("fnzéibvzedazfza_18", 0.03f);
-    addPlayer("fnzéibvzedazfzadazdaz_24", 0.2f);
-    addPlayer("fnzéibvzedazfzadazdazdazdazdz_32", 0.01f);
-    addPlayer("dazfazfzafnzéibvzedazfzadazdazdazdazdz_41", 0.001f);
-    addPlayer("dazfazfzafnzéibvzedazfzadazdazdazdacvzejhbhezbuezzdz_55", 0.0001f);
+    addPlayer("Main.cpp", 0.5f);
+    addPlayer("Process.cpp", 0.6f);
+    addPlayer("Request.cpp", 0.1f);
+    addPlayer("String.cpp", 0.1f);
+    addPlayer("Temp.cpp", 0.1f);
+    addPlayer("Manager.cpp", 0.1f);
+    addPlayer("Data.cpp", 0.1f);
+    addPlayer("Background.cpp", 0.1f);
+    addPlayer("Character.cpp", 0.1f);
+    addPlayer("Assets.cpp", 0.1f);
+    addPlayer("Seeding.cpp", 0.1f);
+    addPlayer("Render.cpp", 0.1f);
+    addPlayer("Bracket.cpp", 0.1f);
+    addPlayer("Themes.cpp", 0.1f);
+    addPlayer("Shared.cpp", 0.1f);
+    addPlayer("Notification.cpp", 0.1f);
+    addPlayer("Core.cpp", 0.1f);
+    addPlayer("Bar.cpp", 0.1f);
+    addPlayer("BoxAutoLoad.cpp", 0.1f);
+    addPlayer("BoxInfo.cpp", 0.1f);
+    addPlayer("BoxRank.cpp", 0.1f);
+    addPlayer("Callback.cpp", 0.1f);
+    addPlayer("Info.cpp", 0.1f);
+    addPlayer("Solo.cpp", 0.1f);
+    addPlayer("Duo.cpp", 0.1f);
+    addPlayer("PlayerBracket.cpp", 0.1f);
+    addPlayer("Browser.cpp", 0.1f);
+    addPlayer("GroupBox.cpp", 0.1f);
+    addPlayer("Randomizer.cpp", 0.1f);
+    addPlayer("Window.cpp", 0.1f);
     sort();
 }
 

@@ -57,6 +57,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Data/Winner/Player.cpp
     ${SRC_DIR}/Data/Seeding/Seeding.cpp
     ${SRC_DIR}/Data/Seeding/Player.cpp
+    ${SRC_DIR}/Logic/ProgressTask.cpp
     ${SRC_DIR}/Logic/Render.cpp
     ${SRC_DIR}/Logic/Winner.cpp
     ${SRC_DIR}/Logic/Bracket.cpp
@@ -64,6 +65,8 @@ set(APP_SRC_FILES
     ${SRC_DIR}/UI/Windows/Common/Shared.cpp
     ${INC_DIR}/UI/Windows/Common/Notification.hpp
     ${SRC_DIR}/UI/Windows/Common/Notification.cpp
+    ${INC_DIR}/UI/Windows/Common/ProgressBar.hpp
+    ${SRC_DIR}/UI/Windows/Common/ProgressBar.cpp
     ${INC_DIR}/UI/Windows/Primary.hpp
     ${SRC_DIR}/UI/Windows/Primary/Core.cpp
     ${SRC_DIR}/UI/Windows/Primary/Menu/Bar.cpp

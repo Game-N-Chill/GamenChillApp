@@ -29,6 +29,7 @@
 #include <QRadioButton>
 #include <QScrollArea>
 #include <QListWidget>
+#include <QStringList>
 
 #include "UI/Tools/GroupBox.hpp"
 #include "UI/Tools/Browser.hpp"
@@ -142,6 +143,7 @@ class PageWinner : public QWidget
         PageWinner(QWidget *parent);
 
         void onGenerateClicked();
+        void callbackOpenDir();
 
         void updateAllInfos();
 
@@ -168,6 +170,7 @@ class PageBracket : public QWidget
     private:
         void onListItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
         void onListItemSelected(QListWidgetItem *item);
+        QString getListItemName(size_t index);
 
         void onSortClicked();
         void onModifyClicked();
@@ -176,20 +179,26 @@ class PageBracket : public QWidget
         void onAddClicked();
         void onRemoveClicked();
         void onOutputEdited(const QString &str);
-        void onEditionEdited(int value);
+        void onNumberEdited(int value);
+        void onEditionChanged(int id, bool checked);
+        void onEditionCustomEdited(const QString &str);
         void onGenerateClicked();
 
         void onMove(int indexSrc, int indexDest);
 
+        void createBoxSeeding();
+        void createBoxInfo();
+
+        void callbackOpenFile();
+
         QVBoxLayout *_layout;
 
+        Tools::VGroupBox *_boxSeeding;
         QListWidget *_areaList;
         size_t _areaIndex;
-
         QHBoxLayout *_layoutButtons;
         QHBoxLayout *_layoutLeft;
         QHBoxLayout *_layoutRight;
-
         QPushButton *_buttonSort;
         QPushButton *_buttonModify;
         QPushButton *_buttonUp;
@@ -197,12 +206,14 @@ class PageBracket : public QWidget
         QPushButton *_buttonAdd;
         QPushButton *_buttonRemove;
 
-        QFrame *_separator01;
-        QLabel *_outputLabel;
+        Tools::FGroupBox *_boxInfo;
         Tools::DirBrowser *_output;
-        QLabel *_editionLabel;
-        QSpinBox *_edition;
-        QFrame *_separator02;
+        QSpinBox *_number;
+        QVBoxLayout *_editionLayout;
+        QStringList _editionList;
+        QButtonGroup *_edition;
+        QLineEdit *_editionCustom;
+
         QPushButton *_buttonGenerator;
 };
 

@@ -44,8 +44,11 @@ class Seeding : public Utils::Singleton<Seeding>
         std::string getOutputPath() const;
         void setOutputPath(std::string path);
 
-        size_t getEdition() const;
-        void setEdition(size_t value);
+        size_t getNumber() const;
+        void setNumber(size_t value);
+
+        std::string getEdition() const;
+        void setEdition(std::string value);
 
         void addPlayer(size_t pos = std::string::npos);
         void addPlayer(const Player &player, size_t pos = std::string::npos);
@@ -71,7 +74,8 @@ class Seeding : public Utils::Singleton<Seeding>
         Seeding();
 
         std::string _pathOutput;
-        size_t _edition;
+        size_t _number;
+        std::string _edition;
         std::list<Player> _list;
 };
 

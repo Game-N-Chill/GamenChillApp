@@ -27,8 +27,6 @@ class Window : public QDialog
         void operator()();
         bool hasValidate() const;
 
-        static void callbackOpenDirectory();
-
     protected:
         QVBoxLayout *_layout;
 

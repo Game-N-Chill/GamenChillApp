@@ -35,6 +35,7 @@ void createBracketFile()
     size_t size = dataSeeding->getSize();
 
     std::filesystem::copy_file(pathTemplate, path, std::filesystem::copy_options::overwrite_existing);
+    DO_PROGRESS_TASK;
 
     OpenXLSX::XLDocument file;
     file.open(path);
@@ -47,16 +48,23 @@ void createBracketFile()
     OpenXLSX::XLWorksheet sheet = file.workbook().worksheet(sheetName);
 
     try {
-        sheet.cell(OpenXLSX::XLCellReference(EXCEL_CELL_TITLE)).value() = "RIFIFI sur le Circuit #" + std::to_string(dataSeeding->getEdition());
+        sheet.cell(OpenXLSX::XLCellReference(EXCEL_CELL_TITLE)).value() = "RIFIFI sur le Circuit #" + std::to_string(dataSeeding->getNumber());
     } catch (const OpenXLSX::XLValueTypeError &e) {
         std::cerr << "WARNING: cell format is incorrect (" << e.what() << ")" << std::endl;
     }
 
-    // try {
-    //     sheet.cell(OpenXLSX::XLCellReference(EXCEL_CELL_DATE)).value().set<std::string>(Utils::getTimeFormat("%d/%m/%Y"));
-    // } catch (const OpenXLSX::XLValueTypeError &e) {
-    //     std::cerr << "WARNING: cell format is incorrect (" << e.what() << ")" << std::endl;
-    // }
+    try {
+        sheet.cell(OpenXLSX::XLCellReference(EXCEL_CELL_SUBTITLE)).value() = dataSeeding->getEdition();
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: cell format is incorrect (" << e.what() << ")" << std::endl;
+    }
+
+    try {
+        sheet.cell(OpenXLSX::XLCellReference(EXCEL_CELL_DATE)).value() = Utils::getTimeFormat("%d/%m/%Y");
+    } catch (const OpenXLSX::XLValueTypeError &e) {
+        std::cerr << "WARNING: cell format is incorrect (" << e.what() << ")" << std::endl;
+    }
+    DO_PROGRESS_TASK;
 
     for (size_t i = 0; i < size; i++) {
         try {
@@ -66,8 +74,10 @@ void createBracketFile()
             std::cerr << "WARNING: cell format is incorrect (" << e.what() << ")" << std::endl;
         }
     }
+    DO_PROGRESS_TASK;
 
     file.save();
+    DO_PROGRESS_TASK;
     file.close();
 }
 

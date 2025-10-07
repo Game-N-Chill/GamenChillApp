@@ -32,7 +32,7 @@ class Notification : public Tools::Window
         Notification(const QString &title, const QString &subtitle, const QString &soundPath = PATH_DEFAULT_NOTIFICATION_SOUND, QWidget *parent = nullptr);
 
         static void openUpdate(QWidget *parent);
-        static void openGeneration(QWidget *parent);
+        static void openGeneration(QWidget *parent, QString title, std::function<void()> callback = nullptr);
 
     private:
         QHBoxLayout *_infoLayout;

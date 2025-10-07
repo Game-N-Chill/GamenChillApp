@@ -4,29 +4,19 @@
 namespace GNCApp::UI::Windows
 {
 
-// static QPushButton *createButton(PageBracket *parent, QString title, QString toolTip, QString iconPath, int width, void (PageBracket::*func)())
-// {
-//     QPushButton *button = new QPushButton(title, parent);
-//     button->setToolTip(toolTip);
-//     button->setIcon(QIcon(iconPath));
-//     button->setMinimumWidth(width);
-//     parent->connect(button, &QPushButton::clicked, parent, func);
-//     return button;
-// }
-
-PageBracket::PageBracket(QWidget *parent) :
-    QWidget(parent)
+void PageBracket::createBoxSeeding()
 {
-    this->_layout = new QVBoxLayout(this);
-
     auto dataSeeding = Data::Seeding::getInstance();
+
+    this->_boxSeeding = new Tools::VGroupBox("Seeding", this);
+
     this->_areaList = new QListWidget(this);
     for (size_t i = 0; i < dataSeeding->getSize(); i++) {
-        this->_areaList->addItem(QString::fromStdString(dataSeeding->getPlayer(i).getName()));
+        this->_areaList->addItem(getListItemName(i));
     }
     this->_areaList->setCurrentRow(0);
     this->_areaList->setSelectionMode(QAbstractItemView::SingleSelection);
-    this->_areaList->setMaximumHeight(300);
+    this->_areaList->setFixedHeight(300);
     connect(this->_areaList, &QListWidget::itemActivated, this, &PageBracket::onListItemSelected);
     connect(this->_areaList, &QListWidget::currentItemChanged, this, &PageBracket::onListItemChanged);
     this->_areaIndex = 0;
@@ -58,34 +48,80 @@ PageBracket::PageBracket(QWidget *parent) :
     this->_layoutButtons->addWidget(leftWidget);
     this->_layoutButtons->addWidget(rightWidget);
 
-    this->_separator01 = new QFrame(this);
-    this->_separator01->setFrameShape(QFrame::HLine);   // horizontal line
-    this->_separator01->setFrameShadow(QFrame::Sunken); // or QFrame::Raised
-    this->_outputLabel = new QLabel("Output directory:", this);
+    this->_boxSeeding->addWidget(this->_areaList);
+    this->_boxSeeding->addLayout(this->_layoutButtons);
+}
+
+void PageBracket::createBoxInfo()
+{
+    auto dataSeeding = Data::Seeding::getInstance();
+
+    this->_boxInfo = new Tools::FGroupBox("Information", this);
+
     this->_output = new Tools::DirBrowser(this);
     this->_output->getLineEdit()->setText(QString::fromStdString(dataSeeding->getOutputPath()));
     connect(this->_output->getLineEdit(), &QLineEdit::textChanged, this, &PageBracket::onOutputEdited);
-    this->_editionLabel = new QLabel("Edition:", this);
-    this->_edition = new QSpinBox(this);
-    this->_edition->setRange(1, 999);
-    this->_edition->setValue(dataSeeding->getEdition());
-    connect(this->_edition, &QSpinBox::valueChanged, this, &PageBracket::onEditionEdited);
 
-    this->_separator02 = new QFrame(this);
-    this->_separator02->setFrameShape(QFrame::HLine);   // horizontal line
-    this->_separator02->setFrameShadow(QFrame::Sunken); // or QFrame::Raised
+    this->_number = new QSpinBox(this);
+    this->_number->setRange(1, 999);
+    this->_number->setValue(dataSeeding->getNumber());
+    connect(this->_number, &QSpinBox::valueChanged, this, &PageBracket::onNumberEdited);
+
+    this->_editionLayout = new QVBoxLayout;
+    this->_editionList = {
+        "150cc",
+        "200cc",
+        "Duo",
+        "Miroir",
+        "Bataille",
+        "Autres:"
+    };
+    this->_edition = new QButtonGroup(this);
+    this->_edition->setExclusive(true);
+    for (int i = 0; i < this->_editionList.size(); i++) {
+        QRadioButton *radio = new QRadioButton(this->_editionList[i]);
+        this->_editionLayout->addWidget(radio);
+        this->_edition->addButton(radio, i);
+        if (i == 0) {
+            radio->setChecked(true);
+        }
+    }
+    connect(this->_edition, &QButtonGroup::idToggled, this, &PageBracket::onEditionChanged);
+    this->_editionCustom = new QLineEdit(this);
+    this->_editionCustom->setEnabled(false);
+    connect(this->_output->getLineEdit(), &QLineEdit::textChanged, this, &PageBracket::onEditionCustomEdited);
+
+    this->_boxInfo->addRow("Output directory:", this->_output);
+    this->_boxInfo->addRow("Edition Number:", this->_number);
+    this->_boxInfo->addRow("Edition Particularity:", this->_editionLayout);
+    this->_boxInfo->addRow("", this->_editionCustom);
+}
+
+
+PageBracket::PageBracket(QWidget *parent) :
+    QWidget(parent)
+{
+    this->_layout = new QVBoxLayout(this);
+
+    createBoxSeeding();
+    createBoxInfo();
     this->_buttonGenerator = createPushButton(this, " Generate", "Will generate excel file with player list setup", ":/icons/generate", 100, std::bind(&PageBracket::onGenerateClicked, this));
 
-    this->_layout->addWidget(this->_areaList);
-    this->_layout->addLayout(this->_layoutButtons);
-    this->_layout->addWidget(this->_separator01);
-    this->_layout->addWidget(this->_outputLabel);
-    this->_layout->addWidget(this->_output);
-    this->_layout->addWidget(this->_editionLabel);
-    this->_layout->addWidget(this->_edition);
-    this->_layout->addWidget(this->_separator02);
+    this->_layout->addWidget(this->_boxSeeding);
+    this->_layout->addWidget(this->_boxInfo);
     this->_layout->addWidget(this->_buttonGenerator);
     this->_layout->addStretch();
+}
+
+QString PageBracket::getListItemName(size_t index)
+{
+    std::string str = "#";
+    if (index + 1 < 10)
+        str += "0";
+    str += std::to_string(index + 1);
+    str += '\t';
+    str += Data::Seeding::getInstance()->getPlayer(index).getName();
+    return QString::fromStdString(str);
 }
 
 }

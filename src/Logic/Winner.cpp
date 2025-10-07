@@ -85,6 +85,7 @@ static void createWinnerShared(std::string path, const std::array<Data::Winner::
     if (path.empty()) {
         throw std::runtime_error("can't open file: " + path);
     }
+
     Canva canva(path);
     Data::Winner *dataWinner = Data::Winner::getInstance();
 
@@ -111,9 +112,12 @@ static void createWinnerShared(std::string path, const std::array<Data::Winner::
         }
         canva.getText(std::to_string(i + 1) + '_' + "Name").str = name.c_str();
     }
+    DO_PROGRESS_TASK;
 
     canva.draw();
+    DO_PROGRESS_TASK;
     canva.save(dataWinner->getOutputDir(), Utils::getTimeFormat("%Y_%m_%d__%H_%M_%S"));
+    DO_PROGRESS_TASK;
 }
 
 static std::string getCanvaPath(std::string pathFile)

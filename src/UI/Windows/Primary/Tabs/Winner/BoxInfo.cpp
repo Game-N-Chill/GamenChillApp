@@ -109,26 +109,27 @@ void BoxInfo::onPlayerCountEdited(int value)
 
 void BoxInfo::onGameChanged(int id, bool checked)
 {
-    if (checked) {
-        auto comboBox = this->_background->getComboBox();
-        std::list<std::string> list;
+    if (!checked)
+        return;
 
-        comboBox->clear();
-        switch (id) {
-            case DATA_WINNER_GAME_MKWORLD:
-                list = Data::DictBackgroundMKWorld::getInstance()->list();
-                break;
-            case DATA_WINNER_GAME_MK8:
-                list = Data::DictBackgroundMK8::getInstance()->list();
-                break;
-        }
-        Data::Winner::getInstance()->setGame(id);
+    auto comboBox = this->_background->getComboBox();
+    std::list<std::string> list;
 
-        for (auto &it : list) {
-            comboBox->addItem(QString::fromStdString(it));
-        }
-        comboBox->setCurrentIndex(0);
+    comboBox->clear();
+    switch (id) {
+        case DATA_WINNER_GAME_MKWORLD:
+            list = Data::DictBackgroundMKWorld::getInstance()->list();
+            break;
+        case DATA_WINNER_GAME_MK8:
+            list = Data::DictBackgroundMK8::getInstance()->list();
+            break;
     }
+    Data::Winner::getInstance()->setGame(id);
+
+    for (auto &it : list) {
+        comboBox->addItem(QString::fromStdString(it));
+    }
+    comboBox->setCurrentIndex(0);
 }
 
 void BoxInfo::onBackgroundChanged(int index)

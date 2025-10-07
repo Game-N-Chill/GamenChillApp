@@ -20,7 +20,7 @@ Primary::Primary(QWidget *parent) :
     this->_tabs = new QTabWidget(this);
 
     this->_pageWinner = new PageWinner(this->_central);
-    this->_tabs->addTab(this->_pageWinner, "Winner");
+    this->_tabs->addTab(this->_pageWinner, "Top 8");
 
     this->_pageBracket = new PageBracket(this->_central);
     this->_tabs->addTab(this->_pageBracket, "Bracket");

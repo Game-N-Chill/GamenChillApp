@@ -7,6 +7,7 @@ namespace GNCApp::UI::Windows
 Notification::Notification(const QString &title, const QString &subtitle, const QString &soundPath, QWidget *parent) :
     Window(title, parent)
 {
+    this->setMinimumSize(250, 125);
     this->_infoLayout = new QHBoxLayout;
 
     QPixmap pix(":/icons/info");
@@ -18,6 +19,7 @@ Notification::Notification(const QString &title, const QString &subtitle, const 
 
     this->_infoLayout->addWidget(this->_icon);
     this->_infoLayout->addWidget(this->_text);
+    this->_infoLayout->addStretch();
     this->_layout->addLayout(this->_infoLayout);
 
     _sound.setSource(QUrl::fromLocalFile(soundPath));
@@ -40,11 +42,11 @@ void Notification::openUpdate(QWidget *parent)
     delete window;
 }
 
-void Notification::openGeneration(QWidget *parent)
+void Notification::openGeneration(QWidget *parent, QString title, std::function<void()> callback)
 {
-    Tools::Window *window = new Notification("Game'n Chill App Notification", "Winner image generation done", PATH_DEFAULT_NOTIFICATION_SOUND, parent);
+    Tools::Window *window = new Notification("Game'n Chill App Notification", title, PATH_DEFAULT_NOTIFICATION_SOUND, parent);
 
-    addWindowButtonOpenDir(window);
+    addWindowButtonOpen(window, callback);
     addWindowButtonValidate(window);
 
     (*window)();

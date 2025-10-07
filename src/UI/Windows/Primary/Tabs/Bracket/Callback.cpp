@@ -1,8 +1,10 @@
 
 #include "UI/Windows/Primary.hpp"
 #include "Logic/Logic.hpp"
+#include "UI/Windows/Common/ProgressBar.hpp"
 #include "UI/Windows/Common/Notification.hpp"
 #include <filesystem>
+#include <QDesktopServices>
 
 namespace fs = std::filesystem;
 namespace GNCApp::UI::Windows
@@ -76,7 +78,7 @@ void PageBracket::onModifyClicked()
     QString ret = openWindowPlayerBracket("Player Modification", this, true, QString::fromStdString(dataSeeding->getPlayer(this->_areaIndex).getName()));
     if (!ret.isEmpty()) {
         dataSeeding->atPlayer(this->_areaIndex).setName(ret.toStdString());
-        this->_areaList->item(this->_areaIndex)->setText(ret);
+        this->_areaList->item(this->_areaIndex)->setText(getListItemName(this->_areaIndex));
     }
 }
 
@@ -85,8 +87,8 @@ void PageBracket::onMove(int indexSrc, int indexDest)
     Data::Seeding *dataSeeding = Data::Seeding::getInstance();
     dataSeeding->move(indexSrc, indexDest);
 
-    this->_areaList->item(indexSrc)->setText(QString::fromStdString(dataSeeding->getPlayer(indexSrc).getName()));
-    this->_areaList->item(indexDest)->setText(QString::fromStdString(dataSeeding->getPlayer(indexDest).getName()));
+    this->_areaList->item(indexSrc)->setText(getListItemName(indexSrc));
+    this->_areaList->item(indexDest)->setText(getListItemName(indexDest));
     this->_areaIndex = indexDest;
     this->_areaList->setCurrentRow(indexDest);
 }
@@ -121,8 +123,8 @@ void PageBracket::onAddClicked()
     QString ret = openWindowPlayerBracket("New Player", this, false, "");
 
     dataSeeding->addPlayer(ret.toStdString(), 0.0f);
-    this->_areaList->addItem(ret);
-    this->_areaIndex = this->_areaList->count() - 1;
+    this->_areaIndex = this->_areaList->count();
+    this->_areaList->addItem(getListItemName(this->_areaIndex));
     this->_areaList->setCurrentRow(this->_areaIndex);
 }
 
@@ -135,6 +137,10 @@ void PageBracket::onRemoveClicked()
     dataSeeding->removePlayer(this->_areaIndex);
     this->_areaList->takeItem(this->_areaIndex);
     this->_areaIndex = this->_areaList->currentRow();
+
+    for (size_t i = this->_areaIndex; i < this->_areaList->count(); i++) {
+        this->_areaList->item(i)->setText(getListItemName(i));
+    }
 }
 
 void PageBracket::onOutputEdited(const QString &str)
@@ -142,15 +148,40 @@ void PageBracket::onOutputEdited(const QString &str)
     Data::Seeding::getInstance()->setOutputPath(str.toStdString());
 }
 
-void PageBracket::onEditionEdited(int value)
+void PageBracket::onNumberEdited(int value)
 {
-    Data::Seeding::getInstance()->setEdition(value);
+    Data::Seeding::getInstance()->setNumber(value);
+}
+
+void PageBracket::onEditionChanged(int id, bool checked)
+{
+    if (!checked)
+        return;
+
+    if (id == this->_editionList.size() - 1) {
+        this->_editionCustom->setEnabled(true);
+        Data::Seeding::getInstance()->setEdition(this->_editionCustom->text().toStdString());
+    } else {
+        this->_editionCustom->setEnabled(false);
+        Data::Seeding::getInstance()->setEdition(this->_edition->button(id)->text().toStdString());
+    }
+}
+
+void PageBracket::onEditionCustomEdited(const QString &str)
+{
+    Data::Seeding::getInstance()->setEdition(str.toStdString());
 }
 
 void PageBracket::onGenerateClicked()
 {
-    Logic::createBracketFile();
-    Notification::openGeneration(this);
+    ProgressBar::open("Bracket Generation", &Logic::ProgressTask::loadTaskBracket, &Logic::createBracketFile, 10, this);
+    Notification::openGeneration(this, "Excel file succesfully generated", std::bind(&PageBracket::callbackOpenFile, this));
+}
+
+void PageBracket::callbackOpenFile()
+{
+    QString path = QString::fromStdString(Data::Seeding::getInstance()->getOutputPath());
+    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
 }

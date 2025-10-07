@@ -12,11 +12,6 @@ QPushButton *createPushButton(QWidget *parent, QString title, QString toolTip = 
 
 QPushButton *addWindowButtonValidate(Tools::Window *window);
 QPushButton *addWindowButtonCancel(Tools::Window *window);
-QPushButton *addWindowButtonOpenDir(Tools::Window *window);
-
-void callbackOpenDirectory();
-
-void openWindowUpdate(QWidget *parent);
-void openWindowNotificationGeneration(QWidget *parent);
+QPushButton *addWindowButtonOpen(Tools::Window *window, std::function<void()> callback = nullptr);
 
 } // namespace GNCApp

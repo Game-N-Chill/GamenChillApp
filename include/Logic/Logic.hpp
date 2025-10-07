@@ -16,6 +16,7 @@ using json = nlohmann::json;
 
 #include "Utils.hpp"
 #include "Render.hpp"
+#include "ProgressTask.hpp"
 
 namespace GNCApp::Logic
 {

@@ -1,7 +1,9 @@
 
 #include "UI/Windows/Primary.hpp"
+#include "UI/Windows/Common/ProgressBar.hpp"
 #include "UI/Windows/Common/Notification.hpp"
 #include "Logic/Logic.hpp"
+#include <QDesktopServices>
 
 namespace GNCApp::UI::Windows
 {
@@ -37,16 +39,27 @@ void PageWinner::updateAllInfos()
 // *****************************************************************************
 //  CALLBACKS
 // *****************************************************************************
+void caca()
+{
+}
 
 void PageWinner::onGenerateClicked()
 {
+    std::function<void()> func = nullptr;
     if (this->_rank->getTeamSelected() == 0) { // Solo
-        Logic::createWinnerSoloImage();
+        func = &Logic::createWinnerSoloImage;
     } else { // Duo
-        Logic::createWinnerDuoImage();
+        func = &Logic::createWinnerDuoImage;
     }
 
-    Notification::openGeneration(this);
+    ProgressBar::open("Top 8 Generation", &Logic::ProgressTask::loadTaskWinner, func, 10, this);
+    Notification::openGeneration(this, "Winner image generation done", std::bind(&PageWinner::callbackOpenDir, this));
+}
+
+void PageWinner::callbackOpenDir()
+{
+    QString path = QString::fromStdString(Data::Winner::getInstance()->getOutputDir());
+    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
 }
 
 }

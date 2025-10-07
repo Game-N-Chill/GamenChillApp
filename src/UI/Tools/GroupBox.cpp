@@ -47,4 +47,9 @@ void FGroupBox::addRow(const QString &label, QWidget *widget)
     dynamic_cast<QFormLayout *>(this->_layout)->addRow(label, widget);
 }
 
+void FGroupBox::addRow(const QString &label, QLayout *layout)
+{
+    dynamic_cast<QFormLayout *>(this->_layout)->addRow(label, layout);
+}
+
 }
