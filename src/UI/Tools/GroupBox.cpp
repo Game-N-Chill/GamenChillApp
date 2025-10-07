@@ -14,7 +14,6 @@ void GroupBox::addWidget(QWidget *widget)
     this->_layout->addWidget(widget);
 }
 
-
 HGroupBox::HGroupBox(const QString &title, QWidget *parent) :
     GroupBox(title, parent)
 {
@@ -46,6 +45,11 @@ FGroupBox::FGroupBox(const QString &title, QWidget *parent) :
 void FGroupBox::addRow(const QString &label, QWidget *widget)
 {
     dynamic_cast<QFormLayout *>(this->_layout)->addRow(label, widget);
+}
+
+void FGroupBox::addRow(const QString &label, QLayout *layout)
+{
+    dynamic_cast<QFormLayout *>(this->_layout)->addRow(label, layout);
 }
 
 }

@@ -49,6 +49,7 @@ class FGroupBox : public GroupBox
         explicit FGroupBox(const QString &title, QWidget *parent = nullptr);
 
         void addRow(const QString &label, QWidget *widget);
+        void addRow(const QString &label, QLayout *layout);
 };
 
 }

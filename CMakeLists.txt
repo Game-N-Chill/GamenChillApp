@@ -44,30 +44,45 @@ qt_standard_project_setup()
 
 set(APP_SRC_FILES
     ${SRC_DIR}/Main.cpp
-    ${SRC_DIR}/Utils.cpp
+    ${SRC_DIR}/Utils/Process.cpp
+    ${SRC_DIR}/Utils/Request.cpp
+    ${SRC_DIR}/Utils/String.cpp
+    ${SRC_DIR}/Utils/Temp.cpp
     ${SRC_DIR}/Update/Manager.cpp
-    ${SRC_DIR}/Update/Request.cpp
     ${SRC_DIR}/Data/Data.cpp
-    ${SRC_DIR}/Data/Assets.cpp
-    ${SRC_DIR}/Data/Player.cpp
-    ${SRC_DIR}/Data/Winner.cpp
     ${SRC_DIR}/Data/Dictionary/Background.cpp
     ${SRC_DIR}/Data/Dictionary/Character.cpp
+    ${SRC_DIR}/Data/Assets.cpp
+    ${SRC_DIR}/Data/Winner/Winner.cpp
+    ${SRC_DIR}/Data/Winner/Player.cpp
+    ${SRC_DIR}/Data/Seeding/Seeding.cpp
+    ${SRC_DIR}/Data/Seeding/Player.cpp
+    ${SRC_DIR}/Logic/ProgressTask.cpp
     ${SRC_DIR}/Logic/Render.cpp
     ${SRC_DIR}/Logic/Winner.cpp
+    ${SRC_DIR}/Logic/Bracket.cpp
+    ${SRC_DIR}/Logic/Seeding.cpp
+    ${SRC_DIR}/UI/App/Themes.cpp
+    ${SRC_DIR}/UI/Windows/Common/Shared.cpp
+    ${INC_DIR}/UI/Windows/Common/Notification.hpp
+    ${SRC_DIR}/UI/Windows/Common/Notification.cpp
+    ${INC_DIR}/UI/Windows/Common/ProgressBar.hpp
+    ${SRC_DIR}/UI/Windows/Common/ProgressBar.cpp
     ${INC_DIR}/UI/Windows/Primary.hpp
     ${SRC_DIR}/UI/Windows/Primary/Core.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Winner/Page.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxAutoLoad.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxInfo.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Winner/BoxRank.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Bracket/Page.cpp
-    ${INC_DIR}/UI/Windows/PlayerSettings.hpp
-    ${SRC_DIR}/UI/Windows/PlayerSettings/Info.cpp
-    ${SRC_DIR}/UI/Windows/PlayerSettings/Solo.cpp
-    ${SRC_DIR}/UI/Windows/PlayerSettings/Duo.cpp
-    ${INC_DIR}/UI/Windows/Notification.hpp
-    ${SRC_DIR}/UI/Windows/Notification.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Menu/Bar.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/Page.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxAutoLoad.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxInfo.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxRank.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Bracket/Page.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Bracket/Callback.cpp
+    ${INC_DIR}/UI/Windows/Secondary/PlayerSettings.hpp
+    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Info.cpp
+    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Solo.cpp
+    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Duo.cpp
+    ${INC_DIR}/UI/Windows/Secondary/PlayerBracket.hpp
+    ${SRC_DIR}/UI/Windows/Secondary/PlayerBracket.cpp
     ${SRC_DIR}/UI/Tools/Browser.cpp
     ${INC_DIR}/UI/Tools/Browser.hpp
     ${SRC_DIR}/UI/Tools/GroupBox.cpp
@@ -78,9 +93,9 @@ set(APP_SRC_FILES
     ${INC_DIR}/UI/Tools/Window.hpp
 )
 
-# qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
+qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
 
-add_executable(${APP_NAME} WIN32 ${APP_SRC_FILES} ${APP_ICON_RESOURCE})
+add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_RSC_FILES} ${APP_ICON_RESOURCE})
 
 target_include_directories(${APP_NAME} PRIVATE include)
 
@@ -93,14 +108,21 @@ target_link_libraries(${APP_NAME} PRIVATE
     Qt6::Multimedia
 )
 
+if (WIN32)
+    target_link_options(${APP_NAME} PRIVATE $<$<CONFIG:Debug>:/SUBSYSTEM:CONSOLE>)
+    target_link_options(${APP_NAME} PRIVATE $<$<CONFIG:Release>:/SUBSYSTEM:WINDOWS>)
+endif()
+
 #  UPDATER
 # ------------------------------------------------------------------------------
 
 set(UPD_SRC_FILES
-    ${SRC_DIR}/Utils.cpp
+    ${SRC_DIR}/Utils/Process.cpp
+    ${SRC_DIR}/Utils/Request.cpp
+    ${SRC_DIR}/Utils/String.cpp
+    ${SRC_DIR}/Utils/Temp.cpp
     ${SRC_DIR}/Update/Main.cpp
     ${SRC_DIR}/Update/Manager.cpp
-    ${SRC_DIR}/Update/Request.cpp
 )
 
 add_executable(${UPD_NAME} ${UPD_SRC_FILES} ${UPD_ICON_RESOURCE})
@@ -126,8 +148,8 @@ foreach(ITEM ${ASSETS_TO_COPY})
     add_custom_command(
         TARGET ${APP_NAME}
         POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "copying ${CMAKE_SOURCE_DIR}/resources/${ITEM} into ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}..."
-        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/resources/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
+        COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different "${CMAKE_SOURCE_DIR}/resources/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
+        COMMAND ${CMAKE_COMMAND} -E echo "Copied resource directory: ${ITEM}"
     )
 endforeach()
 

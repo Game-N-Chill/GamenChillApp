@@ -29,15 +29,8 @@ int main(int ac, char **av)
     }
 
     QApplication app(ac, av);
-
-    QFile file("themes/Darkeum.qss");
-    if (file.open(QFile::ReadOnly)) {
-        QString styleSheet = QString::fromUtf8(file.readAll());
-        app.setStyleSheet(styleSheet);
-    }
-
+    GNCApp::UI::setAppTheme("themes/Darkeum.qss");
     GNCApp::Data::loadData();
-
     GNCApp::UI::Windows::Primary windowPrimary;
     windowPrimary.lockSize();
     windowPrimary.show();
@@ -45,3 +38,12 @@ int main(int ac, char **av)
 
     return app.exec();
 }
+
+#if defined(_WIN32)
+
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    return main(__argc, __argv);
+}
+
+#endif

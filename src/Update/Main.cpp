@@ -8,7 +8,7 @@ namespace fs = std::filesystem;
 int main(int ac, char **av)
 {
     try {
-        GNCApp::Update::Manager updater(GNCAPP_API_URL);
+        GNCApp::Update::Manager updater(UPDATE_API_URL);
         updater.downloadUpdate();
         updater.saveApp();
         updater.clearApp();

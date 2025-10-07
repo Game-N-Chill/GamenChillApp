@@ -1,5 +1,6 @@
 
 #include "Logic/Render.hpp"
+#include "Logic/ProgressTask.hpp"
 #include "Data/Assets.hpp"
 #include <fstream>
 #include <filesystem>
@@ -106,7 +107,9 @@ Canva::Canva(std::string path, int width, int height) :
 
     this->_order = jsonFile[CANVA_CATEGORY_ORDER].get<std::vector<std::string>>();
     loadImages(jsonFile, this->_objects);
+    DO_PROGRESS_TASK;
     loadTexts(jsonFile, this->_objects);
+    DO_PROGRESS_TASK;
 }
 
 Object &Canva::getObject(std::string name)

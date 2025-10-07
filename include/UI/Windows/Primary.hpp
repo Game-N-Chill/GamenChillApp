@@ -27,34 +27,28 @@
 #include <QFileDialog>
 #include <QButtonGroup>
 #include <QRadioButton>
-
-#pragma warning(push)
-#pragma warning(disable : 4244)
-#pragma warning(disable : 4267)
-#include <OpenXLSX.hpp>
-#pragma warning(pop)
+#include <QScrollArea>
+#include <QListWidget>
+#include <QStringList>
 
 #include "UI/Tools/GroupBox.hpp"
 #include "UI/Tools/Browser.hpp"
 #include "UI/Tools/Randomizer.hpp"
 
-#include "UI/Windows/PlayerSettings.hpp"
+#include "UI/Windows/Common/Shared.hpp"
+#include "UI/Windows/Secondary/PlayerSettings.hpp"
+#include "UI/Windows/Secondary/PlayerBracket.hpp"
 #include "Data/Data.hpp"
+#include "Utils.hpp"
 
 namespace GNCApp::UI::Windows
 {
-
-    #define EXCEL_CELL_TITLE        "C2"
-    #define EXCEL_CELL_SUBTITLE     "D7"
-    #define EXCEL_CELL_DATE         "I7"
-    #define EXCEL_LINE_FIRST        15
-    #define EXCEL_COL_CHARACTER     "H"
-    #define EXCEL_COL_PLAYER        "I"
-
     #define DATE_FORMAT             "dd/MM/yyyy"
 
-    #define GAME_SELECTION_MKWORLD  0
-    #define GAME_SELECTION_MK8      1
+    #define PLAYER_LIMIT            48
+
+//  WINNER DATA STRUCTURE
+// *****************************************************************************
 
 class BoxAutoLoad : public QWidget
 {
@@ -63,6 +57,7 @@ class BoxAutoLoad : public QWidget
     public:
         BoxAutoLoad(QWidget *parent);
 
+        void onPathEdited(const QString &str);
         void onLoadClicked();
 
     private:
@@ -117,7 +112,7 @@ class BoxRank : public QWidget
         void onPlayerClicked(int index, bool checked);
 
         template<size_t N>
-        void setTeamInfo(int index, GNCApp::Data::Team<N> team);
+        void setTeamInfo(int index, GNCApp::Data::Winner::Team<N> team);
         void openPlayerSoloWindow(int index);
         void openPlayerDuoWindow(int index);
 
@@ -143,6 +138,7 @@ class PageWinner : public QWidget
         PageWinner(QWidget *parent);
 
         void onGenerateClicked();
+        void callbackOpenDir();
 
         void updateAllInfos();
 
@@ -156,6 +152,9 @@ class PageWinner : public QWidget
         QPushButton *_btnWinner;
 };
 
+//  BRACKET DATA STRUCTURE
+// *****************************************************************************
+
 class PageBracket : public QWidget
 {
     Q_OBJECT
@@ -164,8 +163,57 @@ class PageBracket : public QWidget
         PageBracket(QWidget *parent);
 
     private:
+        void onListItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+        void onListItemSelected(QListWidgetItem *item);
+        QString getListItemName(size_t index);
+
+        void onSortClicked();
+        void onModifyClicked();
+        void onUpClicked();
+        void onDownClicked();
+        void onAddClicked();
+        void onRemoveClicked();
+        void onOutputEdited(const QString &str);
+        void onNumberEdited(int value);
+        void onEditionChanged(int id, bool checked);
+        void onEditionCustomEdited(const QString &str);
+        void onGenerateClicked();
+
+        void onMove(int indexSrc, int indexDest);
+
+        void createBoxSeeding();
+        void createBoxInfo();
+
+        void callbackOpenFile();
+
         QVBoxLayout *_layout;
+
+        Tools::VGroupBox *_boxSeeding;
+        QListWidget *_areaList;
+        size_t _areaIndex;
+        QHBoxLayout *_layoutButtons;
+        QHBoxLayout *_layoutLeft;
+        QHBoxLayout *_layoutRight;
+        QPushButton *_buttonSort;
+        QPushButton *_buttonModify;
+        QPushButton *_buttonUp;
+        QPushButton *_buttonDown;
+        QPushButton *_buttonAdd;
+        QPushButton *_buttonRemove;
+
+        Tools::FGroupBox *_boxInfo;
+        Tools::DirBrowser *_output;
+        QSpinBox *_number;
+        QVBoxLayout *_editionLayout;
+        QStringList _editionList;
+        QButtonGroup *_edition;
+        QLineEdit *_editionCustom;
+
+        QPushButton *_buttonGenerator;
 };
+
+//  CORE DATA STRUCTURE
+// *****************************************************************************
 
 class Primary : public QMainWindow
 {
