@@ -167,6 +167,8 @@ class PageBracket : public QWidget
         void onListItemSelected(QListWidgetItem *item);
         QString getListItemName(size_t index);
 
+        void onLoadClicked();
+        void onLoadEdited(const QString &str);
         void onSortClicked();
         void onModifyClicked();
         void onUpClicked();
@@ -180,13 +182,19 @@ class PageBracket : public QWidget
         void onGenerateClicked();
 
         void onMove(int indexSrc, int indexDest);
+        void addPlayer(std::string player);
 
+        void createBoxAutoLoad();
         void createBoxSeeding();
         void createBoxInfo();
 
         void callbackOpenFile();
 
         QVBoxLayout *_layout;
+
+        Tools::FGroupBox *_boxAutoLoad;
+        Tools::FileBrowser *_browserFile;
+        QPushButton *_btnLoad;
 
         Tools::VGroupBox *_boxSeeding;
         QListWidget *_areaList;

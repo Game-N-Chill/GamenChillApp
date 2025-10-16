@@ -39,6 +39,24 @@ void PageBracket::onListItemSelected(QListWidgetItem *item)
 }
 
 
+void PageBracket::onLoadClicked()
+{
+    auto vec = Logic::loadPlayerFile(this->_browserFile->getLineEdit()->text().toStdString());
+
+    for (auto &it : vec) {
+        addPlayer(it);
+    }
+}
+
+void PageBracket::onLoadEdited(const QString &str)
+{
+    if (QFile::exists(str)) {
+        this->_btnLoad->setEnabled(true);
+    } else {
+        this->_btnLoad->setEnabled(false);
+    }
+}
+
 void PageBracket::onSortClicked()
 {
     if (this->_areaList->count() == 0)
@@ -97,19 +115,25 @@ void PageBracket::onDownClicked()
     onMove(this->_areaIndex, this->_areaIndex + 1);
 }
 
+void PageBracket::addPlayer(std::string player)
+{
+    try {
+        Data::Seeding::getInstance()->addPlayer(player);
+        this->_areaIndex = this->_areaList->count();
+        this->_areaList->addItem(getListItemName(this->_areaIndex));
+        this->_areaList->setCurrentRow(this->_areaIndex);
+    } catch (const std::runtime_error &e) {
+        std::cerr << e.what() << std::endl;
+    }
+}
+
 void PageBracket::onAddClicked()
 {
     if (this->_areaList->count() >= PLAYER_LIMIT)
         return;
 
-    Data::Seeding *dataSeeding = Data::Seeding::getInstance();
-
     QString ret = openWindowPlayerBracket("New Player", this, false, "");
-
-    dataSeeding->addPlayer(ret.toStdString(), 0.0f);
-    this->_areaIndex = this->_areaList->count();
-    this->_areaList->addItem(getListItemName(this->_areaIndex));
-    this->_areaList->setCurrentRow(this->_areaIndex);
+    addPlayer(ret.toStdString());
 }
 
 void PageBracket::onRemoveClicked()

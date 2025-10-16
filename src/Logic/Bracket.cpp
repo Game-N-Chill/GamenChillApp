@@ -1,9 +1,26 @@
 
 #include "Logic/Logic.hpp"
 #include "Data/Data.hpp"
+#include <string>
 
 namespace GNCApp::Logic
 {
+
+std::vector<std::string> loadPlayerFile(std::string path)
+{
+    std::ifstream file(path);
+    if (!file.is_open())
+        throw std::runtime_error("can't open file at path: " + path);
+
+    std::vector<std::string> vec;
+    std::string buf;
+    while (std::getline(file, buf)) {
+        vec.push_back(buf);
+    }
+
+    return vec;
+}
+
 
 static std::string getTemplateFilePath(size_t size)
 {

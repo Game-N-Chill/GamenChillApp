@@ -4,6 +4,18 @@
 namespace GNCApp::UI::Windows
 {
 
+void PageBracket::createBoxAutoLoad()
+{
+    this->_boxAutoLoad = new Tools::FGroupBox("Auto Loader", this);
+
+    this->_btnLoad = createPushButton(this, " Load", "When clicked will load all infos from path file", ":/icons/load", 80, std::bind(&PageBracket::onLoadClicked, this));
+    this->_btnLoad->setEnabled(false);
+    this->_browserFile = new Tools::FileBrowser(this, this->_btnLoad);
+    connect(this->_browserFile->getLineEdit(), &QLineEdit::textChanged, this, &PageBracket::onLoadEdited);
+
+    this->_boxAutoLoad->addRow("Player List Path : ", _browserFile);
+}
+
 void PageBracket::createBoxSeeding()
 {
     auto dataSeeding = Data::Seeding::getInstance();
@@ -103,10 +115,12 @@ PageBracket::PageBracket(QWidget *parent) :
 {
     this->_layout = new QVBoxLayout(this);
 
+    createBoxAutoLoad();
     createBoxSeeding();
     createBoxInfo();
     this->_buttonGenerator = createPushButton(this, " Generate", "Will generate excel file with player list setup", ":/icons/generate", 100, std::bind(&PageBracket::onGenerateClicked, this));
 
+    this->_layout->addWidget(this->_boxAutoLoad);
     this->_layout->addWidget(this->_boxSeeding);
     this->_layout->addWidget(this->_boxInfo);
     this->_layout->addWidget(this->_buttonGenerator);

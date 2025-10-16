@@ -40,6 +40,7 @@ void loadExcelFile(std::string path);
 void createWinnerSoloImage();
 void createWinnerDuoImage();
 
+std::vector<std::string> loadPlayerFile(std::string path);
 void fetchSeeding();
 void createBracketFile();
 

@@ -49,7 +49,7 @@ static void genericAddPlayer(std::list<Seeding::Player> &list, const Seeding::Pl
 {
     for (auto &it : list) {
         if (it == player) {
-            return;
+            throw std::runtime_error("player already in list");
         }
     }
 
@@ -182,6 +182,7 @@ void Seeding::sort(const std::map<std::string, float> &map)
         auto itMap = map.find(Utils::stringToLower(name));
         if (itMap != map.end()) {
             it->setSeeding(itMap->second);
+            std::cout << "found player " << itMap->first << ", seeding: " << itMap->second << std::endl;
         }
     }
 

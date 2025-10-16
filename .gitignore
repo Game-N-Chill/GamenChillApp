@@ -34,6 +34,7 @@
 # Custom
 .vscode/
 .release/
+.temp/
 build/
 Result/
 Brackets/
