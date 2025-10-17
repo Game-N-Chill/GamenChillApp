@@ -1,7 +1,6 @@
 
 #include "UI/Windows/Primary.hpp"
 #include "UI/Windows/Common/Notification.hpp"
-#include "Update/Update.hpp"
 #include <filesystem>
 
 namespace fs = std::filesystem;
@@ -28,6 +27,7 @@ Primary::Primary(QWidget *parent) :
     this->_layout->addWidget(this->_tabs);
 
     createMenus();
+    loadConfig();
 }
 
 Primary::~Primary()
@@ -37,22 +37,56 @@ Primary::~Primary()
 void Primary::lockSize()
 {
     adjustSize();
-    setFixedSize(size());
+    setMinimumSize(size());
 }
 
-void Primary::checkUpdate()
+void Primary::loadConfig()
 {
-    try {
-        GNCApp::Update::Manager updateManager(UPDATE_API_URL);
-        if (updateManager.needsUpdate()) {
-            Notification::openUpdate(this);
+    auto dataConfig = Data::Config::getInstance();
+
+    std::string theme = dataConfig->getTheme();
+    setTheme(theme);
+
+    if (theme.empty()) {
+        theme = "Default";
+    }
+    for (auto &action : this->_menuTheme->actions()) {
+        if (theme.find(action->text().toStdString()) != std::string::npos) {
+            action->setChecked(true);
+            break;
         }
-    } catch (const fs::filesystem_error &e) {
-        std::cerr << "ERROR: filesystem: " << e.what() << std::endl;
-    } catch (const std::runtime_error &e) {
-        std::cerr << "ERROR: " << e.what() << std::endl;
-    } catch (const std::exception &e) {
-        std::cerr << "ERROR: " << e.what() << std::endl;
+    }
+}
+
+
+void Primary::setTheme(const char *path)
+{
+    setTheme(QString(path));
+}
+
+void Primary::setTheme(std::string path)
+{
+    setTheme(QString::fromStdString(path));
+}
+
+void Primary::setTheme(QString path)
+{
+    auto dataConfig = Data::Config::getInstance();
+
+    if (path.isEmpty()) {
+        qApp->setStyleSheet("");
+        dataConfig->setTheme("");
+        return;
+    }
+
+    QFile file(path);
+    if (file.open(QFile::ReadOnly)) {
+        QString styleSheet = QString::fromUtf8(file.readAll());
+        qApp->setStyleSheet(styleSheet);
+        dataConfig->setTheme(path.toStdString());
+    } else {
+        qApp->setStyleSheet("");
+        dataConfig->setTheme("");
     }
 }
 

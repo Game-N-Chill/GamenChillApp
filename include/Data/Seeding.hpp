@@ -78,9 +78,3 @@ class Seeding : public Utils::Singleton<Seeding>
 };
 
 }
-
-// bool operator==(const GNCApp::Data::Seeding::Player &left, const GNCApp::Data::Seeding::Player &right)
-// {
-//     return true;
-//     // return (left.getName() == right.getName());
-// }

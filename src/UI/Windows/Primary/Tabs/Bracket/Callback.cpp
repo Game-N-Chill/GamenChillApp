@@ -133,7 +133,9 @@ void PageBracket::onAddClicked()
         return;
 
     QString ret = openWindowPlayerBracket("New Player", this, false, "");
-    addPlayer(ret.toStdString());
+    if (!ret.isEmpty()) {
+        addPlayer(ret.toStdString());
+    }
 }
 
 void PageBracket::onRemoveClicked()
@@ -183,7 +185,7 @@ void PageBracket::onEditionCustomEdited(const QString &str)
 void PageBracket::onGenerateClicked()
 {
     ProgressBar::open("Bracket Generation", &Logic::ProgressTask::loadTaskBracket, &Logic::createBracketFile, 10, this);
-    Notification::openGeneration(this, "Excel file succesfully generated", std::bind(&PageBracket::callbackOpenFile, this));
+    Notification::openDirectory("Excel file succesfully generated", this, std::bind(&PageBracket::callbackOpenFile, this));
 }
 
 void PageBracket::callbackOpenFile()

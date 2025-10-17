@@ -232,13 +232,23 @@ class Primary : public QMainWindow
         ~Primary();
 
         void lockSize();
-        void checkUpdate();
 
     private slots:
+        void onTabWinner();
+        void onTabBracket();
+        void onTheme(QAction *action);
+        void onVersion();
+        void onUpdate();
         void onQuit();
 
     private:
         void createMenus();
+        void createMenuTheme();
+
+        void loadConfig();
+        void setTheme(const char *path);
+        void setTheme(std::string path);
+        void setTheme(QString path);
 
         QWidget *_central;
         QVBoxLayout *_layout;
@@ -246,6 +256,9 @@ class Primary : public QMainWindow
 
         PageWinner *_pageWinner;
         PageBracket *_pageBracket;
+
+        QMenu *_menuFile;
+        QMenu *_menuTheme;
 };
 
 } // namespace MKTG

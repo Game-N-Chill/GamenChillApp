@@ -8,5 +8,4 @@
 #include "Update/Update.hpp"
 #include "Logic/Logic.hpp"
 #include "Data/Data.hpp"
-#include "UI/App.hpp"
 #include "UI/Windows/Primary.hpp"

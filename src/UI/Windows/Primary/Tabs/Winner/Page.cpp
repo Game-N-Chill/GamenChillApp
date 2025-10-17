@@ -28,6 +28,8 @@ PageWinner::PageWinner(QWidget *parent) :
 
     _btnWinner = createPushButton(this, " Generate", "Will create top 8 image from data", ":/icons/generate", 80, std::bind(&PageWinner::onGenerateClicked, this));
     _layout->addWidget(_btnWinner);
+
+    _layout->addStretch();
 }
 
 void PageWinner::updateAllInfos()
@@ -53,7 +55,7 @@ void PageWinner::onGenerateClicked()
     }
 
     ProgressBar::open("Top 8 Generation", &Logic::ProgressTask::loadTaskWinner, func, 10, this);
-    Notification::openGeneration(this, "Winner image generation done", std::bind(&PageWinner::callbackOpenDir, this));
+    Notification::openDirectory("Winner image generation done", this, std::bind(&PageWinner::callbackOpenDir, this));
 }
 
 void PageWinner::callbackOpenDir()

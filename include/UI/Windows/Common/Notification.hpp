@@ -22,6 +22,7 @@
 namespace GNCApp::UI::Windows
 {
 
+    #define PATH_DEFAULT_ICON                   ":/icons/info"
     #define PATH_DEFAULT_NOTIFICATION_SOUND     "assets/Sounds/SE_SYS_BTN_OK.wav"
 
 class Notification : public Tools::Window
@@ -29,10 +30,11 @@ class Notification : public Tools::Window
     Q_OBJECT
 
     public:
-        Notification(const QString &title, const QString &subtitle, const QString &soundPath = PATH_DEFAULT_NOTIFICATION_SOUND, QWidget *parent = nullptr);
+        Notification(const QString &title, const QString &subtitle, QWidget *parent = nullptr, QString iconPath = PATH_DEFAULT_ICON, const QString &soundPath = PATH_DEFAULT_NOTIFICATION_SOUND);
 
-        static void openUpdate(QWidget *parent);
-        static void openGeneration(QWidget *parent, QString title, std::function<void()> callback = nullptr);
+        static bool openYesNo(const QString &title, const QString &subtitle, QWidget *parent, QString iconPath = PATH_DEFAULT_ICON, const QString &soundPath = PATH_DEFAULT_NOTIFICATION_SOUND);
+        static void openInfo(const QString &title, const QString &subtitle, QWidget *parent, QString iconPath = PATH_DEFAULT_ICON, const QString &soundPath = PATH_DEFAULT_NOTIFICATION_SOUND);
+        static void openDirectory(const QString &title, QWidget *parent = nullptr, std::function<void()> callback = nullptr, QString iconPath = PATH_DEFAULT_ICON, const QString &soundPath = PATH_DEFAULT_NOTIFICATION_SOUND);
 
     private:
         QHBoxLayout *_infoLayout;

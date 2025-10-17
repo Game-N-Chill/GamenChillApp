@@ -4,13 +4,13 @@
 namespace GNCApp::UI::Windows
 {
 
-Notification::Notification(const QString &title, const QString &subtitle, const QString &soundPath, QWidget *parent) :
+Notification::Notification(const QString &title, const QString &subtitle, QWidget *parent, QString iconPath, const QString &soundPath) :
     Window(title, parent)
 {
     this->setMinimumSize(250, 125);
     this->_infoLayout = new QHBoxLayout;
 
-    QPixmap pix(":/icons/info");
+    QPixmap pix(iconPath);
     pix = pix.scaled(QSize(32, 32), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
     this->_icon = new QLabel(this);
@@ -27,24 +27,34 @@ Notification::Notification(const QString &title, const QString &subtitle, const 
     _sound.play();
 }
 
-void Notification::openUpdate(QWidget *parent)
+bool Notification::openYesNo(const QString &title, const QString &subtitle, QWidget *parent, QString iconPath, const QString &soundPath)
 {
-    Tools::Window *window = new Notification("Update", "An update has been found, do you want to install it ?", PATH_DEFAULT_NOTIFICATION_SOUND, parent);
+    Tools::Window *window = new Notification(title, subtitle, parent, iconPath, soundPath);
 
     addWindowButtonValidate(window);
     addWindowButtonCancel(window);
 
     (*window)();
-    if (window->hasValidate()) {
-        Utils::createProcess(std::filesystem::current_path().string() + '/' + GNCAPP_NAME + "_Updater.exe");
-    }
+    bool ret = window->hasValidate();
+
+    delete window;
+    return ret;
+}
+
+void Notification::openInfo(const QString &title, const QString &subtitle, QWidget *parent, QString iconPath, const QString &soundPath)
+{
+    Tools::Window *window = new Notification(title, subtitle, parent, iconPath, soundPath);
+
+    addWindowButtonValidate(window);
+
+    (*window)();
 
     delete window;
 }
 
-void Notification::openGeneration(QWidget *parent, QString title, std::function<void()> callback)
+void Notification::openDirectory(const QString &title, QWidget *parent, std::function<void()> callback, QString iconPath, const QString &soundPath)
 {
-    Tools::Window *window = new Notification("Game'n Chill App Notification", title, PATH_DEFAULT_NOTIFICATION_SOUND, parent);
+    Tools::Window *window = new Notification("Game'n Chill App Notification", title, parent, iconPath, soundPath);
 
     addWindowButtonOpen(window, callback);
     addWindowButtonValidate(window);

@@ -53,6 +53,7 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Data/Dictionary/Background.cpp
     ${SRC_DIR}/Data/Dictionary/Character.cpp
     ${SRC_DIR}/Data/Assets.cpp
+    ${SRC_DIR}/Data/Config.cpp
     ${SRC_DIR}/Data/Winner/Winner.cpp
     ${SRC_DIR}/Data/Winner/Player.cpp
     ${SRC_DIR}/Data/Seeding/Seeding.cpp
@@ -62,7 +63,6 @@ set(APP_SRC_FILES
     ${SRC_DIR}/Logic/Winner.cpp
     ${SRC_DIR}/Logic/Bracket.cpp
     ${SRC_DIR}/Logic/Seeding.cpp
-    ${SRC_DIR}/UI/App/Themes.cpp
     ${SRC_DIR}/UI/Windows/Common/Shared.cpp
     ${INC_DIR}/UI/Windows/Common/Notification.hpp
     ${SRC_DIR}/UI/Windows/Common/Notification.cpp
