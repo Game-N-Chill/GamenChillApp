@@ -2,8 +2,121 @@
 #include "Logic/Logic.hpp"
 #include "Data/Data.hpp"
 
+#include <regex>
+
 namespace GNCApp::Logic
 {
+
+static std::string getDateFromAmericanFormat(std::string date)
+{
+    std::regex pattern(REGEX_WEB_DATE);
+
+    std::smatch matches;
+    if (std::regex_match(date, matches, pattern)) {
+        std::string year = matches[1];
+        std::string mounth = matches[2];
+        std::string day = matches[3];
+
+        return day + '/' + mounth + '/' + year;
+    } else {
+        return date;
+    }
+}
+
+static void getRealRank(int &rank, bool &firstTime)
+{
+    if (!firstTime) {
+        firstTime = true;
+    } else {
+        rank++;
+    }
+}
+
+void loadWebFile(std::string apiKey, std::string tournamentID)
+{
+    if (apiKey.empty())
+        return;
+    if (apiKey.size() != 40)
+        return;
+    if (tournamentID.empty())
+        return;
+
+    Data::Winner *dataWinner = Data::Winner::getInstance();
+    // https://api.challonge.com/v1/tournaments/rififitest.json?api_key=p4JQGpIhptA3whwueKIFUicDejSf4e55ZMN1Pt6I&state=all&include_participants=1
+    std::string url = "https://api.challonge.com/v1/tournaments/" + tournamentID + ".json?api_key=" + apiKey + "&state=all&include_participants=1";
+    std::string pathTemp = Utils::getTempDir() + '/' + GNCAPP_TEMP_DIR + "/challonge.json";
+    Utils::Request req;
+    json data;
+
+    req.ResetOpt();
+    req.SetOpt(CURLOPT_SSL_VERIFYPEER, 1L);
+    req.SetOpt(CURLOPT_SSL_VERIFYHOST, 2L);
+    req.SetOpt(CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    req.SetOpt(CURLOPT_USERAGENT, "curl/8.0");
+
+    try {
+        std::string str = req.Get(url);
+        data = json::parse(str);
+        data = data["tournament"];
+    } catch (std::runtime_error &e) {
+        std::cerr << "ERROR: " << e.what() << std::endl;
+        return;
+    } catch (json::exception &e) {
+        std::cerr << "ERROR: " << e.what() << std::endl;
+        return;
+    }
+    std::cout << "SUCCESS: data fully downloaded" << std::endl;
+
+    std::string title = data["name"];
+    dataWinner->setTitle(title);
+
+    std::string subtitle = data["description"];
+    dataWinner->setSubtitle(subtitle);
+
+    std::string date = getDateFromAmericanFormat(std::string(data["started_at"]).substr(0, 10));
+    dataWinner->setDate(date);
+
+    int count = data["participants_count"];
+    dataWinner->setPlayerCount(count * 2);
+
+    std::string game = data["game_name"];
+    if (game == "Mario Kart World") {
+        dataWinner->setGame(0);
+    } else {
+        dataWinner->setGame(1);
+    }
+
+    bool doublonFifth = false;
+    bool doublonSeventh = false;
+    std::regex pattern(REGEX_WEB_TEAM_NAME);
+    for (auto &it : data["participants"]) {
+        json participant = it["participant"];
+        std::string name = participant["name"];
+        int rank = participant["final_rank"];
+
+        if (rank >= 1 && rank <= 8) {
+            if (rank == 5)
+                getRealRank(rank, doublonFifth);
+            if (rank == 7)
+                getRealRank(rank, doublonSeventh);
+
+            std::smatch matches;
+            if (std::regex_match(name, matches, pattern)) {
+                std::string team = matches[1];
+                std::string player01 = matches[2];
+                std::string player02 = matches[3];
+
+                GNCApp::Data::Winner::Duo &duo = dataWinner->getTeamDuo(rank - 1);
+
+                duo.setName(team);
+                duo[0].setName(player01);
+                duo[1].setName(player02);
+            } else {
+                std::cerr << "WARNING: can't match regex for " << name << std::endl;
+            }
+        }
+    }
+}
 
 void loadExcelFile(std::string path)
 {

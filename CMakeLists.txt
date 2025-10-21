@@ -39,7 +39,7 @@ add_subdirectory(${LIB_DIR}/OpenXLSX EXCLUDE_FROM_ALL)
 find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
 find_package(minizip REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia Network)
 qt_standard_project_setup()
 
 set(APP_SRC_FILES
@@ -72,8 +72,11 @@ set(APP_SRC_FILES
     ${SRC_DIR}/UI/Windows/Primary/Core.cpp
     ${SRC_DIR}/UI/Windows/Primary/Menu/Bar.cpp
     ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/Page.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxAutoLoad.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/TabSolo.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/TabDuo.cpp
     ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxInfo.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxLoadExcel.cpp
+    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxLoadWeb.cpp
     ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxRank.cpp
     ${SRC_DIR}/UI/Windows/Primary/Tabs/Bracket/Page.cpp
     ${SRC_DIR}/UI/Windows/Primary/Tabs/Bracket/Callback.cpp
@@ -106,6 +109,7 @@ target_link_libraries(${APP_NAME} PRIVATE
     minizip::minizip
     Qt6::Widgets
     Qt6::Multimedia
+    Qt6::Network
 )
 
 if (WIN32)
@@ -153,26 +157,17 @@ foreach(ITEM ${ASSETS_TO_COPY})
     )
 endforeach()
 
-
-set(QT_BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows")
-set(QT_PLUGINS_DIR "Qt6/plugins")
-set(QT_DIR "$<IF:$<CONFIG:Debug>,${QT_BASE_DIR}/debug/${QT_PLUGINS_DIR},${QT_BASE_DIR}/${QT_PLUGINS_DIR}>")
+set(VCPKG_BASE_DIR "$<IF:$<CONFIG:Debug>,${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows/debug,${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows>")
+set(VCPKG_BIN_DIR "${VCPKG_BASE_DIR}/bin")
+set(VCPKG_QT_DIR "${VCPKG_BASE_DIR}/Qt6/plugins")
 
 add_custom_command(TARGET ${APP_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_BIN_DIR}/libcrypto-3-x64.dll" ${APP_DIR}
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_BIN_DIR}/libssl-3-x64.dll" ${APP_DIR}
     COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/platforms
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${QT_DIR}/platforms/qwindows$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/platforms
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_QT_DIR}/platforms/qwindows$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/platforms
     COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/multimedia
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${QT_DIR}/multimedia/windowsmediaplugin$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/multimedia
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_QT_DIR}/multimedia/windowsmediaplugin$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/multimedia
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/networkinformation
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_QT_DIR}/networkinformation/qnetworklistmanager$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/networkinformation
 )
-
-# # Copy image format plugins (jpeg + png)
-# add_custom_command(TARGET ${APP_NAME} POST_BUILD
-#     COMMAND ${CMAKE_COMMAND} -E make_directory
-#             $<TARGET_FILE_DIR:${APP_NAME}>/imageformats
-#     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-#             "${QT_PLUGINS_DIR}/imageformats/qjpeg.dll"
-#             $<TARGET_FILE_DIR:${APP_NAME}>/imageformats
-#     # COMMAND ${CMAKE_COMMAND} -E copy_if_different
-#     #         "${QT_PLUGINS_DIR}/imageformats/qpng.dll"
-#     #         $<TARGET_FILE_DIR:${APP_NAME}>/imageformats
-# )

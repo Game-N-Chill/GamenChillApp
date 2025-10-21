@@ -175,7 +175,6 @@ void Canva::draw()
             continue;
         }
 
-        std::cout << "-- Drawing " << name << " on the canva" << std::endl;
         try {
             drawImage(this->_painter, std::get<Image>(obj));
             continue;
@@ -198,7 +197,6 @@ bool Canva::save(std::string dirPath, std::string fileName)
         fs::create_directory(dirPath);
     }
     std::string imagePath = dirPath + '/' + fileName + ".png";
-    std::cout << "-- Generating image from canva at " << imagePath << std::endl;
     return this->_canva.save(imagePath.c_str());
 }
 

@@ -36,6 +36,22 @@ namespace GNCApp::Logic
     #define SEEDING_FILE_NAME       "seeding.xlsx"
     #define SEEDING_WORKSHEET       "Seeding"
 
+    /*
+        ^ – Start of the string.
+        (.+?) – Captures the team name (lazy match to stop at the first ().
+        \s* – Optional whitespace.
+        \( – Literal opening parenthesis.
+        \s* – Optional whitespace.
+        (.+?) – Captures Player01.
+        \s*-\s* – Hyphen surrounded by optional whitespace.
+        (.+?) – Captures Player02.
+        \s*\) – Optional whitespace and closing parenthesis.
+        $ – End of string.
+    */
+    #define REGEX_WEB_DATE          "^(\\d{4})-(\\d{2})-(\\d{2})$"
+    #define REGEX_WEB_TEAM_NAME     "^(.+?)\\s*\\(\\s*(.+?)\\s*-\\s*(.+?)\\s*\\)$"
+
+void loadWebFile(std::string apiKey, std::string tournamentID);
 void loadExcelFile(std::string path);
 void createWinnerSoloImage();
 void createWinnerDuoImage();

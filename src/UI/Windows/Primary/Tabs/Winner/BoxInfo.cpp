@@ -69,10 +69,11 @@ BoxInfo::BoxInfo(QWidget *parent) :
 
     _layout = new QVBoxLayout(this);
     _layout->addWidget(_box);
+    _layout->addStretch();
     setLayout(_layout);
 }
 
-void BoxInfo::updateAllInfos()
+void BoxInfo::updateInfo()
 {
     Data::Winner *dataWinner = Data::Winner::getInstance();
 

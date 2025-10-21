@@ -4,20 +4,15 @@
 namespace GNCApp::UI::Windows
 {
 
-BoxRank::BoxRank(QWidget *parent) :
+BoxRank::BoxRank(int teamSize, QWidget *parent) :
     QWidget(parent)
 {
+    _teamSize = teamSize;
+
     auto dataWinner = Data::Winner::getInstance();
 
-    _box = new Tools::VGroupBox("Players Rank", this);
+    _box = new Tools::HGroupBox("Players Rank", this);
 
-    _team = new QComboBox(this);
-    _team->addItem("Solo");
-    _team->addItem("Duo");
-    connect(_team, &QComboBox::currentIndexChanged, this, &BoxRank::onTeamChanged);
-    _box->addWidget(_team);
-
-    _layoutBox = new Tools::HGroupBox("", this);
     _layoutLeft = new QVBoxLayout;
     _layoutRight = new QVBoxLayout;
     QLayout *currLayout = _layoutLeft;
@@ -31,10 +26,12 @@ BoxRank::BoxRank(QWidget *parent) :
         QString pos = QString::number(i + 1);
 
         _playerBox[i] = new Tools::HGroupBox("", this);
-        for (int j = 0; j < _playerLabel[i].size(); j++) {
-            _playerLabel[i][j] = new QLabel("");
-            _playerBox[i]->addWidget(_playerLabel[i][j]);
-        }
+        _playerLabel[i] = new QLabel("");
+        _playerBox[i]->addWidget(_playerLabel[i]);
+        // for (int j = 0; j < _playerLabel[i].size(); j++) {
+        //     _playerLabel[i][j] = new QLabel("");
+        //     _playerBox[i]->addWidget(_playerLabel[i][j]);
+        // }
         _playerButton[i] = new QToolButton(this);
         _playerButton[i]->setText("...");
         connect(_playerButton[i], &QToolButton::clicked, this, [this, i](bool checked) {
@@ -43,25 +40,28 @@ BoxRank::BoxRank(QWidget *parent) :
         _playerBox[i]->addWidget(_playerButton[i]);
 
         currLayout->addWidget(_playerBox[i]);
-
-        setTeamInfo(i, dataWinner->getTeamSolo(i));
     }
-    _layoutBox->addLayout(_layoutLeft);
-    _layoutBox->addLayout(_layoutRight);
-    _box->addWidget(_layoutBox);
+    _box->addLayout(_layoutLeft);
+    _box->addLayout(_layoutRight);
 
     _layout = new QVBoxLayout(this);
     _layout->addWidget(_box);
+    _layout->addStretch();
     setLayout(_layout);
+
+    updateInfo();
 }
 
-void BoxRank::updateAllInfos()
+void BoxRank::updateInfo()
 {
     Data::Winner *dataWinner = Data::Winner::getInstance();
 
-    this->_team->setCurrentIndex(0);
     for (int i = 0; i < PLAYER_GRAPH_COUNT; i++) {
-        setTeamInfo(i, dataWinner->getTeamSolo(i));
+        if (_teamSize == 1) {
+            setTeamInfo(i, dataWinner->getTeamSolo(i));
+        } else {
+            setTeamInfo(i, dataWinner->getTeamDuo(i));
+        }
     }
 }
 
@@ -69,22 +69,9 @@ void BoxRank::updateAllInfos()
 //  CALLBACKS
 // *****************************************************************************
 
-void BoxRank::onTeamChanged(int index)
-{
-    auto dataWinner = Data::Winner::getInstance();
-
-    for (int i = 0; i <  PLAYER_GRAPH_COUNT; i++) {
-        if (index == 0) { // Solo
-            setTeamInfo(i, dataWinner->getTeamSolo(i));
-        } else { // Duo
-            setTeamInfo(i, dataWinner->getTeamDuo(i));
-        }
-    }
-}
-
 void BoxRank::onPlayerClicked(int index, bool checked)
 {
-    if (this->_team->currentIndex() == 0) { // Solo
+    if (this->_teamSize == 1) { // Solo
         openPlayerSoloWindow(index);
     } else { // Duo
         openPlayerDuoWindow(index);
@@ -104,13 +91,21 @@ void BoxRank::setTeamInfo(int index, GNCApp::Data::Winner::Team<N> team)
         _playerBox[index]->setTitle("N°" + QString::number(index + 1) + " - " + QString::fromStdString(*team));
     }
 
-    for (size_t i = 0; i < _playerLabel[index].size(); i++) {
-        if (i < N) {
-            _playerLabel[index][i]->setText(QString::fromStdString(team[i].getName()) + " (" + QString::fromStdString(team[i].getCharacter().name) + " - " + QString::fromStdString(team[i].getSkin()) + ")");
-        } else {
-            _playerLabel[index][i]->setText("");
+    QString str = "";
+    for (size_t i = 0; i < N; i++) {
+        str += QString::fromStdString(team[i].getName()) + " (" + QString::fromStdString(team[i].getCharacter().name) + " - " + QString::fromStdString(team[i].getSkin()) + ")";
+
+        if (i < N - 1) {
+            str += '\n';
         }
+
+        // if (i < N) {
+        //     _playerLabel[index][i]->setText(QString::fromStdString(team[i].getName()) + " (" + QString::fromStdString(team[i].getCharacter().name) + " - " + QString::fromStdString(team[i].getSkin()) + ")");
+        // } else {
+        //     _playerLabel[index][i]->setText("");
+        // }
     }
+    _playerLabel[index]->setText(str);
 }
 
 void BoxRank::openPlayerSoloWindow(int index)
@@ -145,11 +140,6 @@ void BoxRank::openPlayerDuoWindow(int index)
     }
 
     delete window;
-}
-
-int BoxRank::getTeamSelected()
-{
-    return this->_team->currentIndex();
 }
 
 }

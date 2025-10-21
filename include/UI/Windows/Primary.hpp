@@ -50,12 +50,12 @@ namespace GNCApp::UI::Windows
 //  WINNER DATA STRUCTURE
 // *****************************************************************************
 
-class BoxAutoLoad : public QWidget
+class BoxLoadExcel : public QWidget
 {
     Q_OBJECT
 
     public:
-        BoxAutoLoad(QWidget *parent);
+        BoxLoadExcel(QWidget *parent);
 
         void onPathEdited(const QString &str);
         void onLoadClicked();
@@ -68,6 +68,25 @@ class BoxAutoLoad : public QWidget
 
 };
 
+class BoxLoadWeb : public QWidget
+{
+    Q_OBJECT
+
+    public:
+        BoxLoadWeb(QWidget *parent);
+
+        void onPathEdited(const QString &str);
+        void onLoadClicked();
+
+    private:
+        QVBoxLayout *_layout;
+        Tools::HGroupBox *_box;
+        QLineEdit *_apiKey;
+        QLineEdit *_tournamentID;
+        QPushButton *_btnLoad;
+
+};
+
 class BoxInfo : public QWidget
 {
     Q_OBJECT
@@ -75,7 +94,7 @@ class BoxInfo : public QWidget
     public:
         BoxInfo(QWidget *parent);
 
-        void updateAllInfos();
+        void updateInfo();
 
         void onTitleEdited(const QString &str);
         void onSubtitleEdited(const QString &str);
@@ -104,9 +123,9 @@ class BoxRank : public QWidget
     Q_OBJECT
 
     public:
-        BoxRank(QWidget *parent);
+        BoxRank(int teamSize, QWidget *parent);
 
-        void updateAllInfos();
+        void updateInfo();
 
         void onTeamChanged(int index);
         void onPlayerClicked(int index, bool checked);
@@ -116,18 +135,50 @@ class BoxRank : public QWidget
         void openPlayerSoloWindow(int index);
         void openPlayerDuoWindow(int index);
 
-        int getTeamSelected();
-
     private:
+        int _teamSize;
+
         QVBoxLayout *_layout;
-        Tools::VGroupBox *_box;
-        QComboBox *_team;
-        Tools::HGroupBox *_layoutBox;
+        Tools::HGroupBox *_box;
         QVBoxLayout *_layoutLeft;
         QVBoxLayout *_layoutRight;
         std::array<Tools::HGroupBox *, PLAYER_GRAPH_COUNT> _playerBox;
-        std::array<std::array<QLabel *, 2>, PLAYER_GRAPH_COUNT> _playerLabel;
+        std::array<QLabel *, PLAYER_GRAPH_COUNT> _playerLabel;
         std::array<QToolButton *, PLAYER_GRAPH_COUNT> _playerButton;
+};
+
+class TabSolo : public QWidget
+{
+    Q_OBJECT
+
+    public:
+        TabSolo(QWidget *parent, BoxInfo *info);
+
+        void updateInfo();
+
+    private:
+        BoxInfo *_ptrInfo;
+        QVBoxLayout *_layout;
+
+        BoxLoadExcel *_loadExcel;
+        BoxRank *_rank;
+};
+
+class TabDuo : public QWidget
+{
+    Q_OBJECT
+
+    public:
+        TabDuo(QWidget *parent, BoxInfo *info);
+
+        void updateInfo();
+
+    private:
+        BoxInfo *_ptrInfo;
+        QVBoxLayout *_layout;
+
+        BoxLoadWeb *_loadWeb;
+        BoxRank *_rank;
 };
 
 class PageWinner : public QWidget
@@ -140,14 +191,15 @@ class PageWinner : public QWidget
         void onGenerateClicked();
         void callbackOpenDir();
 
-        void updateAllInfos();
+        void updateInfo();
 
     private:
         QVBoxLayout *_layout;
 
-        BoxAutoLoad *_autoLoad;
         BoxInfo *_info;
-        BoxRank *_rank;
+        QTabWidget *_tabs;
+        TabSolo *_tabSolo;
+        TabDuo *_tabDuo;
 
         QPushButton *_btnWinner;
 };

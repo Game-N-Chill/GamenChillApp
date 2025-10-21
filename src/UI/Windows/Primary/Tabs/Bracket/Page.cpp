@@ -83,7 +83,6 @@ void PageBracket::createBoxInfo()
     this->_editionList = {
         "150cc",
         "200cc",
-        "Duo",
         "Miroir",
         "Bataille",
         "Autres:"

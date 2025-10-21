@@ -17,14 +17,15 @@ PageWinner::PageWinner(QWidget *parent) :
 {
     _layout = new QVBoxLayout(this);
 
-    _autoLoad = new BoxAutoLoad(this);
-    _layout->addWidget(_autoLoad);
-
     _info = new BoxInfo(this);
     _layout->addWidget(_info);
 
-    _rank = new BoxRank(this);
-    _layout->addWidget(_rank);
+    _tabs = new QTabWidget(this);
+    _tabSolo = new TabSolo(this, _info);
+    _tabs->addTab(_tabSolo, "Solo");
+    _tabDuo = new TabDuo(this, _info);
+    _tabs->addTab(_tabDuo, "Duo");
+    _layout->addWidget(_tabs);
 
     _btnWinner = createPushButton(this, " Generate", "Will create top 8 image from data", ":/icons/generate", 80, std::bind(&PageWinner::onGenerateClicked, this));
     _layout->addWidget(_btnWinner);
@@ -32,15 +33,16 @@ PageWinner::PageWinner(QWidget *parent) :
     _layout->addStretch();
 }
 
-void PageWinner::updateAllInfos()
+void PageWinner::updateInfo()
 {
-    this->_info->updateAllInfos();
-    this->_rank->updateAllInfos();
+    std::cout << __func__ << std::endl;
+    this->_info->updateInfo();
 }
 
 // *****************************************************************************
 //  CALLBACKS
 // *****************************************************************************
+
 void caca()
 {
 }
@@ -48,7 +50,7 @@ void caca()
 void PageWinner::onGenerateClicked()
 {
     std::function<void()> func = nullptr;
-    if (this->_rank->getTeamSelected() == 0) { // Solo
+    if (this->_tabs->currentIndex() == 0) { // Solo
         func = &Logic::createWinnerSoloImage;
     } else { // Duo
         func = &Logic::createWinnerDuoImage;

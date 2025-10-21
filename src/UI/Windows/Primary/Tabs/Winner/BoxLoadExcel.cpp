@@ -5,20 +5,21 @@
 namespace GNCApp::UI::Windows
 {
 
-BoxAutoLoad::BoxAutoLoad(QWidget *parent) :
+BoxLoadExcel::BoxLoadExcel(QWidget *parent) :
     QWidget(parent)
 {
-    _box = new Tools::FGroupBox("Auto Loader", this);
+    _box = new Tools::FGroupBox("Excel Loader", this);
 
-    _btnLoad = createPushButton(this, " Load", "When clicked will load all infos from path excel file", ":/icons/load", 80, std::bind(&BoxAutoLoad::onLoadClicked, this));
+    _btnLoad = createPushButton(this, " Load", "When clicked will load all infos from path excel file", ":/icons/load", 80, std::bind(&BoxLoadExcel::onLoadClicked, this));
     _btnLoad->setEnabled(false);
     _browserFile = new Tools::FileBrowser(this, _btnLoad);
-    connect(_browserFile->getLineEdit(), &QLineEdit::textChanged, this, &BoxAutoLoad::onPathEdited);
+    connect(_browserFile->getLineEdit(), &QLineEdit::textChanged, this, &BoxLoadExcel::onPathEdited);
 
     _box->addRow("Excel Path : ", _browserFile);
 
     _layout = new QVBoxLayout(this);
     _layout->addWidget(_box);
+    _layout->addStretch();
     setLayout(_layout);
 }
 
@@ -26,7 +27,7 @@ BoxAutoLoad::BoxAutoLoad(QWidget *parent) :
 //  CALLBACKS
 // *****************************************************************************
 
-void BoxAutoLoad::onPathEdited(const QString &str)
+void BoxLoadExcel::onPathEdited(const QString &str)
 {
     if (QFile::exists(str) && str.contains(EXCEL_FILE_EXT)) {
         this->_btnLoad->setEnabled(true);
@@ -35,10 +36,14 @@ void BoxAutoLoad::onPathEdited(const QString &str)
     }
 }
 
-void BoxAutoLoad::onLoadClicked()
+void BoxLoadExcel::onLoadClicked()
 {
     Logic::loadExcelFile(this->_browserFile->getLineEdit()->text().toStdString());
-    dynamic_cast<PageWinner *>(this->parentWidget())->updateAllInfos();
+
+    auto tabSolo = dynamic_cast<TabSolo *>(this->parentWidget());
+    if (tabSolo != nullptr) {
+        tabSolo->updateInfo();
+    }
 }
 
 }

@@ -13,7 +13,7 @@ using json = nlohmann::json;
 namespace Utils
 {
     #define GNCAPP_NAME                     "GamenChillApp"
-    #define GNCAPP_VERSION                  "v3.1.2"
+    #define GNCAPP_VERSION                  "v3.2.0"
     #define GNCAPP_API_USERAGENT            "GNCApp"
     #define GNCAPP_TEMP_DIR                 "GamenChill"
     #define GNCAPP_TEMP_DIR_SAVE            "Save"
@@ -133,9 +133,11 @@ class Request
         std::string Get(std::string url);
         void Download(std::string url, std::string path);
 
+        void SetOpt(CURLoption key, const char *value);
         void SetOpt(CURLoption key, std::string value);
         void SetOpt(CURLoption key, int value);
         void SetHeader(std::vector<std::string> vec);
+        void ResetOpt();
 
     private:
         CURL *_curl;

@@ -50,11 +50,25 @@ void Request::SetFetchOpt(std::string url, Func func, void *data)
     curl_easy_setopt(this->_curl, CURLOPT_URL, url.c_str());
     curl_easy_setopt(this->_curl, CURLOPT_WRITEFUNCTION, func);
     curl_easy_setopt(this->_curl, CURLOPT_WRITEDATA, data);
+    #if _DEBUG
+        curl_easy_setopt(this->_curl, CURLOPT_VERBOSE, 1L);
+    #endif
 
     CURLcode responseCode = curl_easy_perform(this->_curl);
     if (responseCode != CURLE_OK) {
         throw std::runtime_error(std::string("curl failed to perform (") + curl_easy_strerror(responseCode) + ")");
     }
+
+    long code = 0;
+    curl_easy_getinfo(_curl, CURLINFO_RESPONSE_CODE, &code);
+    if (code != 200) {
+        throw std::runtime_error(std::string("failed to fetch content, error code: ") + std::to_string(code));
+    }
+}
+
+void Request::SetOpt(CURLoption key, const char *value)
+{
+    curl_easy_setopt(this->_curl, key, value);
 }
 
 void Request::SetOpt(CURLoption key, std::string value)
@@ -74,6 +88,11 @@ void Request::SetHeader(std::vector<std::string> vec)
         headers = curl_slist_append(headers, str.c_str());
     }
     curl_easy_setopt(this->_curl, CURLOPT_HTTPHEADER, headers);
+}
+
+void Request::ResetOpt()
+{
+    curl_easy_reset(this->_curl);
 }
 
 std::string Request::Get(std::string url)
