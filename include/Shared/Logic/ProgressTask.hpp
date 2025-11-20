@@ -1,0 +1,49 @@
+
+#pragma once
+
+#include <iostream>
+#include <list>
+#include <thread>
+#include <GoGuLib.hpp>
+
+namespace GNCApp::Logic
+{
+
+#define DO_PROGRESS_TASK            (*Logic::ProgressTask::getInstance())++
+#define RESET_PROGRESS_TASK         Logic::ProgressTask::getInstance()->reset()
+
+class ProgressTask : public GGL::Singleton<ProgressTask>
+{
+    public:
+        ~ProgressTask() = default;
+
+        void addTask(std::string str);
+        ProgressTask &operator<<(std::string str);
+
+        std::string getTaskName() const;
+        std::string operator*() const;
+
+        int getTaskValue() const;
+        int operator!() const;
+
+        void progress();
+        ProgressTask &operator++(int);
+
+        void reset();
+        void operator~();
+
+
+        static void loadTaskWinner();
+        static void loadTaskBracket();
+        static void loadTaskSeeding();
+
+    private:
+        friend class GGL::Singleton<ProgressTask>;
+        ProgressTask();
+
+        std::list<std::string> _list;
+        std::list<std::string>::iterator _it;
+        size_t _pos;
+};
+
+}

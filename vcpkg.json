@@ -1,19 +1,12 @@
 {
+    "name": "gncapp",
+    "version": "3.3.0",
     "dependencies": [
-        {
-            "name": "nlohmann-json"
-        },
-        {
-            "name": "curl"
-        },
-        {
-            "name": "minizip"
-        },
-        {
-            "name": "qtbase"
-        },
-        {
-            "name": "qtmultimedia"
-        }
+        "nlohmann-json",
+        "curl",
+        "minizip",
+        "argparse",
+        "qtbase",
+        "qtmultimedia"
     ]
 }

@@ -1,173 +1,65 @@
 cmake_minimum_required(VERSION 3.30)
-project(GamenChillApp)
+project(GamenChillApp VERSION 3.3.0)
 
-#  INITIALIZATION
+#  LIBRARY
 # ------------------------------------------------------------------------------
 
-set(APP_NAME "${PROJECT_NAME}")
-set(APP_DIR $<TARGET_FILE_DIR:${APP_NAME}>)
-set(UPD_NAME "${PROJECT_NAME}_Updater")
+include(FetchContent)
 
-set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+FetchContent_Declare(
+    GoGuLib
+    GIT_REPOSITORY https://github.com/Mr-GoGu/GoGuLib.git
+    GIT_TAG        main
+)
+FetchContent_MakeAvailable(GoGuLib)
+
+FetchContent_Declare(
+    OpenXLSX
+    GIT_REPOSITORY https://github.com/troldal/OpenXLSX.git
+    GIT_TAG        master
+)
+FetchContent_MakeAvailable(OpenXLSX)
+
+#  VARIABLES
+# ------------------------------------------------------------------------------
+
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
-set(BIN_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin")
+set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+set(OUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin")
+set(BIN_DIR "${OUT_DIR}/$<$<CONFIG:Debug>:Debug>$<$<CONFIG:Release>:Release>")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUT_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUT_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUT_DIR})
 
 if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/package/scripts/buildsystems/vcpkg.cmake" CACHE STRING "" FORCE)
 endif()
 
-if(WIN32)
-    enable_language("RC")
-    set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_icon.rc")
-    set(UPD_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/resources/upd_icon.rc")
-endif()
-
-#  APPLICATION
+#  PROJECT
 # ------------------------------------------------------------------------------
 
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-add_subdirectory(${LIB_DIR}/OpenXLSX EXCLUDE_FROM_ALL)
-
-find_package(nlohmann_json REQUIRED)
-find_package(CURL REQUIRED)
-find_package(minizip REQUIRED)
-find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia Network)
-qt_standard_project_setup()
-
-set(APP_SRC_FILES
-    ${SRC_DIR}/Main.cpp
-    ${SRC_DIR}/Utils/Process.cpp
-    ${SRC_DIR}/Utils/Request.cpp
-    ${SRC_DIR}/Utils/String.cpp
-    ${SRC_DIR}/Utils/Temp.cpp
-    ${SRC_DIR}/Update/Manager.cpp
-    ${SRC_DIR}/Data/Data.cpp
-    ${SRC_DIR}/Data/Dictionary/Background.cpp
-    ${SRC_DIR}/Data/Dictionary/Character.cpp
-    ${SRC_DIR}/Data/Assets.cpp
-    ${SRC_DIR}/Data/Config.cpp
-    ${SRC_DIR}/Data/Winner/Winner.cpp
-    ${SRC_DIR}/Data/Winner/Player.cpp
-    ${SRC_DIR}/Data/Seeding/Seeding.cpp
-    ${SRC_DIR}/Data/Seeding/Player.cpp
-    ${SRC_DIR}/Logic/ProgressTask.cpp
-    ${SRC_DIR}/Logic/Render.cpp
-    ${SRC_DIR}/Logic/Winner.cpp
-    ${SRC_DIR}/Logic/Bracket.cpp
-    ${SRC_DIR}/Logic/Seeding.cpp
-    ${SRC_DIR}/UI/Windows/Common/Shared.cpp
-    ${INC_DIR}/UI/Windows/Common/Notification.hpp
-    ${SRC_DIR}/UI/Windows/Common/Notification.cpp
-    ${INC_DIR}/UI/Windows/Common/ProgressBar.hpp
-    ${SRC_DIR}/UI/Windows/Common/ProgressBar.cpp
-    ${INC_DIR}/UI/Windows/Primary.hpp
-    ${SRC_DIR}/UI/Windows/Primary/Core.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Menu/Bar.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/Page.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/TabSolo.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/TabDuo.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxInfo.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxLoadExcel.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxLoadWeb.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Winner/BoxRank.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Bracket/Page.cpp
-    ${SRC_DIR}/UI/Windows/Primary/Tabs/Bracket/Callback.cpp
-    ${INC_DIR}/UI/Windows/Secondary/PlayerSettings.hpp
-    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Info.cpp
-    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Solo.cpp
-    ${SRC_DIR}/UI/Windows/Secondary/PlayerSettings/Duo.cpp
-    ${INC_DIR}/UI/Windows/Secondary/PlayerBracket.hpp
-    ${SRC_DIR}/UI/Windows/Secondary/PlayerBracket.cpp
-    ${SRC_DIR}/UI/Tools/Browser.cpp
-    ${INC_DIR}/UI/Tools/Browser.hpp
-    ${SRC_DIR}/UI/Tools/GroupBox.cpp
-    ${INC_DIR}/UI/Tools/GroupBox.hpp
-    ${SRC_DIR}/UI/Tools/Randomizer.cpp
-    ${INC_DIR}/UI/Tools/Randomizer.hpp
-    ${SRC_DIR}/UI/Tools/Window.cpp
-    ${INC_DIR}/UI/Tools/Window.hpp
+set(SHARED_SRC
+    ${SRC_DIR}/Shared/Data/Dictionary/Background.cpp
+    ${SRC_DIR}/Shared/Data/Dictionary/Character.cpp
+    ${SRC_DIR}/Shared/Data/Seeding/Player.cpp
+    ${SRC_DIR}/Shared/Data/Seeding/Seeding.cpp
+    ${SRC_DIR}/Shared/Data/Winner/Player.cpp
+    ${SRC_DIR}/Shared/Data/Winner/Winner.cpp
+    ${SRC_DIR}/Shared/Data/Assets.cpp
+    ${SRC_DIR}/Shared/Data/Config.cpp
+    ${SRC_DIR}/Shared/Data/Data.cpp
+    ${SRC_DIR}/Shared/Logic/Bracket.cpp
+    ${SRC_DIR}/Shared/Logic/ProgressTask.cpp
+    ${SRC_DIR}/Shared/Logic/Render.cpp
+    ${SRC_DIR}/Shared/Logic/Seeding.cpp
+    ${SRC_DIR}/Shared/Logic/Winner.cpp
 )
 
-qt_add_resources(APP_RSC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/resources/app_assets.qrc")
-
-add_executable(${APP_NAME} ${APP_SRC_FILES} ${APP_RSC_FILES} ${APP_ICON_RESOURCE})
-
-target_include_directories(${APP_NAME} PRIVATE include)
-
-target_link_libraries(${APP_NAME} PRIVATE
-    OpenXLSX::OpenXLSX
-    nlohmann_json::nlohmann_json
-    CURL::libcurl
-    minizip::minizip
-    Qt6::Widgets
-    Qt6::Multimedia
-    Qt6::Network
-)
-
-if (WIN32)
-    target_link_options(${APP_NAME} PRIVATE $<$<CONFIG:Debug>:/SUBSYSTEM:CONSOLE>)
-    target_link_options(${APP_NAME} PRIVATE $<$<CONFIG:Release>:/SUBSYSTEM:WINDOWS>)
-endif()
-
-#  UPDATER
-# ------------------------------------------------------------------------------
-
-set(UPD_SRC_FILES
-    ${SRC_DIR}/Utils/Process.cpp
-    ${SRC_DIR}/Utils/Request.cpp
-    ${SRC_DIR}/Utils/String.cpp
-    ${SRC_DIR}/Utils/Temp.cpp
-    ${SRC_DIR}/Update/Main.cpp
-    ${SRC_DIR}/Update/Manager.cpp
-)
-
-add_executable(${UPD_NAME} ${UPD_SRC_FILES} ${UPD_ICON_RESOURCE})
-
-target_include_directories(${UPD_NAME} PRIVATE include)
-
-target_link_libraries(${UPD_NAME} PRIVATE
-    CURL::libcurl
-    minizip::minizip
-)
-
-#  POST BUILD
-# ------------------------------------------------------------------------------
-
-set(ASSETS_TO_COPY
-    "assets"
-    "data"
-    "template"
-    "themes"
-)
-
-foreach(ITEM ${ASSETS_TO_COPY})
-    add_custom_command(
-        TARGET ${APP_NAME}
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different "${CMAKE_SOURCE_DIR}/resources/${ITEM}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>/${ITEM}"
-        COMMAND ${CMAKE_COMMAND} -E echo "Copied resource directory: ${ITEM}"
-    )
-endforeach()
-
-set(VCPKG_BASE_DIR "$<IF:$<CONFIG:Debug>,${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows/debug,${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows>")
-set(VCPKG_BIN_DIR "${VCPKG_BASE_DIR}/bin")
-set(VCPKG_QT_DIR "${VCPKG_BASE_DIR}/Qt6/plugins")
-
-add_custom_command(TARGET ${APP_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_BIN_DIR}/libcrypto-3-x64.dll" ${APP_DIR}
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_BIN_DIR}/libssl-3-x64.dll" ${APP_DIR}
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/platforms
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_QT_DIR}/platforms/qwindows$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/platforms
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/multimedia
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_QT_DIR}/multimedia/windowsmediaplugin$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/multimedia
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${APP_DIR}/networkinformation
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${VCPKG_QT_DIR}/networkinformation/qnetworklistmanager$<$<CONFIG:Debug>:d>.dll" ${APP_DIR}/networkinformation
-)
+add_subdirectory(${SRC_DIR}/App)
+add_subdirectory(${SRC_DIR}/GUI)
+add_subdirectory(${SRC_DIR}/Update)
