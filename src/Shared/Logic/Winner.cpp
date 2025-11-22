@@ -39,9 +39,17 @@ void loadWebFile(std::string apiKey, std::string tournamentID)
     if (tournamentID.empty())
         return;
 
-    Data::Winner *dataWinner = Data::Winner::getInstance();
     // https://api.challonge.com/v1/tournaments/rififitest.json?api_key=p4JQGpIhptA3whwueKIFUicDejSf4e55ZMN1Pt6I&state=all&include_participants=1
     std::string url = "https://api.challonge.com/v1/tournaments/" + tournamentID + ".json?api_key=" + apiKey + "&state=all&include_participants=1";
+    loadWebFile(url);
+}
+
+void loadWebFile(std::string url)
+{
+    if (url.empty())
+        return;
+
+    Data::Winner *dataWinner = Data::Winner::getInstance();
     std::string pathTemp =  GGL::getTempDir() + '/' + GNCAPP_NAME + "/challonge.json";
     GGL::Request req;
     json data;

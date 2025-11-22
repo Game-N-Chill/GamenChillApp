@@ -47,6 +47,7 @@ namespace GNCApp::Logic
     #define REGEX_WEB_DATE          "^(\\d{4})-(\\d{2})-(\\d{2})$"
     #define REGEX_WEB_TEAM_NAME     "^(.+?)\\s*\\(\\s*(.+?)\\s*-\\s*(.+?)\\s*\\)$"
 
+void loadWebFile(std::string url);
 void loadWebFile(std::string apiKey, std::string tournamentID);
 void loadExcelFile(std::string path);
 void createWinnerSoloImage();
