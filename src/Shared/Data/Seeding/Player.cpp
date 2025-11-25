@@ -10,7 +10,7 @@ Seeding::Player::Player()
     this->_seeding = 0.0f;
 }
 
-Seeding::Player::Player(std::string name, float seeding)
+Seeding::Player::Player(std::string name, double seeding)
 {
     this->_name = name;
     this->_seeding = seeding;
@@ -28,12 +28,12 @@ void Seeding::Player::setName(std::string name)
 }
 
 
-float Seeding::Player::getSeeding() const
+double Seeding::Player::getSeeding() const
 {
     return this->_seeding;
 }
 
-void Seeding::Player::setSeeding(float value)
+void Seeding::Player::setSeeding(double value)
 {
     this->_seeding = value;
 }

@@ -72,7 +72,7 @@ void Seeding::addPlayer(const Player &player, size_t pos)
     genericAddPlayer(this->_list, player, pos);
 }
 
-void Seeding::addPlayer(std::string name, float seeding, size_t pos)
+void Seeding::addPlayer(std::string name, double seeding, size_t pos)
 {
     genericAddPlayer(this->_list, Player(name, seeding), pos);
 }
@@ -174,7 +174,7 @@ void Seeding::move(int indexSrc, int indexDest)
     }
 }
 
-void Seeding::sort(const std::map<std::string, float> &map)
+void Seeding::sort(const std::map<std::string, double> &map)
 {
     for (auto it = this->_list.begin(); it != this->_list.end(); it++) {
         std::string name = it->getName();

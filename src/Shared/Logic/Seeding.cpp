@@ -28,7 +28,7 @@ static bool downloadFile(std::string pathFile)
 void fetchSeeding()
 {
     std::string pathFile =  GGL::getTempDir() + '/' + GNCAPP_NAME + '/' + SEEDING_FILE_NAME;
-    std::map<std::string, float> players;
+    std::map<std::string, double> players;
 
     if (!downloadFile(pathFile)) {
         RESET_PROGRESS_TASK;
@@ -49,8 +49,8 @@ void fetchSeeding()
     for (size_t i = 2; i < 1000; i++) {
         try {
             std::string name = sheet.cell(OpenXLSX::XLCellReference("A" + std::to_string(i))).value();
-            float seeding = sheet.cell(OpenXLSX::XLCellReference("B" + std::to_string(i))).value();
-            players[ GGL::stringToLower(name)] = seeding;
+            double seeding = sheet.cell(OpenXLSX::XLCellReference("B" + std::to_string(i))).value();
+            players[GGL::stringToLower(name)] = seeding;
         } catch (const OpenXLSX::XLValueTypeError &e) {
             Error() << "WARNING: cell format is incorrect (" << e.what() << ")" << GGL::end;
             break;

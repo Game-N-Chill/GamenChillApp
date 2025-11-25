@@ -17,14 +17,14 @@ class Seeding : public  GGL::Singleton<Seeding>
         {
             public:
                 Player();
-                Player(std::string name, float seeding);
+                Player(std::string name, double seeding);
                 ~Player() = default;
 
                 std::string getName() const;
                 void setName(std::string name);
 
-                float getSeeding() const;
-                void setSeeding(float value);
+                double getSeeding() const;
+                void setSeeding(double value);
 
                 bool operator==(const Player &other) const;
                 bool operator==(const std::string &name) const;
@@ -35,7 +35,7 @@ class Seeding : public  GGL::Singleton<Seeding>
 
             private:
                 std::string _name;
-                float _seeding;
+                double _seeding;
         };
 
         ~Seeding() = default;
@@ -51,7 +51,7 @@ class Seeding : public  GGL::Singleton<Seeding>
 
         void addPlayer(size_t pos = std::string::npos);
         void addPlayer(const Player &player, size_t pos = std::string::npos);
-        void addPlayer(std::string name, float seeding = std::numeric_limits<float>::infinity(), size_t pos = std::string::npos);
+        void addPlayer(std::string name, double seeding = std::numeric_limits<double>::infinity(), size_t pos = std::string::npos);
         void removePlayer(size_t index);
         void removePlayer(std::string name);
         void removePlayer(const Player &player);
@@ -64,7 +64,7 @@ class Seeding : public  GGL::Singleton<Seeding>
         Player &operator[](std::string name);
         size_t getSize() const;
         void move(int indexSrc, int indexDest);
-        void sort(const std::map<std::string, float> &map);
+        void sort(const std::map<std::string, double> &map);
 
     private:
         friend class  GGL::Singleton<Seeding>;

@@ -28,7 +28,9 @@ namespace GNCApp::Logic
     #define EXCEL_COL_CHARACTER     "H"
     #define EXCEL_COL_PLAYER        "I"
 
-    #define SEEDING_URL             "https://drive.google.com/uc?export=download&id=1szRPeNovIz4KA_X-uQG0UOoGVIeAYWCY"
+    //                        ID du fichier : 1YT3Pv215gro_RCfn1742ASNJUSMfRhww
+    // https://docs.google.com/spreadsheets/d/1J8oynJao4IbXSkCAJ5WUfhDWekhAy69k/edit?usp=sharing&ouid=117609227211333661518&rtpof=true&sd=true
+    #define SEEDING_URL             "https://drive.google.com/uc?export=download&id=1J8oynJao4IbXSkCAJ5WUfhDWekhAy69k"
     #define SEEDING_FILE_NAME       "seeding.xlsx"
     #define SEEDING_WORKSHEET       "Seeding"
 
